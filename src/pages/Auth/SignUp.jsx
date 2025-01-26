@@ -2,7 +2,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import styles from './styles/Signup.module.scss';
+import styles from './styles/SignUp.module.scss';
 
 function Signup() {
   const { signUp } = useContext(AuthContext);
