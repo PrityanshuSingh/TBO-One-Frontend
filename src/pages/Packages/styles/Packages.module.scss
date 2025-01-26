@@ -1,0 +1,140 @@
+/* src/pages/Packages/styles/Packages.module.scss */
+@import '../../../assets/styles/variables.scss';
+
+.packagesContainer {
+  width: 100%;
+  max-width: 76vw; 
+  max-height: 94vh;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fixedHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  padding: 16px 20px;
+}
+
+.scrollContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+    border: 2px solid #f1f1f1;
+  }
+}
+
+.topBar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.headingArea {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainTitle {
+  color: var(--black);
+  font: 600 24px 'Poppins', sans-serif;
+  margin: 6px 0 0;
+}
+
+.subtitle {
+  color: var(--gray);
+  font: 500 14px 'Inter', sans-serif;
+  margin: 4px 0 0;
+}
+
+/* 
+  AI Suggestions Section 
+  Reuse the same styles as your category container to have same light-blue background, etc.
+*/
+.aiSuggestionSection {
+  margin-bottom: 24px; /* spacing, up to you */
+}
+
+/* We can reuse classes from CategorySection if you want consistent design: */
+.categoryTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+  margin: 0 0 6px;
+}
+
+.categoryContainer {
+  background-color: var(--light-blue);
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.noPackagesMsg {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--dark-gray);
+  padding: 6px;
+  text-align: center;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  grid-auto-rows: minmax(220px, auto);
+}
+
+.rightActions {
+  display: flex;
+  align-items: center;
+
+  button {
+    padding: 8px 6px 6px 6px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 1px solid white;
+    background-color: white;
+    color: var(--primary-blue);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: var(--light-blue);
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .packagesContainer {
+    width: 100%;
+    max-width: 90vw; 
+    max-height: 94vh;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,62 @@
+/* src/components/Sections/styles/CategorySection.module.scss */
+@import '../../../assets/styles/variables.scss';
+
+.categorySection {
+  margin-bottom: 24px;
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.categoryTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+  margin: 0;
+}
+
+.categorySearch {
+  width: 160px;
+  font-size: 12px;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  &:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+  }
+}
+
+/* The container for the cards or no-packages message */
+.categoryContainer {
+  background-color: var(--light-blue);
+  // border: 1px solid #ddd;
+  // border-radius: 12px;
+  padding: 12px;
+  border-radius: 20px; /* matching large radius like sidebar */
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.noPackagesMsg {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--dark-gray);
+  padding: 6px;
+}
+
+/* The grid layout for package cards */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  grid-auto-rows: minmax(220px, auto);
+  /* If you want a min row height: 
+     grid-auto-rows: minmax(260px, auto);
+  */
+}

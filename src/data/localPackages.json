@@ -1,0 +1,479 @@
+[
+  {
+    "id": "123",
+    "details": {},
+    "packageTitle": "Romantic Gondola Escapade",
+    "image": "https://cdn.builder.io/api/v1/image/assets/4aa0ae1a0e814437847f3f8ff6c4ef38/18e99b721585dab9ff7802d24f93ce798101db4f0b39a82c88225f83ea4bd436?apiKey=4aa0ae1a0e814437847f3f8ff6c4ef38&",
+    "location": "Venice, Italy",
+    "duration": "10 Days/9 Nights",
+    "price": "1299",
+    "priceColor": "rgba(251, 76, 36, 1)",
+
+    "shortDescription": "Explore the canals of Venice, immerse in Italian cuisine, and enjoy a classic gondola ride on the Grand Canal.",
+    "detailedDescription": "This package provides a deep dive into Venetian culture and history, perfect for couples, honeymooners, or anyone seeking a blend of romance and art. From St. Mark’s Basilica to hidden alleyway eateries, you’ll experience the authentic Venetian lifestyle.",
+
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Venice",
+        "activities": [
+          "Transfer from airport to hotel on a private water taxi",
+          "Check-in at a waterfront hotel overlooking the Grand Canal",
+          "Evening stroll around Piazza San Marco"
+        ]
+      },
+      {
+        "day": 2,
+        "title": "Gondola Ride & Classic Venice",
+        "activities": [
+          "Morning gondola ride along hidden canals",
+          "Visit the Doge’s Palace & Bridge of Sighs",
+          "Enjoy a welcome dinner at a traditional ristorante"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Art & Architecture",
+        "activities": [
+          "Guided tour of St. Mark’s Basilica",
+          "Explore the Peggy Guggenheim Collection",
+          "Leisure evening: wine tasting at a local bacaro"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "Island Hopping",
+        "activities": [
+          "Boat excursion to Murano (glass-blowing demos) & Burano (colorful houses)",
+          "Lunch featuring seafood specialties in Torcello",
+          "Sunset return to Venice"
+        ]
+      },
+      {
+        "day": 10,
+        "title": "Departure",
+        "activities": [
+          "Check-out and transfer to airport",
+          "Farewell to Venice"
+        ]
+      }
+    ],
+
+    "inclusions": [
+      "4-star canal-side accommodations",
+      "Daily breakfast & select dinners",
+      "Airport-water taxi transfers",
+      "Guided city & island tours"
+    ],
+    "exclusions": [
+      "International flights",
+      "Personal expenses & meals not listed",
+      "Travel insurance",
+      "Visa fees (if applicable)"
+    ],
+
+    "accommodationDetails": {
+      "hotelName": "Hotel Rialto View",
+      "roomType": "Deluxe Canal View Room",
+      "amenities": [
+        "Free Wi-Fi",
+        "Complimentary breakfast buffet",
+        "Spa & wellness center access"
+      ]
+    },
+
+    "bestTimeToVisit": "April to June or September to October",
+    "recommendationTags": [
+      "Romantic",
+      "Honeymoon",
+      "History",
+      "Cultural",
+      "City Tour"
+    ],
+    "notes": "Peak season prices may vary. Optional tours available upon request.",
+
+    "faqs": [
+      {
+        "question": "How do I get from the airport to Venice?",
+        "answer": "We include water taxi transfers, so once you land, our representative will guide you to the dock."
+      },
+      {
+        "question": "Are gondola rides included?",
+        "answer": "One gondola ride (shared or private) is included on Day 2; additional rides can be booked as extras."
+      }
+    ]
+  },
+
+  {
+    "id": "124",
+    "packageTitle": "K-Culture Highlights in Seoul",
+    "image": "https://cdn.builder.io/api/v1/image/assets/4aa0ae1a0e814437847f3f8ff6c4ef38/f77705ff0e183b987ddd7b021b877d05c645a47f7ebe1a876480bd346f2610fd?apiKey=4aa0ae1a0e814437847f3f8ff6c4ef38&",
+    "location": "Seoul, South Korea",
+    "duration": "6 Days/5 Nights",
+    "price": "899",
+    "priceColor": "rgba(71, 199, 130, 1)",
+
+    "shortDescription": "Immerse in Seoul’s modern pop culture, historical palaces, and tantalizing street food for a truly unforgettable trip.",
+    "detailedDescription": "From K-pop fever to the serene temples, Seoul offers a unique fusion of tradition and cutting-edge trends. This package suits travelers eager to explore South Korea’s vibrant cityscape, taste local street food, and dive into cultural experiences like hanbok dress-up and tea ceremonies.",
+
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival & Night Market Tour",
+        "activities": [
+          "Meet & greet at Incheon Airport",
+          "Hotel check-in in Myeongdong",
+          "Evening street food crawl at Gwangjang Market"
+        ]
+      },
+      {
+        "day": 2,
+        "title": "Royal Palaces & K-Pop Tour",
+        "activities": [
+          "Morning visit to Gyeongbokgung Palace",
+          "Hanbok dress-up session & photo shoot",
+          "Afternoon K-pop agency building tour"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Modern Seoul & Traditional Tea",
+        "activities": [
+          "View from N Seoul Tower",
+          "Insadong tea ceremony",
+          "Shopping spree in Hongdae"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "DMZ Excursion (Optional)",
+        "activities": [
+          "Day tour to the Demilitarized Zone (optional add-on)",
+          "Explore Itaewon nightlife (if time permits)"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Temple & Healing Day",
+        "activities": [
+          "Visit Jogyesa Temple",
+          "Relax at a traditional jjimjilbang (Korean spa)",
+          "Evening: watch a non-verbal performance (Nanta Show or similar)"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Farewell Seoul",
+        "activities": [
+          "Last-minute shopping",
+          "Hotel check-out & airport transfer"
+        ]
+      }
+    ],
+
+    "inclusions": [
+      "3-star or 4-star accommodations",
+      "Daily breakfast",
+      "Local city tours & tickets as per itinerary",
+      "Airport-hotel transfers"
+    ],
+    "exclusions": [
+      "International flights",
+      "Lunches & dinners (unless specified)",
+      "Optional DMZ tour cost",
+      "Travel insurance"
+    ],
+
+    "accommodationDetails": {
+      "hotelName": "Seoul Central Hotel",
+      "roomType": "Superior Double Room",
+      "amenities": [
+        "Free Wi-Fi",
+        "Fitness center access",
+        "Complimentary breakfast"
+      ]
+    },
+
+    "bestTimeToVisit": "March-May or September-November",
+    "recommendationTags": [
+      "Pop Culture",
+      "Foodie",
+      "City Tour",
+      "Shopping",
+      "K-Pop"
+    ],
+    "notes": "Concert tickets are not included by default but can be requested. Weather may vary in spring/fall.",
+
+    "faqs": [
+      {
+        "question": "Is the DMZ tour included?",
+        "answer": "No, it's an optional add-on. Please request in advance due to limited availability."
+      },
+      {
+        "question": "Can I get vegetarian meals?",
+        "answer": "Yes, many Korean dishes can be vegetarian. Inform us of dietary needs before travel."
+      }
+    ]
+  },
+
+  {
+    "id": "125",
+    "packageTitle": "Tropical Bliss in Bali",
+    "image": "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRFLYiR2N3v7WEnyBKRmRbk6Y3-D5uL8s8iGLTVYdb_dyQKpYL0VsWlkMmm5cAVZhlVfWKoJvWwKN0fj8UOLdZ3cm8m_gRXDTuCIhn7bg",
+    "location": "Bali, Indonesia",
+    "duration": "8 Days/7 Nights",
+    "price": "1099",
+    "priceColor": "rgba(255, 153, 51, 1)",
+
+    "shortDescription": "Sun-kissed beaches, lush rice terraces, and Balinese cultural wonders await in this perfect getaway.",
+    "detailedDescription": "Experience the best of Bali, from the tranquil temples of Ubud to the vibrant nightlife of Seminyak. Whether you’re looking to surf, relax by the beach, or explore traditional art markets, this package caters to all traveler types. Enjoy daily spa sessions, mouthwatering cuisine, and mesmerizing sunsets.",
+
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival & Kuta Beach Sunset",
+        "activities": [
+          "Airport pickup & transfer to Kuta hotel",
+          "Relax on the sandy shores of Kuta Beach",
+          "Sunset cocktail at a beachfront bar"
+        ]
+      },
+      {
+        "day": 2,
+        "title": "Ubud Cultural Exploration",
+        "activities": [
+          "Monkey Forest visit",
+          "Ubud Art Market & Royal Palace",
+          "Optional Balinese cooking class"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Temple Trail",
+        "activities": [
+          "Tirta Empul holy spring temple",
+          "Besakih (Mother Temple of Bali)",
+          "Traditional dance performance"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "Mount Batur Sunrise (Optional)",
+        "activities": [
+          "Early morning hike up Mount Batur",
+          "Spa session on return",
+          "Free evening in Ubud"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Beach & Water Activities",
+        "activities": [
+          "Transfer to Seminyak hotel",
+          "Water sports (parasailing, jet ski, etc.)",
+          "Evening leisure / shopping"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Tanah Lot & Rice Terraces",
+        "activities": [
+          "Photo stop at Tanah Lot temple",
+          "Visit Tegallalang rice terraces",
+          "Coffee tasting at a local plantation"
+        ]
+      },
+      {
+        "day": 7,
+        "title": "Free Day for Leisure",
+        "activities": [
+          "Relax by the beach or pool",
+          "Indulge in a Balinese massage",
+          "Optional night out in Seminyak"
+        ]
+      },
+      {
+        "day": 8,
+        "title": "Departure",
+        "activities": [
+          "Check-out from hotel",
+          "Transfer to Ngurah Rai International Airport"
+        ]
+      }
+    ],
+
+    "inclusions": [
+      "4-star hotel accommodations (Kuta, Ubud, Seminyak)",
+      "Daily breakfast & 2 dinners",
+      "Airport transfers & inter-city transfers",
+      "One full-day temple tour with a guide"
+    ],
+    "exclusions": [
+      "International flights",
+      "Personal expenses",
+      "Travel insurance",
+      "Entrance fees for optional activities"
+    ],
+
+    "accommodationDetails": {
+      "hotelName": "Bali Dream Resorts",
+      "roomType": "Superior Suite",
+      "amenities": [
+        "Pool & spa access",
+        "Complimentary Wi-Fi",
+        "Balinese cultural show (selected nights)"
+      ]
+    },
+
+    "bestTimeToVisit": "April to October (dry season)",
+    "recommendationTags": [
+      "Beach",
+      "Spa",
+      "Adventure",
+      "Cultural",
+      "Honeymoon"
+    ],
+    "notes": "Mount Batur trek requires moderate fitness. Some water activities may depend on weather.",
+
+    "faqs": [
+      {
+        "question": "Is surfing included?",
+        "answer": "Surf lessons can be arranged at an additional cost. Some beaches are beginner-friendly."
+      },
+      {
+        "question": "Can I extend my stay in Seminyak?",
+        "answer": "Yes, additional nights can be booked upon request, subject to hotel availability."
+      }
+    ]
+  },
+  {
+    "id": "126",
+    "packageTitle": "Tropical Bliss in Bali",
+    "image": "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRFLYiR2N3v7WEnyBKRmRbk6Y3-D5uL8s8iGLTVYdb_dyQKpYL0VsWlkMmm5cAVZhlVfWKoJvWwKN0fj8UOLdZ3cm8m_gRXDTuCIhn7bg",
+    "location": "Bali, Indonesia",
+    "duration": "8 Days/7 Nights",
+    "price": "1099",
+    "priceColor": "rgba(255, 153, 51, 1)",
+
+    "shortDescription": "Sun-kissed beaches, lush rice terraces, and Balinese cultural wonders await in this perfect getaway.",
+    "detailedDescription": "Experience the best of Bali, from the tranquil temples of Ubud to the vibrant nightlife of Seminyak. Whether you’re looking to surf, relax by the beach, or explore traditional art markets, this package caters to all traveler types. Enjoy daily spa sessions, mouthwatering cuisine, and mesmerizing sunsets.",
+
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival & Kuta Beach Sunset",
+        "activities": [
+          "Airport pickup & transfer to Kuta hotel",
+          "Relax on the sandy shores of Kuta Beach",
+          "Sunset cocktail at a beachfront bar"
+        ]
+      },
+      {
+        "day": 2,
+        "title": "Ubud Cultural Exploration",
+        "activities": [
+          "Monkey Forest visit",
+          "Ubud Art Market & Royal Palace",
+          "Optional Balinese cooking class"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Temple Trail",
+        "activities": [
+          "Tirta Empul holy spring temple",
+          "Besakih (Mother Temple of Bali)",
+          "Traditional dance performance"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "Mount Batur Sunrise (Optional)",
+        "activities": [
+          "Early morning hike up Mount Batur",
+          "Spa session on return",
+          "Free evening in Ubud"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Beach & Water Activities",
+        "activities": [
+          "Transfer to Seminyak hotel",
+          "Water sports (parasailing, jet ski, etc.)",
+          "Evening leisure / shopping"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Tanah Lot & Rice Terraces",
+        "activities": [
+          "Photo stop at Tanah Lot temple",
+          "Visit Tegallalang rice terraces",
+          "Coffee tasting at a local plantation"
+        ]
+      },
+      {
+        "day": 7,
+        "title": "Free Day for Leisure",
+        "activities": [
+          "Relax by the beach or pool",
+          "Indulge in a Balinese massage",
+          "Optional night out in Seminyak"
+        ]
+      },
+      {
+        "day": 8,
+        "title": "Departure",
+        "activities": [
+          "Check-out from hotel",
+          "Transfer to Ngurah Rai International Airport"
+        ]
+      }
+    ],
+
+    "inclusions": [
+      "4-star hotel accommodations (Kuta, Ubud, Seminyak)",
+      "Daily breakfast & 2 dinners",
+      "Airport transfers & inter-city transfers",
+      "One full-day temple tour with a guide"
+    ],
+    "exclusions": [
+      "International flights",
+      "Personal expenses",
+      "Travel insurance",
+      "Entrance fees for optional activities"
+    ],
+
+    "accommodationDetails": {
+      "hotelName": "Bali Dream Resorts",
+      "roomType": "Superior Suite",
+      "amenities": [
+        "Pool & spa access",
+        "Complimentary Wi-Fi",
+        "Balinese cultural show (selected nights)"
+      ]
+    },
+
+    "bestTimeToVisit": "April to October (dry season)",
+    "recommendationTags": [
+      "Beach",
+      "Spa",
+      "Adventure",
+      "Cultural",
+      "Honeymoon"
+    ],
+    "notes": "Mount Batur trek requires moderate fitness. Some water activities may depend on weather.",
+
+    "faqs": [
+      {
+        "question": "Is surfing included?",
+        "answer": "Surf lessons can be arranged at an additional cost. Some beaches are beginner-friendly."
+      },
+      {
+        "question": "Can I extend my stay in Seminyak?",
+        "answer": "Yes, additional nights can be booked upon request, subject to hotel availability."
+      }
+    ]
+  }
+]

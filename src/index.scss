@@ -1,0 +1,38 @@
+:root {
+  --primary-color: #007bff;
+  --background-color: #f8f9fa;
+  --text-color: #333;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+// .appContainer {
+//   display: flex;
+// }
+
+// .mainContent {
+//   flex: 1;
+//   padding: 1rem;
+//   overflow: auto;
+// }
+
+// .sidebarContainer {
+//   width: 250px;
+//   min-height: 100vh;
+//   background-color: white;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+// }
+
+.sidebarContainer.active {
+  width: 250px;
+}
+
+.activeLink {
+  color: var(--primary-color);
+  font-weight: bold;
+}

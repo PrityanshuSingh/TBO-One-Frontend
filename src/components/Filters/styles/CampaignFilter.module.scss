@@ -1,0 +1,29 @@
+/* src/components/Filters/styles/CampaignFilter.module.scss */
+@import '../../../assets/styles/variables.scss';
+
+.campaignFilterWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  margin-right: 8px;
+}
+
+.campaignFilterLabel {
+  font-weight: 500;
+  font: 500 14px 'Inter', sans-serif;
+  margin: 2px 0 0;
+  color: var(--black);
+}
+
+.campaignFilterSelect {
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px 8px;
+  cursor: pointer;
+  &:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+  }
+}

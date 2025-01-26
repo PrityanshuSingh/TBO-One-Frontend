@@ -1,0 +1,94 @@
+@import '../../../assets/styles/variables.scss';
+
+.savedContainer {
+  background-color: white;
+  padding: 16px;
+  border-radius: 20px;
+  max-width: 76vw; 
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align everything to the left */
+  overflow: hidden;
+}
+
+.headerRow {
+  display: flex;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the left */
+  gap: 12px;
+  width: 100%;
+  max-width: 400px; /* Control header width */
+}
+
+.backButton {
+  padding: 8px 8px 8px 8px;
+    border-radius: 8px;
+    margin-top: 4px;
+    border: 1px solid white;
+    background-color: white;
+    color: var(--primary-blue);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: var(--light-blue);
+    }
+}
+
+.title {
+  color: var(--black);
+  font: 600 24px 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.loadingMsg, .noSavedMsg {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--dark-gray);
+  margin-top: 20px;
+}
+
+/* Fixed width of category section & enabled scrolling */
+.categorySection {
+  width: 70vw; /* Ensure it stays aligned to the left */
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 8px;
+}
+
+.categoryContainer {
+  flex-grow: 1;
+  overflow-y: auto; /* Enable scrolling */
+  padding: 8px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .savedContainer {
+    width: 100%;
+    max-width: 90vw; 
+    max-height: 94vh;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+}
