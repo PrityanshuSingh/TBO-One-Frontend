@@ -1,0 +1,355 @@
+@import '../../../assets/styles/variables.scss';
+
+.campaignsContainer {
+  width: 100%;
+  max-width: 70vw;
+  max-height: 94vh;
+  height: 86vh;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-x: auto;
+
+  .header {
+    .topBar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      gap: var(--spacing-xs);
+
+      .headingArea {
+        display: flex;
+        flex-direction: column;
+
+        .mainTitle {
+          font-size: var(--font-size-large);
+          font-weight: 700;
+          color: var(--text-primary);
+          margin: 0;
+        }
+
+        .subtitle {
+          font-size: var(--font-size-small);
+          color: var(--text-secondary);
+          margin-top: 3px;
+        }
+      }
+
+      .rightActions {
+        .savedBtn {
+          background: none;
+          border: none;
+          cursor: pointer;
+          color: var(--primary-blue);
+          font-size: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: 0.2s ease-in-out;
+
+          &:hover {
+            color: darkblue;
+          }
+
+          &:focus {
+            outline: 2px solid var(--primary-blue);
+          }
+        }
+      }
+    }
+
+    .filterBar {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+
+      label {
+        font-size: 14px;
+        color: var(--text-primary);
+      }
+
+      .statusFilter {
+        padding: 6px 8px;
+        border: 1px solid var(--text-secondary);
+        border-radius: var(--border-radius-sm);
+        font-size: var(--font-size-small);
+        outline: none;
+        cursor: pointer;
+        background-color: var(--white);
+        transition: border 0.2s ease-in-out;
+
+        &:focus {
+          border-color: var(--primary-blue);
+          box-shadow: 0 0 0 2px rgba(32, 174, 243, 0.2);
+        }
+      }
+    }
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    gap: var(--spacing-xs);
+
+    .searchBar {
+      display: flex;
+      align-items: center;
+      background-color: var(--very-light-gray);
+      padding: 6px 10px;
+      border-radius: var(--border-radius-sm);
+      width: 280px;
+      position: relative;
+
+      .searchIcon {
+        color: var(--text-secondary);
+        margin-right: var(--spacing-xs);
+      }
+
+      .searchInput {
+        border: none;
+        outline: none;
+        font-size: var(--font-size-small);
+        width: 100%;
+        background: transparent;
+
+        &::placeholder {
+          color: var(--text-secondary);
+        }
+      }
+    }
+
+    .bulkActions {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+
+      .statusChangeDropdown {
+        padding: 6px 10px;
+        border: 1px solid var(--text-secondary);
+        border-radius: var(--border-radius-sm);
+        font-size: var(--font-size-small);
+        outline: none;
+        cursor: pointer;
+        background-color: var(--white);
+        transition: border 0.2s ease-in-out;
+
+        &:focus {
+          border-color: var(--primary-blue);
+          box-shadow: 0 0 0 2px rgba(32, 174, 243, 0.2);
+        }
+      }
+
+      .deleteButton {
+        display: flex;
+        align-items: center;
+        padding: 6px 10px;
+        background-color: var(--danger-red);
+        color: var(--white);
+        border: none;
+        border-radius: var(--border-radius-sm);
+        cursor: pointer;
+        font-size: var(--font-size-small);
+        transition: background-color 0.2s ease-in-out;
+
+        svg {
+          margin-right: var(--spacing-xs);
+        }
+
+        &:hover {
+          background-color: darkred;
+        }
+
+        &:focus {
+          outline: 2px solid darkred;
+        }
+      }
+    }
+  }
+
+  .campaignTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    th {
+      background-color: var(--light-blue);
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 14px;
+    }
+
+    td {
+      font-size: var(--font-size-small);
+    }
+
+    .checkbox {
+      width: 30px;
+    }
+
+    .number {
+      width: 30px;
+    }
+
+    .campaignName,
+    .packageName,
+    .groups,
+    .contacts {
+      flex: 1;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .status {
+      width: 70px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--black);
+      border-radius: var(--border-radius-xs);
+      padding: 4px 6px;
+
+      &.Running {
+        background-color: var(--status-running);
+      }
+
+      &.Draft {
+        background-color: var(--status-draft);
+      }
+
+      &.Stopped {
+        background-color: var(--status-stopped);
+      }
+    }
+
+    .editButton {
+      width: 50px;
+    }
+
+    .previewLink {
+      width: 70px;
+    }
+  }
+
+  .loading,
+  .noCampaigns {
+    padding: 15px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: var(--font-size-small);
+  }
+
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    .modalContent {
+      background: var(--white);
+      padding: 18px;
+      border-radius: var(--border-radius-sm);
+      width: 90%;
+      max-width: 360px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      h2 {
+        font-size: var(--font-size-medium);
+        margin-bottom: 8px;
+        color: var(--text-primary);
+      }
+
+      p {
+        font-size: var(--font-size-small);
+        color: var(--text-secondary);
+        margin-bottom: 15px;
+      }
+
+      .errorText {
+        color: var(--danger-red);
+        font-size: var(--font-size-small);
+        margin-bottom: 8px;
+      }
+
+      .modalActions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-sm);
+
+        .confirmButton {
+          padding: 6px 12px;
+          background-color: var(--danger-red);
+          color: var(--white);
+          border: none;
+          border-radius: var(--border-radius-sm);
+          cursor: pointer;
+          font-size: var(--font-size-small);
+          transition: background-color 0.2s ease-in-out;
+
+          &:hover {
+            background-color: darkred;
+          }
+
+          &:focus {
+            outline: 2px solid darkred;
+          }
+        }
+
+        .cancelButton {
+          padding: 6px 12px;
+          background-color: var(--gray);
+          color: var(--white);
+          border: none;
+          border-radius: var(--border-radius-sm);
+          cursor: pointer;
+          font-size: var(--font-size-small);
+          transition: background-color 0.2s ease-in-out;
+
+          &:hover {
+            background-color: darkgray;
+          }
+
+          &:focus {
+            outline: 2px solid darkgray;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .campaignsContainer {
+    width: 100%;
+    max-width: 86vw;
+    max-height: 94vh;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-x: auto;
+  }
+}

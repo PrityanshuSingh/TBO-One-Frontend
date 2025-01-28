@@ -9,6 +9,7 @@ import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/SignUp';
 const Packages = lazy(() => import('./pages/Packages/Packages'));
 const SavedPackages = lazy(() => import('./pages/Packages/SavedPackages'));
+const Campaigns = lazy(() => import('./pages/Campaign/Campaigns'));
 const WhatsAppCampaign = lazy(() => import('./pages/Campaign/WhatsAppCampaign'));
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                     <Route path="packages" element={<Packages />} />
                     <Route path="/packages/saved" element={<SavedPackages />} />
                     <Route path="/packages/campaign/:id" element={[<Packages />, <WhatsAppCampaign />]} />
+                    <Route path="/campaigns" element={<Campaigns />} />
                   </Routes>
                 </div>
               </ProtectedRoute>

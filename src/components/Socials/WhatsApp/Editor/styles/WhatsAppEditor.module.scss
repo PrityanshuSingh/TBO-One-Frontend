@@ -15,49 +15,30 @@
 
 .editorContainer {
   @include flex-column;
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
+  background-color: white;
+  border-radius: 20px;
   width: 100%;
   max-width: 800px; // Adjust based on the modal size
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
+  overflow-y: auto; // Make container unscrollable
 
-  /* Customize scrollbar */
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: var(--gray) transparent; /* Firefox */
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent; /* Optional: Make scrollbar track transparent */
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--gray);
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: #a8a8a8; /* Slightly darker on hover */
-  }
+  /* Customize scrollbar if needed elsewhere */
 }
 
 .heading {
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 24px; /* Increased font size */
+  font-weight: 700; /* Bold */
+  margin-top: 0px;
   color: var(--black);
+  text-align: center; /* Left aligned */
 }
 
 .contentWrapper {
   @include flex-row;
-  gap: 20px;
-  width: 100%;
-  margin-bottom: 20px;
+
+  width: 95%;
+  background-color: var(--light-blue);
+  padding:20px;
+  border-radius: 20px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -96,31 +77,97 @@
     }
   }
 
+  .previewMessage {
+    text-align: left;
+    margin-top: 20px; /* Increased margin for better spacing */
+    background: white; /* Changed background color to white */
+    padding: 15px; /* Increased padding */
+    border-radius: 12px;
+    font-size: 14px;
+    color: var(--black);
+    max-height: 300px; /* Set max-height for scrollability */
+    overflow-y: auto; /* Make container scrollable */
+
+    p {
+      margin: 8px 0; /* Increased margin for better spacing */
+    }
+
+    strong {
+      color: var(--primary-blue);
+    }
+
+    a {
+      color: var(--primary-blue);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    /* Scrollbar styling */
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--gray);
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #a8a8a8;
+    }
+  }
+
   @media (max-width: 768px) {
     width: 100%;
   }
 }
 
+
+.wpDescription {
+  font-size: 14px;
+  overflow-y: auto;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+  }
+
+  word-wrap: break-word; /* Ensure long descriptions wrap */
+}
+
 .detailsContainer {
   @include flex-column;
   flex-grow: 1;
-  gap: 15px;
+  gap: 20px; /* Increased gap for better separation */
 }
 
 .detailItem {
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
 }
 
 .detailItem label {
-  margin-bottom: 5px;
-  font-size: 14px;
+  margin-bottom: 8px; /* Increased margin for better spacing */
+  font-size: 16px; /* Increased font size */
+  font-weight: 600; /* Bold */
+  text-align: left;
   color: var(--black);
+  width: 200px; /* Decreased width to prevent horizontal overflow */
 }
 
 .inputField {
-  width: 100%;
-  padding: 10px 12px;
+  width: 93%;
+  padding: 12px 14px; /* Increased padding for better height */
   border: 1px solid var(--gray);
   border-radius: 8px;
   font-size: 16px;
@@ -138,9 +185,8 @@
 }
 
 .textareaField {
-  width: 100%;
-  height: 100px;
-  padding: 10px 12px;
+  height: 90px; /* Increased height for better usability */
+  padding: 12px 14px; /* Increased padding for better height */
   border: 1px solid var(--gray);
   border-radius: 8px;
   resize: vertical;
@@ -157,19 +203,20 @@
   position: relative;
   display: flex;
   align-items: center;
+  max-width: 100%;
 
   .textareaField {
     flex: 1;
-    padding-right: 40px; /* Space for the AI button */
+    padding-right: 50px; /* Increased space for the AI button */
   }
 
   .aiGenerateButton {
     position: absolute;
-    right: 10px;
+    right: 15px; /* Increased right padding */
     background: var(--light-blue);
     border: none;
     border-radius: 50%;
-    padding: 6px;
+    padding: 8px; /* Increased padding for better touch area */
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -178,8 +225,8 @@
 
     &:hover {
       background: var(--primary-blue);
-      color:white;
-      transition:.2s linear;
+      color: white;
+      transition: .2s linear;
     }
 
     &:disabled {
@@ -207,36 +254,19 @@
 .errorText {
   color: red;
   font-size: 14px;
-  margin-top: 5px;
-}
-
-.messageBox {
-  width: 100%;
-  height: 80px;
-  padding: 10px 12px;
-  border: 1px solid var(--gray);
-  border-radius: 8px;
-  resize: none;
-  font-size: 16px;
-  margin-bottom: 20px;
-  transition: border-color 0.2s;
-
-  &:focus {
-    border-color: var(--primary-blue);
-    outline: none;
-  }
+  margin-top: 2px;
 }
 
 .nextButton {
-  padding: 12px 24px;
+  padding: 14px 28px; /* Increased padding for better touch area */
   background: var(--primary-blue);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background 0.2s;
-  align-self: flex-end;
+  font-size: 16px; /* Increased font size */
+  align-self: center;
+  margin-top: 12px;
 
   &:hover {
     background: #1b9cd9;
@@ -250,26 +280,87 @@
 
 @media (max-width: 768px) {
   .editorContainer {
-    padding: 20px;
+    padding: 25px;
     max-width: 100%;
   }
 
   .contentWrapper {
-    gap: 10px;
+    gap: 15px;
   }
 
   .imageContainer {
     width: 100%;
   }
 
-  .nextButton {
-    width: 100%;
-    align-self: center;
+  .previewMessage {
+    max-height: 200px; /* Increased max-height for smaller screens */
   }
+
 
   .descriptionWrapper {
     .aiGenerateButton {
       right: 10px;
     }
+  }
+
+  .detailItem label {
+    width: 100%; /* Full width labels on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Editor Container Adjustments */
+  .editorContainer {
+    padding: 25px;
+    max-width: 87%;
+  }
+
+  /* Heading Adjustments */
+  .heading {
+    font-size: 24px; /* Increased font size */
+    font-weight: 700; /* Bold */
+    margin-top: 0px;
+    color: var(--black);
+    text-align: center; /* Center aligned */
+  }
+
+  /* Content Wrapper Adjustments */
+  .contentWrapper {
+    flex-direction: column; /* Stack elements vertically */
+    gap: 15px; /* Increased gap for better spacing */
+    width: 85%; /* Adjusted width for better responsiveness */
+    background-color: var(--light-blue);
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  /* Image Container Adjustments */
+  .imageContainer {
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  /* Preview Message Adjustments */
+  .previewMessage {
+    max-height: 200px; /* Increased max-height for more content */
+    overflow-y: auto; /* Enable vertical scrolling */
+    word-wrap: break-word; /* Prevent long words from causing overflow */
+  }
+
+  /* Description Wrapper Adjustments */
+  .descriptionWrapper {
+    .aiGenerateButton {
+      right: 10px; /* Adjusted position for better alignment */
+    }
+  }
+
+  /* Detail Item Label Adjustments */
+  .detailItem label {
+    width: 100%; /* Full width labels on smaller screens */
+  }
+
+  /* Optional: Adjust Next Button Alignment on Smaller Screens */
+  .nextButton {
+    width: 100%; /* Full width button */
+    align-self: center; /* Center align the button */
   }
 }

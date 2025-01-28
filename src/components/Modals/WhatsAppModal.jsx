@@ -1,18 +1,21 @@
 // src/components/WhatsAppModal/WhatsAppModal.jsx
 
-import React, { useState } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import styles from "./styles/WhatsAppModal.module.scss";
 import WhatsAppEditor from "../Socials/WhatsApp/Editor/WhatsAppEditor";
 import WhatsAppContactManager from "../Socials/WhatsApp/ContactManager/WhatsAppContactManager";
+import { AuthContext } from '../../context/AuthContext'; // Assuming AuthContext is defined and provides traveler details
 
 const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
+  const { userData, updateUserData } = useContext(AuthContext); // Access traveler details from AuthContext
+  const travelerMobile = userData?.Profile?.contactNumber || "";
+  const travelerEmail = userData?.Profile?.email || "";
+
   const [step, setStep] = useState(1);
-  const [message, setMessage] = useState(
-    `Check out this package: ${packageData.title}`
-  );
 
   // State Variables for WhatsAppEditor
   const [title, setTitle] = useState(packageData.title || "");
+    const [campaignName, setCampaignName] = useState("");
   const [description, setDescription] = useState(
     packageData.detailedDescription || ""
   );
@@ -31,10 +34,6 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
   const handleNext = () => setStep(2);
   const handleBack = () => setStep(1);
 
-  const handleMessageChange = (newMessage) => {
-    setMessage(newMessage);
-  };
-
   const handleImageChange = ({ file, preview }) => {
     setPackageImage({ file, preview });
   };
@@ -43,6 +42,9 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
     setTitle(newTitle);
   };
 
+  const handleCampaignChange = (newName) => {
+    setCampaignName(newName);
+  };
   const handleDescriptionChange = (newDescription) => {
     setDescription(newDescription);
   };
@@ -54,6 +56,17 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
   const handleScheduleTimeChange = (newTime) => {
     setScheduleTime(newTime);
   };
+
+  // Compute previewMessage using useMemo for performance optimization
+  const previewMessage = useMemo(() => {
+    return `Check out this package: ${title}
+Location: ${packageData.location || ""}
+Price: ${packageData.price || ""}
+Duration: ${packageData.duration || ""}
+Description: ${description}
+Details: https://your-website.com/package/details/${packageId}
+Travelers: ${travelerMobile}, ${travelerEmail}`;
+  }, [title, packageData.location, packageData.price, description, packageId, travelerMobile, travelerEmail]);
 
   return (
     isOpen && (
@@ -69,12 +82,12 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
 
           {step === 1 ? (
             <WhatsAppEditor
-              message={message}
-              onMessageChange={handleMessageChange}
               onNext={handleNext}
               packageImage={packageImage}
               onImageChange={handleImageChange}
               packageTitle={title}
+              onCampaignChange={handleCampaignChange}
+              campaignName={campaignName}
               onTitleChange={handleTitleChange}
               title={title}
               description={description}
@@ -84,10 +97,16 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
               onScheduleDayChange={handleScheduleDayChange}
               scheduleTime={scheduleTime}
               onScheduleTimeChange={handleScheduleTimeChange}
+              location={packageData.location || ""}
+              price={packageData.price || ""} 
+              duration={packageData.duration || ""} 
+              travelerMobile={travelerMobile}    
+              travelerEmail={travelerEmail}        
             />
           ) : (
             <WhatsAppContactManager
-              message={message}
+              message={previewMessage}
+              campaignName={campaignName}
               title={title}
               image={packageImage} // Pass the image object
               packageId={packageId}

@@ -1,18 +1,20 @@
 // src/components/WhatsAppModal/WhatsAppContactManager.jsx
 
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../../../context/AuthContext';
-import axios from 'axios';
-import styles from './styles/WhatsAppContactManager.module.scss';
-import SelectGroups from './Groups/SelectGroups';
-import CreateEditGroup from './Groups/CreateEditGroups.jsx';
-import SendToIndividualContacts from './Groups/IndividualContacts.jsx';
-import { validatePhoneNumber } from '../../../../utils/ContactValidation.js';
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../../../context/AuthContext";
+import axios from "axios";
+import { FiArrowLeft } from "react-icons/fi"; // Importing the left arrow icon
+import styles from "./styles/WhatsAppContactManager.module.scss";
+import SelectGroups from "./Groups/SelectGroups";
+import CreateEditGroup from "./Groups/CreateEditGroups.jsx";
+import SendToIndividualContacts from "./Groups/IndividualContacts.jsx";
+import { validatePhoneNumber } from "../../../../utils/ContactValidation.js";
 
 const WhatsAppContactManager = ({
   message,
+  campaignName,
   title,
-  image, // Expecting { file: File | null, preview: string }
+  image,
   packageId,
   description,
   scheduleDay,
@@ -24,23 +26,25 @@ const WhatsAppContactManager = ({
   const existingContacts = userData?.Profile?.customer || [];
   const existingGroups =
     userData?.Profile?.groups?.filter(
-      (group) => group.type.toLowerCase() === 'whatsapp'
+      (group) => group.type.toLowerCase() === "whatsapp"
     ) || [];
 
-  console.log('Existing Contacts:', existingContacts);
-  console.log('Existing Groups:', existingGroups);
+  console.log("Existing Contacts:", existingContacts);
+  console.log("Existing Groups:", existingGroups);
 
   // State Variables
   const [selectedGroups, setSelectedGroups] = useState([]); // Array of group IDs to send to
   const [groupToEdit, setGroupToEdit] = useState(null); // Group object being edited
-  const [groupName, setGroupName] = useState(''); // Group name (for create/edit)
+  const [groupName, setGroupName] = useState(""); // Group name (for create/edit)
   const [groupContacts, setGroupContacts] = useState([]); // Array of contact IDs in the group being created/edited
-  const [selectedIndividualContacts, setSelectedIndividualContacts] = useState([]); // Array of individual contact IDs to send to
+  const [selectedIndividualContacts, setSelectedIndividualContacts] = useState(
+    []
+  ); // Array of individual contact IDs to send to
   const [isSending, setIsSending] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const [errors, setErrors] = useState({});
   const [isCreatingGroup, setIsCreatingGroup] = useState(false);
-  const [individualContactsSearch, setIndividualContactsSearch] = useState(''); // Search term for individual contacts
+  const [individualContactsSearch, setIndividualContactsSearch] = useState(""); // Search term for individual contacts
 
   // Handle selecting/deselecting groups for sending
   const handleGroupSelection = (groupId) => {
@@ -61,7 +65,7 @@ const WhatsAppContactManager = ({
   // Handle cancel editing a group
   const handleCancelEdit = () => {
     setGroupToEdit(null);
-    setGroupName('');
+    setGroupName("");
     setGroupContacts([]);
     setErrors({});
   };
@@ -78,13 +82,13 @@ const WhatsAppContactManager = ({
   // Handle creating a new group
   const handleCreateGroup = () => {
     if (!groupName.trim()) {
-      setErrors({ ...errors, groupName: 'Group name is required.' });
+      setErrors({ ...errors, groupName: "Group name is required." });
       return;
     }
     if (groupContacts.length < 2) {
       setErrors({
         ...errors,
-        groupContacts: 'At least two contacts are required to create a group.',
+        groupContacts: "At least two contacts are required to create a group.",
       });
       return;
     }
@@ -95,7 +99,7 @@ const WhatsAppContactManager = ({
     if (validContactIds.length < 2) {
       setErrors({
         ...errors,
-        groupContacts: 'Selected contacts are invalid.',
+        groupContacts: "Selected contacts are invalid.",
       });
       return;
     }
@@ -104,7 +108,7 @@ const WhatsAppContactManager = ({
       id: Date.now().toString(),
       name: groupName.trim(),
       contactId: validContactIds,
-      type: 'whatsapp',
+      type: "whatsapp",
       agentId: userData.id, // Assuming userData has an id
     };
 
@@ -121,17 +125,17 @@ const WhatsAppContactManager = ({
     setIsCreatingGroup(true);
     setIsUpdating(true);
     axios
-      .post('/api/user/update', updatedUserData)
+      .post("/api/user/update", updatedUserData)
       .then((response) => {
         updateUserData(updatedUserData);
         setSelectedGroups([...selectedGroups, newGroup.id]); // Optionally select the new group
-        setGroupName('');
+        setGroupName("");
         setGroupContacts([]);
         setErrors({ ...errors, groupName: null, groupContacts: null });
       })
       .catch((error) => {
-        console.error('Error creating group:', error);
-        alert('Failed to create group. Please try again.');
+        console.error("Error creating group:", error);
+        alert("Failed to create group. Please try again.");
       })
       .finally(() => {
         setIsCreatingGroup(false);
@@ -142,13 +146,13 @@ const WhatsAppContactManager = ({
   // Handle updating an existing group
   const handleUpdateGroup = () => {
     if (!groupName.trim()) {
-      setErrors({ ...errors, groupName: 'Group name is required.' });
+      setErrors({ ...errors, groupName: "Group name is required." });
       return;
     }
     if (groupContacts.length < 2) {
       setErrors({
         ...errors,
-        groupContacts: 'At least two contacts are required in the group.',
+        groupContacts: "At least two contacts are required in the group.",
       });
       return;
     }
@@ -159,7 +163,7 @@ const WhatsAppContactManager = ({
     if (validContactIds.length < 2) {
       setErrors({
         ...errors,
-        groupContacts: 'Selected contacts are invalid.',
+        groupContacts: "Selected contacts are invalid.",
       });
       return;
     }
@@ -184,17 +188,17 @@ const WhatsAppContactManager = ({
 
     setIsUpdating(true);
     axios
-      .post('/api/user/update', updatedUserData)
+      .post("/api/user/update", updatedUserData)
       .then((response) => {
         updateUserData(updatedUserData);
         setGroupToEdit(updatedGroup);
-        setGroupName('');
+        setGroupName("");
         setGroupContacts([]);
         setErrors({ ...errors, groupName: null, groupContacts: null });
       })
       .catch((error) => {
-        console.error('Error updating group:', error);
-        alert('Failed to update group. Please try again.');
+        console.error("Error updating group:", error);
+        alert("Failed to update group. Please try again.");
       })
       .finally(() => {
         setIsUpdating(false);
@@ -204,7 +208,7 @@ const WhatsAppContactManager = ({
   // Helper function to get phone by contact ID
   const getPhoneById = (id) => {
     const contact = existingContacts.find((contact) => contact.id === id);
-    return contact ? contact.whatsApp : '';
+    return contact ? contact.whatsApp : "";
   };
 
   // Handle selecting/deselecting individual contacts for sending
@@ -218,77 +222,49 @@ const WhatsAppContactManager = ({
     }
   };
 
-  // Helper function to convert image URL to File
-  const convertImageUrlToFile = async (url) => {
-    try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const filename = url.substring(url.lastIndexOf('/') + 1);
-      const file = new File([blob], filename, { type: blob.type });
-      return file;
-    } catch (error) {
-      console.error('Error converting image URL to File:', error);
-      throw error;
-    }
-  };
-
   // Handle sending WhatsApp message
   const sendWhatsAppMessage = async () => {
     setIsSending(true);
-
+  
+    const formData = new FormData();
+    formData.append("packageId", packageId);
+    formData.append("campaignName", campaignName);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("scheduleDay", scheduleDay);
+    formData.append("scheduleTime", scheduleTime);
+    formData.append("message", message);
+    formData.append("groupIds", JSON.stringify(selectedGroups)); // Convert array to JSON string
+    formData.append("contactIds", JSON.stringify(selectedIndividualContacts)); // Convert array to JSON string
+  
+    // Image Handling: If a new file is selected, send the file. Otherwise, send the URL.
+    if (image.file) {
+      formData.append("image", image.file); // Send the binary file
+    } else if (image.preview) {
+      formData.append("imageUrl", image.preview); // Send the existing preview URL
+    }
+  
+    console.log("Sending WhatsApp Data:");
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+  
     try {
-      let imageFile = null;
-
-      // If image.file exists, use it
-      if (image.file) {
-        imageFile = image.file;
-      } else if (image.preview && image.preview.startsWith('http')) {
-        // If only image URL exists, fetch and convert to File
-        imageFile = await convertImageUrlToFile(image.preview);
-      }
-
-      // Create FormData
-      const formData = new FormData();
-      formData.append('packageId', packageId);
-      formData.append('title', title);
-      if (imageFile) {
-        formData.append('image', imageFile); // Append the image file
-      }
-      formData.append('description', description);
-      formData.append('scheduleDay', scheduleDay);
-      formData.append('scheduleTime', scheduleTime);
-      formData.append('message', message);
-      formData.append('groupIds', JSON.stringify(selectedGroups)); // Assuming backend expects JSON strings for arrays
-      formData.append('contactIds', JSON.stringify(selectedIndividualContacts));
-
-      console.log('Sending WhatsApp Data:', {
-        packageId,
-        title,
-        imageFile,
-        description,
-        scheduleDay,
-        scheduleTime,
-        message,
-        groupIds: selectedGroups,
-        contactIds: selectedIndividualContacts,
+      const response = await axios.post("/api/whatsapp/send", formData, {
+        headers: { "Content-Type": "multipart/form-data" }, // Ensure correct content type
       });
-
-      const response = await axios.post('/api/whatsapp/send', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      console.log('WhatsApp API Response:', response.data);
-      alert('WhatsApp message sent successfully!');
+  
+      console.log("WhatsApp API Response:", response.data);
+      alert("WhatsApp message sent successfully!");
       onClose(); // Close the modal on success
     } catch (error) {
-      console.error('Error sending WhatsApp message:', error);
-      alert('Failed to send WhatsApp message. Please try again.');
+      console.error("Error sending WhatsApp message:", error);
+      alert("Failed to send WhatsApp message. Please try again.");
     } finally {
       setIsSending(false);
     }
   };
+  
 
   // Determine if send button should be enabled
   const isSendEnabled =
@@ -306,9 +282,10 @@ const WhatsAppContactManager = ({
           onClick={onBack}
           aria-label="Go Back"
         >
-          ← Back
+          <FiArrowLeft size={20} /> 
+          Back
         </button>
-        <h2 className={styles.title}>Select Contacts</h2>
+        <h2 className={styles.title}>Contacts Details</h2>
       </div>
 
       {/* Horizontal Container for Select Groups and Create/Edit Group */}
@@ -362,7 +339,7 @@ const WhatsAppContactManager = ({
         disabled={!isSendEnabled}
         aria-label="Send WhatsApp Message"
       >
-        {isSending ? 'Sending...' : 'Send WhatsApp Message'}
+        {isSending ? "Sending..." : "Send WhatsApp Message"}
       </button>
     </div>
   );

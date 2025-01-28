@@ -19,6 +19,9 @@
 
   "Profile": {
     "role": "AGENT",
+    "firstName": "Test",
+    "lastName": "test",
+    "email": "abc@test.com",
     "ipAddress": "152.59.156.38",
     "company": "Globetrotter Travels",
     "address": "Sector 45, Downtown City",
@@ -41,9 +44,9 @@
     },
     "profileImage": "https://example.com/assets/images/jane-doe-profile.jpg",
     "campaigns": [
-      { "id": "1", "pkgId": "123", "status": "Running", "grpId": ["101", "102"], "contactId": ["5", "6"]},
-      { "id": "2", "pkgId": "124", "status": "Draft", "grpId": ["102"], "contactId": ["7", "8"]},
-      { "id": "3", "pkgId": "125", "status": "Running", "grpId": ["101","102","103"], "contactId": []}
+      { "id": "1","name":"Goa Campaign", "status": "Running","pkgId": "123", "grpId": ["101", "102"], "contactId": ["5", "6"]},
+      { "id": "2","name":"Manali Campaign", "status": "Draft","pkgId": "124", "grpId": ["102"], "contactId": ["7", "8"]},
+      { "id": "3","name":"Goa Campaign", "status": "Running","pkgId": "125", "grpId": ["101","102","103"], "contactId": []}
     ],
     "saved": ["124", "999"],
     "customer": [

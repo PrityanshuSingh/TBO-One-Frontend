@@ -1,17 +1,17 @@
 // src/components/WhatsAppModal/WhatsAppEditor.jsx
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './styles/WhatsAppEditor.module.scss';
 import { FiEdit, FiRefreshCw } from 'react-icons/fi'; // Importing React Icons
 
 const WhatsAppEditor = ({
-  message,
-  onMessageChange,
   onNext,
   packageImage,
-  onImageChange, // Updated to handle both File and Preview URL
+  onImageChange, // Handles both File and Preview URL
   packageTitle,
   onTitleChange,
+  onCampaignChange,
+  campaignName,
   title,
   description,
   onDescriptionChange,
@@ -20,6 +20,11 @@ const WhatsAppEditor = ({
   onScheduleDayChange,
   scheduleTime,
   onScheduleTimeChange,
+  location,
+  price,    
+  duration,
+  travelerMobile,
+  travelerEmail,
 }) => {
   const fileInputRef = useRef(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -30,15 +35,17 @@ const WhatsAppEditor = ({
     fileInputRef.current.click();
   };
 
-  // Handler for image selection
   const handleImageSelection = (e) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
       const previewURL = URL.createObjectURL(selectedFile);
+  
+      console.log("Selected File:", selectedFile); // Debugging
+  
       onImageChange({ file: selectedFile, preview: previewURL });
-      // Note: You can handle file upload here if needed
     }
   };
+  
 
   // Handler for AI-generated description
   const handleGenerateDescription = async () => {
@@ -71,6 +78,28 @@ const WhatsAppEditor = ({
     }
   };
 
+  // Clean up the object URL when component unmounts or image changes
+  useEffect(() => {
+    return () => {
+      if (packageImage.preview) {
+        URL.revokeObjectURL(packageImage.preview);
+      }
+    };
+  }, [packageImage.preview]);
+
+  // Construct the preview message dynamically
+  const baseUrl = window.location.origin; // Dynamically get the base URL
+  const previewMessage = `Check out this package: ${title}
+  
+Location: ${location}
+Price: ${price}
+Duration: ${duration}
+
+${description}
+
+Details: ${baseUrl}/packages/campaign/details/${packageId}
+Travelers: ${travelerMobile}, ${travelerEmail}`;
+
   return (
     <div className={styles.editorContainer}>
       <h2 className={styles.heading}>Edit WhatsApp Message</h2>
@@ -96,10 +125,37 @@ const WhatsAppEditor = ({
             style={{ display: 'none' }}
             onChange={handleImageSelection}
           />
+          {/* Preview Message */}
+          <div className={styles.previewMessage}>
+            <p><strong>Check out this package:</strong> {title}</p>
+            <br/>
+            <p><strong>Location:</strong> {location}</p>
+            <p><strong>Price:</strong> {price}</p>
+            <p><strong>Duration:</strong> {duration}</p>
+            <br/>
+            <p className={styles.wpDescription}>{description}</p>
+            <br/>
+            <p><strong>Details:</strong> <a href={`${baseUrl}/packages/campaign/details/${packageId}`} target="_blank" rel="noopener noreferrer">View Package</a></p>
+            <p><strong>Travelers:</strong> {travelerMobile}, {travelerEmail}</p>
+          </div>
         </div>
 
         {/* Details Section */}
         <div className={styles.detailsContainer}>
+
+          {/* Campaign Name */}
+          <div className={styles.detailItem}>
+            <label htmlFor="campaignName">Campaign Name</label>
+            <input
+              type="text"
+              id="campaignName"
+              value={campaignName}
+              onChange={(e) => onCampaignChange(e.target.value)}
+              className={styles.inputField}
+              aria-label="Campaign Name"
+            />
+          </div>
+
           {/* Package Title */}
           <div className={styles.detailItem}>
             <label htmlFor="packageTitle">Package Title</label>
@@ -115,7 +171,7 @@ const WhatsAppEditor = ({
 
           {/* WhatsApp Description */}
           <div className={styles.detailItem}>
-            <label htmlFor="description">Detailed Description</label>
+            <label htmlFor="description">WhatsApp Description</label>
             <div className={styles.descriptionWrapper}>
               <textarea
                 id="description"
@@ -136,19 +192,6 @@ const WhatsAppEditor = ({
               </button>
             </div>
             {aiError && <div className={styles.errorText}>{aiError}</div>}
-          </div>
-
-          {/* Package Details Link */}
-          <div className={styles.detailItem}>
-            <label htmlFor="packageLink">Package Details Link</label>
-            <input
-              type="text"
-              id="packageLink"
-              value={`package/details/${packageId}`}
-              className={styles.inputField}
-              aria-label="Package Details Link"
-              readOnly
-            />
           </div>
 
           {/* Schedule Day */}
@@ -179,20 +222,11 @@ const WhatsAppEditor = ({
         </div>
       </div>
 
-      {/* WhatsApp Message Box */}
-      <textarea 
-        value={message} 
-        onChange={(e) => onMessageChange(e.target.value)} 
-        className={styles.messageBox} 
-        placeholder="Edit your message here..."
-        aria-label="WhatsApp Message"
-      />
-
       {/* Next Button */}
       <button
         className={styles.nextButton}
         onClick={onNext}
-        disabled={!message.trim()} // Disable if message is empty
+        disabled={!description.trim() || !title.trim()} // Disable if title or description is empty
         aria-label="Next"
       >
         Next

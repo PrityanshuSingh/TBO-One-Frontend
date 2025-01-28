@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client"; // Correct import for React 18+
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import { CampaignProvider } from "./context/CampaignContext";
 import App from "./App";
 import "./index.scss";
 
@@ -11,7 +12,9 @@ root.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <App />
+        <CampaignProvider>
+          <App />
+        </CampaignProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>

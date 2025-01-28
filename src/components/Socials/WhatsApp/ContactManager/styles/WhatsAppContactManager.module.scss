@@ -18,23 +18,33 @@
 
   h2 {
     flex: 1;
-    text-align: left;
+    text-align: center;
     margin: 0;
-    font-size: 20px;
-    color: var(--black);
+    margin-left: -40px;
+ 
+    font-size: 24px; /* Increased font size */
+  font-weight: 700; /* Bold */
+  color: var(--black);
   }
 }
 
 .backButton {
-  background: none;
-  color: var(--primary-blue);
-  font-size: 16px;
-  padding: 0;
-  margin-right: 10px;
-  cursor: pointer;
+  display: flex; // Ensure the button uses flex layout
+  align-items: center; // Vertically center the content
+  background: none; // Remove default button background
+  border: none; // Remove default button border
+  color: var(--primary-blue); // Set text color
+  font-size: 16px; // Adjust font size as needed
+  cursor: pointer; // Change cursor to pointer on hover
+  padding: 8px 12px; // Add padding for better click area
+  transition: color 0.2s ease-in-out;
 
   &:hover {
-    color: darkblue;
+    color: #1b9cd9; // Change color on hover for feedback
+  }
+
+  svg {
+    margin-right: 8px; // Space between icon and text if using SVG icons
   }
 }
 
@@ -72,19 +82,18 @@
 }
 
 .sendButton {
-  background: var(--primary-blue);
+  background: var(--green);
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 14px 28px;
   border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
   transition: background 0.2s;
-  margin-top: 20px;
-  width: 100%;
+  margin-top: 12px;
 
   &:hover {
-    background: #1b9cd9;
+    background: var(--secondary-green);
   }
 
   &:disabled {

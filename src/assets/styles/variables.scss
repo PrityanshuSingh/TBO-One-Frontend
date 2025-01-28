@@ -1,12 +1,61 @@
 :root {
-    --primary-blue: rgba(32, 174, 243, 1);
-    --secondary-green: hsl(134, 61%, 41%);
-    --light-blue: rgba(226, 246, 255, 1);
-    --white: rgba(255, 255, 255, 1);
-    --black: rgba(0, 0, 0, 1);
-    --gray: rgba(160, 160, 160, 1);
-    --dark-gray: rgba(141, 141, 141, 1);
-    --very-light-gray: hsl(210, 17%, 95%);
-    --red: rgba(251, 76, 36, 1);
-    --green: rgba(71, 199, 130, 1);
-  }
+  /* Primary Colors */
+  --primary-blue: rgba(32, 174, 243, 1);      /* Main blue color */
+  --secondary-green: hsl(134, 61%, 41%);    /* Secondary green color */
+  --light-blue: rgba(226, 246, 255, 1);      /* Light blue for backgrounds */
+  
+  /* Neutral Colors */
+  --white: rgba(255, 255, 255, 1);           /* White */
+  --black: rgba(0, 0, 0, 1);                 /* Black */
+  --gray: rgba(160, 160, 160, 1);            /* Standard gray */
+  --dark-gray: rgba(141, 141, 141, 1);       /* Darker gray */
+  --very-light-gray: hsl(210, 17%, 95%);     /* Very light gray for subtle backgrounds */
+  
+  /* Accent Colors */
+  --red: rgba(251, 76, 36, 1);               /* Standard red */
+  --green: rgba(71, 199, 130, 1);            /* Standard green */
+  --orange: rgba(255, 165, 0, 1);            /* Standard orange */
+  
+  /* Status Colors */
+  --status-running: var(--green);            /* Green for Running status */
+  --status-draft: var(--orange);             /* Orange for Draft status */
+  --status-stopped: var(--red);              /* Red for Stopped status */
+  
+  /* Utility Colors */
+  --hover-gray: rgba(240, 240, 240, 1);      /* Gray for hover states */
+  --danger-red: rgba(255, 0, 0, 1);           /* Bright red for danger actions */
+  --success-green: rgba(40, 167, 69, 1);      /* Bright green for success messages */
+  --info-blue: rgba(23, 162, 184, 1);         /* Bright blue for informational messages */
+  
+  /* Additional Colors (Optional) */
+  --warning-yellow: rgba(255, 193, 7, 1);     /* Yellow for warnings */
+  --purple: rgba(153, 102, 255, 1);          /* Purple for additional accents */
+  
+  /* Example: Background Colors for Components */
+  --component-bg: var(--white);               /* Background for components */
+  --header-bg: var(--primary-blue);           /* Background for headers */
+  --footer-bg: var(--dark-gray);              /* Background for footers */
+  
+  /* Example: Text Colors */
+  --text-primary: var(--black);               /* Primary text color */
+  --text-secondary: var(--gray);              /* Secondary text color */
+  --text-inverse: var(--white);               /* Inverse text color for dark backgrounds */
+  
+  /* Font Sizes (Optional) */
+  --font-size-small: 12px;
+  --font-size-medium: 16px;
+  --font-size-large: 20px;
+  --font-size-xlarge: 24px;
+  
+  /* Border Radius (Optional) */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  
+  /* Spacing (Optional) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
