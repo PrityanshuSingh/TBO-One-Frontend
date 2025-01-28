@@ -1,0 +1,98 @@
+/* src/components/WhatsAppModal/Groups/styles/SelectGroups.module.scss */
+
+@import '../../../../../../assets/styles/variables.scss';
+
+/* Define mixins if not already defined globally */
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectGroupSection {
+  @include flex-column;
+  background: var(--light-gray);
+  padding: 20px;
+  padding-top: 10px;
+  width: 350px;
+  max-width: 90%;
+  background-color: white;
+  margin:20px;
+  border-radius: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.selectGroupSection h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  justify-content: start;
+  color: var(--black);
+}
+
+.groupsList {
+  @include flex-column;
+}
+
+.groupItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 10px 10px;
+  border-bottom: 1px solid var(--gray);
+  margin-top: 5px;
+  border-radius: 14px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background-color: var(--light-blue);
+    transition: .2s linear;
+    cursor: pointer;
+  }
+  input[type='checkbox'] {
+    margin-right: 10px;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+  }
+}
+
+.groupLabel {
+  flex: 1;
+  margin-left: 10px;
+  font-size: 14px;
+  color: var(--black);
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.editGroupButton {
+  background-color: var(--secondary-green);
+  color: white;
+  border: none;
+  padding: 6px 12px 6px 12px;
+  margin-left: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover {
+    background-color: darkgreen;
+  }
+
+  &:disabled {
+    background-color: var(--gray);
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 768px) {
+  .selectGroupSection {
+    width: 80%;
+    margin-right: 20px;
+  }
+}

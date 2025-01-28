@@ -1,0 +1,279 @@
+/* src/components/WhatsAppModal/styles/WhatsAppEditor.module.scss */
+
+@import '../../../../../assets/styles/variables.scss';
+
+/* Define mixins if not already defined globally */
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.editorContainer {
+  @include flex-column;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px; // Adjust based on the modal size
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+
+  /* Customize scrollbar */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--gray) transparent; /* Firefox */
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* Optional: Make scrollbar track transparent */
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--gray);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8; /* Slightly darker on hover */
+  }
+}
+
+.heading {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.contentWrapper {
+  @include flex-row;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  width: 300px; /* Adjust as needed */
+  flex-shrink: 0;
+
+  .packageImage {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .editImageButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.detailsContainer {
+  @include flex-column;
+  flex-grow: 1;
+  gap: 15px;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailItem label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: var(--black);
+}
+
+.inputField {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+  }
+
+  &[readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+  }
+}
+
+.textareaField {
+  width: 100%;
+  height: 100px;
+  padding: 10px 12px;
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+  resize: vertical;
+  font-size: 16px;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+  }
+}
+
+.descriptionWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .textareaField {
+    flex: 1;
+    padding-right: 40px; /* Space for the AI button */
+  }
+
+  .aiGenerateButton {
+    position: absolute;
+    right: 10px;
+    background: var(--light-blue);
+    border: none;
+    border-radius: 50%;
+    padding: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--primary-blue);
+      color:white;
+      transition:.2s linear;
+    }
+
+    &:disabled {
+      background: var(--gray);
+      cursor: not-allowed;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 5px;
+    }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+.packageLink {
+  /* Additional styling if needed */
+}
+
+.errorText {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.messageBox {
+  width: 100%;
+  height: 80px;
+  padding: 10px 12px;
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+  resize: none;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+  }
+}
+
+.nextButton {
+  padding: 12px 24px;
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s;
+  align-self: flex-end;
+
+  &:hover {
+    background: #1b9cd9;
+  }
+
+  &:disabled {
+    background: var(--gray);
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 768px) {
+  .editorContainer {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .contentWrapper {
+    gap: 10px;
+  }
+
+  .imageContainer {
+    width: 100%;
+  }
+
+  .nextButton {
+    width: 100%;
+    align-self: center;
+  }
+
+  .descriptionWrapper {
+    .aiGenerateButton {
+      right: 10px;
+    }
+  }
+}

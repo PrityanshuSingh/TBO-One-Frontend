@@ -1,9 +1,7 @@
-// src/pages/Packages/PackageCard.jsx
-
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaWhatsapp, FaRegBookmark, FaBookmark } from 'react-icons/fa'; // Filled & empty bookmark
-import { MdPlayCircle, MdPauseCircle, MdDrafts, MdDoNotDisturb } from 'react-icons/md'; // Campaign icons
+import { FaWhatsapp, FaRegBookmark, FaBookmark } from 'react-icons/fa';
+import { MdPlayCircle, MdPauseCircle, MdDrafts, MdDoNotDisturb } from 'react-icons/md';
 import axios from 'axios';
 import styles from './styles/PackageCard.module.scss';
 
@@ -21,52 +19,32 @@ const PackageCard = ({
   onDetailsClick
 }) => {
   const navigate = useNavigate();
-  const { userData, setUserData } = useContext(AuthContext); // Accessing context
+  const { userData, setUserData } = useContext(AuthContext);
   const userEmail = userData?.Member?.Email;
   const savedPackages = userData?.Profile?.saved || [];
 
-  // Local state for bookmark toggle
   const [isSaved, setIsSaved] = useState(false);
 
-  // Check if package is already saved
   useEffect(() => {
     setIsSaved(savedPackages.includes(id));
   }, [savedPackages, id]);
 
-  const handleWhatsAppClick = () => {
-    navigate(`/packages/campaign?id=${id}`);
-  };
-
   const handleBookmarkClick = async () => {
     if (!userEmail) return;
-
     try {
-      const res = await axios.post('/api/package/bookmark', {
-        email: userEmail,
-        packageId: id
-      });
-
-      // Assuming the API returns the updated saved list
+      const res = await axios.post('/api/package/bookmark', { email: userEmail, packageId: id });
       const updatedSaved = res.data.saved || [];
-      setUserData((prev) => ({
-        ...prev,
-        Profile: { ...prev.Profile, saved: updatedSaved }
-      }));
-
+      setUserData(prev => ({ ...prev, Profile: { ...prev.Profile, saved: updatedSaved } }));
       setIsSaved(updatedSaved.includes(id));
     } catch (err) {
       console.error('Error bookmarking package:', err);
     }
   };
 
-  // Function to determine campaign icon
   const getCampaignIcon = () => {
-    if (campaignStatus === 'Running')
-      return <MdPlayCircle className={`${styles.campaignIcon} ${styles.runningIcon}`} />;
-    if (campaignStatus === 'Draft')
-      return <MdDrafts className={`${styles.campaignIcon} ${styles.draftIcon}`} />;
-    if (campaignStatus === 'Stopped')
-      return <MdPauseCircle className={`${styles.campaignIcon} ${styles.stoppedIcon}`} />;
+    if (campaignStatus === 'Running') return <MdPlayCircle className={`${styles.campaignIcon} ${styles.runningIcon}`} />;
+    if (campaignStatus === 'Draft') return <MdDrafts className={`${styles.campaignIcon} ${styles.draftIcon}`} />;
+    if (campaignStatus === 'Stopped') return <MdPauseCircle className={`${styles.campaignIcon} ${styles.stoppedIcon}`} />;
     return <MdDoNotDisturb className={`${styles.campaignIcon} ${styles.noCampaignIcon}`} />;
   };
 
@@ -74,12 +52,7 @@ const PackageCard = ({
     <div className={styles.travelCard}>
       <div className={styles.cardContent}>
         <div className={styles.imageWrapper}>
-          <img
-            loading="lazy"
-            src={image}
-            alt={`Travel destination ${location}`}
-            className={styles.destinationImage}
-          />
+          <img loading="lazy" src={image} alt={`Travel destination ${location}`} className={styles.destinationImage} />
         </div>
 
         <div className={styles.infoContainer}>
@@ -98,13 +71,20 @@ const PackageCard = ({
         </div>
 
         <div className={styles.actionsRow}>
-          {/* Campaign Status Icon (Always Visible) */}
+          {/* Campaign Status Icon */}
           <div className={styles.statusContainer} title={campaignStatus || "No Campaign"}>
             {getCampaignIcon()}
           </div>
 
-          {/* WhatsApp Button */}
-          <button className={styles.whatsappButton} onClick={handleWhatsAppClick}>
+          {/* WhatsApp Button (Navigates to campaign link) */}
+          <button
+            className={styles.whatsappButton}
+            onClick={() =>
+              navigate(`/packages/campaign/${id}`, {
+                state: { id, title: packageTitle, image }
+              })
+            }
+          >
             <FaWhatsapp size={18} />
           </button>
 

@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Sidebar from './layouts/SideBar/SideBar';
@@ -10,6 +9,7 @@ import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/SignUp';
 const Packages = lazy(() => import('./pages/Packages/Packages'));
 const SavedPackages = lazy(() => import('./pages/Packages/SavedPackages'));
+const WhatsAppCampaign = lazy(() => import('./pages/Campaign/WhatsAppCampaign'));
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
                   <Routes>
                     <Route path="packages" element={<Packages />} />
                     <Route path="/packages/saved" element={<SavedPackages />} />
-                    {/* If you have more child routes: e.g. bookings, travelers, etc. */}
+                    <Route path="/packages/campaign/:id" element={[<Packages />, <WhatsAppCampaign />]} />
                   </Routes>
                 </div>
               </ProtectedRoute>

@@ -1,0 +1,191 @@
+/* src/components/WhatsAppModal/Groups/styles/IndividualContacts.module.scss */
+
+@import '../../../../../../assets/styles/variables.scss';
+
+/* Define mixins if not already defined globally */
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.sendIndividualSection {
+  @include flex-column;
+  background: white; /* Changed from var(--light-gray) to white */
+  padding: 20px; /* Increased padding for better spacing */
+  padding-top: 5px;
+  border-radius: 12px; /* Slightly increased border radius */
+  width: 80%; /* Increased width */
+  max-width: 90%; /* Ensure it takes up to 90% of the container's width */
+  max-height: 800px; /* Keep the height of the container the same */
+  overflow-y: auto;
+  margin: 20px;
+  margin-left: 0px;
+  overflow-x: auto;
+}
+
+.sendIndividualSection h3 {
+  margin-bottom: 5px; /* Increased margin for better spacing */
+  font-size: 18px; /* Increased font size for prominence */
+  font-weight: 700; /* Increased font weight */
+  color: var(--black);
+}
+
+.searchInput {
+  width: 95%;
+  padding: 6px 6px; /* Increased padding */
+  border: 1px solid var(--gray);
+  border-radius: 8px; /* Increased border radius */
+  font-size: 14px; /* Increased font size */
+  margin-bottom: 10px; /* Increased margin */
+  transition: border-color 0.2s;
+  margin-left: 5px;
+
+  &:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+  }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    .toggleButton {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      outline: none;
+      margin-top: 15px;
+  
+      &:hover {
+        color: var(--primary-blue);
+        transition: .2s linear;
+      }
+    }
+  }
+  
+  .collapsibleContent {
+    margin-top: 1rem; // Optional spacing
+  }
+  
+
+.selectedContacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Increased gap */
+  margin: 6px 0; /* Increased margin */
+  justify-content: flex-start;
+  font-size: 14px;
+}
+
+.individualContactsList {
+    display: flex;
+    flex-direction: column;
+    max-height: 200px; /* Keep the max-height same */
+    overflow-y: auto;
+    margin-bottom: 10px; /* Increased margin */
+  
+    .individualContactItem {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px; /* Increased margin */
+  
+      input[type='checkbox'] {
+        margin-right: 10px; /* Increased margin */
+        width: 14px;
+        height: 14px;
+        cursor: pointer;
+      }
+  
+      label {
+        font-size: 14px; /* Increased font size */
+        color: var(--black);
+        cursor: pointer;
+      }
+    }
+  
+    .noContacts {
+      font-size: 14px;
+      color: var(--black);
+      text-align: center;
+    }
+  
+    &::-webkit-scrollbar {
+        width: 5px;
+      }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--gray);
+        border-radius: 10px;
+      }
+  }
+  
+
+.contactChip {
+  display: inline-flex;
+  align-items: center;
+  background: var(--very-light-gray);
+  padding: 6px 6px; /* Increased padding */
+  border-radius: 15px;
+  font-size: 12px; /* Increased font size */
+  font-weight: 500;
+  color: var(--black);
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--gray);
+  }
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  margin-left: 6px; /* Increased margin */
+  font-weight: bold;
+  font-size: 16px; /* Increased font size */
+
+  &:hover {
+    color: darkred;
+  }
+}
+
+.updateButton {
+  background: var(--secondary-green);
+  color: white;
+  border: none;
+  padding: 10px 14px; /* Increased padding */
+  border-radius: 8px; /* Increased border radius */
+  cursor: pointer;
+  font-size: 16px; /* Increased font size */
+  transition: background 0.2s;
+  margin-top: 12px; /* Increased margin */
+
+  &:hover {
+    background: darkgreen;
+  }
+
+  &:disabled {
+    background: var(--gray);
+    cursor: not-allowed;
+  }
+}
+
+.errorText {
+  color: red;
+  font-size: 14px; /* Increased font size */
+  margin-bottom: 12px; /* Increased margin */
+  align-self: flex-start;
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .sendIndividualSection {
+    width: 80%; /* Increased width on smaller screens */
+    margin-left: 20px;
+    gap: 10px;
+    margin-top: 0px;
+  }
+}

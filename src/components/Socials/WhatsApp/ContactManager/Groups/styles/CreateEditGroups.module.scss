@@ -1,0 +1,176 @@
+/* src/components/WhatsAppModal/Groups/styles/CreateEditGroups.module.scss */
+
+@import '../../../../../../assets//styles/variables.scss';
+
+/* Define mixins if not already defined globally */
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.createGroupSection {
+  @include flex-column;
+  background: var(--light-gray);
+  padding: 20px;
+  padding-top: 10px;
+  background-color: white;
+  margin:20px;
+  margin-left: 0px;
+  border-radius: 12px;
+  width: 350px;
+  max-width: 90%;
+  max-height: 300px;
+  overflow-y: auto;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Optional: Make scrollbar track transparent */
+  }
+}
+
+.createGroupButton::-webkit-scrollbar{
+  width: 0px;
+}
+
+.createGroupSection h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.createGroupContainer {
+  @include flex-column;
+}
+
+.inputField {
+  width: 95%;
+  padding: 6px 6px;
+  border: 1px solid var(--gray);
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+  }
+}
+
+.groupContactsList {
+  @include flex-column;
+  max-height: 160px;
+  overflow-y: auto;
+  margin-bottom: 5px;
+  padding:5px;
+
+  .groupContactItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+    input[type='checkbox'] {
+      margin-right: 10px;
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+
+    label {
+      font-size: 14px;
+      color: var(--black);
+      cursor: pointer;
+    }
+  }
+
+  .noContacts {
+    font-size: 14px;
+    color: var(--black);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray);
+  border-radius: 10px;
+}
+
+
+.errorText {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.groupButtons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+
+  .createGroupButton,
+  .updateGroupButton {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: #1b9cd9; /* Primary Blue Hover */
+    }
+
+    &:disabled {
+      background-color: var(--gray);
+      cursor: not-allowed;
+    }
+  }
+
+  .createGroupButton {
+    background-color: var(--primary-blue);
+    color: white;
+  }
+
+  .updateGroupButton {
+    background-color: var(--secondary-green);
+    color: white;
+  }
+
+  .cancelEditButton {
+    flex: 1;
+    padding: 10px 0;
+    background-color: var(--gray);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: darkred;
+    }
+
+    &:disabled {
+      background-color: var(--gray);
+      cursor: not-allowed;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+    .createGroupSection {
+      width: 80%;
+      margin-left: 20px;
+      gap:10px;
+      margin-top: 0px;
+    }
+  }
+  
