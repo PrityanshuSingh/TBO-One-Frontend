@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { FaEdit, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/CampaignCard.module.scss";
+
+import { AuthContext } from "../../context/AuthContext";
 
 const CampaignCard = ({
   campaign,
@@ -15,9 +17,13 @@ const CampaignCard = ({
   const navigate = useNavigate();
   const [isGroupOpen, setIsGroupOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const { userData } = useContext(AuthContext);
+  let email = userData?.Profile?.email;
+  const baseUrl = window.location.origin; 
+
 
   const handleEdit = () => {
-    navigate(`/packages/campaign/${campaign.pkgId}`);
+    navigate(`/campaigns/edit/${campaign.pkgId}`);
   };
 
   return (
@@ -92,13 +98,8 @@ const CampaignCard = ({
       </td>
 
       <td className={styles.previewLink}>
-        <a
-          href={`/packages/campaign/details/${campaign.pkgId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Preview
-        </a>
+      <a href={`${baseUrl}/packages/details?id=${campaign.pkgId}&email=${email}`} target="_blank" rel="noopener noreferrer">Preview</a>
+
       </td>
     </tr>
   );
