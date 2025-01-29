@@ -1,3 +1,4 @@
+// AuthContext.jsx
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import fallbackData from "../data/localProfile.json";
@@ -6,11 +7,6 @@ export const AuthContext = createContext();
 
 const SESSION_DURATION = 6 * 60 * 60 * 1000;
 const STORAGE_KEY = "authSession";
-
-// Provide fallback if env variables aren't set
-const TBO_AUTH_URL = import.meta.env.VITE_TBO_AUTH_URL;
-const TBO_LOGOUT_URL = import.meta.env.VITE_TBO_LOGOUT_URL;
-const TBO_CLIENT_ID = import.meta.env.VITE_TBO_CLIENT_ID;
 
 function storeUserSession(user) {
   const expiry = Date.now() + SESSION_DURATION;
@@ -51,24 +47,25 @@ export function AuthProvider({ children }) {
   const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = loadUserSession();
-    if (storedUser) {
+    const stored = loadUserSession();
+    if (stored) {
       setIsAuthenticated(true);
-      setUserData(storedUser);
+      setUserData(stored);
     }
     setIsAuthLoading(false);
   }, []);
 
+  // Instead of the direct TBO_AUTH_URL, post to "/tbo/auth"
+  // Your proxy/rewrite in production should handle this route.
   async function tboAuthenticate(userName, password) {
     const ip = await getPublicIP();
     const payload = {
-      ClientId: TBO_CLIENT_ID,
+      ClientId: import.meta.env.VITE_TBO_CLIENT_ID || "ApiIntegrationNew",
       UserName: userName,
       Password: password,
-      EndUserIp: ip,
+      EndUserIp: ip
     };
-    // If TBO_AUTH_URL is undefined, fallback ensures we have "https://example.com/tbo-auth"
-    const res = await axios.post(TBO_AUTH_URL, payload);
+    const res = await axios.post("/tbo/auth", payload);
     return res.data; // { Status, TokenId, Error, Member, ...}
   }
 
@@ -76,16 +73,14 @@ export function AuthProvider({ children }) {
     if (!tokenId) return;
     const ip = await getPublicIP();
     const payload = {
-      ClientId: TBO_CLIENT_ID,
+      ClientId: import.meta.env.VITE_TBO_CLIENT_ID || "ApiIntegrationNew",
       EndUserIp: ip,
       TokenAgencyId: tokenAgencyId || 222,
       TokenMemberId: tokenMemberId || 111,
-      TokenId: tokenId,
+      TokenId: tokenId
     };
     try {
-      // fallback ensures TBO_LOGOUT_URL is at least "https://example.com/tbo-logout"
-      const res = await axios.post(TBO_LOGOUT_URL, payload);
-      console.log("TBO logout =>", res.data);
+      await axios.post("/tbo/logout", payload);
     } catch (err) {
       console.error("TBO logout error =>", err);
     }
@@ -95,36 +90,30 @@ export function AuthProvider({ children }) {
     try {
       const tboRes = await tboAuthenticate(userName, password);
       if (tboRes.Status !== 1) {
-        throw new Error(
-          tboRes.Error?.ErrorMessage || "Invalid TBO credentials"
-        );
+        throw new Error(tboRes.Error?.ErrorMessage || "Invalid TBO credentials");
       }
       const tboEmail = tboRes.Member?.Email;
-      if (!tboEmail) throw new Error("TBO response missing email.");
+      if (!tboEmail) {
+        throw new Error("TBO response missing email.");
+      }
 
       let Profile;
       try {
-        // Attempt server profile. If fails, fallback.
         const LoginRes = await axios.get(`/api/agent?email=${tboEmail}`);
         Profile = LoginRes.data?.Profile;
         if (!Profile) {
-          throw new Error(
-            "No local profile in server response. Sign up first."
-          );
+          throw new Error("No local profile in server response. Sign up first.");
         }
       } catch (err) {
-        console.warn("Local agent check failed => fallback used.", err);
+        console.warn("Local profile check failed => fallback used.", err);
         Profile = fallbackData.Profile;
       }
 
-      if (Profile) {
-        Profile.ipAddress = await getPublicIP();
-
-        const mergedUser = { ...tboRes, Profile: Profile };
-        setIsAuthenticated(true);
-        setUserData(mergedUser);
-        storeUserSession(mergedUser);
-      }
+      Profile.ipAddress = await getPublicIP();
+      const mergedUser = { ...tboRes, Profile };
+      setIsAuthenticated(true);
+      setUserData(mergedUser);
+      storeUserSession(mergedUser);
     } catch (err) {
       console.error("TBO-based login error =>", err.message);
       throw err;
@@ -140,17 +129,19 @@ export function AuthProvider({ children }) {
         );
       }
       const tboEmail = tboRes.Member?.Email;
-      if (!tboEmail) throw new Error("TBO response missing email.");
+      if (!tboEmail) {
+        throw new Error("TBO response missing email.");
+      }
       if (tboEmail.toLowerCase() !== email.toLowerCase()) {
         throw new Error("TBO email does not match signup email.");
       }
+
       let Profile;
       try {
-        // Attempt local sign-up. If fails, fallback.
         const signUpRes = await axios.post("/api/agent", {
           userName,
           email,
-          role: "AGENT",
+          role: "AGENT"
         });
         Profile = signUpRes.data?.Profile;
         if (!Profile) {
@@ -160,14 +151,12 @@ export function AuthProvider({ children }) {
         console.warn("Local signUp call failed => fallback profile.", err);
         Profile = fallbackData.Profile;
       }
-      if (Profile) {
-        Profile.ipAddress = await getPublicIP();
 
-        const mergedUser = { ...tboRes, Profile: Profile };
-        setIsAuthenticated(true);
-        setUserData(mergedUser);
-        storeUserSession(mergedUser);
-      }
+      Profile.ipAddress = await getPublicIP();
+      const mergedUser = { ...tboRes, Profile };
+      setIsAuthenticated(true);
+      setUserData(mergedUser);
+      storeUserSession(mergedUser);
     } catch (err) {
       console.error("SignUp error =>", err.message);
       throw err;
@@ -195,7 +184,7 @@ export function AuthProvider({ children }) {
         userData,
         login,
         signUp,
-        logout,
+        logout
       }}
     >
       {children}

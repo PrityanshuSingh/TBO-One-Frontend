@@ -2,15 +2,17 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import WhatsAppModal from '../../components/Modals/WhatsAppModal';
+import EditCampaignModal from '../../components/Modals/EditCampaignModal';
+import { CampaignContext } from '../../context/CampaignContext';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 
-const WhatsAppCampaign = () => {
+const EditCampaign = () => {
   const { id } = useParams(); // Extract ID from URL
   const location = useLocation();
   const navigate = useNavigate();
   const { userData } = useContext(AuthContext);
+  const { campaigns } = useContext(CampaignContext);
 
   const [packageData, setPackageData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -76,4 +78,4 @@ const WhatsAppCampaign = () => {
   );
 };
 
-export default WhatsAppCampaign;
+export default EditCampaign;

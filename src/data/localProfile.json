@@ -45,8 +45,11 @@
     "profileImage": "https://example.com/assets/images/jane-doe-profile.jpg",
     "campaigns": [
       { "id": "1","name":"Goa Campaign", "status": "Running","pkgId": "123", "grpId": ["101", "102"], "contactId": ["5", "6"]},
-      { "id": "2","name":"Manali Campaign", "status": "Draft","pkgId": "124", "grpId": ["102"], "contactId": ["7", "8"]},
-      { "id": "3","name":"Goa Campaign", "status": "Running","pkgId": "125", "grpId": ["101","102","103"], "contactId": []}
+      { "id": "2","name":"Manali Campaign", "status": "Hold","pkgId": "124", "grpId": ["102"], "contactId": ["7", "8"]},
+      { "id": "3","name":"Goa Campaign 1", "status": "Running","pkgId": "125", "grpId": ["101","102","103"], "contactId": []},
+      { "id": "4","name":"Goa Campaign 2", "status": "Stopped","pkgId": "127", "grpId": ["101","102","103"], "contactId": []},
+      { "id": "5","name":"Goa Campaign 3", "status": "Running","pkgId": "126", "grpId": ["101","102","103"], "contactId": []},
+      { "id": "6","name":"Goa Campaign 4", "status": "null","pkgId": "128", "grpId": ["101","102","103"], "contactId": ["1", "2", "3", "4"]}
     ],
     "saved": ["124", "999"],
     "customer": [

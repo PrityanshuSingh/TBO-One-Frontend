@@ -20,7 +20,7 @@ const PackageCard = ({
 }) => {
   const navigate = useNavigate();
   const { userData, setUserData } = useContext(AuthContext);
-  const userEmail = userData?.Member?.Email;
+  const userEmail = userData?.Profile?.email;
   const savedPackages = userData?.Profile?.saved || [];
 
   const [isSaved, setIsSaved] = useState(false);
@@ -43,7 +43,7 @@ const PackageCard = ({
 
   const getCampaignIcon = () => {
     if (campaignStatus === 'Running') return <MdPlayCircle className={`${styles.campaignIcon} ${styles.runningIcon}`} />;
-    if (campaignStatus === 'Draft') return <MdDrafts className={`${styles.campaignIcon} ${styles.draftIcon}`} />;
+    if (campaignStatus === 'Hold') return <MdDrafts className={`${styles.campaignIcon} ${styles.draftIcon}`} />;
     if (campaignStatus === 'Stopped') return <MdPauseCircle className={`${styles.campaignIcon} ${styles.stoppedIcon}`} />;
     return <MdDoNotDisturb className={`${styles.campaignIcon} ${styles.noCampaignIcon}`} />;
   };

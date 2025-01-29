@@ -11,6 +11,7 @@ const Packages = lazy(() => import('./pages/Packages/Packages'));
 const PackageDetails = lazy(() => import('./pages/Packages/PackageDetails'));
 const SavedPackages = lazy(() => import('./pages/Packages/SavedPackages'));
 const WhatsAppCampaign = lazy(() => import('./pages/Campaign/WhatsAppCampaign'));
+const EditCampign = lazy(() => import('./pages/Campaign/EditCampaign'));
 const Campaigns = lazy(() => import('./pages/Campaign/Campaigns'));
 const ErrorPage = lazy(() => import('./pages/Error/Error')); // Import your error page
 
@@ -55,7 +56,7 @@ function App() {
                     <Route path="/u/packages/campaign/:id" element={[<Packages />, <WhatsAppCampaign />]} />
 
                     <Route path="/u/campaigns" element={<Campaigns />} />
-                    <Route path="/u/campaigns/edit/:id" element={<WhatsAppCampaign />} />
+                    <Route path="/u/campaigns/edit/:id" element={[<Campaigns />,<EditCampign />]} />
 
                     {/* Catch-all route for 404 errors */}
                     <Route path="*" element={<ErrorPage />} />

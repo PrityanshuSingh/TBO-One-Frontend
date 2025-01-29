@@ -22,7 +22,7 @@ const CampaignFilter = ({ campaignFilter, onChange }) => {
         <option value="ALL">All</option>
         <option value="Running">Running</option>
         <option value="Stopped">Stopped</option>
-        <option value="Draft">Draft</option>
+        <option value="Hold">Hold</option>
       </select>
     </div>
   );

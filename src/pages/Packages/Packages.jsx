@@ -1,9 +1,8 @@
-// src/pages/Packages/Packages.jsx
-
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { CampaignContext } from "../../context/CampaignContext";
 import { AuthContext } from "../../context/AuthContext";
 import localPackages from "../../data/localPackages.json";
 
@@ -11,7 +10,6 @@ import CampaignFilter from "../../components/Filters/CampaignFilter";
 import AIForm from "../../components/Forms/AIForm";
 import CategorySection from "../../components/Sections/CategorySection";
 
-// Suppose we have a FontAwesome or any icon for "Saved"
 import { FaRegBookmark } from "react-icons/fa";
 
 import styles from "./styles/Packages.module.scss";
@@ -50,26 +48,23 @@ function categorizePackages(allPackages) {
 const Packages = () => {
   const navigate = useNavigate();
   const { userData } = useContext(AuthContext);
+  const { campaigns } = useContext(CampaignContext);
+  console.log("Campaigns from CampaignContext:", campaigns);
 
-  // Original packages
   const [packagesData, setPackagesData] = useState([]);
   const [categories, setCategories] = useState({});
 
-  // AI-suggested packages
   const [aiPackages, setAiPackages] = useState([]);
   const [isAiActive, setIsAiActive] = useState(false);
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  // Campaign filter
   const [campaignFilter, setCampaignFilter] = useState("ALL");
 
-  // Category-based text filters
   const [categoryFilters, setCategoryFilters] = useState(
     PRIORITY_TAGS.reduce((acc, tag) => ({ ...acc, [tag]: "" }), {})
   );
 
-  // AI form fields
   const [aiPrompt, setAiPrompt] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
@@ -94,21 +89,18 @@ const Packages = () => {
     setCategories(categorizePackages(packagesData));
   }, [packagesData]);
 
-  // Basic function to get campaign status
   const getCampaignStatus = (pkgId) => {
-    if (!userData || !userData.campaigns) return null;
-    const found = userData.campaigns.find((c) => c.id === pkgId);
-    // We can have 'Running', 'Draft', 'Stopped'
-    return found ? found.status : null;
+    if (!campaigns || campaigns.length === 0) return null;
+    const foundCampaign = campaigns.find((campaign) => campaign.pkgId === pkgId);
+    return foundCampaign ? foundCampaign.status : null;
   };
 
-  // For each package in a category
   const filterPackage = (pkg, tag) => {
     const text = (pkg.packageTitle + pkg.location).toLowerCase();
     if (!text.includes(categoryFilters[tag].toLowerCase())) return false;
     if (campaignFilter !== "ALL") {
-      const st = getCampaignStatus(pkg.id);
-      if (st !== campaignFilter) return false;
+      const status = getCampaignStatus(pkg.id);
+      if (status !== campaignFilter) return false;
     }
     return true;
   };
@@ -117,7 +109,6 @@ const Packages = () => {
     navigate(`/u/packages/details/${pkgId}`);
   };
 
-  // Example validation
   const validateAiForm = () => {
     if (!aiPrompt.trim()) {
       return "Please provide a prompt.";
@@ -125,7 +116,6 @@ const Packages = () => {
     return "";
   };
 
-  // AI search
   const handleAiSearch = async (e) => {
     e.preventDefault();
     setErrorMsg("");
@@ -150,19 +140,17 @@ const Packages = () => {
     try {
       const res = await axios.post("/api/ai/packages", formData);
       setAiPackages(res.data);
-      setIsAiActive(true); // show AI section
+      setIsAiActive(true);
     } catch (error) {
       console.error("AI prompt failed. Using local fallback.", error);
-      setAiPackages([]); // no suggestions
+      setAiPackages([]);
       setIsAiActive(true);
     } finally {
       setIsAiLoading(false);
     }
   };
 
-  // Route to Saved page
   const handleSavedRoute = () => {
-    // If we have a route for /packages/saved
     navigate("/u/packages/saved");
   };
 
