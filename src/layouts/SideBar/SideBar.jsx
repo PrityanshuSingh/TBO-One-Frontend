@@ -74,10 +74,10 @@ function Sidebar() {
 
   const navItems = [
     { path: '/', text: 'Dashboard', icon: <FaTachometerAlt /> },
-    { path: '/packages', text: 'Packages', icon: <FaBox /> },
-    { path: '/campaigns', text: 'Campaigns', icon: <FaUsers /> },
-    { path: '/interests', text: 'Interests', icon: <FaRegAddressCard /> },
-    { path: '/ads', text: 'GenAI Ads', icon: <FaRegAddressCard /> },
+    { path: '/u/packages', text: 'Packages', icon: <FaBox /> },
+    { path: '/u/campaigns', text: 'Campaigns', icon: <FaUsers /> },
+    { path: '/u/interests', text: 'Interests', icon: <FaRegAddressCard /> },
+    { path: '/u/socials', text: 'GenAI Socials', icon: <FaRegAddressCard /> },
   ];
 
   return (

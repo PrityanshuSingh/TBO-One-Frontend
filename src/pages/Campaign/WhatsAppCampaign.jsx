@@ -61,14 +61,14 @@ const WhatsAppCampaign = () => {
   }
 
   if (!packageData) {
-    navigate('/packages'); // Redirect if package data is missing
+    navigate('/u/packages'); // Redirect if package data is missing
     return null;
   }
 
   return (
     <WhatsAppModal 
       isOpen={true} 
-      onClose={() => navigate('/packages')} 
+      onClose={() => navigate('/u/packages')} 
       packageData={packageData} 
     />
   );

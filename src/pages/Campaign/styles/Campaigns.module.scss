@@ -2,9 +2,9 @@
 
 .campaignsContainer {
   width: 100%;
-  max-width: 70vw;
+  max-width: 70.9vw;
   max-height: 94vh;
-  height: 86vh;
+  height: 87.1vh;
   margin: 0 auto;
   padding: 20px;
   background-color: white;
@@ -27,14 +27,14 @@
         flex-direction: column;
 
         .mainTitle {
-          font-size: var(--font-size-large);
+          font: 600 24px "Poppins", sans-serif;
           font-weight: 700;
           color: var(--text-primary);
           margin: 0;
         }
 
         .subtitle {
-          font-size: var(--font-size-small);
+          font: 500 14px "Inter", sans-serif;
           color: var(--text-secondary);
           margin-top: 3px;
         }

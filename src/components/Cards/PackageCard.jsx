@@ -80,7 +80,7 @@ const PackageCard = ({
           <button
             className={styles.whatsappButton}
             onClick={() =>
-              navigate(`/packages/campaign/${id}`, {
+              navigate(`/u/packages/campaign/${id}`, {
                 state: { id, title: packageTitle, image, location, price, duration}
               })
             }

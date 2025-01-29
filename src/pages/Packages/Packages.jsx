@@ -114,7 +114,7 @@ const Packages = () => {
   };
 
   const handleDetailsClick = (pkgId) => {
-    navigate(`/packages?id=${pkgId}`);
+    navigate(`/u/packages/details/${pkgId}`);
   };
 
   // Example validation
@@ -163,7 +163,7 @@ const Packages = () => {
   // Route to Saved page
   const handleSavedRoute = () => {
     // If we have a route for /packages/saved
-    navigate("/packages/saved");
+    navigate("/u/packages/saved");
   };
 
   return (

@@ -1,8 +1,9 @@
 // src/components/WhatsAppModal/WhatsAppEditor.jsx
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 import styles from './styles/WhatsAppEditor.module.scss';
 import { FiEdit, FiRefreshCw } from 'react-icons/fi'; // Importing React Icons
+import { AuthContext } from '../../../../context/AuthContext';
 
 const WhatsAppEditor = ({
   onNext,
@@ -29,6 +30,8 @@ const WhatsAppEditor = ({
   const fileInputRef = useRef(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [aiError, setAiError] = useState(null);
+  const { userData } = useContext(AuthContext);
+  let email = userData?.Profile?.email;
 
   // Handler to trigger the hidden file input
   const handleEditImage = () => {
@@ -97,12 +100,12 @@ Duration: ${duration}
 
 ${description}
 
-Details: ${baseUrl}/packages/campaign/details/${packageId}
+Details: ${baseUrl}/packages/details/${packageId}
 Travelers: ${travelerMobile}, ${travelerEmail}`;
 
   return (
     <div className={styles.editorContainer}>
-      <h2 className={styles.heading}>Edit WhatsApp Message</h2>
+      <h2 className={styles.heading}>Run WhatsApp Campaign</h2>
       <div className={styles.contentWrapper}>
         {/* Image Section */}
         <div className={styles.imageContainer}>
@@ -135,7 +138,7 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
             <br/>
             <p className={styles.wpDescription}>{description}</p>
             <br/>
-            <p><strong>Details:</strong> <a href={`${baseUrl}/packages/campaign/details/${packageId}`} target="_blank" rel="noopener noreferrer">View Package</a></p>
+            <p><strong>Details:</strong> <a href={`${baseUrl}/packages/details?id=${packageId}&email=${email}`} target="_blank" rel="noopener noreferrer">View Package</a></p>
             <p><strong>Travelers:</strong> {travelerMobile}, {travelerEmail}</p>
           </div>
         </div>
