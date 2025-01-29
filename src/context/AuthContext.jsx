@@ -34,7 +34,7 @@ function loadUserSession() {
 async function getPublicIP() {
   try {
     const res = await axios.get("https://api64.ipify.org?format=json");
-    return res.data.ip;
+    return res.data.ip.trim();
   } catch (err) {
     console.error("Error fetching IP:", err);
     return "0.0.0.0";
@@ -63,7 +63,7 @@ export function AuthProvider({ children }) {
       ClientId: import.meta.env.VITE_TBO_CLIENT_ID || "ApiIntegrationNew",
       UserName: userName,
       Password: password,
-      EndUserIp: ip
+      EndUserIp: ip.replace(/,$/, "")
     };
     const res = await axios.post("/tbo/auth", payload);
     return res.data; // { Status, TokenId, Error, Member, ...}
