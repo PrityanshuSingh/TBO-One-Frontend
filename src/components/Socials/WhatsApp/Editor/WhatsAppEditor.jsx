@@ -95,7 +95,7 @@ const WhatsAppEditor = ({
   const previewMessage = `Check out this package: ${title}
   
 Location: ${location}
-Price: ${price}
+Price: ${price.basePrice}
 Duration: ${duration}
 
 ${description}

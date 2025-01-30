@@ -1,91 +1,234 @@
 {
-  "_id": "24238492384923849234",
+  "id": "12345678",
   "Profile": {
     "role": "AGENT",
-    "firstName": "Test",
-    "lastName": "test",
-    "email": "abc@test.com",
-    "ipAddress": "152.59.156.38",
-    "company": "Globetrotter Travels",
-    "address": "Sector 45, Downtown City",
-    "licenseNumber": "ABCD123456",
+    "firstName": "Rohit",
+    "lastName": "Sharma",
+    "email": "rohit.sharma@tbotravels.com",
+    "company": "TBO Travels",
+    "address": "Sector 45, Downtown City, Mumbai, Maharashtra, India",
+    "licenseNumber": "TBOTRAVEL7890",
     "region": "APAC",
-    "contactNumber": "+1 (555) 123-4567",
-    "website": "https://www.globetrottertravels.com",
+    "contactNumber": "+91 (22) 9876-5432",
+    "website": "https://www.tbotravels.com",
     "specialization": [
       "Adventure Tours",
       "Honeymoon Packages",
       "Group Excursions",
       "Luxury Cruises"
     ],
-    "experienceYears": 8,
+    "experienceYears": 12,
     "socialMedia": {
-      "facebook": "https://www.facebook.com/jane.globetravels",
-      "instagram": "https://www.instagram.com/jane_globetrotter",
-      "linkedin": "https://www.linkedin.com/in/jane-doe-globetrotter",
-      "twitter": "https://twitter.com/jane_globetrotter"
+      "facebook": "https://www.facebook.com/rohit.sharma.tbotravels",
+      "instagram": "https://www.instagram.com/rohit_tbotravels",
+      "linkedin": "https://www.linkedin.com/in/rohit-sharma-tbotravels",
+      "twitter": "https://twitter.com/rohit_tbotravels"
     },
-    "profileImage": "https://example.com/assets/images/jane-doe-profile.jpg",
+    "profileImage": "https://example.com/assets/images/rohit-sharma-profile.jpg",
     "campaigns": [
-      { "id": "1","name":"Goa Campaign", "status": "Running","pkgId": "123", "grpId": ["101", "102"], "contactId": ["5", "6"]},
-      { "id": "2","name":"Manali Campaign", "status": "Hold","pkgId": "124", "grpId": ["102"], "contactId": ["7", "8"]},
-      { "id": "3","name":"Goa Campaign 1", "status": "Running","pkgId": "125", "grpId": ["101","102","103"], "contactId": []},
-      { "id": "4","name":"Goa Campaign 2", "status": "Stopped","pkgId": "127", "grpId": ["101","102","103"], "contactId": []},
-      { "id": "5","name":"Goa Campaign 3", "status": "Running","pkgId": "126", "grpId": ["101","102","103"], "contactId": []},
-      { "id": "6","name":"Goa Campaign 4", "status": "null","pkgId": "128", "grpId": ["101","102","103"], "contactId": ["1", "2", "3", "4"]}
-    ],
-    "saved": ["124", "999"],
-    "customer": [
       {
         "id": "1",
-        "name": "John Doe",
-        "whatsApp": "9876543210",
-        "email": "abc@gmail.com"
+        "name": "Goa Summer Bonanza",
+        "status": "Running",
+        "pkgId": "123",
+        "grpId": ["102", "103"],
+        "contactId": ["5", "6"],
+        "interestContacts": [
+          {
+            "id": "5",
+            "name": "Rajesh Kumar",
+            "whatsApp": "9876543210"
+          },
+          {
+            "id": "6",
+            "name": "Neha Gupta",
+            "whatsApp": "1231231231"
+          }
+        ]
       },
       {
         "id": "2",
-        "name": "Jane Smith",
-        "whatsApp": "9123456789",
-        "email": "abc2@gmail.com"
+        "name": "Manali Winter Wonderland",
+        "status": "Hold",
+        "pkgId": "124",
+        "grpId": ["101"],
+        "contactId": ["7", "8"],
+        "interestContacts": [
+          {
+            "id": "7",
+            "name": "Rohit Verma",
+            "whatsApp": "91321321232"
+          },
+          {
+            "id": "8",
+            "name": "Kavita Rao",
+            "whatsApp": "1231231231"
+          }
+        ]
       },
       {
         "id": "3",
-        "name": "Jane Smith",
-        "whatsApp": "91321321232",
-        "email": "abc3@gmail.com"
+        "name": "Kerala Backwater Bliss",
+        "status": "Running",
+        "pkgId": "125",
+        "grpId": ["104", "105"],
+        "contactId": ["9", "10"],
+        "interestContacts": [
+          {
+            "id": "9",
+            "name": "Suresh Iyer",
+            "whatsApp": "9876543200"
+          },
+          {
+            "id": "10",
+            "name": "Anjali Desai",
+            "whatsApp": "9123456700"
+          }
+        ]
       },
       {
         "id": "4",
-        "name": "Jane Smith",
-        "whatsApp": "1231231231",
-        "email": "abc4@gmail.com"
+        "name": "Rajasthan Royal Heritage",
+        "status": "Stopped",
+        "pkgId": "123",
+        "grpId": ["106"],
+        "contactId": [],
+        "interestContacts": []
       },
       {
         "id": "5",
-        "name": "Jane Smith",
-        "whatsApp": "91321321232",
-        "email": "abc5@gmail.com"
+        "name": "Luxury Cruises 2025",
+        "status": "Running",
+        "pkgId": "124",
+        "grpId": ["107", "108"],
+        "contactId": [],
+        "interestContacts": []
       },
       {
         "id": "6",
-        "name": "Jane Smith",
+        "name": "Group Excursions Q1",
+        "status": "null",
+        "pkgId": "123",
+        "grpId": ["109", "110"],
+        "contactId": ["11", "12", "13", "14"],
+        "interestContacts": [
+          {
+            "id": "11",
+            "name": "Deepak Joshi",
+            "whatsApp": "9132132100"
+          },
+          {
+            "id": "12",
+            "name": "Sunita Reddy",
+            "whatsApp": "1231231200"
+          },
+          {
+            "id": "13",
+            "name": "Kiran Rao",
+            "whatsApp": "9132132101"
+          },
+          {
+            "id": "14",
+            "name": "Meera Nair",
+            "whatsApp": "1231231201"
+          }
+        ]
+      }
+    ],
+    "saved": ["123", "124"],
+    "customer": [
+      {
+        "id": "1",
+        "name": "Rajesh Kumar",
+        "whatsApp": "9876543210",
+        "email": "rajesh.kumar@example.com"
+      },
+      {
+        "id": "2",
+        "name": "Sonia Sharma",
+        "whatsApp": "9123456789",
+        "email": "sonia.sharma@example.com"
+      },
+      {
+        "id": "3",
+        "name": "Vikram Singh",
+        "whatsApp": "91321321232",
+        "email": "vikram.singh@example.com"
+      },
+      {
+        "id": "4",
+        "name": "Priya Mehta",
         "whatsApp": "1231231231",
-        "email": "abc6@gmail.com"
+        "email": "priya.mehta@example.com"
+      },
+      {
+        "id": "5",
+        "name": "Amit Patel",
+        "whatsApp": "91321321232",
+        "email": "amit.patel@example.com"
+      },
+      {
+        "id": "6",
+        "name": "Neha Gupta",
+        "whatsApp": "1231231231",
+        "email": "neha.gupta@example.com"
       },
       {
         "id": "7",
-        "name": "Jane Smith",
+        "name": "Rohit Verma",
         "whatsApp": "91321321232",
-        "email": "abc7@gmail.com"
+        "email": "rohit.verma@example.com"
       },
       {
         "id": "8",
-        "name": "Jane Smith",
+        "name": "Kavita Rao",
         "whatsApp": "1231231231",
-        "email": "abc8@gmail.com"
+        "email": "kavita.rao@example.com"
+      },
+      {
+        "id": "9",
+        "name": "Suresh Iyer",
+        "whatsApp": "9876543200",
+        "email": "suresh.iyer@example.com"
+      },
+      {
+        "id": "10",
+        "name": "Anjali Desai",
+        "whatsApp": "9123456700",
+        "email": "anjali.desai@example.com"
+      },
+      {
+        "id": "11",
+        "name": "Deepak Joshi",
+        "whatsApp": "9132132100",
+        "email": "deepak.joshi@example.com"
+      },
+      {
+        "id": "12",
+        "name": "Sunita Reddy",
+        "whatsApp": "1231231200",
+        "email": "sunita.reddy@example.com"
+      },
+      {
+        "id": "13",
+        "name": "Kiran Rao",
+        "whatsApp": "9132132101",
+        "email": "kiran.rao@example.com"
+      },
+      {
+        "id": "14",
+        "name": "Meera Nair",
+        "whatsApp": "1231231201",
+        "email": "meera.nair@example.com"
       }
     ],
     "groups": [
+      {
+        "id": "100",
+        "name": "Loyalty Group",
+        "type": "whatsApp",
+        "contactId": ["1", "2", "3", "4"]
+      },
       {
         "id": "101",
         "name": "Manali Group",
@@ -100,9 +243,51 @@
       },
       {
         "id": "103",
+        "name": "Kerala Group",
+        "type": "email",
+        "contactId": ["5", "6"]
+      },
+      {
+        "id": "104",
+        "name": "Luxury Cruises Group",
+        "type": "email",
+        "contactId": ["7", "8"]
+      },
+      {
+        "id": "105",
+        "name": "Adventure Enthusiasts",
+        "type": "whatsApp",
+        "contactId": ["9", "10"]
+      },
+      {
+        "id": "106",
+        "name": "Heritage Lovers",
+        "type": "email",
+        "contactId": ["11", "12", "13", "14"]
+      },
+      {
+        "id": "107",
+        "name": "Group Excursions",
+        "type": "whatsApp",
+        "contactId": ["1", "2", "5", "6"]
+      },
+      {
+        "id": "108",
         "name": "Honeymoon Group",
         "type": "email",
-        "contactId": ["1", "2", "3"]
+        "contactId": ["3", "4", "7", "8"]
+      },
+      {
+        "id": "109",
+        "name": "Special Offers",
+        "type": "whatsApp",
+        "contactId": ["11", "12"]
+      },
+      {
+        "id": "110",
+        "name": "VIP Clients",
+        "type": "email",
+        "contactId": ["13", "14"]
       }
     ]
   }

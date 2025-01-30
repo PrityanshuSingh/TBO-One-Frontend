@@ -14,10 +14,10 @@ const PackageCard = ({
   location,
   duration,
   price,
-  priceColor = 'var(--black)',
   campaignStatus,
   onDetailsClick
 }) => {
+
   const navigate = useNavigate();
   const { userData, setUserData } = useContext(AuthContext);
   const userEmail = userData?.Profile?.email;
@@ -64,8 +64,8 @@ const PackageCard = ({
           </div>
           <div className={styles.location}>{location}</div>
           <div className={styles.duration}>{duration}</div>
-          <div className={styles.price} style={{ color: priceColor }}>
-            <span className={styles.amount}>${price}</span>
+          <div className={styles.price} style={{ color: "green" }}>
+            <span className={styles.amount}>{price.currency} {price.basePrice}</span>
             <span className={styles.perPerson}>per person</span>
           </div>
         </div>

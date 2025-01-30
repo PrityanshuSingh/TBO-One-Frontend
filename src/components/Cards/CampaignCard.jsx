@@ -39,7 +39,7 @@ const CampaignCard = ({
       <td className={styles.number}>{index + 1}</td>
       <td className={styles.campaignName}>{campaign.name || `Campaign ${campaign.id}`}</td>
 
-      <td className={`${styles.status} ${styles[campaign.status.toLowerCase()]}`}>
+      <td className={`${styles.status} ${styles[campaign.status?.toLowerCase()]}`}>
         {campaign.status}
       </td>
 

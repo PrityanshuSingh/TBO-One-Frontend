@@ -22,12 +22,19 @@ import styles from "./styles/Packages.module.scss";
  */
 const PRIORITY_TAGS = [
   "Trending",
-  "Adventure",
   "Cultural",
-  "Honeymoon",
+  "Heritage",
+  "Royal",
+  "Adventure",
+  "Shopping",
+  "Scenic",
+  "Relaxation",
+  "Backwaters",
   "History",
   "Beach",
   "Spa",
+  "Nightlife",
+  "Water Sports",
   "Pop Culture",
   "Foodie",
   "City Tour",
@@ -48,12 +55,13 @@ function categorizePackages(allPackages) {
 
   if (Array.isArray(allPackages) && allPackages.length > 0) {
     allPackages.forEach((pkg) => {
-      const matchedTag = (pkg.recommendationTags || []).find((t) =>
-        PRIORITY_TAGS.includes(t)
-      );
-      if (matchedTag) {
-        categories[matchedTag].push(pkg);
-      }
+      const matchedTags = (pkg.recommendationTags || [])
+        .filter((t) => PRIORITY_TAGS.includes(t))
+        .slice(0, 3); // Get first 3 matching tags
+
+      matchedTags.forEach((tag) => {
+        categories[tag].push(pkg);
+      });
     });
   } else {
     console.warn("categorizePackages => Invalid or empty packages data");
@@ -205,7 +213,9 @@ const Packages = () => {
         <div className={styles.topBar}>
           <div className={styles.headingArea}>
             <h1 className={styles.mainTitle}>AI-Powered Packages</h1>
-            <p className={styles.subtitle}>Top Travel Packages Curated for You</p>
+            <p className={styles.subtitle}>
+              Top Travel Packages Curated for You
+            </p>
           </div>
           <div className={styles.rightActions}>
             <CampaignFilter
@@ -263,7 +273,6 @@ const Packages = () => {
                       location={pkg.location}
                       duration={pkg.duration}
                       price={pkg.price}
-                      priceColor={pkg.priceColor}
                       campaignStatus={getCampaignStatus(pkg.id)}
                       onDetailsClick={() => handleDetailsClick(pkg.id)}
                     />

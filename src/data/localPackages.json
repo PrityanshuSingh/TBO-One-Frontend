@@ -1,738 +1,1424 @@
 [
   {
     "id": "123",
-    "details": {},
-    "packageTitle": "Romantic Gondola Escapade",
-    "image": "https://cdn.builder.io/api/v1/image/assets/4aa0ae1a0e814437847f3f8ff6c4ef38/18e99b721585dab9ff7802d24f93ce798101db4f0b39a82c88225f83ea4bd436?apiKey=4aa0ae1a0e814437847f3f8ff6c4ef38&",
-    "location": "Venice, Italy",
-    "duration": "10 Days/9 Nights",
-    "price": "1299",
-    "priceColor": "rgba(251, 76, 36, 1)",
-
-    "shortDescription": "Explore the canals of Venice, immerse in Italian cuisine, and enjoy a classic gondola ride on the Grand Canal.",
-    "detailedDescription": "This package provides a deep dive into Venetian culture and history, perfect for couples, honeymooners, or anyone seeking a blend of romance and art. From St. Mark’s Basilica to hidden alleyway eateries, you’ll experience the authentic Venetian lifestyle.",
-
-    "itinerary": [
-      {
-        "day": 1,
-        "title": "Arrival in Venice",
-        "activities": [
-          "Transfer from airport to hotel on a private water taxi",
-          "Check-in at a waterfront hotel overlooking the Grand Canal",
-          "Evening stroll around Piazza San Marco"
-        ]
-      },
-      {
-        "day": 2,
-        "title": "Gondola Ride & Classic Venice",
-        "activities": [
-          "Morning gondola ride along hidden canals",
-          "Visit the Doge’s Palace & Bridge of Sighs",
-          "Enjoy a welcome dinner at a traditional ristorante"
-        ]
-      },
-      {
-        "day": 3,
-        "title": "Art & Architecture",
-        "activities": [
-          "Guided tour of St. Mark’s Basilica",
-          "Explore the Peggy Guggenheim Collection",
-          "Leisure evening: wine tasting at a local bacaro"
-        ]
-      },
-      {
-        "day": 4,
-        "title": "Island Hopping",
-        "activities": [
-          "Boat excursion to Murano (glass-blowing demos) & Burano (colorful houses)",
-          "Lunch featuring seafood specialties in Torcello",
-          "Sunset return to Venice"
-        ]
-      },
-      {
-        "day": 10,
-        "title": "Departure",
-        "activities": [
-          "Check-out and transfer to airport",
-          "Farewell to Venice"
-        ]
-      }
-    ],
-
-    "inclusions": [
-      "4-star canal-side accommodations",
-      "Daily breakfast & select dinners",
-      "Airport-water taxi transfers",
-      "Guided city & island tours"
-    ],
-    "exclusions": [
-      "International flights",
-      "Personal expenses & meals not listed",
-      "Travel insurance",
-      "Visa fees (if applicable)"
-    ],
-
-    "accommodationDetails": {
-      "hotelName": "Hotel Rialto View",
-      "roomType": "Deluxe Canal View Room",
-      "amenities": [
-        "Free Wi-Fi",
-        "Complimentary breakfast buffet",
-        "Spa & wellness center access"
-      ]
+    "packageTitle": "Rajasthan Royal Heritage Tour",
+    "image": "data:image/jpeg;base64,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",
+    "location": "Rajasthan, India",
+    "duration": "12 Days/11 Nights",
+    "shortDescription": "Experience the grandeur of Rajasthan with visits to majestic forts, vibrant markets, and serene lakes.",
+    "detailedDescription": "Immerse yourself in the rich cultural tapestry of Rajasthan. This tour takes you through the royal palaces of Jaipur, the serene lakes of Udaipur, the historic forts of Jodhpur, and the vibrant bazaars of Jaipur. Enjoy traditional Rajasthani cuisine, cultural performances, and luxurious stays in heritage hotels.",
+    "price": {
+      "currency": "INR",
+      "basePrice": 35000,
+      "taxes": 5000,
+      "discount": 3000,
+      "totalPrice": 37000
     },
-
-    "bestTimeToVisit": "April to June or September to October",
+    "details": {
+      "flights": [
+        [
+          {
+            "FirstNameFormat": null,
+            "IsBookableIfSeatNotAvailable": false,
+            "IsHoldAllowedWithSSR": false,
+            "LastNameFormat": null,
+            "ResultIndex": "FLIGHT12345",
+            "Source": 3,
+            "IsLCC": true,
+            "IsRefundable": true,
+            "IsPanRequiredAtBook": false,
+            "IsPanRequiredAtTicket": false,
+            "IsPassportRequiredAtBook": false,
+            "IsPassportRequiredAtTicket": false,
+            "GSTAllowed": true,
+            "IsCouponAppilcable": true,
+            "IsGSTMandatory": false,
+            "AirlineRemark": "IndiGo operates multiple daily flights to Rajasthan destinations.",
+            "IsPassportFullDetailRequiredAtBook": false,
+            "ResultFareType": "RegularFare",
+            "Fare": {
+              "Currency": "INR",
+              "BaseFare": 8000,
+              "Tax": 2000,
+              "TaxBreakup": [
+                { "key": "GST", "value": 1800 },
+                { "key": "OtherTaxes", "value": 200 }
+              ],
+              "YQTax": 0,
+              "AdditionalTxnFeeOfrd": 0,
+              "AdditionalTxnFeePub": 0,
+              "PGCharge": 0,
+              "OtherCharges": 50,
+              "ChargeBU": [{ "key": "CONVENIENCECHARGE", "value": 50 }],
+              "Discount": 0,
+              "PublishedFare": 10050,
+              "CommissionEarned": 0,
+              "PLBEarned": 0,
+              "IncentiveEarned": 0,
+              "OfferedFare": 10050,
+              "TdsOnCommission": 0,
+              "TdsOnPLB": 0,
+              "TdsOnIncentive": 0,
+              "ServiceFee": 0,
+              "TotalBaggageCharges": 0,
+              "TotalMealCharges": 0,
+              "TotalSeatCharges": 0,
+              "TotalSpecialServiceCharges": 0
+            },
+            "FareBreakdown": [
+              {
+                "Currency": "INR",
+                "PassengerType": 1,
+                "PassengerCount": 1,
+                "BaseFare": 4000,
+                "Tax": 1000,
+                "TaxBreakUp": [
+                  { "key": "GST", "value": 900 },
+                  { "key": "OtherTaxes", "value": 100 }
+                ],
+                "YQTax": 0,
+                "AdditionalTxnFeeOfrd": 0,
+                "AdditionalTxnFeePub": 0,
+                "PGCharge": 0,
+                "SupplierReissueCharges": 0
+              },
+              {
+                "Currency": "INR",
+                "PassengerType": 2,
+                "PassengerCount": 1,
+                "BaseFare": 4000,
+                "Tax": 1000,
+                "TaxBreakUp": [
+                  { "key": "GST", "value": 900 },
+                  { "key": "OtherTaxes", "value": 100 }
+                ],
+                "YQTax": 0,
+                "AdditionalTxnFeeOfrd": 0,
+                "AdditionalTxnFeePub": 0,
+                "PGCharge": 0,
+                "SupplierReissueCharges": 0
+              }
+            ],
+            "Segments": [
+              [
+                {
+                  "Baggage": "15 KG",
+                  "CabinBaggage": "7 KG",
+                  "CabinClass": 2,
+                  "SupplierFareClass": null,
+                  "TripIndicator": 1,
+                  "SegmentIndicator": 1,
+                  "Airline": {
+                    "AirlineCode": "6E",
+                    "AirlineName": "IndiGo",
+                    "FlightNumber": "6E-123",
+                    "FareClass": "V",
+                    "OperatingCarrier": ""
+                  },
+                  "Origin": {
+                    "Airport": {
+                      "AirportCode": "DEL",
+                      "AirportName": "Indira Gandhi International Airport",
+                      "Terminal": "3",
+                      "CityCode": "DEL",
+                      "CityName": "Delhi",
+                      "CountryCode": "IN",
+                      "CountryName": "India"
+                    },
+                    "DepTime": "2025-07-01T08:00:00"
+                  },
+                  "Destination": {
+                    "Airport": {
+                      "AirportCode": "JAI",
+                      "AirportName": "Sanganer Airport",
+                      "Terminal": "1",
+                      "CityCode": "JAI",
+                      "CityName": "Jaipur",
+                      "CountryCode": "IN",
+                      "CountryName": "India"
+                    },
+                    "ArrTime": "2025-07-01T09:30:00"
+                  },
+                  "Duration": 90,
+                  "GroundTime": 0,
+                  "Mile": 0,
+                  "StopOver": false,
+                  "FlightInfoIndex": "",
+                  "StopPoint": "",
+                  "StopPointArrivalTime": null,
+                  "StopPointDepartureTime": null,
+                  "Craft": "737",
+                  "Remark": null,
+                  "IsETicketEligible": true,
+                  "FlightStatus": "Confirmed",
+                  "Status": "",
+                  "FareClassification": {
+                    "Type": ""
+                  }
+                }
+              ]
+            ],
+            "LastTicketDate": "2025-07-30",
+            "TicketAdvisory": null,
+            "FareRules": [
+              {
+                "Origin": "DEL",
+                "Destination": "JAI",
+                "Airline": "6E",
+                "FareBasisCode": "V",
+                "FareRuleDetail": "No changes allowed after booking.",
+                "FareRestriction": "Non-refundable.",
+                "FareFamilyCode": "Economy",
+                "FareRuleIndex": "FR12345"
+              }
+            ],
+            "AirlineCode": "6E",
+            "MiniFareRules": [
+              [
+                {
+                  "JourneyPoints": "DEL-JAI",
+                  "Type": "Reissue",
+                  "From": "24",
+                  "To": "72",
+                  "Unit": "HOURS",
+                  "Details": "INR 1500"
+                },
+                {
+                  "JourneyPoints": "DEL-JAI",
+                  "Type": "Reissue",
+                  "From": "72",
+                  "To": "",
+                  "Unit": "HOURS",
+                  "Details": "INR 2000"
+                },
+                {
+                  "JourneyPoints": "DEL-JAI",
+                  "Type": "Cancellation",
+                  "From": "24",
+                  "To": "72",
+                  "Unit": "HOURS",
+                  "Details": "INR 2500"
+                },
+                {
+                  "JourneyPoints": "DEL-JAI",
+                  "Type": "Cancellation",
+                  "From": "72",
+                  "To": "",
+                  "Unit": "HOURS",
+                  "Details": "INR 3500"
+                }
+              ]
+            ],
+            "ValidatingAirline": "6E",
+            "FareClassification": {
+              "Color": "lightGreen",
+              "Type": "Publish"
+            }
+          }
+        ]
+      ],
+      "hotel": {
+        "name": "Taj Rambagh Palace",
+        "address": "Rambagh, Jaipur, Rajasthan, India",
+        "checkInDate": "2025-07-01",
+        "checkOutDate": "2025-07-12",
+        "roomType": "Deluxe Suite",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Spa",
+          "Swimming Pool",
+          "Free Parking"
+        ]
+      },
+      "sightseeing": [
+        {
+          "ResultIndex": 1,
+          "CityId": "110001",
+          "CityName": "Jaipur",
+          "CountryCode": "IN",
+          "FromDate": "2025-07-02T00:00:00",
+          "ToDate": "2025-07-02T00:00:00",
+          "SightseeingName": "Amber Fort and Elephant Ride",
+          "SightseeingCode": "RAJ-JAI-AMB",
+          "SightseeingTypes": ["CULTURAL", "ADVENTURE"],
+          "DurationDescription": [
+            {
+              "TotalDuration": "1 DAYS",
+              "Date": "2025-07-02T00:00:00"
+            }
+          ],
+          "Condition": "Includes entry tickets and guided tour. Elephant ride is optional.",
+          "ImageList": [
+            "https://example.com/images/amber-fort1.jpg",
+            "https://example.com/images/amber-fort2.jpg",
+            "https://example.com/images/amber-fort3.jpg"
+          ],
+          "Price": {
+            "CurrencyCode": "INR",
+            "BasePrice": 2000,
+            "Tax": 180,
+            "OtherCharges": 0,
+            "Discount": 200,
+            "PublishedPrice": 1980,
+            "PublishedPriceRoundedOff": 2000,
+            "OfferedPrice": 1800,
+            "OfferedPriceRoundedOff": 1800,
+            "AgentCommission": 400,
+            "AgentMarkUp": 0,
+            "ServiceTax": 0,
+            "TDS": 200,
+            "TCS": 0,
+            "TotalGSTAmount": 0,
+            "GST": {
+              "CGSTAmount": 0,
+              "CGSTRate": 0,
+              "CessAmount": 0,
+              "CessRate": 0,
+              "IGSTAmount": 0,
+              "IGSTRate": 18,
+              "SGSTAmount": 0,
+              "SGSTRate": 0,
+              "TaxableAmount": 0
+            }
+          },
+          "Source": 2,
+          "TourDescription": "Explore the majestic Amber Fort, a UNESCO World Heritage Site, and enjoy a traditional elephant ride to the fort entrance. The fort showcases a blend of Hindu and Mughal architectural styles.",
+          "IsPANMandatory": false
+        },
+        {
+          "ResultIndex": 2,
+          "CityId": "110002",
+          "CityName": "Udaipur",
+          "CountryCode": "IN",
+          "FromDate": "2025-07-05T00:00:00",
+          "ToDate": "2025-07-05T00:00:00",
+          "SightseeingName": "Lake Pichola Boat Ride",
+          "SightseeingCode": "RAJ-UDL-PICT",
+          "SightseeingTypes": ["SCENIC", "RELAXATION"],
+          "DurationDescription": [
+            {
+              "TotalDuration": "1 DAYS",
+              "Date": "2025-07-05T00:00:00"
+            }
+          ],
+          "Condition": "Includes boat ride tickets and refreshments.",
+          "ImageList": [
+            "https://example.com/images/lake-pichola1.jpg",
+            "https://example.com/images/lake-pichola2.jpg"
+          ],
+          "Price": {
+            "CurrencyCode": "INR",
+            "BasePrice": 1500,
+            "Tax": 135,
+            "OtherCharges": 0,
+            "Discount": 150,
+            "PublishedPrice": 1635,
+            "PublishedPriceRoundedOff": 1600,
+            "OfferedPrice": 1350,
+            "OfferedPriceRoundedOff": 1350,
+            "AgentCommission": 270,
+            "AgentMarkUp": 0,
+            "ServiceTax": 0,
+            "TDS": 150,
+            "TCS": 0,
+            "TotalGSTAmount": 0,
+            "GST": {
+              "CGSTAmount": 0,
+              "CGSTRate": 0,
+              "CessAmount": 0,
+              "CessRate": 0,
+              "IGSTAmount": 0,
+              "IGSTRate": 18,
+              "SGSTAmount": 0,
+              "SGSTRate": 0,
+              "TaxableAmount": 0
+            }
+          },
+          "Source": 2,
+          "TourDescription": "Enjoy a serene boat ride on Lake Pichola, witnessing the stunning architecture of the City Palace and Jag Mandir Island Palace.",
+          "IsPANMandatory": false
+        }
+      ],
+      "transport": {
+        "airportTransfers": {
+          "pickup": {
+            "type": "Private Car",
+            "datetime": "2025-07-01T10:00:00Z",
+            "pickupLocation": "Jaipur International Airport",
+            "dropoffLocation": "Taj Rambagh Palace"
+          },
+          "dropoff": {
+            "type": "Private Car",
+            "datetime": "2025-07-12T12:00:00Z",
+            "pickupLocation": "Taj Rambagh Palace",
+            "dropoffLocation": "Jaipur International Airport"
+          }
+        }
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "date": "2025-07-01",
+          "activities": [
+            "Arrival in Jaipur",
+            "Check-in at Taj Rambagh Palace",
+            "Welcome Dinner"
+          ]
+        },
+        {
+          "day": 2,
+          "date": "2025-07-02",
+          "activities": [
+            "Breakfast at the hotel",
+            "Amber Fort Tour",
+            "Lunch at a local restaurant",
+            "Evening Cultural Show"
+          ]
+        },
+        {
+          "day": 3,
+          "date": "2025-07-03",
+          "activities": [
+            "Breakfast at the hotel",
+            "Jaipur City Tour including Hawa Mahal and City Palace",
+            "Shopping at Johari Bazaar",
+            "Dinner at a rooftop restaurant"
+          ]
+        },
+        {
+          "day": 4,
+          "date": "2025-07-04",
+          "activities": [
+            "Breakfast at the hotel",
+            "Transfer to Udaipur by flight/train",
+            "Check-in at Lake Palace Hotel",
+            "Evening boat ride on Lake Pichola"
+          ]
+        },
+        {
+          "day": 5,
+          "date": "2025-07-05",
+          "activities": [
+            "Breakfast at the hotel",
+            "Lake Pichola Boat Ride",
+            "Visit to Monsoon Palace",
+            "Dinner at the hotel"
+          ]
+        },
+        {
+          "day": 6,
+          "date": "2025-07-06",
+          "activities": [
+            "Breakfast at the hotel",
+            "Transfer to Jodhpur by flight/train",
+            "Check-in at Umaid Bhawan Palace",
+            "Evening at leisure"
+          ]
+        },
+        {
+          "day": 7,
+          "date": "2025-07-07",
+          "activities": [
+            "Breakfast at the hotel",
+            "Mehrangarh Fort Tour",
+            "Visit to Jaswant Thada",
+            "Shopping at Sardar Market",
+            "Dinner at the hotel"
+          ]
+        },
+        {
+          "day": 8,
+          "date": "2025-07-08",
+          "activities": [
+            "Breakfast at the hotel",
+            "Day trip to Osian",
+            "Camel Safari",
+            "Return to Jodhpur"
+          ]
+        },
+        {
+          "day": 9,
+          "date": "2025-07-09",
+          "activities": [
+            "Breakfast at the hotel",
+            "Transfer back to Jaipur by flight/train",
+            "Check-in at Taj Rambagh Palace",
+            "Evening at leisure"
+          ]
+        },
+        {
+          "day": 10,
+          "date": "2025-07-10",
+          "activities": [
+            "Breakfast at the hotel",
+            "Day at leisure",
+            "Optional activities: Hot air balloon ride, spa treatments"
+          ]
+        },
+        {
+          "day": 11,
+          "date": "2025-07-11",
+          "activities": [
+            "Breakfast at the hotel",
+            "Visit to Nahargarh Fort",
+            "Farewell Dinner"
+          ]
+        },
+        {
+          "day": 12,
+          "date": "2025-07-12",
+          "activities": [
+            "Breakfast at the hotel",
+            "Check-out and transfer to Jaipur International Airport",
+            "Departure"
+          ]
+        }
+      ],
+      "additionalServices": {
+        "travelInsurance": true,
+        "visaAssistance": false,
+        "specialRequests": "Vegetarian meal preferences, Extra pillows upon request"
+      }
+    },
+    "bestTimeToVisit": "October to March",
     "recommendationTags": [
-      "Romantic",
-      "Honeymoon",
-      "History",
+      "Trending",
       "Cultural",
-      "City Tour"
+      "Heritage",
+      "Royal",
+      "Adventure",
+      "Shopping",
+      "Scenic"
     ],
-    "notes": "Peak season prices may vary. Optional tours available upon request.",
-
+    "notes": "Peak season prices may vary. Advance booking is recommended for flights and hotels.",
     "faqs": [
       {
-        "question": "How do I get from the airport to Venice?",
-        "answer": "We include water taxi transfers, so once you land, our representative will guide you to the dock."
+        "question": "What is the best time to visit Rajasthan?",
+        "answer": "The best time to visit Rajasthan is from October to March when the weather is pleasant."
       },
       {
-        "question": "Are gondola rides included?",
-        "answer": "One gondola ride (shared or private) is included on Day 2; additional rides can be booked as extras."
+        "question": "Are meals included in the package?",
+        "answer": "Yes, breakfast is included in the hotel stays. Additional meals are available at local restaurants."
       }
     ]
   },
-
   {
     "id": "124",
-    "packageTitle": "K-Culture Highlights in Seoul",
-    "image": "https://cdn.builder.io/api/v1/image/assets/4aa0ae1a0e814437847f3f8ff6c4ef38/f77705ff0e183b987ddd7b021b877d05c645a47f7ebe1a876480bd346f2610fd?apiKey=4aa0ae1a0e814437847f3f8ff6c4ef38&",
-    "location": "Seoul, South Korea",
-    "duration": "6 Days/5 Nights",
-    "price": "899",
-    "priceColor": "rgba(71, 199, 130, 1)",
-
-    "shortDescription": "Immerse in Seoul’s modern pop culture, historical palaces, and tantalizing street food for a truly unforgettable trip.",
-    "detailedDescription": "From K-pop fever to the serene temples, Seoul offers a unique fusion of tradition and cutting-edge trends. This package suits travelers eager to explore South Korea’s vibrant cityscape, taste local street food, and dive into cultural experiences like hanbok dress-up and tea ceremonies.",
-
-    "itinerary": [
-      {
-        "day": 1,
-        "title": "Arrival & Night Market Tour",
-        "activities": [
-          "Meet & greet at Incheon Airport",
-          "Hotel check-in in Myeongdong",
-          "Evening street food crawl at Gwangjang Market"
-        ]
-      },
-      {
-        "day": 2,
-        "title": "Royal Palaces & K-Pop Tour",
-        "activities": [
-          "Morning visit to Gyeongbokgung Palace",
-          "Hanbok dress-up session & photo shoot",
-          "Afternoon K-pop agency building tour"
-        ]
-      },
-      {
-        "day": 3,
-        "title": "Modern Seoul & Traditional Tea",
-        "activities": [
-          "View from N Seoul Tower",
-          "Insadong tea ceremony",
-          "Shopping spree in Hongdae"
-        ]
-      },
-      {
-        "day": 4,
-        "title": "DMZ Excursion (Optional)",
-        "activities": [
-          "Day tour to the Demilitarized Zone (optional add-on)",
-          "Explore Itaewon nightlife (if time permits)"
-        ]
-      },
-      {
-        "day": 5,
-        "title": "Temple & Healing Day",
-        "activities": [
-          "Visit Jogyesa Temple",
-          "Relax at a traditional jjimjilbang (Korean spa)",
-          "Evening: watch a non-verbal performance (Nanta Show or similar)"
-        ]
-      },
-      {
-        "day": 6,
-        "title": "Farewell Seoul",
-        "activities": [
-          "Last-minute shopping",
-          "Hotel check-out & airport transfer"
-        ]
-      }
-    ],
-
-    "inclusions": [
-      "3-star or 4-star accommodations",
-      "Daily breakfast",
-      "Local city tours & tickets as per itinerary",
-      "Airport-hotel transfers"
-    ],
-    "exclusions": [
-      "International flights",
-      "Lunches & dinners (unless specified)",
-      "Optional DMZ tour cost",
-      "Travel insurance"
-    ],
-
-    "accommodationDetails": {
-      "hotelName": "Seoul Central Hotel",
-      "roomType": "Superior Double Room",
-      "amenities": [
-        "Free Wi-Fi",
-        "Fitness center access",
-        "Complimentary breakfast"
-      ]
+    "packageTitle": "Kerala Backwater Bliss",
+    "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTEhMVFhUXFRcVFxgYGBgYGBUXGBYWFhUYFRUYHyggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGy0lICUtLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAEAAIDBQYBB//EAEMQAAIBAgQDBgQDBwIEBQUAAAECEQADBBIhMQVBURMiYXGBkQYyobFCwfAUI1JictHhB5IVQ4LCJGSi0vElM1Ojs//EABoBAAMBAQEBAAAAAAAAAAAAAAECAwAEBQb/xAAwEQACAgEDAwIDBwUBAAAAAAAAAQIRAxIhMQQTQVFhIqHwFEJxgbHh8SMykcHRBf/aAAwDAQACEQMRAD8A9Ju2RQd9AKs7tAYkGvQgzz8iK69FDOwom8vWobGFLtAIFdkaStnFO26QIcKWnKJioLmFYbqR6VbXcFctExqOoqccTA/DrtqNhT91/d3RN4Yv+7ZmdyU3s60lqzYuTpBO0VW43ChGhTIp45k3RKfTuKu7RVXLVRNZqwa3ScGAOlWUznlhTKs2ajaxVkbdO/ZWiYMU/coj9nsqhYpDDVaHCtpodaccMRuK3dAul9ipOHpDDVbdnSFvwrd1jfZUVi4enrh6sOz8K52dL3B106QGtii8Hgy7QB5+FTLZq1wNnpofvUcuWkdWHp05DcJwSWPQHSisZwYBRkBn6Udg2AJJNFNiQdK82WbJqPVjgx6aoyZtQYpZas8baUkmOdBi3XVGdqzmlDS6IMlLJRQtVIuFNbXRtFga2q72dWH7NUy4TSaR5UOsTKvsacEqwNmm9h0rdw3boBFuuMnSraxgwedGWsAOlI8yQ6wNlBbwzHkaMs8Jc71oBYEVKCBUZdTLwVj00VyU44QOlcq4zUqn3p+pTsw9Ctu3KDuXRzmmNijQ925NdUMfqcs8q8DrjJzJjpzoVLuRpWlPXWoiK6IxOSU74DRxJiRmP661LdxFllIKkeO5NVuWnLbJoPHHxsMssuHuRsnTamAUSjldB60Uio8ZmA8YA9o/Onc6EUNXAL+ysdBBjpXMRgmXUrl8J+1HKhtN+7IfNy50rjXvx2yR03HrFT7jvaqK9uNb3f8AlFbh8LnMCjjbe3GcSOR3qy4RhEZc2UT60uIcKbQoxMa5SftU5Z05aWVh07jDUuSBcUkAuvqRQvEijgRHmPzpmLdzAcRHh9qnw3D3AzRPhP51lGMfiszlKdxoqChGhpBKsL9ok6inXMKFHza9PDrVu4iHZZXdlSFui+zpwsQda2s3bBinSjcMJEfWl2Unap0tRU5ytFoQpjAMpokOK4tkmp1w1Qk15LxT8Aty3NcTDVYLh6lTD0vdoft2Aph6IWzRQs1J2dSeQooAluyJqRlHSiRbpLZpXIZRAhh5p1rAdasAtILQ7jDoRBasAaCplWnSKbnpbbGpIdFMakXqNnrUBsWalURalRoWyubA1A+DNXpjwqJ8vhXRHNIhLDEzlyyRuKYVq3xaA7RQBt11QnaOOeOmC5acEqcJFPW0QRypnIRQIDYI8fLakEB05/epyhJ5faibOFK6taLev5Clc65KLHb2B7GGIGYKQeRBH2qyXFMq/wAQA56E9d965h2Q6AFI6n8jT3ZhuquvgdfY1zzlqe6OmEdK2YDcvJM95G+lcVXmVfNPXeiWFltCMh9Qah7E29VIYekimTXH6itO78exy68sM67UUt4QSD5D/wCahF5G+ZSPER/amGyAe6Z8xQaT2YybW63JcpHegEn6elQXFLSZ9Ij60SCOY9tK5koJ0FqwK0kHaaJS2IiNZ3oi3h/CireHFLLIgwxgAw/SiEwp6UYtiKmAqTyMssaBLeHqYWqmrhNTcmx0kR5K6Fp01w1giAp1RFqQesYlJrmao2aozcrUCwkuKha9UDE02KKiByJTdrnaVFFNJpqFsmNyo2emTXYo0CzmeuUppURR5UmuPbPhUucUmg1k2FpAxSmNZFSsOlJQaomSaQOcP0rq4c7SY96tMPh+ZopVA2pHnopHp75Ki3hkAhlJPUH8qltqF1DmOjUdfsA8hNCmxH6n6UFPUHRp4RDeZW0YDzGv+aHIyfKQR01o3sh0ilkXwplJIVxbK25czbgfb601UHQ/T+1WQsin9iOgpu4kJ2mytWyKtcFw5SJJ9KYLAFWNtgBppUsmVvgtixJcgF/AwdNq4tirBzNDvFTWRso4JEaQKkzVE46VxH1itybglz10vTC1c7SsazhuHkKQLeFca9TDco0CwjNTHu0Oz02aKiByJGemZ64G1p93yogG5zSFJW6UgawB8da41ymnxNRNfUc6KVmcqHEk0uzoZ8b0FRNiGPOqLGyTyRDSQKY19RzoAyedc7OmWNeWI8r8IMOMWlQfZUqbREXuTLeDXMtEZBXezFc+s6dDBglTi3TxaFKRQcrCo0JbkU/tT0pgPWuhhSNIdNjsxppOutPW5B2miAgPKhdDVYLE0ggot7I5VDkrKRnEjyinAV0iuMNJrWCiJrUk+NJVIG9MBJO9EJaPWazZkRC74UixNK8sVHNGjWIsKbmHIV0iuSKIpwtTSacTTJprAcNdAomyVrt23OoI8qXWHQCNXAKJtgfiqG9I2OlFOwNVucFmnBKHFypbZ1otNATTG3LwH4TQ7YluWlGqQZmn3iCNpoqaXgDg35AcNhmuHU6fraprvDxtBnrT7N3LyokYiTNaU5XsaMI1vyVxwcHWmthxyNXSqG1NV72iCRI8fDpNaOVvk0sSXAItmdBSNqNKsLCgT1rt9REmB4zH1o93cHa2K7JXKLNsUqOsTtkHEeO2LLBXY5iJgAkx5CgeM8ZdbbXbBWFSYInMGGUMjA7q5AKkcq58ScZuWbioLK3LZQs0nWNtxOXzIg69KwvFrioHFs3BbuJnRMpyqrCLyBtQwPdOm2X283qOojDa9zodm3+CuK3L4ZbhzGSZPIQMoHhvWmMGQCDlMHwO8Hx2968c4LxK+l02bDZbjlpPIEkqA0/iESIjUjWvScMOzsCy11WZZBZJ0Ez3tZzR13NQ6TqH2/je69XyMl4Jxxi0bwsqSWPTYaBhJ8RPsatLduvKr8WbzPmykKLgZjDFWLIZKQARK93eGOu9ehcBx2ayjLmIiJYyTGh1kkiZ3M1XpeseZuLVNb/kNLFo3ZcraqUOFoA4yecU79qHMzXZpYNSCRiAZinLdEUGMQJ0pty6Dt962k2oJuPrXTckQRvQJY9akW8Y5VqBqE1setSAabkGoC011m86Jhrv1NInXeuFvCmPcgctwPcgfnRFJSx2NQnE2u07MOuaMxWRmA2nLvFBWVvds5Z1NuBCgGVgmDPMnn0jnuK1eEXBjTf7SEZflBMmAu88vAaaA76lXKg7s0Tgcq4Lc1S434hWTbtLduNEZktlranYTcMK0dATTuBPeWyq32m4JknWZJI28IFT+04r06kP2Z86WaAWUA0WfU0NisVat6u4QfzNG2+9Uw+JBbzdoRlDkBgrBAOUu0Bm30WayHxDjreJuG4LTNsMzu4HdmAllGAjU7yalk6hV/T3Y6wyfKr8TYv8TYUCTd6fhaNfGP1NMwXxLh7rsofQCQx0VhrMHlGm/UVjsHYDSpM5hroF91UAGADuKouMpesqGVgsQQQqqjqSFLMAO6wkAgQDmUgRIrkfUdVGm9PzDLBtaZ7OqCpGAG0ivOuCfEl9bSSAwkTnJLgBspUkxuFJBiOWhBFXF34wUlGtAujG5bP8XapBCAzALKHK9ZU12Y+thNb7NcnLsjW+sUJxLF3EUZYB7S2Cf5WuKrDbmDHrUeKxgyGLqKRBl9QBoTKyCdD151meKcdBXs8Qqyl+3F220KWRg0wTmWYK7kd7flVsmSMVv5Cpbo16YgMSIIYFhB/ljX1BB15EU9B1rA8L464uFrrH91iDbbNlBIKrbuABdWKkAyZJA61f2PifO5yW1a2FZjcDEhe9CZgqkyYPdAMfdIdTGWwCy4xxF7KqyAQDLZg2UrtGcaI0ldW00O24zJ+Jx+0tdz5VKLZuLBZQ6uxS5mgEAyySRzHQVX/GPxDcW5bNq8uVXVj3LgUoQQ3bKTsMwMxBmDEa5ziHETcd3RApOQNaVhluN3pOVTOUgA6TuNZioZ8jv4WDdyo9Jv8AGptqisWZjbuKw7rNZLjtCR+FgMwjSdOtUo+JLnb4qybuxwnY5hpqFNydoDSJPjWA4TxW5ZZWuW7yd6c2UwQZ1KsRA8RuCaucNetnsrt3Kx7ZBYHeDkIQ0OSASJAK5howA2NSllmnb+uQPU2ej4n4ktqxUW7twD8SBSp8iWG23mDSrI3OMhYUYrEqFVVATDZlEKBo2cfbTalVo9VFq7D8QXiQ1y3IzRl1TMT3hlMEMPHTz9Kq0xDWrAfEIxUEkrbVnFtRC5nOUiZ6ARrvrTMNxftn1GVx3WVrji33TlLAxlc95BBbmIEincYvtdt3LQc2lO6uHRToNHfYNJQZe9voDuPnFCev4tk+S6k48nb2HyIb9u2cSCue38wKawwusvdJmT76CDJHwfxbEdoBcAUsCMgK5CY0MQGHLXX0rKYP4zu4SzasATdtZkugzAyGLYEfMCsGR01mdLDCcW/aeyuIotOpZrgHy6ASyA7A692fwjzqrw5YRcmqq6le+3H5M6Pglv5LXjymXD/PqYWF7uZCoDbbr7GtnwLiVprFsSiGCMuZZ032PjNZrHYG7cnMjZe7DfKDENBzERqNZ8POtL8OYS0+FtB7VsxJ+WQGzNLLm8zr46aV6v8A5ksjVzW9bkcy49Al8da1PaLoYPeHnTmxdsCSwjzn7Ua2GQ/gX2FB8V4HZv2zadYUsGOUlTI5yNa9dyOdQB14vZJgODE7SdjB2/WoqX/itr+L6MPuKi4H8N2sMrKmZgzZjnZnIMRoWOlWLYG3/AKKkvJnF+AEcctHYt1+R49DFI8Xt/zf7TRDYC0PwCpVwVuPkX2Fa4i1MrhxpSYyXN4mBHnvTLnGW/DYutrGnZj11erL9mQbIvsKpfifjAw2QlR2baGAScxDEaAaLCGpZsvbg5JX7FMeNzlpboreJcbudopcX7dsKf3doJca4erOk5ABGgIJM8hqJb4xbEdnh8awBBAOYrpESC+sQNDO1EWvjOwROdR/U3Z69O+KtMPxy2wBGo3lSGHvpXgZc2bJPVJNe1uvlR62PBjjGtn70VN34oxTfLgrseJZeukC2fvQt3jOPYd3ClfNXb/uWtOnF0PI+y/+6alXHoeZ9qnz91fnb/2VqvP6GP8A27iZ07IjlItAHz79w/ahrljijH5rw8uwWfZZ8a29zHpMA84+Xbf+Xwp7YuyqF3dVQaksSPrEmqxc+El/j9xWl6syGD+HsU0m+2YwMpuXO0Kddl56e1Wlr4ScR39Br8pk6R/EPtVxiOKOADYsSCAQzQNDqCANTp1NDJxm7P7y1cifwOF9gqyP91Xjjy/Sr9yUp4/pjbHwl3gxc8+XVSOZPWlj/he09s27l2FOXmo25GdwZPKrbD3cM8ZkM/w3CWPsxIPpNWNvDWIgW7YB27qwfDarLBN8v6+RJ5I8UYy18O4cA5MTlBDLBZNjvoTPLSTuonahLnwo2WLeKw9yMmUOAAShDDPlJkaDQCvR0sqohVAA5AAR7Vx7andQfMA0Psnv8v3JVif3Tyji3CsSp7TE22e0ghRb/eoFEgZvxxlMEmPpNYzEYgXGYBboZwRlN1UCsEkZWJknUwWidPGvdPiLhpbD3DhQLeIAL22UBSWUfKYjMCNIOm3SvB+MXFcC+1tVdgVfSFzBmkm0R3AQDPQrp0oLFKD33slkxR06o/Mu8daYql3MqNc7J7iu0Z7o/wDD3OzJhZyuWJO+fwirvh16z2RW7pmBZkZGJbUmQ0jcRCnWANKxfCcjp2F1YVStxIAUhxKmY5OCBJJMx4VsfhThxe0O2QMg7NUiBqgILkk8iW7uXkvMTXH1klijrbom4t7k97E20Bs2mbLkYlBbzrYlAgYtJNshQQOW+lYKzizbPaWrepBU3GuBUy6ZgoXQzA0gkeGgracb+FEZ0ExZhmumYyooEKirAJJbdpjlGxynxJw+2nZxY7O2oGmZu2YMGa2boKjI5CkxJOoB6Uel6nFkSSbd+v1yCMNyV+O2sSbaOzXmEgWxbZoTMBpfGVpjmZXXnXX4f+8KsWSGbIdDcOcEhuipCKZJIHjJqiwuJSwJRVZzmViQSIY6DfYCDI0BpWcd3MxOrSCxGoKhgGkjxQx/IPKuyeOt48BWOpWaFcRfIGXDWyIAlwSxI0bMcw1maVOwHH71pAioIksJvMvzsX+USAO91pVzvuXskU2+v4LXC4W5bz4dwVQu6KyghsqjMhLc9WGw1jnl0N/Zr4QJedAWhSjpnVkAIuZQW0DdzfQa6azWjxtmwgAxLq8H5YEyfxAsZETy1oFuI2rY/wDD2wNY75MAFfwqdgNIEDeuOUZSTb2+ZZwcl8Rik+BGMm3DWS0giBA1BUlzBjUbzVpwmzatE983AMy5Auo0JMsYUCJE9OtQ/E3xI8hS2cnUgCEA1ERufUxVXwS8Qdd9T036TXU3J41qdr9QLTHZGr41xW6yi24he6ciknxGZvxHTyrecEQCygHT/Neb4li7rMmY21PL++1elcIEWlEcvvqdedej0bTctPBHJJypsMIPI13veB/XT/NczikbwrtEB7xP833+01Gl/pr46H6b/Sie0BNR3baEQQDTJiteg031OkrPSdfbeus8DT7moHwqHb7kj2qG5gDHcbL79egIFGkLbJu3PWazXx8wNlc3/wCRBqI/De/vRWLwd/WLjA+ER69366ViPji9i1toGdmthwTGg6AzrrGb3nlWy4rg6Niy1NWVqYaeyHI2XH/UoABjrv70HisMEspeCgvmZSdiO9l0blyNM4fxcEKXGUi2TpGUZjESTudPrVhfcNhiP6n6/NcDDUabH6V5bg0z01JMO4bcvpf7DtCQbb3Jcu8FWtrA73y94n8qe3xPcW1YvOs9qYAUqxVgSCGDIvORo1S2gP2xCD/ybokf1I3Ify+NAOJw+D27mKy7f+YKQfQV0rHFx3Xg5ZZJKXJZ2viIhyjqyMsOVOHukhSCqkmyzab8qNsFMSM93F2Rb1VJLKqbq0C5u24M8+m1YtccbGIYpdKHJlkA/hc92DIgT5VPw/iVxlNvtO5cuO7LAhizl5GkjXWBFJihByWxpZZ6Xuey8YTPg7htsuQ4V8hUmZ7PusrgxEdPevFcTw52tNcZrzQAe8xgyf5uWtez8HGbAWl/8vl/9EVirNvDtgrkODcNgQhuMWDQpbKpEE6bf/NNmTukLcklRh+HcMtv2gyju3bihhB0UnLHXlrWiTi+Nwr2bYxJuJds27hV1Vx3yVgk6mCN520oX4bW1aFxLwWynatkLjVWIEoxWVUZSh+brUXFLxa7g1QFillFJEnVe+Ttrprp18DUqabLLVbv62Nngv8AUO4kC9Zzd7LNsmfnKaI0zqP4q02F+N8GwBNwqT+Eo2b2UEH0NeZtgL63Sz22VUxhVTkYdw4kOCSd9LnLlFD4Bh+1JZIPeVW20ILRod59KOqSlQr4v3+R7Z+3r2JvjMbaqzyFMwkzCfMTodIk1458dY3DM5vYYkG45FxLlorLKe8yzrEgggjeY2Mep8GGbhjgb9nfA8+/FeVcRi6W7QZbkwCRC3I230RvofDmmXJUU2tjZEk3Ey68RXTS2GjvNkEttpMTGn0HhRafEl4CLdxVjaCu3MTO3OP81OmEBbKUAImQREdQRVjgvhhL5JAyiQIAmPHea50sU3TiStIGt/GmIWC5zAajuEydx8uhMgET4VXcZ4qL4zPAJIdsszIAALTIIACjX+Gtfe/06TUq5XnsdjyJkeHLpVJxf4Paz31uNsZiTpIA126+1VXRY8T1xjX4G1xszmK4fau5XS6f3hLMuWYOY+O0/QU84VU7hOYCCGUDvSJHdLDyGo86nPCGEOLgB6wJG+2njTbuBva5X0PpPTamck/vDuuTlrG4OO+6lpM5kuA7mAQLZEgaaE7UqzGKBDuDuGYHzBINdq/2aD3/ANi2er3bttRFpQCG1O7CNYzE+FVRu3CGYHVtiZ7oBWNp1/vTMI7OGzNI10ieZiAY0ojsSBEaePKfOvFW1+QykyqtYRrjlip8dG18h01Gu1HWMNlK6HU++nU8v80fgbQCS2fYiASJnkSo318as+D8PlgxC6ajWd+cnnvVVGeRUlsG4oNwPDgSrODpGiggROkEjrzmtijNliPrt7aVW4XDhmDZU7vPWfQDc+9W4YcjPtp517PS4u3CiEnZCLZNTIp8ByrhPh7EfnFMa74R6fmBFdPIvBLHmfUa+g5V0uOo/XhQzXp228jUU85jz/zHtTaRXIKLgiZnyn9CmG7ynXx/U/rnQja7wf14V0Mp5+gAH3NHSLqJWumYj2BP1P5TWZ/1GbNg2Gu6npt4+tX7uvKBPjv6DSsn8egm0oFvtRnzFVYhhuMwgyOminnOlCa+EaL3PKbwInmCRM/wgEHfwJqW1xAjO8BkVQAh0GbMqiBy059RReOwxk91hIza7DqMwEETpOnjFU19CPSD7Vxfidal6G34FxEP2dwMq3JZVRiZbQA5G57iBuYOlEvpYS2VysmJ7SRtlbEZxB6jMK8+v3gyKpXURJ5ELmywvXvfSrnh/wARXEGW4Bet81c94Dwcg+zAjpFWhTVfiJPmy3xPDy+I7pzMEuMYMEHOJBBB18NKjtWmW4oiIusG5HxkbcxsTReHv2Lptm25VyhKW7h1ysSCFUkzJQ/KSY5CascM7r2naRLM2wkd4IN9Sh7p0aKlHG4tPlew7aao9O+FhOEseKEezuv5V4JxGyqM1xjcgAmCAA7AjMEJBkDOp26V7R8H4m4bFu2CQFViMqyZa9dme42mg+tCYTBXgEtmwU77KC+UhtHYQFRmWQN5nTbo2W9br3Dia0b+x5BaD3ciKSZLAlmGmQganbSdI9K0d7gb9245ZSbbPlktpbFtViBPyZQd9vOvQn+GczsXYajMUVdCRK5izZWOwA6ZRVUOGYm0+YpbuWrQcMBclpKhxFt5BGUodJ1LVJa4yTrh387KvRJNXyq+VEFjj4u4S3bbRUlS5DgOq5GUohUuCIUGVMzoTrFPxn4Xe9eOKtYhW7ILDC3dU2wpJCqEtjlOpYDU07hqqb95gVQOrMzMrLOZtAuZ4WAvygcwR0rccKx9hbZOIKhZAXPJAIJSdDG4+tbJkfd38/yGEY9ul4/gN+GuKqmABZWIkgnuhZeAO8xA3Ye4rEcUODeJuLrlAI55ssapmX/mJrP4l8KO+MeK2blh0wxUtm7R+ytsuVVVjJedNcm++nSa8aHYsP8A7jDf5lnoADHh9qOjbTfyslkqTto9EtY3DFcqsXaFyQVzEN2ZVZk6RcTfmdIgitX8PcJNsmW01gDzmSTvXl/wdZS3ibbtcUhiBACzC3EYkBjq0pAAE6givZrJEmCYB0mNuWYcjFTxdPBSI5eEN4jduyAIy/iPht1/LprWY+JMaotwFIIbQkkERvlEncEia1eJXxNU+PyEQ8HwP9j+VdE06aI3ueerdJ208vtU9s+P0rRHheHfXTXXSR+cGoH4GhjK5/25vtrXmywT8Fe4jB8T+Grr3Xe2VyscwnqdW+s1yt7/AMFf+X10PtypVVZc6VUNqiNXhzBcwZysd3Nn28AJE6bTQ154meugOw8SDvy8a1eNwjQA2UztCDcabhDl0PUflVPjEKfPeMRszOBOxiV+3h50z6PyQ7hUcIOclZG2p7wB8NCQOe4rWcKQaANHLUb/ANIyifc1Q8KwrR3Chkzmzb6n5cqjMd9zpWgsLl1ysWO5BP512dH01QJZcu5bIqjVmGbaDIj2NGjEgCS2xju6+8zVQuMj5ncH/qMemorgxFwfLZu3AectB9Fiu3t+BFlLY3ZlgSR0KifQkj6ihe2E6Bp6GB7bVX3S25TsvB2GX/8AoT9KhGL1iVYfyNbj2HeNFQNLL6lqbwI0Uz0IJPsZqL9pO2Uj+oL/AGqvLqflW2T/ADZZ+hppuP8AiKr0yBD9GFNpEcyx7U7R65VHuctPF47T7N+SLNVD3wN2JPUoAfddq6LqkalvdY+sVtINZZC9rqQPM6//ALGH2qu+IFV07PILobVgyl9OWXvQp2M67CuLdA228lP0j86n7NWjONtvmjzKww+lLKOw8J7nm3FOFKDFsFSu6tkUAbxrEH9RWfdT01gjfxO9enfEGDhc6AORC6KCYP8AOxDadDWL4lhlJOjhiuub6almJ08a8/OlDc7Mc72MxcSP8V3CqM6kiQDJHWNQNdIq6bhZY6Ea+Oh9qBv8PZSYjTx+0mkjJD6twHiN0urG4wZg4CRvl1LTpttU3D/ifE2hC3cyjYXALgXwGbUelD3sJHIih7lmd6eEq4KSakavhv8AqJiLRkJbOgDAgFTBLSFIOU94/KQDRl//AFKvMQSqiDmAS0kAwR+LU7ncmsGbPifam5T4frzp7sydHo4/1OdWV1kObeV4tqPxHQQ8bBTtpJqJ/wDUq4Z717UyYAEmAo/H0AHkK89k9D7U3tKVwTGU2vCNne+MQzi41tmfbOVt5o6ZjJiosV8aXW2DAeDBSfPKtZIPTlaayxxQe9IvT8R3NYB13m4xnz2qvxN8uxZokxt4CKHQU6nSSJym3yaD4EH/ANQwvdn98p5iMveJEHcAHwr26zhrnJUA11DmfYgj0rzT/TH4bdrgxLgoAGCZgBOYZc6zvoWHrXptvC3V0DKR7fTait2Rmxl9WUfjJE6wGHsvKqrFkx3hEjy9lIPtvrWge64SWB031XUeABrPYuHXLrOokXQu/RS2vpTMkyruOAJKjnuv9xH0rj3CP4h6nWekj7UsFw5JIW4buU96EuMwOsywcT6Ua/DFfQEKSIIZWBg76m6CvtQ2fgFP1K7/AIqOo9T/AIpVWcUwd1LrKiMVEQQyEGQDu7ZjvzpUnwhpm6vqrSWWImYXflPOfL6UDjMLmEo9xRvILLt1IE+wqfEYkcjB66wfI60Neu6Elo8YZvckx7V2aLOVzBbFkq4bVtOZZj/sIAU+O9E/tFwCFVj6afRZoB8SoJgvrvELPkAKGfEgnYn/AKvvV8eNRRzTytlgztOoQHwJk+gWaTE/itWx/UGU+7kfaq3tzGhCj+pgfpXVJgzcgeb6+ka07EUg17qDcWV8mRp9GzD6VxMQfwFP9oP0tx9qqjfAPdk/rxMe9E28QrCGKjzZI/25TSsaMtyxDhtHZSfFXEelw1LAGykjyH5VUu4Hy3QB/KgM+1sCmjEgbXU/2a/+n+1TZVMuO0A2EeA1/wAVEtzmQf10FB2rzsfnlf6WUfUa1MLgO3zek/r1rWGrDbd7TRVPmzf9tEWcQQQRlEdMzfVqq2WCSFBPXl7xvT7V9x8wkfygfeRSsdOi2xtxWXLdyMrciQwJ6RJUHwMVkePcJyaWbYjTRVJJ5mTmJ+laNLgJHccHyH96r+K2XkdncNtmMw9wZT5I0x6CuTPjUo7r/p0Qm0zM4FyCCQTB10BOmmx6VLdtghm6nrHv50RjLlxW/eABxp2iyFbz0hvYVArmNvXXX3rzG9Gx087gd/ASvy6czAP5TVdc4Yp5VpTb+UqNSN+v61qG5hmPIekik7jQaMxc4MvI/r1oa5wc8j9K1LWyN/rTTbH6E0yzsO5jbuCK8jTFDA7++v0NbBsMD0qJ+HKeX69afvBTZnO0ka2rMnSezE/2+lCrwpie6y+RkfatOeELyBp1vhgHWll1Elwxk0U2C+HLzgn92qgwSbiadDE5jz5V6H8LfA+FTK9xu2cQwDZQokbhVJkdJNUVmFjuggcjOvsa1fw5j2ExniNVTLAE75UUv6wKtg6lzdSEn7GjS8omJAXQAAZWHgAdaPGIkAjUeeo8wKqTjkIndf4szGPNlBPoSKkxNwBQSdDswiD5nNl967kc9lgcQDtqOZzA/QSfpUVwqROQHWOXXmRtQCXJH7tW1/pM+4yn/pJ8qe1ssR8pPOJnT+IafUCKxrG3+HYd2JuCCdTJzDf+daiu8KtfgugADZggmNu8IIqxt3TBzEZR1BaNObGI9fenh0ABkZYg9D576eNY2xnlwL8mUCT/AM09f667V6+FzHMpWDtGvhvFcrWDSZvFX4Gkz10Bj0qBbLsC3LqYMehpUq7FwcHMgS6qjWT6a/eIqB7vJc3qf7UqVUIPkVy066uco5bH7bVBfdImDPUmf+2aVKklKiijyR/tJjQkDw3rmcnfbxE0qVGLbQkkk6QXaViO6qGOoHTxp/Z3p1MDokD8ta7SqbOhLYcmdT+Np/iYD7Ur2KtgwxM8wM0DwkETSpUjHG/taxCgg6+P1J0qe3fj+L1I/tSpUjk7oZLaxPiSep8zU1u8W7sD6n70qVYF7g2KxSW3KXCxJAkQCINU1o6+Z/PxpUq8bqcjlPT6M78UUo2H3EIIHX9cqQUTqNfDT7UqVRY5YcOw6tmDFpnop0g75pnX7VDjeEqjhVuEk/yxrO29KlTNLSEEu4ULGp9gPzNQ9n+opUqi+THGt+A+1Rnwn3FdpUGFELHxP0o/gYcXBdRA+U5YkKRI/C34T4/3pUqrhVzQJcGi7S2794sj/wANwBp8rlozUlvF5Gyo+Vv4HzFT/TcTvDyYGlSr1of22cstmSYviBQ5XBBP4GKlW8mVT9RSw+JN1grrlMZVYE8+QIM++lKlTW7oBNYtjMQhjL8zBVU6b5gBD+gBrn7bZkgnX+JVKg+Y1IrtKmbo3gNth4ENcjlBtx6SAaVKlRsJ/9k=",
+    "location": "Kerala, India",
+    "duration": "8 Days/7 Nights",
+    "shortDescription": "Relax amidst the tranquil backwaters of Kerala, explore lush landscapes, and indulge in rejuvenating Ayurvedic treatments.",
+    "detailedDescription": "Discover the serene beauty of Kerala's backwaters with this meticulously crafted package. Cruise through the intricate network of canals, visit charming villages, experience traditional Kerala architecture, and enjoy the vibrant local culture. Complement your journey with authentic Kerala cuisine and rejuvenating Ayurvedic spa sessions.",
+    "price": {
+      "currency": "INR",
+      "basePrice": 28000,
+      "taxes": 4000,
+      "discount": 2500,
+      "totalPrice": 29500
     },
-
-    "bestTimeToVisit": "March-May or September-November",
+    "details": {
+      "flights": [
+        [
+          {
+            "FirstNameFormat": null,
+            "IsBookableIfSeatNotAvailable": false,
+            "IsHoldAllowedWithSSR": false,
+            "LastNameFormat": null,
+            "ResultIndex": "FLIGHT67890",
+            "Source": 3,
+            "IsLCC": false,
+            "IsRefundable": true,
+            "IsPanRequiredAtBook": false,
+            "IsPanRequiredAtTicket": false,
+            "IsPassportRequiredAtBook": false,
+            "IsPassportRequiredAtTicket": false,
+            "GSTAllowed": true,
+            "IsCouponAppilcable": true,
+            "IsGSTMandatory": false,
+            "AirlineRemark": "Air India operates daily flights to Kochi and Trivandrum.",
+            "IsPassportFullDetailRequiredAtBook": false,
+            "ResultFareType": "RegularFare",
+            "Fare": {
+              "Currency": "INR",
+              "BaseFare": 12000,
+              "Tax": 3000,
+              "TaxBreakup": [
+                { "key": "GST", "value": 2700 },
+                { "key": "OtherTaxes", "value": 300 }
+              ],
+              "YQTax": 0,
+              "AdditionalTxnFeeOfrd": 0,
+              "AdditionalTxnFeePub": 0,
+              "PGCharge": 0,
+              "OtherCharges": 100,
+              "ChargeBU": [{ "key": "CONVENIENCECHARGE", "value": 100 }],
+              "Discount": 0,
+              "PublishedFare": 15100,
+              "CommissionEarned": 0,
+              "PLBEarned": 0,
+              "IncentiveEarned": 0,
+              "OfferedFare": 15100,
+              "TdsOnCommission": 0,
+              "TdsOnPLB": 0,
+              "TdsOnIncentive": 0,
+              "ServiceFee": 0,
+              "TotalBaggageCharges": 0,
+              "TotalMealCharges": 0,
+              "TotalSeatCharges": 0,
+              "TotalSpecialServiceCharges": 0
+            },
+            "FareBreakdown": [
+              {
+                "Currency": "INR",
+                "PassengerType": 1,
+                "PassengerCount": 1,
+                "BaseFare": 6000,
+                "Tax": 1500,
+                "TaxBreakUp": [
+                  { "key": "GST", "value": 1350 },
+                  { "key": "OtherTaxes", "value": 150 }
+                ],
+                "YQTax": 0,
+                "AdditionalTxnFeeOfrd": 0,
+                "AdditionalTxnFeePub": 0,
+                "PGCharge": 0,
+                "SupplierReissueCharges": 0
+              },
+              {
+                "Currency": "INR",
+                "PassengerType": 2,
+                "PassengerCount": 1,
+                "BaseFare": 6000,
+                "Tax": 1500,
+                "TaxBreakUp": [
+                  { "key": "GST", "value": 1350 },
+                  { "key": "OtherTaxes", "value": 150 }
+                ],
+                "YQTax": 0,
+                "AdditionalTxnFeeOfrd": 0,
+                "AdditionalTxnFeePub": 0,
+                "PGCharge": 0,
+                "SupplierReissueCharges": 0
+              }
+            ],
+            "Segments": [
+              [
+                {
+                  "Baggage": "20 KG",
+                  "CabinBaggage": "7 KG",
+                  "CabinClass": 2,
+                  "SupplierFareClass": null,
+                  "TripIndicator": 1,
+                  "SegmentIndicator": 1,
+                  "Airline": {
+                    "AirlineCode": "AI",
+                    "AirlineName": "Air India",
+                    "FlightNumber": "AI-456",
+                    "FareClass": "S",
+                    "OperatingCarrier": ""
+                  },
+                  "Origin": {
+                    "Airport": {
+                      "AirportCode": "BOM",
+                      "AirportName": "Chhatrapati Shivaji Maharaj International Airport",
+                      "Terminal": "2",
+                      "CityCode": "BOM",
+                      "CityName": "Mumbai",
+                      "CountryCode": "IN",
+                      "CountryName": "India"
+                    },
+                    "DepTime": "2025-07-10T06:00:00"
+                  },
+                  "Destination": {
+                    "Airport": {
+                      "AirportCode": "COK",
+                      "AirportName": "Cochin International Airport",
+                      "Terminal": "1",
+                      "CityCode": "COK",
+                      "CityName": "Kochi",
+                      "CountryCode": "IN",
+                      "CountryName": "India"
+                    },
+                    "ArrTime": "2025-07-10T08:30:00"
+                  },
+                  "Duration": 150,
+                  "GroundTime": 0,
+                  "Mile": 0,
+                  "StopOver": false,
+                  "FlightInfoIndex": "",
+                  "StopPoint": "",
+                  "StopPointArrivalTime": null,
+                  "StopPointDepartureTime": null,
+                  "Craft": "A320",
+                  "Remark": null,
+                  "IsETicketEligible": true,
+                  "FlightStatus": "Confirmed",
+                  "Status": "",
+                  "FareClassification": {
+                    "Type": ""
+                  }
+                }
+              ]
+            ],
+            "LastTicketDate": "2025-07-25",
+            "TicketAdvisory": null,
+            "FareRules": [
+              {
+                "Origin": "BOM",
+                "Destination": "COK",
+                "Airline": "AI",
+                "FareBasisCode": "S",
+                "FareRuleDetail": "Changes allowed with a fee.",
+                "FareRestriction": "Refundable with cancellation charges.",
+                "FareFamilyCode": "Economy",
+                "FareRuleIndex": "FR67890"
+              }
+            ],
+            "AirlineCode": "AI",
+            "MiniFareRules": [
+              [
+                {
+                  "JourneyPoints": "BOM-COK",
+                  "Type": "Reissue",
+                  "From": "48",
+                  "To": "168",
+                  "Unit": "HOURS",
+                  "Details": "INR 2000"
+                },
+                {
+                  "JourneyPoints": "BOM-COK",
+                  "Type": "Reissue",
+                  "From": "168",
+                  "To": "",
+                  "Unit": "HOURS",
+                  "Details": "INR 3000"
+                },
+                {
+                  "JourneyPoints": "BOM-COK",
+                  "Type": "Cancellation",
+                  "From": "48",
+                  "To": "168",
+                  "Unit": "HOURS",
+                  "Details": "INR 3000"
+                },
+                {
+                  "JourneyPoints": "BOM-COK",
+                  "Type": "Cancellation",
+                  "From": "168",
+                  "To": "",
+                  "Unit": "HOURS",
+                  "Details": "INR 4000"
+                }
+              ]
+            ],
+            "ValidatingAirline": "AI",
+            "FareClassification": {
+              "Color": "lightYellow",
+              "Type": "Publish"
+            }
+          }
+        ]
+      ],
+      "hotel": {
+        "name": "Lake Palace Resort",
+        "address": "Backwaters, Alappuzha, Kerala, India",
+        "checkInDate": "2025-07-10",
+        "checkOutDate": "2025-07-18",
+        "roomType": "Houseboat Suite",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Private Deck",
+          "Kitchenette",
+          "Sunset Viewing Area"
+        ]
+      },
+      "sightseeing": [
+        {
+          "ResultIndex": 1,
+          "CityId": "112233",
+          "CityName": "Alappuzha",
+          "CountryCode": "IN",
+          "FromDate": "2025-07-11T00:00:00",
+          "ToDate": "2025-07-11T00:00:00",
+          "SightseeingName": "Backwater Cruise",
+          "SightseeingCode": "KER-ALA-BCRU",
+          "SightseeingTypes": ["RELAXATION", "SCENIC"],
+          "DurationDescription": [
+            {
+              "TotalDuration": "1 DAYS",
+              "Date": "2025-07-11T00:00:00"
+            }
+          ],
+          "Condition": "Includes boat ride and local snacks.",
+          "ImageList": [
+            "https://example.com/images/backwater-cruise1.jpg",
+            "https://example.com/images/backwater-cruise2.jpg"
+          ],
+          "Price": {
+            "CurrencyCode": "INR",
+            "BasePrice": 3000,
+            "Tax": 270,
+            "OtherCharges": 0,
+            "Discount": 300,
+            "PublishedPrice": 3270,
+            "PublishedPriceRoundedOff": 3000,
+            "OfferedPrice": 2700,
+            "OfferedPriceRoundedOff": 2700,
+            "AgentCommission": 540,
+            "AgentMarkUp": 0,
+            "ServiceTax": 0,
+            "TDS": 300,
+            "TCS": 0,
+            "TotalGSTAmount": 0,
+            "GST": {
+              "CGSTAmount": 0,
+              "CGSTRate": 0,
+              "CessAmount": 0,
+              "CessRate": 0,
+              "IGSTAmount": 0,
+              "IGSTRate": 18,
+              "SGSTAmount": 0,
+              "SGSTRate": 0,
+              "TaxableAmount": 0
+            }
+          },
+          "Source": 2,
+          "TourDescription": "Enjoy a peaceful cruise through Kerala's famous backwaters, witnessing the lush landscapes, traditional villages, and vibrant local life.",
+          "IsPANMandatory": false
+        },
+        {
+          "ResultIndex": 2,
+          "CityId": "112234",
+          "CityName": "Kumarakom",
+          "CountryCode": "IN",
+          "FromDate": "2025-07-13T00:00:00",
+          "ToDate": "2025-07-13T00:00:00",
+          "SightseeingName": "Bird Sanctuary Visit",
+          "SightseeingCode": "KER-KUM-BSAN",
+          "SightseeingTypes": ["NATURE", "WILDLIFE"],
+          "DurationDescription": [
+            {
+              "TotalDuration": "1 DAYS",
+              "Date": "2025-07-13T00:00:00"
+            }
+          ],
+          "Condition": "Guided tour included.",
+          "ImageList": [
+            "https://example.com/images/bird-sanctuary1.jpg",
+            "https://example.com/images/bird-sanctuary2.jpg"
+          ],
+          "Price": {
+            "CurrencyCode": "INR",
+            "BasePrice": 2500,
+            "Tax": 225,
+            "OtherCharges": 0,
+            "Discount": 250,
+            "PublishedPrice": 2475,
+            "PublishedPriceRoundedOff": 2500,
+            "OfferedPrice": 2250,
+            "OfferedPriceRoundedOff": 2250,
+            "AgentCommission": 450,
+            "AgentMarkUp": 0,
+            "ServiceTax": 0,
+            "TDS": 250,
+            "TCS": 0,
+            "TotalGSTAmount": 0,
+            "GST": {
+              "CGSTAmount": 0,
+              "CGSTRate": 0,
+              "CessAmount": 0,
+              "CessRate": 0,
+              "IGSTAmount": 0,
+              "IGSTRate": 18,
+              "SGSTAmount": 0,
+              "SGSTRate": 0,
+              "TaxableAmount": 0
+            }
+          },
+          "Source": 2,
+          "TourDescription": "Visit the Kumarakom Bird Sanctuary, home to a variety of migratory birds. Enjoy bird watching and the serene environment of the backwaters.",
+          "IsPANMandatory": false
+        }
+      ],
+      "transport": {
+        "airportTransfers": {
+          "pickup": {
+            "type": "Private Car",
+            "datetime": "2025-07-10T08:00:00Z",
+            "pickupLocation": "Chhatrapati Shivaji Maharaj International Airport",
+            "dropoffLocation": "Lake Palace Resort"
+          },
+          "dropoff": {
+            "type": "Private Car",
+            "datetime": "2025-07-18T10:00:00Z",
+            "pickupLocation": "Lake Palace Resort",
+            "dropoffLocation": "Chhatrapati Shivaji Maharaj International Airport"
+          }
+        }
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "date": "2025-07-10",
+          "activities": [
+            "Arrival in Kochi",
+            "Transfer to Lake Palace Resort",
+            "Welcome Dinner on the Houseboat"
+          ]
+        },
+        {
+          "day": 2,
+          "date": "2025-07-11",
+          "activities": [
+            "Breakfast on the houseboat",
+            "Backwater Cruise",
+            "Lunch on the houseboat",
+            "Evening at leisure"
+          ]
+        },
+        {
+          "day": 3,
+          "date": "2025-07-12",
+          "activities": [
+            "Breakfast at the hotel",
+            "Transfer to Alappuzha",
+            "Check-in at the resort",
+            "Visit to Alappuzha Beach"
+          ]
+        },
+        {
+          "day": 4,
+          "date": "2025-07-13",
+          "activities": [
+            "Breakfast at the hotel",
+            "Bird Sanctuary Visit",
+            "Lunch at a local restaurant",
+            "Ayurvedic Spa Treatment"
+          ]
+        },
+        {
+          "day": 5,
+          "date": "2025-07-14",
+          "activities": [
+            "Breakfast at the hotel",
+            "Transfer to Kumarakom",
+            "Check-in at Kumarakom Lake Resort",
+            "Evening Boat Ride"
+          ]
+        },
+        {
+          "day": 6,
+          "date": "2025-07-15",
+          "activities": [
+            "Breakfast at the resort",
+            "Village Tour",
+            "Lunch at a local homestay",
+            "Evening Leisure"
+          ]
+        },
+        {
+          "day": 7,
+          "date": "2025-07-16",
+          "activities": [
+            "Breakfast at the resort",
+            "Back to Kochi",
+            "Shopping at Lulu Mall",
+            "Farewell Dinner"
+          ]
+        },
+        {
+          "day": 8,
+          "date": "2025-07-17",
+          "activities": [
+            "Breakfast at the hotel",
+            "Check-out and transfer to the airport",
+            "Departure"
+          ]
+        }
+      ],
+      "additionalServices": {
+        "travelInsurance": true,
+        "visaAssistance": false,
+        "specialRequests": "Extra towels, Dietary preferences for meals"
+      }
+    },
+    "bestTimeToVisit": "October to March",
     "recommendationTags": [
-      "Pop Culture",
-      "Foodie",
-      "City Tour",
-      "Shopping",
-      "K-Pop"
+      "Trending",
+      "Loyality",
+      "Relaxation",
+      "Backwaters",
+      "Spa",
+      "Nature",
+      "Cultural",
+      "Scenic"
     ],
-    "notes": "Concert tickets are not included by default but can be requested. Weather may vary in spring/fall.",
-
+    "notes": "Book Ayurvedic treatments in advance. Ensure houseboat dates are confirmed.",
     "faqs": [
       {
-        "question": "Is the DMZ tour included?",
-        "answer": "No, it's an optional add-on. Please request in advance due to limited availability."
+        "question": "What should I pack for the Kerala Backwater Bliss package?",
+        "answer": "Lightweight clothing, comfortable shoes, sunscreen, hat, and a camera are recommended."
       },
       {
-        "question": "Can I get vegetarian meals?",
-        "answer": "Yes, many Korean dishes can be vegetarian. Inform us of dietary needs before travel."
+        "question": "Are meals included in the package?",
+        "answer": "Yes, breakfast is included at all hotels and meals on the houseboat are provided."
       }
     ]
   },
-
   {
     "id": "125",
-    "packageTitle": "Tropical Bliss in Bali",
-    "image": "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRFLYiR2N3v7WEnyBKRmRbk6Y3-D5uL8s8iGLTVYdb_dyQKpYL0VsWlkMmm5cAVZhlVfWKoJvWwKN0fj8UOLdZ3cm8m_gRXDTuCIhn7bg",
-    "location": "Bali, Indonesia",
-    "duration": "8 Days/7 Nights",
-    "price": "1099",
-    "priceColor": "rgba(255, 153, 51, 1)",
-
-    "shortDescription": "Sun-kissed beaches, lush rice terraces, and Balinese cultural wonders await in this perfect getaway.",
-    "detailedDescription": "Experience the best of Bali, from the tranquil temples of Ubud to the vibrant nightlife of Seminyak. Whether you’re looking to surf, relax by the beach, or explore traditional art markets, this package caters to all traveler types. Enjoy daily spa sessions, mouthwatering cuisine, and mesmerizing sunsets.",
-
-    "itinerary": [
-      {
-        "day": 1,
-        "title": "Arrival & Kuta Beach Sunset",
-        "activities": [
-          "Airport pickup & transfer to Kuta hotel",
-          "Relax on the sandy shores of Kuta Beach",
-          "Sunset cocktail at a beachfront bar"
-        ]
-      },
-      {
-        "day": 2,
-        "title": "Ubud Cultural Exploration",
-        "activities": [
-          "Monkey Forest visit",
-          "Ubud Art Market & Royal Palace",
-          "Optional Balinese cooking class"
-        ]
-      },
-      {
-        "day": 3,
-        "title": "Temple Trail",
-        "activities": [
-          "Tirta Empul holy spring temple",
-          "Besakih (Mother Temple of Bali)",
-          "Traditional dance performance"
-        ]
-      },
-      {
-        "day": 4,
-        "title": "Mount Batur Sunrise (Optional)",
-        "activities": [
-          "Early morning hike up Mount Batur",
-          "Spa session on return",
-          "Free evening in Ubud"
-        ]
-      },
-      {
-        "day": 5,
-        "title": "Beach & Water Activities",
-        "activities": [
-          "Transfer to Seminyak hotel",
-          "Water sports (parasailing, jet ski, etc.)",
-          "Evening leisure / shopping"
-        ]
-      },
-      {
-        "day": 6,
-        "title": "Tanah Lot & Rice Terraces",
-        "activities": [
-          "Photo stop at Tanah Lot temple",
-          "Visit Tegallalang rice terraces",
-          "Coffee tasting at a local plantation"
-        ]
-      },
-      {
-        "day": 7,
-        "title": "Free Day for Leisure",
-        "activities": [
-          "Relax by the beach or pool",
-          "Indulge in a Balinese massage",
-          "Optional night out in Seminyak"
-        ]
-      },
-      {
-        "day": 8,
-        "title": "Departure",
-        "activities": [
-          "Check-out from hotel",
-          "Transfer to Ngurah Rai International Airport"
-        ]
-      }
-    ],
-
-    "inclusions": [
-      "4-star hotel accommodations (Kuta, Ubud, Seminyak)",
-      "Daily breakfast & 2 dinners",
-      "Airport transfers & inter-city transfers",
-      "One full-day temple tour with a guide"
-    ],
-    "exclusions": [
-      "International flights",
-      "Personal expenses",
-      "Travel insurance",
-      "Entrance fees for optional activities"
-    ],
-
-    "accommodationDetails": {
-      "hotelName": "Bali Dream Resorts",
-      "roomType": "Superior Suite",
-      "amenities": [
-        "Pool & spa access",
-        "Complimentary Wi-Fi",
-        "Balinese cultural show (selected nights)"
-      ]
+    "packageTitle": "Goa Beach and Adventure Getaway",
+    "image": "data:image/jpeg;base64,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",
+    "location": "Goa, India",
+    "duration": "7 Days/6 Nights",
+    "shortDescription": "Enjoy the sun, sand, and sea in Goa with a mix of beach relaxation and thrilling adventure activities.",
+    "detailedDescription": "Discover the vibrant life of Goa with its pristine beaches, lively nightlife, and a plethora of adventure activities. This package offers a balanced mix of relaxation on golden sands, water sports like parasailing and jet-skiing, exploration of historic forts, and vibrant markets. Stay in luxury beachfront resorts and savor delicious Goan cuisine.",
+    "price": {
+      "currency": "INR",
+      "basePrice": 22000,
+      "taxes": 3000,
+      "discount": 2000,
+      "totalPrice": 23000
     },
-
-    "bestTimeToVisit": "April to October (dry season)",
+    "details": {
+      "flights": [
+        [
+          {
+            "FirstNameFormat": null,
+            "IsBookableIfSeatNotAvailable": false,
+            "IsHoldAllowedWithSSR": false,
+            "LastNameFormat": null,
+            "ResultIndex": "FLIGHT54321",
+            "Source": 3,
+            "IsLCC": true,
+            "IsRefundable": true,
+            "IsPanRequiredAtBook": false,
+            "IsPanRequiredAtTicket": false,
+            "IsPassportRequiredAtBook": false,
+            "IsPassportRequiredAtTicket": false,
+            "GSTAllowed": true,
+            "IsCouponAppilcable": true,
+            "IsGSTMandatory": false,
+            "AirlineRemark": "SpiceJet offers daily flights to Goa from major cities.",
+            "IsPassportFullDetailRequiredAtBook": false,
+            "ResultFareType": "RegularFare",
+            "Fare": {
+              "Currency": "INR",
+              "BaseFare": 7000,
+              "Tax": 1500,
+              "TaxBreakup": [
+                { "key": "GST", "value": 1350 },
+                { "key": "OtherTaxes", "value": 150 }
+              ],
+              "YQTax": 0,
+              "AdditionalTxnFeeOfrd": 0,
+              "AdditionalTxnFeePub": 0,
+              "PGCharge": 0,
+              "OtherCharges": 80,
+              "ChargeBU": [{ "key": "CONVENIENCECHARGE", "value": 80 }],
+              "Discount": 0,
+              "PublishedFare": 8580,
+              "CommissionEarned": 0,
+              "PLBEarned": 0,
+              "IncentiveEarned": 0,
+              "OfferedFare": 8580,
+              "TdsOnCommission": 0,
+              "TdsOnPLB": 0,
+              "TdsOnIncentive": 0,
+              "ServiceFee": 0,
+              "TotalBaggageCharges": 0,
+              "TotalMealCharges": 0,
+              "TotalSeatCharges": 0,
+              "TotalSpecialServiceCharges": 0
+            },
+            "FareBreakdown": [
+              {
+                "Currency": "INR",
+                "PassengerType": 1,
+                "PassengerCount": 1,
+                "BaseFare": 3500,
+                "Tax": 750,
+                "TaxBreakUp": [
+                  { "key": "GST", "value": 675 },
+                  { "key": "OtherTaxes", "value": 75 }
+                ],
+                "YQTax": 0,
+                "AdditionalTxnFeeOfrd": 0,
+                "AdditionalTxnFeePub": 0,
+                "PGCharge": 0,
+                "SupplierReissueCharges": 0
+              },
+              {
+                "Currency": "INR",
+                "PassengerType": 2,
+                "PassengerCount": 1,
+                "BaseFare": 3500,
+                "Tax": 750,
+                "TaxBreakUp": [
+                  { "key": "GST", "value": 675 },
+                  { "key": "OtherTaxes", "value": 75 }
+                ],
+                "YQTax": 0,
+                "AdditionalTxnFeeOfrd": 0,
+                "AdditionalTxnFeePub": 0,
+                "PGCharge": 0,
+                "SupplierReissueCharges": 0
+              }
+            ],
+            "Segments": [
+              [
+                {
+                  "Baggage": "15 KG",
+                  "CabinBaggage": "7 KG",
+                  "CabinClass": 2,
+                  "SupplierFareClass": null,
+                  "TripIndicator": 1,
+                  "SegmentIndicator": 1,
+                  "Airline": {
+                    "AirlineCode": "SG",
+                    "AirlineName": "SpiceJet",
+                    "FlightNumber": "SG-789",
+                    "FareClass": "G",
+                    "OperatingCarrier": ""
+                  },
+                  "Origin": {
+                    "Airport": {
+                      "AirportCode": "BOM",
+                      "AirportName": "Chhatrapati Shivaji Maharaj International Airport",
+                      "Terminal": "1",
+                      "CityCode": "BOM",
+                      "CityName": "Mumbai",
+                      "CountryCode": "IN",
+                      "CountryName": "India"
+                    },
+                    "DepTime": "2025-08-01T09:00:00"
+                  },
+                  "Destination": {
+                    "Airport": {
+                      "AirportCode": "GOI",
+                      "AirportName": "Dabolim Airport",
+                      "Terminal": "1",
+                      "CityCode": "GOI",
+                      "CityName": "Goa",
+                      "CountryCode": "IN",
+                      "CountryName": "India"
+                    },
+                    "ArrTime": "2025-08-01T10:30:00"
+                  },
+                  "Duration": 90,
+                  "GroundTime": 0,
+                  "Mile": 0,
+                  "StopOver": false,
+                  "FlightInfoIndex": "",
+                  "StopPoint": "",
+                  "StopPointArrivalTime": null,
+                  "StopPointDepartureTime": null,
+                  "Craft": "A320",
+                  "Remark": null,
+                  "IsETicketEligible": true,
+                  "FlightStatus": "Confirmed",
+                  "Status": "",
+                  "FareClassification": {
+                    "Type": ""
+                  }
+                }
+              ]
+            ],
+            "LastTicketDate": "2025-08-15",
+            "TicketAdvisory": null,
+            "FareRules": [
+              {
+                "Origin": "BOM",
+                "Destination": "GOI",
+                "Airline": "SG",
+                "FareBasisCode": "G",
+                "FareRuleDetail": "Changes allowed with a fee.",
+                "FareRestriction": "Refundable with cancellation charges.",
+                "FareFamilyCode": "Economy",
+                "FareRuleIndex": "FR54321"
+              }
+            ],
+            "AirlineCode": "SG",
+            "MiniFareRules": [
+              [
+                {
+                  "JourneyPoints": "BOM-GOI",
+                  "Type": "Reissue",
+                  "From": "24",
+                  "To": "72",
+                  "Unit": "HOURS",
+                  "Details": "INR 1800"
+                },
+                {
+                  "JourneyPoints": "BOM-GOI",
+                  "Type": "Reissue",
+                  "From": "72",
+                  "To": "",
+                  "Unit": "HOURS",
+                  "Details": "INR 2500"
+                },
+                {
+                  "JourneyPoints": "BOM-GOI",
+                  "Type": "Cancellation",
+                  "From": "24",
+                  "To": "72",
+                  "Unit": "HOURS",
+                  "Details": "INR 3000"
+                },
+                {
+                  "JourneyPoints": "BOM-GOI",
+                  "Type": "Cancellation",
+                  "From": "72",
+                  "To": "",
+                  "Unit": "HOURS",
+                  "Details": "INR 4000"
+                }
+              ]
+            ],
+            "ValidatingAirline": "SG",
+            "FareClassification": {
+              "Color": "lightBlue",
+              "Type": "Publish"
+            }
+          }
+        ]
+      ],
+      "hotel": {
+        "name": "The Leela Goa",
+        "address": "Mobor Beach, Goa, India",
+        "checkInDate": "2025-08-01",
+        "checkOutDate": "2025-08-07",
+        "roomType": "Beachfront Suite",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Swimming Pool",
+          "Spa",
+          "Beach Access",
+          "Fitness Center"
+        ]
+      },
+      "sightseeing": [
+        {
+          "ResultIndex": 1,
+          "CityId": "445566",
+          "CityName": "Goa",
+          "CountryCode": "IN",
+          "FromDate": "2025-08-02T00:00:00",
+          "ToDate": "2025-08-02T00:00:00",
+          "SightseeingName": "Basilica of Bom Jesus",
+          "SightseeingCode": "GOA-GOI-BOB",
+          "SightseeingTypes": ["HISTORIC", "CULTURAL"],
+          "DurationDescription": [
+            {
+              "TotalDuration": "1 DAYS",
+              "Date": "2025-08-02T00:00:00"
+            }
+          ],
+          "Condition": "Guided tour included.",
+          "ImageList": [
+            "https://example.com/images/basilica1.jpg",
+            "https://example.com/images/basilica2.jpg"
+          ],
+          "Price": {
+            "CurrencyCode": "INR",
+            "BasePrice": 1000,
+            "Tax": 90,
+            "OtherCharges": 0,
+            "Discount": 100,
+            "PublishedPrice": 1090,
+            "PublishedPriceRoundedOff": 1000,
+            "OfferedPrice": 900,
+            "OfferedPriceRoundedOff": 900,
+            "AgentCommission": 180,
+            "AgentMarkUp": 0,
+            "ServiceTax": 0,
+            "TDS": 100,
+            "TCS": 0,
+            "TotalGSTAmount": 0,
+            "GST": {
+              "CGSTAmount": 0,
+              "CGSTRate": 0,
+              "CessAmount": 0,
+              "CessRate": 0,
+              "IGSTAmount": 0,
+              "IGSTRate": 18,
+              "SGSTAmount": 0,
+              "SGSTRate": 0,
+              "TaxableAmount": 0
+            }
+          },
+          "Source": 2,
+          "TourDescription": "Visit the UNESCO World Heritage Site, Basilica of Bom Jesus, which houses the mortal remains of St. Francis Xavier.",
+          "IsPANMandatory": false
+        },
+        {
+          "ResultIndex": 2,
+          "CityId": "445567",
+          "CityName": "Goa",
+          "CountryCode": "IN",
+          "FromDate": "2025-08-04T00:00:00",
+          "ToDate": "2025-08-04T00:00:00",
+          "SightseeingName": "Water Sports at Calangute Beach",
+          "SightseeingCode": "GOA-GOI-WSW",
+          "SightseeingTypes": ["ADVENTURE", "WATER SPORTS"],
+          "DurationDescription": [
+            {
+              "TotalDuration": "1 DAYS",
+              "Date": "2025-08-04T00:00:00"
+            }
+          ],
+          "Condition": "Includes equipment and safety briefing.",
+          "ImageList": [
+            "https://example.com/images/calangute1.jpg",
+            "https://example.com/images/calangute2.jpg"
+          ],
+          "Price": {
+            "CurrencyCode": "INR",
+            "BasePrice": 2000,
+            "Tax": 180,
+            "OtherCharges": 0,
+            "Discount": 200,
+            "PublishedPrice": 2180,
+            "PublishedPriceRoundedOff": 2000,
+            "OfferedPrice": 1800,
+            "OfferedPriceRoundedOff": 1800,
+            "AgentCommission": 360,
+            "AgentMarkUp": 0,
+            "ServiceTax": 0,
+            "TDS": 200,
+            "TCS": 0,
+            "TotalGSTAmount": 0,
+            "GST": {
+              "CGSTAmount": 0,
+              "CGSTRate": 0,
+              "CessAmount": 0,
+              "CessRate": 0,
+              "IGSTAmount": 0,
+              "IGSTRate": 18,
+              "SGSTAmount": 0,
+              "SGSTRate": 0,
+              "TaxableAmount": 0
+            }
+          },
+          "Source": 2,
+          "TourDescription": "Engage in thrilling water sports like parasailing, jet-skiing, and banana boat rides at Calangute Beach.",
+          "IsPANMandatory": false
+        }
+      ],
+      "transport": {
+        "airportTransfers": {
+          "pickup": {
+            "type": "Private Car",
+            "datetime": "2025-08-01T11:00:00Z",
+            "pickupLocation": "Chhatrapati Shivaji Maharaj International Airport",
+            "dropoffLocation": "The Leela Goa"
+          },
+          "dropoff": {
+            "type": "Private Car",
+            "datetime": "2025-08-07T14:00:00Z",
+            "pickupLocation": "The Leela Goa",
+            "dropoffLocation": "Chhatrapati Shivaji Maharaj International Airport"
+          }
+        }
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "date": "2025-08-01",
+          "activities": [
+            "Arrival in Goa",
+            "Transfer to The Leela Goa",
+            "Welcome Dinner by the Beach"
+          ]
+        },
+        {
+          "day": 2,
+          "date": "2025-08-02",
+          "activities": [
+            "Breakfast at the hotel",
+            "Basilica of Bom Jesus Tour",
+            "Lunch at a local restaurant",
+            "Evening Beach Walk"
+          ]
+        },
+        {
+          "day": 3,
+          "date": "2025-08-03",
+          "activities": [
+            "Breakfast at the hotel",
+            "Old Goa Heritage Tour",
+            "Lunch at a traditional Goan restaurant",
+            "Evening at leisure"
+          ]
+        },
+        {
+          "day": 4,
+          "date": "2025-08-04",
+          "activities": [
+            "Breakfast at the hotel",
+            "Water Sports at Calangute Beach",
+            "Lunch at a beachside shack",
+            "Sunset Cruise"
+          ]
+        },
+        {
+          "day": 5,
+          "date": "2025-08-05",
+          "activities": [
+            "Breakfast at the hotel",
+            "Day trip to Anjuna and Vagator Beaches",
+            "Lunch at a seaside restaurant",
+            "Evening Shopping at Anjuna Flea Market"
+          ]
+        },
+        {
+          "day": 6,
+          "date": "2025-08-06",
+          "activities": [
+            "Breakfast at the hotel",
+            "Explore Dudhsagar Waterfalls",
+            "Lunch at a local eatery",
+            "Evening Leisure at the Resort"
+          ]
+        },
+        {
+          "day": 7,
+          "date": "2025-08-07",
+          "activities": [
+            "Breakfast at the hotel",
+            "Check-out and transfer to the airport",
+            "Departure"
+          ]
+        }
+      ],
+      "additionalServices": {
+        "travelInsurance": true,
+        "visaAssistance": false,
+        "specialRequests": "Room with sea view, Early check-in upon request"
+      }
+    },
+    "bestTimeToVisit": "November to February",
     "recommendationTags": [
       "Beach",
-      "Spa",
       "Adventure",
+      "Nightlife",
+      "Water Sports",
       "Cultural",
-      "Honeymoon"
+      "Relaxation"
     ],
-    "notes": "Mount Batur trek requires moderate fitness. Some water activities may depend on weather.",
-
+    "notes": "Ensure to carry sun protection. Water sports activities are subject to weather conditions.",
     "faqs": [
       {
-        "question": "Is surfing included?",
-        "answer": "Surf lessons can be arranged at an additional cost. Some beaches are beginner-friendly."
+        "question": "Are water sports included in the package?",
+        "answer": "Yes, water sports at Calangute Beach are included. Additional charges may apply for certain activities."
       },
       {
-        "question": "Can I extend my stay in Seminyak?",
-        "answer": "Yes, additional nights can be booked upon request, subject to hotel availability."
-      }
-    ]
-  },
-  {
-    "id": "126",
-    "packageTitle": "Tropical Bliss in Bali",
-    "image": "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRFLYiR2N3v7WEnyBKRmRbk6Y3-D5uL8s8iGLTVYdb_dyQKpYL0VsWlkMmm5cAVZhlVfWKoJvWwKN0fj8UOLdZ3cm8m_gRXDTuCIhn7bg",
-    "location": "Bali, Indonesia",
-    "duration": "8 Days/7 Nights",
-    "price": "1099",
-    "priceColor": "rgba(255, 153, 51, 1)",
-
-    "shortDescription": "Sun-kissed beaches, lush rice terraces, and Balinese cultural wonders await in this perfect getaway.",
-    "detailedDescription": "Experience the best of Bali, from the tranquil temples of Ubud to the vibrant nightlife of Seminyak. Whether you’re looking to surf, relax by the beach, or explore traditional art markets, this package caters to all traveler types. Enjoy daily spa sessions, mouthwatering cuisine, and mesmerizing sunsets.",
-
-    "itinerary": [
-      {
-        "day": 1,
-        "title": "Arrival & Kuta Beach Sunset",
-        "activities": [
-          "Airport pickup & transfer to Kuta hotel",
-          "Relax on the sandy shores of Kuta Beach",
-          "Sunset cocktail at a beachfront bar"
-        ]
-      },
-      {
-        "day": 2,
-        "title": "Ubud Cultural Exploration",
-        "activities": [
-          "Monkey Forest visit",
-          "Ubud Art Market & Royal Palace",
-          "Optional Balinese cooking class"
-        ]
-      },
-      {
-        "day": 3,
-        "title": "Temple Trail",
-        "activities": [
-          "Tirta Empul holy spring temple",
-          "Besakih (Mother Temple of Bali)",
-          "Traditional dance performance"
-        ]
-      },
-      {
-        "day": 4,
-        "title": "Mount Batur Sunrise (Optional)",
-        "activities": [
-          "Early morning hike up Mount Batur",
-          "Spa session on return",
-          "Free evening in Ubud"
-        ]
-      },
-      {
-        "day": 5,
-        "title": "Beach & Water Activities",
-        "activities": [
-          "Transfer to Seminyak hotel",
-          "Water sports (parasailing, jet ski, etc.)",
-          "Evening leisure / shopping"
-        ]
-      },
-      {
-        "day": 6,
-        "title": "Tanah Lot & Rice Terraces",
-        "activities": [
-          "Photo stop at Tanah Lot temple",
-          "Visit Tegallalang rice terraces",
-          "Coffee tasting at a local plantation"
-        ]
-      },
-      {
-        "day": 7,
-        "title": "Free Day for Leisure",
-        "activities": [
-          "Relax by the beach or pool",
-          "Indulge in a Balinese massage",
-          "Optional night out in Seminyak"
-        ]
-      },
-      {
-        "day": 8,
-        "title": "Departure",
-        "activities": [
-          "Check-out from hotel",
-          "Transfer to Ngurah Rai International Airport"
-        ]
-      }
-    ],
-
-    "inclusions": [
-      "4-star hotel accommodations (Kuta, Ubud, Seminyak)",
-      "Daily breakfast & 2 dinners",
-      "Airport transfers & inter-city transfers",
-      "One full-day temple tour with a guide"
-    ],
-    "exclusions": [
-      "International flights",
-      "Personal expenses",
-      "Travel insurance",
-      "Entrance fees for optional activities"
-    ],
-
-    "accommodationDetails": {
-      "hotelName": "Bali Dream Resorts",
-      "roomType": "Superior Suite",
-      "amenities": [
-        "Pool & spa access",
-        "Complimentary Wi-Fi",
-        "Balinese cultural show (selected nights)"
-      ]
-    },
-
-    "bestTimeToVisit": "April to October (dry season)",
-    "recommendationTags": [
-      "Beach",
-      "Spa",
-      "Adventure",
-      "Cultural",
-      "Honeymoon"
-    ],
-    "notes": "Mount Batur trek requires moderate fitness. Some water activities may depend on weather.",
-
-    "faqs": [
-      {
-        "question": "Is surfing included?",
-        "answer": "Surf lessons can be arranged at an additional cost. Some beaches are beginner-friendly."
-      },
-      {
-        "question": "Can I extend my stay in Seminyak?",
-        "answer": "Yes, additional nights can be booked upon request, subject to hotel availability."
-      }
-    ]
-  },
-  {
-    "id": "127",
-    "packageTitle": "Tropical Bliss in Bali",
-    "image": "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRFLYiR2N3v7WEnyBKRmRbk6Y3-D5uL8s8iGLTVYdb_dyQKpYL0VsWlkMmm5cAVZhlVfWKoJvWwKN0fj8UOLdZ3cm8m_gRXDTuCIhn7bg",
-    "location": "Bali, Indonesia",
-    "duration": "8 Days/7 Nights",
-    "price": "1099",
-    "priceColor": "rgba(255, 153, 51, 1)",
-
-    "shortDescription": "Sun-kissed beaches, lush rice terraces, and Balinese cultural wonders await in this perfect getaway.",
-    "detailedDescription": "Experience the best of Bali, from the tranquil temples of Ubud to the vibrant nightlife of Seminyak. Whether you’re looking to surf, relax by the beach, or explore traditional art markets, this package caters to all traveler types. Enjoy daily spa sessions, mouthwatering cuisine, and mesmerizing sunsets.",
-
-    "itinerary": [
-      {
-        "day": 1,
-        "title": "Arrival & Kuta Beach Sunset",
-        "activities": [
-          "Airport pickup & transfer to Kuta hotel",
-          "Relax on the sandy shores of Kuta Beach",
-          "Sunset cocktail at a beachfront bar"
-        ]
-      },
-      {
-        "day": 2,
-        "title": "Ubud Cultural Exploration",
-        "activities": [
-          "Monkey Forest visit",
-          "Ubud Art Market & Royal Palace",
-          "Optional Balinese cooking class"
-        ]
-      },
-      {
-        "day": 3,
-        "title": "Temple Trail",
-        "activities": [
-          "Tirta Empul holy spring temple",
-          "Besakih (Mother Temple of Bali)",
-          "Traditional dance performance"
-        ]
-      },
-      {
-        "day": 4,
-        "title": "Mount Batur Sunrise (Optional)",
-        "activities": [
-          "Early morning hike up Mount Batur",
-          "Spa session on return",
-          "Free evening in Ubud"
-        ]
-      },
-      {
-        "day": 5,
-        "title": "Beach & Water Activities",
-        "activities": [
-          "Transfer to Seminyak hotel",
-          "Water sports (parasailing, jet ski, etc.)",
-          "Evening leisure / shopping"
-        ]
-      },
-      {
-        "day": 6,
-        "title": "Tanah Lot & Rice Terraces",
-        "activities": [
-          "Photo stop at Tanah Lot temple",
-          "Visit Tegallalang rice terraces",
-          "Coffee tasting at a local plantation"
-        ]
-      },
-      {
-        "day": 7,
-        "title": "Free Day for Leisure",
-        "activities": [
-          "Relax by the beach or pool",
-          "Indulge in a Balinese massage",
-          "Optional night out in Seminyak"
-        ]
-      },
-      {
-        "day": 8,
-        "title": "Departure",
-        "activities": [
-          "Check-out from hotel",
-          "Transfer to Ngurah Rai International Airport"
-        ]
-      }
-    ],
-
-    "inclusions": [
-      "4-star hotel accommodations (Kuta, Ubud, Seminyak)",
-      "Daily breakfast & 2 dinners",
-      "Airport transfers & inter-city transfers",
-      "One full-day temple tour with a guide"
-    ],
-    "exclusions": [
-      "International flights",
-      "Personal expenses",
-      "Travel insurance",
-      "Entrance fees for optional activities"
-    ],
-
-    "accommodationDetails": {
-      "hotelName": "Bali Dream Resorts",
-      "roomType": "Superior Suite",
-      "amenities": [
-        "Pool & spa access",
-        "Complimentary Wi-Fi",
-        "Balinese cultural show (selected nights)"
-      ]
-    },
-
-    "bestTimeToVisit": "April to October (dry season)",
-    "recommendationTags": [
-      "Beach",
-      "Spa",
-      "Adventure",
-      "Cultural",
-      "Honeymoon"
-    ],
-    "notes": "Mount Batur trek requires moderate fitness. Some water activities may depend on weather.",
-
-    "faqs": [
-      {
-        "question": "Is surfing included?",
-        "answer": "Surf lessons can be arranged at an additional cost. Some beaches are beginner-friendly."
-      },
-      {
-        "question": "Can I extend my stay in Seminyak?",
-        "answer": "Yes, additional nights can be booked upon request, subject to hotel availability."
-      }
-    ]
-  },
-  {
-    "id": "128",
-    "packageTitle": "Tropical Bliss in Bali",
-    "image": "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRFLYiR2N3v7WEnyBKRmRbk6Y3-D5uL8s8iGLTVYdb_dyQKpYL0VsWlkMmm5cAVZhlVfWKoJvWwKN0fj8UOLdZ3cm8m_gRXDTuCIhn7bg",
-    "location": "Bali, Indonesia",
-    "duration": "8 Days/7 Nights",
-    "price": "1099",
-    "priceColor": "rgba(255, 153, 51, 1)",
-
-    "shortDescription": "Sun-kissed beaches, lush rice terraces, and Balinese cultural wonders await in this perfect getaway.",
-    "detailedDescription": "Experience the best of Bali, from the tranquil temples of Ubud to the vibrant nightlife of Seminyak. Whether you’re looking to surf, relax by the beach, or explore traditional art markets, this package caters to all traveler types. Enjoy daily spa sessions, mouthwatering cuisine, and mesmerizing sunsets.",
-
-    "itinerary": [
-      {
-        "day": 1,
-        "title": "Arrival & Kuta Beach Sunset",
-        "activities": [
-          "Airport pickup & transfer to Kuta hotel",
-          "Relax on the sandy shores of Kuta Beach",
-          "Sunset cocktail at a beachfront bar"
-        ]
-      },
-      {
-        "day": 2,
-        "title": "Ubud Cultural Exploration",
-        "activities": [
-          "Monkey Forest visit",
-          "Ubud Art Market & Royal Palace",
-          "Optional Balinese cooking class"
-        ]
-      },
-      {
-        "day": 3,
-        "title": "Temple Trail",
-        "activities": [
-          "Tirta Empul holy spring temple",
-          "Besakih (Mother Temple of Bali)",
-          "Traditional dance performance"
-        ]
-      },
-      {
-        "day": 4,
-        "title": "Mount Batur Sunrise (Optional)",
-        "activities": [
-          "Early morning hike up Mount Batur",
-          "Spa session on return",
-          "Free evening in Ubud"
-        ]
-      },
-      {
-        "day": 5,
-        "title": "Beach & Water Activities",
-        "activities": [
-          "Transfer to Seminyak hotel",
-          "Water sports (parasailing, jet ski, etc.)",
-          "Evening leisure / shopping"
-        ]
-      },
-      {
-        "day": 6,
-        "title": "Tanah Lot & Rice Terraces",
-        "activities": [
-          "Photo stop at Tanah Lot temple",
-          "Visit Tegallalang rice terraces",
-          "Coffee tasting at a local plantation"
-        ]
-      },
-      {
-        "day": 7,
-        "title": "Free Day for Leisure",
-        "activities": [
-          "Relax by the beach or pool",
-          "Indulge in a Balinese massage",
-          "Optional night out in Seminyak"
-        ]
-      },
-      {
-        "day": 8,
-        "title": "Departure",
-        "activities": [
-          "Check-out from hotel",
-          "Transfer to Ngurah Rai International Airport"
-        ]
-      }
-    ],
-
-    "inclusions": [
-      "4-star hotel accommodations (Kuta, Ubud, Seminyak)",
-      "Daily breakfast & 2 dinners",
-      "Airport transfers & inter-city transfers",
-      "One full-day temple tour with a guide"
-    ],
-    "exclusions": [
-      "International flights",
-      "Personal expenses",
-      "Travel insurance",
-      "Entrance fees for optional activities"
-    ],
-
-    "accommodationDetails": {
-      "hotelName": "Bali Dream Resorts",
-      "roomType": "Superior Suite",
-      "amenities": [
-        "Pool & spa access",
-        "Complimentary Wi-Fi",
-        "Balinese cultural show (selected nights)"
-      ]
-    },
-
-    "bestTimeToVisit": "April to October (dry season)",
-    "recommendationTags": [
-      "Beach",
-      "Spa",
-      "Adventure",
-      "Cultural",
-      "Honeymoon"
-    ],
-    "notes": "Mount Batur trek requires moderate fitness. Some water activities may depend on weather.",
-
-    "faqs": [
-      {
-        "question": "Is surfing included?",
-        "answer": "Surf lessons can be arranged at an additional cost. Some beaches are beginner-friendly."
-      },
-      {
-        "question": "Can I extend my stay in Seminyak?",
-        "answer": "Yes, additional nights can be booked upon request, subject to hotel availability."
+        "question": "Is airport pickup provided?",
+        "answer": "Yes, private car transfers are included for airport pickups and drop-offs."
       }
     ]
   }

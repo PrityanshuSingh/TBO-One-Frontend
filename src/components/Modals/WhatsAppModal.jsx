@@ -61,12 +61,12 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
   const previewMessage = useMemo(() => {
     return `Check out this package: ${title}
 Location: ${packageData.location || ""}
-Price: ${packageData.price || ""}
+Price: ${packageData.price.basePrice || ""}
 Duration: ${packageData.duration || ""}
 Description: ${description}
 Details: https://your-website.com/package/details/${packageId}
 Travelers: ${travelerMobile}, ${travelerEmail}`;
-  }, [title, packageData.location, packageData.price, description, packageId, travelerMobile, travelerEmail]);
+  }, [title, packageData.location, packageData.price.basePrice, description, packageId, travelerMobile, travelerEmail]);
 
   return (
     isOpen && (
@@ -98,7 +98,7 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
               scheduleTime={scheduleTime}
               onScheduleTimeChange={handleScheduleTimeChange}
               location={packageData.location || ""}
-              price={packageData.price || ""} 
+              price={packageData.price.basePrice || ""} 
               duration={packageData.duration || ""} 
               travelerMobile={travelerMobile}    
               travelerEmail={travelerEmail}        
