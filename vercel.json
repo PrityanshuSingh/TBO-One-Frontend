@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "routes": [
+    "rewrites": [
       {
         "source": "/tbo/TBOHolidays_HotelAPI/CountryList",
         "destination": "http://api.tbotechnology.in/TBOHolidays_HotelAPI/CountryList"
@@ -12,9 +12,7 @@
       {
         "source": "/tbo/(.*)",
         "destination": "http://api.tbotechnology.in/TBOHolidays_HotelAPI/$1"
-      }
-    ],
-    "rewrites": [
+      },
       {
         "source": "/(.*)",
         "destination": "/"
