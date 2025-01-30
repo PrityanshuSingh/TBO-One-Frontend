@@ -10,6 +10,12 @@
         "destination": "/"
       }
     ],
+    "routes": [
+      {
+        "src": "/tbo/(.*)",
+        "dest": "http://api.tbotechnology.in/TBOHolidays_HotelAPI/$1"
+      }
+    ],
     "headers": [
       {
         "source": "/tbo/:path*",
