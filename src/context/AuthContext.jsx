@@ -10,8 +10,7 @@ const STORAGE_KEY = "authSession";
 
 function storeUserSession(user) {
   const expiry = Date.now() + SESSION_DURATION;
-  const sessionObj = { user, expiry };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(sessionObj));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ user, expiry }));
 }
 
 function loadUserSession() {
@@ -31,10 +30,13 @@ function loadUserSession() {
   }
 }
 
+// Sanitize IP to remove commas or extra characters that cause truncation
 async function getPublicIP() {
   try {
     const res = await axios.get("https://api64.ipify.org?format=json");
-    return res.data.ip.trim();
+    // Example transformations to avoid trailing commas or invalid chars
+    const rawIP = res.data.ip ?? "0.0.0.0";
+    return rawIP.trim().replace(/[^\d.]/g, "").substring(0, 50);
   } catch (err) {
     console.error("Error fetching IP:", err);
     return "0.0.0.0";
@@ -55,15 +57,13 @@ export function AuthProvider({ children }) {
     setIsAuthLoading(false);
   }, []);
 
-  // Instead of the direct TBO_AUTH_URL, post to "/tbo/auth"
-  // Your proxy/rewrite in production should handle this route.
   async function tboAuthenticate(userName, password) {
     const ip = await getPublicIP();
     const payload = {
       ClientId: import.meta.env.VITE_TBO_CLIENT_ID || "ApiIntegrationNew",
       UserName: userName,
       Password: password,
-      EndUserIp: ip.replace(/,$/, "")
+      EndUserIp: ip
     };
     const res = await axios.post("/tbo/auth", payload);
     return res.data; // { Status, TokenId, Error, Member, ...}
