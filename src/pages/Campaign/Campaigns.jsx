@@ -24,6 +24,7 @@ const Campaigns = () => {
     fetchPackageDetails,
     updateCampaignStatus,
   } = useContext(CampaignContext);
+  const { userData } = useContext(AuthContext);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCampaigns, setSelectedCampaigns] = useState([]);
@@ -33,6 +34,7 @@ const Campaigns = () => {
   const [statusChangeError, setStatusChangeError] = useState("");
   const [newStatus, setNewStatus] = useState("");
   const [packagesMap, setPackagesMap] = useState({});
+
 
   useEffect(() => {
     const loadPackageTitles = async () => {
@@ -132,8 +134,6 @@ const Campaigns = () => {
       setIsStatusModalOpen(false);
     }
   };
-
-  const { userData } = useContext(AuthContext);
 
   return (
     <div className={styles.campaignsContainer}>

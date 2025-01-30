@@ -1,22 +1,5 @@
 {
   "_id": "24238492384923849234",
-  "Status": 1,
-  "TokenId": "c674318f-e403-4162-a56a-a3210b89d6e0",
-  "Error": {
-    "ErrorCode": 0,
-    "ErrorMessage": ""
-  },
-  "Member": {
-    "FirstName": "Test",
-    "LastName": "test",
-    "Email": "abc@test.com",
-    "MemberId": 57749,
-    "AgencyId": 57595,
-    "LoginName": "Hackathon",
-    "LoginDetails": "Login Success at#@ 11/01/2025 12:23:14 #@ IPAddress: 122.180.5.93",
-    "isPrimaryAgent": false
-  },
-
   "Profile": {
     "role": "AGENT",
     "firstName": "Test",

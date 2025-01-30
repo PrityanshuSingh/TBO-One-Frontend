@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
     const stored = loadUserSession();
     if (stored?.username && stored?.password) {
       setIsAuthenticated(true);
-      setUserData({ Profile: fallbackData });
+      setUserData(fallbackData); // Load fallback data for offline or testing
     }
     setIsAuthLoading(false);
   }, []);
@@ -42,15 +42,16 @@ export function AuthProvider({ children }) {
 
       storeUserSession(userName, password);
       setIsAuthenticated(true);
-      setUserData({ Profile: profile });
+      setUserData(profile); // Store the profile received from the API
     } catch (err) {
       console.error("API Login error:", err.message);
 
+      // Use fallback data for testing or offline mode
       if (userName === FALLBACK_USERNAME && password === FALLBACK_PASSWORD) {
         console.log("Using fallback login");
         storeUserSession(userName, password);
         setIsAuthenticated(true);
-        setUserData({ Profile: fallbackData });
+        setUserData(fallbackData); // Use fallback data
       } else {
         throw new Error("Login failed and fallback credentials are incorrect");
       }
@@ -72,7 +73,7 @@ export function AuthProvider({ children }) {
 
       storeUserSession(userName, password);
       setIsAuthenticated(true);
-      setUserData({ Profile: profile });
+      setUserData(profile); // Store the profile received from the API
     } catch (err) {
       console.error("API Signup error:", err.message);
       throw new Error("Sign up failed. Please try again.");
