@@ -11,7 +11,7 @@ import CampaignCard from "../../components/Cards/CampaignCard";
 
 import styles from "./styles/Campaigns.module.scss";
 
-const STATUS_OPTIONS = ["ALL", "Running", "Draft", "Stopped"];
+const STATUS_OPTIONS = ["ALL", "Running", "Hold", "Stopped"];
 const STATUS_CHANGE_OPTIONS = ["Run", "Stop", "Hold"];
 
 const Campaigns = () => {
