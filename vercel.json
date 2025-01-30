@@ -1,34 +1,33 @@
 {
-  "version": 2,
-  "rewrites": [
-    {
-      "source": "/tbo/auth",
-      "destination": "http://sharedapi.tektravels.com/SharedData.svc/rest/Authenticate"
-    },
-    {
-      "source": "/tbo/logout",
-      "destination": "http://sharedapi.tektravels.com/SharedData.svc/rest/Logout"
-    },
-    {
-      "source": "/tbo/(.*)",
-      "destination": "http://sharedapi.tektravels.com/TBOHolidays_HotelAPI/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/tbo/:path*",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, OPTIONS"
-        },
-        { "key": "Access-Control-Allow-Headers", "value": "*" }
-      ]
-    }
-  ]
-}
+    "version": 2,
+    "rewrites": [
+      {
+        "source": "/tbo/(.*)",
+        "destination": "http://api.tbotechnology.in/TBOHolidays_HotelAPI/$1"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/"
+      }
+    ],
+    "headers": [
+      {
+        "source": "/tbo/:path*",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          },
+          {
+            "key": "Access-Control-Allow-Methods",
+            "value": "GET, POST, OPTIONS"
+          },
+          {
+            "key": "Access-Control-Allow-Headers",
+            "value": "*"
+          }
+        ]
+      }
+    ]
+  }
+  
