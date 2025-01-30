@@ -63,7 +63,7 @@ export function AuthProvider({ children }) {
       ClientId: import.meta.env.VITE_TBO_CLIENT_ID || "ApiIntegrationNew",
       UserName: userName,
       Password: password,
-      EndUserIp: ip
+      EndUserIp: "192.168.11.120"
     };
     const res = await axios.post("/tbo/auth", payload);
     return res.data; // { Status, TokenId, Error, Member, ...}
