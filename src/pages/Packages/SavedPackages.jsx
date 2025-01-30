@@ -12,7 +12,7 @@ import styles from "./styles/SavedPackages.module.scss";
 function SavedPackages() {
   const { userData } = useContext(AuthContext);
   const navigate = useNavigate();
-  const userEmail = userData?.Member?.Email;
+  const userEmail = userData?.Profile?.email;
 
   // State for saved packages
   const [savedPackages, setSavedPackages] = useState([]);
@@ -33,9 +33,14 @@ function SavedPackages() {
         setSavedPackages(res.data || []);
         setFilteredPackages(res.data || []);
       } catch (error) {
-        console.error("Failed to fetch saved packages. Using fallback data.", error);
+        console.error(
+          "Failed to fetch saved packages. Using fallback data.",
+          error
+        );
         const savedIds = userData?.Profile?.saved || [];
-        const fallbackData = localPackages.filter((pkg) => savedIds.includes(pkg.id));
+        const fallbackData = localPackages.filter((pkg) =>
+          savedIds.includes(pkg.id)
+        );
         setSavedPackages(fallbackData);
         setFilteredPackages(fallbackData);
       } finally {

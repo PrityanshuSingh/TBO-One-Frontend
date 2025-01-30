@@ -47,7 +47,7 @@ function Sidebar() {
     // If user is authenticated and userData is available, use it
     if (isAuthenticated && userData) {
       setProfileData({
-        name: userData.Member.FirstName || 'Executive Name',
+        name: userData.Profile.firstName || 'Executive Name',
         company: userData.Profile.company || 'Company Name',
         address: userData.Profile.address || 'Company Short Address',
       });

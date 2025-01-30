@@ -1,26 +1,32 @@
-// src/pages/Login/Login.jsx
-import React, { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
-import styles from './styles/Login.module.scss';
+// Login.jsx
+import React, { useState, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import styles from "./styles/Login.module.scss";
 
 function Login() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMsg('');
+    setErrorMsg("");
     try {
       await login(userName, password);
-      navigate('/');
+      navigate("/");
     } catch (err) {
-      setErrorMsg(err.message || 'Login failed');
+      setErrorMsg(err.message || "Login failed");
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -38,11 +44,9 @@ function Login() {
           <h2 className={styles.title}>Welcome Back</h2>
           <p className={styles.subtitle}>Login to continue (TBO Credentials)</p>
 
-          {errorMsg && <div className={styles.error}>{errorMsg}</div>}
-
           <form onSubmit={handleSubmit} className={styles.form}>
-            <label className={styles.label}>
-              TBO Username:
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>TBO Username:</label>
               <input
                 type="text"
                 value={userName}
@@ -50,19 +54,29 @@ function Login() {
                 required
                 className={styles.input}
               />
-            </label>
+            </div>
 
-            <label className={styles.label}>
-              Password:
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className={styles.input}
-              />
-            </label>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Password:</label>
+              <div className={styles.passwordInputWrapper}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className={styles.input}
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className={styles.passwordToggle}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+            </div>
 
+            {errorMsg && <div className={styles.errorMsg}>{errorMsg}</div>}
             <button type="submit" className={styles.loginButton}>
               Login
             </button>

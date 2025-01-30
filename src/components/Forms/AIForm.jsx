@@ -1,27 +1,14 @@
-// src/components/Forms/AIForm.jsx
-
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./styles/AIForm.module.scss";
 
-// TBO endpoints proxied
-const TBO_COUNTRYLIST_URL =
-  "/tbo/SharedServices/SharedData.svc/rest/CountryList";
-const TBO_CITYLIST_URL =
-  "/tbo/SharedServices/StaticData.svc/rest/GetDestinationSearchStaticData";
-
-// Our custom hooks
-import { useOriginCountryCity } from "../../hooks/useOriginCountryCity";
-import { useDestinationCountryCity } from "../../hooks/useDestinationCountryCity";
+const TBO_COUNTRYLIST_URL = import.meta.env.VITE_TBO_COUNTRYLIST_URL;
+const TBO_CITYLIST_URL = import.meta.env.VITE_TBO_CITYLIST_URL;
 
 function AIForm({
   aiPrompt,
   setAiPrompt,
-  city,
-  setCity,
-  country,
-  setCountry,
   fromDate,
   setFromDate,
   toDate,
@@ -36,89 +23,190 @@ function AIForm({
   onReset,
 }) {
   const { userData } = useContext(AuthContext);
-  const tokenId = userData?.TokenId;
-  const userIP = userData?.Profile?.ipAddress ?? "103.161.223.11";
 
-  // Hook for origin
-  const {
-    originCountry,
-    originCountrySuggestions,
-    originCountryCode,
-    originCitiesData,
-    originCity,
-    originCitySuggestions,
-    originCityObj,
-    handleOriginCountryChange,
-    selectOriginCountry,
-    handleOriginCityChange,
-    selectOriginCity,
-    resetOrigin,
-  } = useOriginCountryCity(tokenId, userIP);
+  // Country & City Arrays
+  const [countries, setCountries] = useState([]);
+  const [originCities, setOriginCities] = useState([]);
+  const [destinationCities, setDestinationCities] = useState([]);
 
-  // Hook for destination
-  const {
-    destinationCountry,
-    destinationCountrySuggestions,
-    destinationCountryCode,
-    destinationCitiesData,
-    destinationCity,
-    destinationCitySuggestions,
-    destinationCityObj,
-    handleDestinationCountryChange,
-    selectDestinationCountry,
-    handleDestinationCityChange,
-    selectDestinationCity,
-    resetDestination,
-  } = useDestinationCountryCity(tokenId, userIP);
+  // Inputs for origin/destination
+  const [originCountry, setOriginCountry] = useState("");
+  const [originCity, setOriginCity] = useState("");
+  const [destinationCountry, setDestinationCountry] = useState("");
+  const [destinationCity, setDestinationCity] = useState("");
 
-  // Local "submit" that merges all data
+  // Codes for origin/destination
+  const [originCountryCode, setOriginCountryCode] = useState("");
+  const [originCityCode, setOriginCityCode] = useState("");
+  const [destinationCountryCode, setDestinationCountryCode] = useState("");
+  const [destinationCityCode, setDestinationCityCode] = useState("");
+
+  // Show/hide states for suggestions
+  const [showOriginCountrySuggestions, setShowOriginCountrySuggestions] =
+    useState(false);
+  const [showOriginCitySuggestions, setShowOriginCitySuggestions] =
+    useState(false);
+  const [showDestCountrySuggestions, setShowDestCountrySuggestions] =
+    useState(false);
+  const [showDestCitySuggestions, setShowDestCitySuggestions] = useState(false);
+
+  // On mount, fetch countries
+  useEffect(() => {
+    fetchCountries();
+  }, []);
+
+  // Retrieve stored or fallback credentials
+  const getAuthCredentials = () => {
+    const authSession = JSON.parse(
+      sessionStorage.getItem("authSession") || "{}"
+    );
+    return {
+      username: authSession.username || "hackathontest",
+      password: authSession.password || "Hac@98910186",
+    };
+  };
+
+  // Fetch all countries
+  const fetchCountries = async () => {
+    try {
+      const { username, password } = getAuthCredentials();
+      const encodedAuth = btoa(`${username}:${password}`);
+
+      const response = await axios.get(TBO_COUNTRYLIST_URL, {
+        headers: {
+          Authorization: `Basic ${encodedAuth}`,
+          "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+      setCountries(response.data.CountryList);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+    }
+  };
+
+  // Fetch cities for a specific country
+  const fetchCities = async (countryCode, setCitiesArray) => {
+    try {
+      const { username, password } = getAuthCredentials();
+      const encodedAuth = btoa(`${username}:${password}`);
+
+      const response = await axios.post(
+        TBO_CITYLIST_URL,
+        { CountryCode: countryCode },
+        {
+          headers: {
+            Authorization: `Basic ${encodedAuth}`,
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      );
+      setCitiesArray(response.data.CityList);
+    } catch (error) {
+      console.error("Error fetching cities:", error);
+    }
+  };
+
+  // Filter a list of items by the user input
+  const filterSuggestions = (list, input) => {
+    return list.filter((item) =>
+      item.Name.toLowerCase().includes(input.toLowerCase())
+    );
+  };
+
+  // User typed in the country input -> update text, show suggestions
+  const handleCountryChange = (
+    e,
+    setCountryText,
+    setCountryCode,
+    setCitiesArray,
+    setShowSuggestions
+  ) => {
+    const value = e.target.value;
+    setCountryText(value);
+    // reset code if user starts typing
+    setCountryCode("");
+    // show suggestions whenever there's a non-empty value
+    setShowSuggestions(value.trim() !== "");
+  };
+
+  // User typed in the city input -> update text, show suggestions
+  const handleCityChange = (
+    e,
+    setCityText,
+    setCityCode,
+    setShowSuggestions
+  ) => {
+    const value = e.target.value;
+    setCityText(value);
+    setCityCode("");
+    setShowSuggestions(value.trim() !== "");
+  };
+
+  // When user selects a country from suggestions
+  const handleCountrySelect = (
+    countryObj,
+    setCountryText,
+    setCountryCode,
+    setCitiesArray,
+    setShowSuggestions
+  ) => {
+    setCountryText(countryObj.Name);
+    setCountryCode(countryObj.Code);
+    setShowSuggestions(false); // Hide suggestions
+    fetchCities(countryObj.Code, setCitiesArray);
+  };
+
+  // When user selects a city from suggestions
+  const handleCitySelect = (
+    cityObj,
+    setCityText,
+    setCityCode,
+    setShowSuggestions
+  ) => {
+    setCityText(cityObj.Name);
+    setCityCode(cityObj.Code);
+    setShowSuggestions(false); // Hide suggestions
+  };
+
+  // Submit form -> gather all data
   const handleLocalSubmit = async (e) => {
     e.preventDefault();
-
-    // If you're also using the parent states "city","country", you could unify them.
-    // But if you prefer your hook states, you might not need "city"/"country" from props anymore.
-
     const finalData = {
-      // from the origin hook
       originCountry,
       originCountryCode,
       originCity,
-      originCityObj,
-
-      // from the destination hook
+      originCityCode,
       destinationCountry,
       destinationCountryCode,
       destinationCity,
-      destinationCityObj,
-
-      // date/adults from props
+      destinationCityCode,
       fromDate,
       toDate,
       adultCount,
-
-      // prompt
       aiPrompt,
     };
     console.log("Sending AI form details =>", finalData);
 
     try {
-      const res = await axios.post("/api/aiForm", finalData);
-      console.log("Server response =>", res.data);
+      await axios.post("/api/aiForm", finalData);
     } catch (err) {
       console.error("Error posting AI form =>", err);
     }
     onSubmit(e);
   };
 
-  // Reset function that also resets hook states
+  // Reset form -> clear everything
   const handleResetClick = () => {
-    resetOrigin();
-    resetDestination();
-
-    // If you're also using "country"/"city" from the parent:
-    setCity("");
-    setCountry("");
-
+    setOriginCountry("");
+    setOriginCity("");
+    setDestinationCountry("");
+    setDestinationCity("");
+    setOriginCountryCode("");
+    setOriginCityCode("");
+    setDestinationCountryCode("");
+    setDestinationCityCode("");
     setFromDate("");
     setToDate("");
     setAdultCount("1");
@@ -135,105 +223,169 @@ function AIForm({
         {errorMsg && <div className={styles.errorMsg}>{errorMsg}</div>}
 
         <form className={styles.aiPromptForm} onSubmit={handleLocalSubmit}>
-          {/* ORIGIN COUNTRY */}
+          {/* Origin Country */}
           <div className={styles.formRow}>
             <label className={styles.formLabel}>Origin Country</label>
             <input
               type="text"
               value={originCountry}
               onChange={(e) =>
-                handleOriginCountryChange(e, TBO_COUNTRYLIST_URL, tokenId)
+                handleCountryChange(
+                  e,
+                  setOriginCountry,
+                  setOriginCountryCode,
+                  setOriginCities,
+                  setShowOriginCountrySuggestions
+                )
               }
               className={styles.aiPromptInput}
               placeholder="e.g. 'United Kingdom'"
             />
-            {originCountrySuggestions.length > 0 && (
+            {showOriginCountrySuggestions && originCountry && (
               <ul className={styles.suggestionsList}>
-                {originCountrySuggestions.map((c, i) => (
+                {filterSuggestions(countries, originCountry).map((c, i) => (
                   <li
                     key={i}
                     onClick={() =>
-                      selectOriginCountry(c, TBO_CITYLIST_URL, tokenId)
+                      handleCountrySelect(
+                        c,
+                        setOriginCountry,
+                        setOriginCountryCode,
+                        setOriginCities,
+                        setShowOriginCountrySuggestions
+                      )
                     }
                   >
-                    <span style={{ fontSize: "0.85rem" }}>{c.name}</span>
+                    {c.Name}
                   </li>
                 ))}
               </ul>
             )}
           </div>
 
-          {/* ORIGIN CITY */}
+          {/* Origin City */}
           <div className={styles.formRow}>
             <label className={styles.formLabel}>Origin City</label>
             <input
               type="text"
               value={originCity}
-              onChange={handleOriginCityChange}
+              onChange={(e) =>
+                handleCityChange(
+                  e,
+                  setOriginCity,
+                  setOriginCityCode,
+                  setShowOriginCitySuggestions
+                )
+              }
               className={styles.aiPromptInput}
-              placeholder="e.g. 'Delhi'"
+              placeholder="e.g. 'London'"
             />
-            {originCitySuggestions.length > 0 && (
+            {showOriginCitySuggestions && originCity && (
               <ul className={styles.suggestionsList}>
-                {originCitySuggestions.map((obj, i) => (
-                  <li key={i} onClick={() => selectOriginCity(obj)}>
-                    <span style={{ fontSize: "0.85rem" }}>{obj.cityName}</span>
-                  </li>
-                ))}
+                {filterSuggestions(originCities, originCity).map(
+                  (cityObj, i) => (
+                    <li
+                      key={i}
+                      onClick={() =>
+                        handleCitySelect(
+                          cityObj,
+                          setOriginCity,
+                          setOriginCityCode,
+                          setShowOriginCitySuggestions
+                        )
+                      }
+                    >
+                      {cityObj.Name}
+                    </li>
+                  )
+                )}
               </ul>
             )}
           </div>
 
-          {/* DESTINATION COUNTRY */}
+          {/* Destination Country */}
           <div className={styles.formRow}>
             <label className={styles.formLabel}>Destination Country</label>
             <input
               type="text"
               value={destinationCountry}
               onChange={(e) =>
-                handleDestinationCountryChange(e, TBO_COUNTRYLIST_URL, tokenId)
+                handleCountryChange(
+                  e,
+                  setDestinationCountry,
+                  setDestinationCountryCode,
+                  setDestinationCities,
+                  setShowDestCountrySuggestions
+                )
               }
               className={styles.aiPromptInput}
               placeholder="e.g. 'India'"
             />
-            {destinationCountrySuggestions.length > 0 && (
+            {showDestCountrySuggestions && destinationCountry && (
               <ul className={styles.suggestionsList}>
-                {destinationCountrySuggestions.map((c, i) => (
-                  <li
-                    key={i}
-                    onClick={() =>
-                      selectDestinationCountry(c, TBO_CITYLIST_URL, tokenId)
-                    }
-                  >
-                    <span style={{ fontSize: "0.85rem" }}>{c.name}</span>
-                  </li>
-                ))}
+                {filterSuggestions(countries, destinationCountry).map(
+                  (c, i) => (
+                    <li
+                      key={i}
+                      onClick={() =>
+                        handleCountrySelect(
+                          c,
+                          setDestinationCountry,
+                          setDestinationCountryCode,
+                          setDestinationCities,
+                          setShowDestCountrySuggestions
+                        )
+                      }
+                    >
+                      {c.Name}
+                    </li>
+                  )
+                )}
               </ul>
             )}
           </div>
 
-          {/* DESTINATION CITY */}
+          {/* Destination City */}
           <div className={styles.formRow}>
             <label className={styles.formLabel}>Destination City</label>
             <input
               type="text"
               value={destinationCity}
-              onChange={handleDestinationCityChange}
+              onChange={(e) =>
+                handleCityChange(
+                  e,
+                  setDestinationCity,
+                  setDestinationCityCode,
+                  setShowDestCitySuggestions
+                )
+              }
               className={styles.aiPromptInput}
-              placeholder="e.g. 'Goa'"
+              placeholder="e.g. 'Mumbai'"
             />
-            {destinationCitySuggestions.length > 0 && (
+            {showDestCitySuggestions && destinationCity && (
               <ul className={styles.suggestionsList}>
-                {destinationCitySuggestions.map((obj, i) => (
-                  <li key={i} onClick={() => selectDestinationCity(obj)}>
-                    <span style={{ fontSize: "0.85rem" }}>{obj.cityName}</span>
-                  </li>
-                ))}
+                {filterSuggestions(destinationCities, destinationCity).map(
+                  (cityObj, i) => (
+                    <li
+                      key={i}
+                      onClick={() =>
+                        handleCitySelect(
+                          cityObj,
+                          setDestinationCity,
+                          setDestinationCityCode,
+                          setShowDestCitySuggestions
+                        )
+                      }
+                    >
+                      {cityObj.Name}
+                    </li>
+                  )
+                )}
               </ul>
             )}
           </div>
 
-          {/* FROM DATE */}
+          {/* From Date */}
           <div className={styles.formRow}>
             <label className={styles.formLabel}>From Date</label>
             <input
@@ -244,7 +396,7 @@ function AIForm({
             />
           </div>
 
-          {/* TO DATE */}
+          {/* To Date */}
           <div className={styles.formRow}>
             <label className={styles.formLabel}>To Date</label>
             <input
@@ -255,7 +407,7 @@ function AIForm({
             />
           </div>
 
-          {/* ADULTS */}
+          {/* Adults */}
           <div className={styles.formRow}>
             <label className={styles.formLabel}>Adults</label>
             <input
@@ -267,7 +419,7 @@ function AIForm({
             />
           </div>
 
-          {/* PROMPT */}
+          {/* Prompt */}
           <div className={styles.promptRow}>
             <label className={`${styles.formLabel} ${styles.promptLabel}`}>
               Prompt
@@ -281,7 +433,6 @@ function AIForm({
             />
           </div>
 
-          {/* SUBMIT & RESET */}
           <button type="submit" className={styles.aiPromptButton}>
             {isAiActive ? "Regenerate AI" : "Search AI"}
           </button>

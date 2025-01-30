@@ -1,27 +1,33 @@
-// src/pages/Signup/Signup.jsx
-import React, { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
-import styles from './styles/SignUp.module.scss';
+// Signup.jsx
+import React, { useState, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import styles from "./styles/SignUp.module.scss";
 
 function Signup() {
   const { signUp } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [userName, setUserName] = useState(''); 
-  const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMsg('');
+    setErrorMsg("");
     try {
       await signUp(email, userName, password);
-      navigate('/');
+      navigate("/");
     } catch (err) {
-      setErrorMsg(err.message || 'Sign up failed');
+      setErrorMsg(err.message || "Sign up failed");
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -37,13 +43,13 @@ function Signup() {
       <div className={styles.formSection}>
         <div className={styles.formContainer}>
           <h2 className={styles.title}>Create an Account</h2>
-          <p className={styles.subtitle}>Sign up to get started (TBO Credentials)</p>
-
-          {errorMsg && <div className={styles.error}>{errorMsg}</div>}
+          <p className={styles.subtitle}>
+            Sign up to get started (TBO Credentials)
+          </p>
 
           <form onSubmit={handleSubmit} className={styles.form}>
-            <label className={styles.label}>
-              Email:
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Email:</label>
               <input
                 type="email"
                 value={email}
@@ -51,10 +57,10 @@ function Signup() {
                 required
                 className={styles.input}
               />
-            </label>
+            </div>
 
-            <label className={styles.label}>
-              TBO Username:
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>TBO Username:</label>
               <input
                 type="text"
                 value={userName}
@@ -62,19 +68,29 @@ function Signup() {
                 required
                 className={styles.input}
               />
-            </label>
+            </div>
 
-            <label className={styles.label}>
-              TBO Password:
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className={styles.input}
-              />
-            </label>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>TBO Password:</label>
+              <div className={styles.passwordInputWrapper}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className={styles.input}
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className={styles.passwordToggle}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+            </div>
 
+            {errorMsg && <div className={styles.errorMsg}>{errorMsg}</div>}
             <button type="submit" className={styles.signupButton}>
               Sign Up
             </button>
