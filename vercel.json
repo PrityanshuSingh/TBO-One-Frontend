@@ -2,18 +2,20 @@
     "version": 2,
     "rewrites": [
       {
+        "source": "/tbo/TBOHolidays_HotelAPI/CountryList",
+        "destination": "http://api.tbotechnology.in/TBOHolidays_HotelAPI/CountryList"
+      },
+      {
+        "source": "/tbo/TBOHolidays_HotelAPI/CityList",
+        "destination": "http://api.tbotechnology.in/TBOHolidays_HotelAPI/CityList"
+      },
+      {
         "source": "/tbo/(.*)",
         "destination": "http://api.tbotechnology.in/TBOHolidays_HotelAPI/$1"
       },
       {
         "source": "/(.*)",
         "destination": "/"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/tbo/(.*)",
-        "dest": "http://api.tbotechnology.in/TBOHolidays_HotelAPI/$1"
       }
     ],
     "headers": [
