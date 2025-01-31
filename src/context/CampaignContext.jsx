@@ -8,18 +8,20 @@ import fallbackPackages from "../data/localPackages.json";
 export const CampaignContext = createContext();
 
 export const CampaignProvider = ({ children }) => {
-  const { userData, setUserData } = useContext(AuthContext);
+  const { userData, isAuthenticated, updateUserProfile } = useContext(AuthContext);
   const [campaigns, setCampaigns] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [campaignError, setCampaignError] = useState("");
 
-  // Fetch campaigns from AuthContext on initialization
+  // Fetch campaigns from AuthContext when userData changes (i.e., after login)
   useEffect(() => {
-    if (userData?.Profile?.campaigns) {
+    if (isAuthenticated && userData?.Profile?.campaigns) {
       setCampaigns(userData.Profile.campaigns);
+    } else {
+      setCampaigns([]); // Clear campaigns if not authenticated
     }
     setIsLoading(false);
-  }, [userData]);
+  }, [isAuthenticated, userData]);
 
   // Function to delete campaigns
   const deleteCampaigns = async (campaignIds) => {
@@ -35,14 +37,11 @@ export const CampaignProvider = ({ children }) => {
       );
       setCampaigns(updatedCampaigns);
 
-      // Update AuthContext's userData
-      setUserData((prev) => ({
-        ...prev,
-        Profile: {
-          ...prev.Profile,
-          campaigns: updatedCampaigns,
-        },
-      }));
+      // Update AuthContext's userData via updateUserProfile
+      updateUserProfile({
+        ...userData.Profile,
+        campaigns: updatedCampaigns,
+      });
     } catch (error) {
       console.error("Failed to delete campaigns.", error);
       setCampaignError(
@@ -74,6 +73,7 @@ export const CampaignProvider = ({ children }) => {
 
       return packagesMap;
     } catch (error) {
+      console.error("Failed to fetch package details. Using fallback data.", error);
       const packagesMap = {};
       const fetchedPackages = fallbackPackages;
       fetchedPackages.forEach(({ id, packageTitle }) => {

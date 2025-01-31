@@ -77,7 +77,7 @@ const CampaignCard = ({
           <>
             <div className={styles.tooltipContainer}>
               {!isContactOpen && contacts.length > 2
-                ? `${contacts.slice(0, 2).join(", ")}...`
+                ? `${contacts.slice(0, 1).join(", ")}...`
                 : contacts.join(", ")}
             </div>
             {isContactOpen && (

@@ -1,0 +1,183 @@
+/* src/components/Hotel/styles/Hotel.module.scss */
+
+
+.hotel {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: linear-gradient(135deg, rgba(240, 255, 245, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
+  padding: 2.5rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 8px 32px rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.12);
+  margin-bottom: 2.5rem;
+
+  h3 {
+    font: 700 1.6rem "Poppins", sans-serif; // Enhanced typography
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: left; // Left-aligned heading
+  }
+  .fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background-color: rgba(241, 245, 249, 0.9); // Softer light blue background
+    padding: 25px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .field {
+    display: grid;
+    grid-template-columns: 200px 1fr; // Horizontal layout with fixed label width
+    align-items: center;
+    gap: 1.5rem;
+
+    label {
+      font: 600 1rem "Inter", sans-serif; // Bold and readable labels
+      color: var(--text-secondary);
+      text-align: right;
+      padding-right: 1rem;
+    }
+
+    input,
+    textarea {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--light-gray);
+      border-radius: var(--border-radius-sm);
+      padding: 0.9rem 1.2rem;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+
+      &:focus {
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 2px rgba(32, 174, 243, 0.2);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Error States */
+    &.error {
+      input,
+      textarea {
+        border-color: var(--danger-red);
+      }
+
+      .errorMessage {
+        grid-column: 2 / 3;
+        color: var(--danger-red);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+      }
+    }
+  }
+
+  /* Amenities Input Specific Styling */
+  .amenitiesField {
+    grid-template-columns: 200px 1fr; // Consistent with other fields
+
+    input {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--light-gray);
+      border-radius: var(--border-radius-sm);
+      padding: 0.9rem 1.2rem;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+
+      &:focus {
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 2px rgba(32, 174, 243, 0.2);
+      }
+    }
+
+    input::placeholder {
+      color: var(--text-placeholder);
+    }
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 992px) {
+    .hotel {
+      padding: 2rem;
+
+      h3 {
+        font-size: 1.6rem;
+      }
+
+      .fieldGroup {
+        padding: 2rem;
+      }
+
+      .field {
+        grid-template-columns: 150px 1fr; // Adjusted label width for smaller screens
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .hotel {
+      padding: 1.8rem;
+
+      h3 {
+        font-size: 1.4rem;
+      }
+
+      .fieldGroup {
+        padding: 1.8rem;
+      }
+
+      .field {
+        grid-template-columns: 1fr; // Stack labels and inputs vertically
+        text-align: left;
+
+        label {
+          text-align: left;
+          padding-right: 0;
+        }
+      }
+
+      .amenitiesField {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .hotel {
+      padding: 1.5rem;
+
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      .fieldGroup {
+        padding: 1.5rem;
+      }
+
+      .field {
+        grid-template-columns: 1fr; // Full-width fields
+
+        label {
+          font-size: 0.9rem;
+        }
+
+        input,
+        textarea {
+          font-size: 0.9rem;
+          padding: 0.8rem 1rem;
+        }
+      }
+
+      .amenitiesField {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

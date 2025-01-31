@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import localPackages from "../../data/localPackages.json";
-import CategorySection from "../../components/Sections/CategorySection";
+import CategorySection from "../../components/Sections/PackageCategory/CategorySection";
 import { FaArrowLeft } from "react-icons/fa";
 import styles from "./styles/SavedPackages.module.scss";
 

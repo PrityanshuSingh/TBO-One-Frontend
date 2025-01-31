@@ -1,0 +1,280 @@
+/* src/pages/PackageDetails/styles/PackageDetails.module.scss */
+
+@import '../../../assets/styles/variables.scss'; // Adjust path as necessary
+
+.packageDetailsContainer {
+  width: 100%;
+  max-width: 70vw;
+  max-height: 87.6vh;
+  height: 87.6vh;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+
+  h2 {
+    font: 700 1.6rem "Poppins", sans-serif; // Enhanced typography
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: left; // Left-aligned heading
+  }
+
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+    border: 2px solid #f1f1f1;
+  }
+
+  /* Sidebar Section */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: var(--light-blue);
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+    border-radius: 0 20px 20px 0;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+
+    .sidebarTitle {
+      font: 700 1.4rem "Poppins", sans-serif; // Decreased font size
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .sidebarNav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      a {
+        text-decoration: none;
+        color: var(--text-primary);
+        font: 500 1rem "Inter", sans-serif; // Decreased font size
+        padding: 10px 15px;
+        border-radius: var(--border-radius-sm);
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        &:hover {
+          background-color: rgba(32, 174, 243, 0.1);
+          color: var(--primary-blue);
+        }
+
+        &.active {
+          background-color: var(--primary-blue);
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 1024px) {
+    padding: 15px;
+
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .content {
+      .sightseeing {
+        flex-direction: column;
+
+        .sightseeingImage {
+          width: 100%;
+          height: auto;
+        }
+
+        .sightseeingDetails {
+          width: 100%;
+        }
+      }
+
+      .itinerary {
+        .itineraryItem {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    }
+
+    .sidebar {
+      transform: translateX(-100%);
+      /* Optionally, you can add a class to toggle sidebar visibility */
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 10px;
+
+    .header {
+      .title {
+        font-size: 26px; // Decreased font size
+      }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+
+        .editButton,
+        .saveButton,
+        .cancelButton {
+          padding: 8px 16px;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .content {
+      .basicDetails,
+      .priceDetails,
+      .detailsSection,
+      .subSection {
+        .field {
+          label,
+          span {
+            font-size: 14px;
+          }
+
+          .input,
+          .textarea,
+          select {
+            font-size: 14px;
+            padding: 8px 12px;
+          }
+        }
+
+        .fieldGroup {
+          padding: 15px;
+        }
+
+        .flightGroup {
+          gap: 15px;
+        }
+      }
+
+      .imageSection {
+        .packageImage {
+          max-width: 100%;
+        }
+
+        .imageUpload {
+          label {
+            padding: 6px 12px;
+            font-size: 14px;
+          }
+        }
+      }
+
+      .detailsSection {
+        .subSection {
+          &.sightseeing {
+            .sightseeingImage {
+              width: 100%;
+            }
+
+            .sightseeingDetails {
+              width: 100%;
+            }
+          }
+
+          &.itinerary {
+            .fieldGroup {
+              .itineraryItem {
+                flex-direction: column;
+                align-items: flex-start;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 10px;
+
+    .content {
+      .basicDetails,
+      .priceDetails,
+      .detailsSection,
+      .subSection {
+        .field {
+          label,
+          span {
+            font-size: 13px;
+          }
+
+          .input,
+          .textarea,
+          select {
+            font-size: 13px;
+            padding: 6px 10px;
+          }
+        }
+
+        .fieldGroup {
+          padding: 12px;
+        }
+
+        .flightGroup {
+          gap: 12px;
+        }
+      }
+
+      .imageSection {
+        .packageImage {
+          max-width: 100%;
+        }
+
+        .imageUpload {
+          label {
+            padding: 6px 12px;
+            font-size: 13px;
+          }
+        }
+      }
+
+      .detailsSection {
+        .subSection {
+          &.sightseeing {
+            .sightseeingImage {
+              width: 100%;
+            }
+
+            .sightseeingDetails {
+              width: 100%;
+            }
+          }
+
+          &.itinerary {
+            .fieldGroup {
+              .itineraryItem {
+                flex-direction: column;
+                align-items: flex-start;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

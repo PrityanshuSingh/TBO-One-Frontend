@@ -10,7 +10,7 @@ import localPackages from "../../data/localPackages.json";
 
 import CampaignFilter from "../../components/Filters/CampaignFilter";
 import AIForm from "../../components/Forms/AIForm";
-import CategorySection from "../../components/Sections/CategorySection";
+import CategorySection from "../../components/Sections/PackageCategory/CategorySection";
 import PackageCard from "../.././components/Cards/PackageCard";
 
 import { FaRegBookmark } from "react-icons/fa";

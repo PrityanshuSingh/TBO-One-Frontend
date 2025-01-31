@@ -1,0 +1,111 @@
+/* src/components/AdditionalServices/AdditionalServices.module.scss */
+
+.additionalServices {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; // Keeping consistent spacing
+    background: linear-gradient(135deg, rgba(255, 250, 240, 0.9) 0%, rgba(255, 255, 255, 1) 100%); // Light pastel peach background
+    padding: 2rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 8px 32px rgba(255, 140, 0, 0.08); // Orange shadow
+    border: 1px solid rgba(255, 140, 0, 0.12);
+    margin-bottom: 2.5rem;
+  
+    h3 {
+      font: 700 1.6rem "Poppins", sans-serif;
+      color: var(--primary-orange);
+      margin-bottom: 1.5rem;
+      text-align: left; // Keeping the title left-aligned
+    }
+  
+    .fieldGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background-color: rgba(255, 250, 240, 0.9); // Slightly deeper pastel peach for contrast
+      padding: 1.5rem;
+      border-radius: var(--border-radius-sm);
+      box-shadow: 0 4px 8px rgba(255, 140, 0, 0.05);
+    }
+  
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px; // Keeping consistent small gaps
+  
+      label {
+        font: 600 14px "Inter", sans-serif;
+        color: var(--text-secondary);
+      }
+  
+      select,
+      textarea,
+      input {
+        padding: 0.8rem 1.2rem;
+        border: 1px solid var(--light-gray);
+        border-radius: var(--border-radius-sm);
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.95);
+        outline: none;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+  
+        &:focus {
+          border-color: var(--primary-orange);
+          box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.2);
+        }
+      }
+  
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+    }
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .additionalServices {
+      padding: 1.5rem;
+  
+      h2 {
+        font-size: 1.5rem;
+      }
+  
+      .field {
+        label {
+          font-size: 13px;
+        }
+  
+        select,
+        textarea,
+        input {
+          font-size: 13px;
+          padding: 6px 10px;
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .additionalServices {
+      padding: 1rem;
+  
+      h2 {
+        font-size: 1.3rem;
+      }
+  
+      .field {
+        label {
+          font-size: 12px;
+        }
+  
+        select,
+        textarea,
+        input {
+          font-size: 12px;
+          padding: 5px 8px;
+        }
+      }
+    }
+  }
+  

@@ -55,7 +55,7 @@ function Sidebar() {
       // Not authenticated, fetch from local JSON
       const data = FALLBACK_PROFILE_JSON;
     setProfileData({
-      name: data.Member.FirstName || 'Executive Name',
+      name: data.Profile.firstName || 'Executive Name',
       company: data.Profile.company || 'Company Name',
       address: data.Profile.address || 'Company Short Address',
     });

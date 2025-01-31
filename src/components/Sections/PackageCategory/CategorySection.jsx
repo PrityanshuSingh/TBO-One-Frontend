@@ -1,7 +1,7 @@
 // src/pages/Packages/components/CategorySection.jsx
 
 import React from 'react';
-import TravelCard from '../Cards/PackageCard';
+import TravelCard from '../../Cards/PackageCard';
 import styles from './styles/CategorySection.module.scss';
 
 const CategorySection = ({

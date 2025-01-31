@@ -1,0 +1,115 @@
+/* src/components/Flights/styles/FlightItem.module.scss */
+
+
+.flight {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .flightTitle {
+    font: 600 18px "Poppins", sans-serif;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+    label {
+      font: 500 14px "Inter", sans-serif;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 8px 12px;
+      border: 1px solid var(--light-gray);
+      border-radius: 0.6rem;
+      font-size: 14px;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+
+      &:focus {
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 2px rgba(32, 174, 243, 0.2);
+        outline: none;
+      }
+    }
+
+    .text {
+      font: 500 14px "Inter", sans-serif;
+      color: var(--text-primary);
+      margin: 0;
+    }
+  }
+
+  .inputError {
+    border-color: var(--danger-red);
+  }
+
+  .error {
+    color: var(--danger-red);
+    font-size: 12px;
+    margin-top: 5px;
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .flight {
+    padding: 15px;
+
+    .flightTitle {
+      font-size: 16px;
+    }
+
+    .field {
+      label {
+        font-size: 13px;
+      }
+
+      input {
+        font-size: 13px;
+        padding: 6px 10px;
+      }
+
+      .text {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .flight {
+    padding: 10px;
+
+    .flightTitle {
+      font-size: 14px;
+    }
+
+    .field {
+      label {
+        font-size: 12px;
+      }
+
+      input {
+        font-size: 12px;
+        padding: 5px 8px;
+      }
+
+      .text {
+        font-size: 12px;
+      }
+    }
+  }
+}

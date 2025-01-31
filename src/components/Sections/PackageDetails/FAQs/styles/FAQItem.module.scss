@@ -1,0 +1,28 @@
+/* src/components/FAQs/FAQItem.module.scss */
+
+.faqItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  p {
+    font: 500 1rem "Inter", sans-serif; // Decreased font size
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+
+    &.question {
+      font-weight: 600;
+    }
+  }
+}

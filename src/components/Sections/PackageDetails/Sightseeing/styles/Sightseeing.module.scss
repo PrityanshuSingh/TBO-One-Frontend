@@ -1,0 +1,122 @@
+/* src/components/Sightseeing/styles/Sightseeing.module.scss */
+
+
+.sightseeing {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; // Ensuring gap of 5px between elements
+  align-items: flex-start;
+  background: linear-gradient(135deg, rgba(224, 255, 255, 0.8) 0%, rgba(255, 255, 255, 1) 100%); // Light teal gradient
+  padding: 2rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 8px 32px rgba(64, 224, 208, 0.1); // Turquoise shadow
+  border: 1px solid rgba(64, 224, 208, 0.12);
+  margin-bottom: 2.5rem;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(64, 224, 208, 0.2); // Enhanced shadow on hover
+  }
+  h3 {
+    font: 700 1.6rem "Poppins", sans-serif; // Enhanced typography
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: left; // Left-aligned heading
+  }
+
+  .sightseeingImage {
+    width: 250px;
+    height: 180px;
+    border-radius: var(--border-radius-sm);
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(64, 224, 208, 0.2); // Teal shadow
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(64, 224, 208, 0.3); // Enhanced shadow on hover
+    }
+  }
+
+  .sightseeingDetails {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; // Ensuring gap of 5px between content lines
+
+    .fieldGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 5px; // Ensuring gap of 5px between fields
+      background-color: rgba(224, 255, 255, 0.9); // Light teal background
+      padding: 1rem;
+      border-radius: var(--border-radius-sm);
+      box-shadow: 0 4px 8px rgba(64, 224, 208, 0.05); // Subtle shadow
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px; // Ensuring gap of 5px between label and input
+
+      label {
+        font: 600 0.9rem "Inter", sans-serif; // Decreased font size
+        color: var(--text-secondary);
+        margin-bottom: 5px;
+      }
+
+      input,
+      textarea {
+        padding: 0.7rem 1rem; // Adjusted padding
+        border: 1px solid var(--light-gray);
+        border-radius: var(--border-radius-sm);
+        font-size: 0.9rem; // Decreased font size
+        background: rgba(255, 255, 255, 0.95);
+        outline: none;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+
+        &:focus {
+          border-color: var(--teal);
+          box-shadow: 0 0 0 2px rgba(64, 224, 208, 0.2);
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 60px;
+      }
+    }
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .sightseeing {
+      flex-direction: column;
+      padding: 1.8rem;
+
+      .sightseeingImage {
+        width: 100%;
+        height: auto;
+      }
+
+      .sightseeingDetails {
+        gap: 5px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .sightseeing {
+      padding: 1.5rem;
+
+      .sightseeingImage {
+        width: 100%;
+        height: auto;
+      }
+
+      .sightseeingDetails {
+        gap: 5px;
+      }
+    }
+  }
+}

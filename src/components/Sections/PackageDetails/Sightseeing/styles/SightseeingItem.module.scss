@@ -1,0 +1,61 @@
+/* src/components/Sightseeing/styles/SightseeingItem.module.scss */
+
+
+.sightseeingItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; // Ensuring gap of 5px between elements
+  background-color: rgba(224, 255, 255, 0.9); // Light teal background
+  padding: 1.5rem;
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0 4px 8px rgba(64, 224, 208, 0.1); // Turquoise shadow
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(64, 224, 208, 0.15); // Enhanced shadow on hover
+  }
+
+  .fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; // Ensuring gap of 5px between fields
+    background-color: rgba(224, 255, 255, 0.95); // Slightly different teal for differentiation
+    padding: 1rem;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 2px 4px rgba(64, 224, 208, 0.05); // Subtle shadow
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; // Ensuring gap of 5px between label and input
+
+    label {
+      font: 600 0.9rem "Inter", sans-serif; // Decreased font size
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea {
+      padding: 0.7rem 1rem; // Adjusted padding
+      border: 1px solid var(--light-gray);
+      border-radius: var(--border-radius-sm);
+      font-size: 0.9rem; // Decreased font size
+      background: rgba(255, 255, 255, 0.95);
+      outline: none;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+
+      &:focus {
+        border-color: var(--teal);
+        box-shadow: 0 0 0 2px rgba(64, 224, 208, 0.2);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+  }
+}

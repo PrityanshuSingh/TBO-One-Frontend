@@ -1,0 +1,146 @@
+/* src/components/Flights/Flights.module.scss */
+
+.flights {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; // Maintaining a consistent gap
+    background: linear-gradient(135deg, rgba(245, 245, 255, 0.8) 0%, rgba(255, 255, 255, 1) 100%); // Soft lavender background
+    padding: 2rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 8px 32px rgba(100, 149, 237, 0.08); // Cornflower Blue shadow
+    border: 1px solid rgba(100, 149, 237, 0.12);
+    margin-bottom: 2.5rem;
+  
+    h3 {
+      font: 700 1.6rem "Poppins", sans-serif;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      text-align: left; // Ensure heading is left-aligned
+    }
+  
+    .fieldGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background-color: rgba(245, 245, 255, 0.9); // Slightly darker lavender for field group
+      padding: 1.5rem;
+      border-radius: var(--border-radius-sm);
+      box-shadow: 0 4px 8px rgba(100, 149, 237, 0.05); // Light shadow for subtle elevation
+    }
+  }
+  
+  /* src/components/Flights/styles/FlightItem.module.scss */
+  
+  .flight {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 16px rgba(100, 149, 237, 0.1); // Soft blue shadow
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+  
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(100, 149, 237, 0.15); // Enhanced hover effect
+    }
+  
+    .flightTitle {
+      font: 600 18px "Poppins", sans-serif;
+      color: var(--primary-blue);
+      margin-bottom: 15px;
+    }
+  
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px; // Consistent small gap
+  
+      label {
+        font: 600 14px "Inter", sans-serif; // Slightly bold for visibility
+        color: var(--text-secondary);
+      }
+  
+      input {
+        padding: 0.7rem 1rem;
+        border: 1px solid var(--light-gray);
+        border-radius: var(--border-radius-sm);
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.95);
+        outline: none;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+  
+        &:focus {
+          border-color: var(--primary-blue);
+          box-shadow: 0 0 0 2px rgba(100, 149, 237, 0.2); // Focus effect
+        }
+      }
+  
+      .text {
+        font: 500 14px "Inter", sans-serif;
+        color: var(--text-primary);
+        margin: 0;
+      }
+    }
+  
+    .inputError {
+      border-color: var(--danger-red);
+    }
+  
+    .error {
+      color: var(--danger-red);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .flight {
+      padding: 15px;
+  
+      .flightTitle {
+        font-size: 16px;
+      }
+  
+      .field {
+        label {
+          font-size: 13px;
+        }
+  
+        input {
+          font-size: 13px;
+          padding: 6px 10px;
+        }
+  
+        .text {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .flight {
+      padding: 10px;
+  
+      .flightTitle {
+        font-size: 14px;
+      }
+  
+      .field {
+        label {
+          font-size: 12px;
+        }
+  
+        input {
+          font-size: 12px;
+          padding: 5px 8px;
+        }
+  
+        .text {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  

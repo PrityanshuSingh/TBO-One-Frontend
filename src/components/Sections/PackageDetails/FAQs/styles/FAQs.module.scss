@@ -1,0 +1,110 @@
+/* src/components/FAQs/FAQs.module.scss */
+
+.faqs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; // Keeping consistent spacing
+    background: linear-gradient(135deg, rgba(240, 248, 255, 0.9) 0%, rgba(255, 255, 255, 1) 100%); // Light pastel blue background
+    padding: 2rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 8px 32px rgba(70, 130, 180, 0.08); // Subtle blue shadow
+    border: 1px solid rgba(70, 130, 180, 0.12);
+    margin-bottom: 2.5rem;
+  
+    h3 {
+      font: 700 1.6rem "Poppins", sans-serif;
+      color: var(--primary-blue);
+      margin-bottom: 1.5rem;
+      text-align: left; // Keeping the title left-aligned
+    }
+  
+    .fieldGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background-color: rgba(240, 248, 255, 0.9); // Slightly deeper pastel blue for contrast
+      padding: 1.5rem;
+      border-radius: var(--border-radius-sm);
+      box-shadow: 0 4px 8px rgba(70, 130, 180, 0.05);
+    }
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .faqs {
+      padding: 1.5rem;
+  
+      h3 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .faqs {
+      padding: 1rem;
+  
+      h3 {
+        font-size: 1.3rem;
+      }
+    }
+  }
+  
+  /* src/components/FAQs/FAQItem.module.scss */
+  
+  .faqItem {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 2px 4px rgba(70, 130, 180, 0.1); // Subtle blue shadow
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(70, 130, 180, 0.15);
+    }
+  
+    .question {
+      font: 600 1rem "Inter", sans-serif;
+      color: var(--primary-blue);
+    }
+  
+    .answer {
+      font: 500 1rem "Inter", sans-serif;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .faqItem {
+      padding: 12px;
+  
+      .question {
+        font-size: 0.95rem;
+      }
+  
+      .answer {
+        font-size: 0.95rem;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .faqItem {
+      padding: 10px;
+  
+      .question {
+        font-size: 0.9rem;
+      }
+  
+      .answer {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  

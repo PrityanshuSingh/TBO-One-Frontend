@@ -1,0 +1,71 @@
+/* src/components/BasicDetails/BasicDetails.module.scss */
+
+.basicDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f9fbfc; // Softer light background for better readability
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    font: 700 1.6rem "Poppins", sans-serif; // Enhanced typography
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: left; // Left-aligned heading
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.8rem;
+    position: relative;
+
+    /* Enhanced Focus and Active States */
+    &:focus-within label {
+      color: var(--primary-blue);
+      font-weight: 700;
+    }
+
+    label {
+      font: 600 1rem "Inter", sans-serif; // Decreased font size
+      color: var(--text-primary);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.2s ease;
+
+      &::before {
+        content: '•';
+        color: var(--primary-blue);
+        font-size: 1.2rem; // Decreased font size
+      }
+    }
+
+    .input,
+    .textarea,
+    select {
+      padding: 0.9rem 1.2rem; // Adjusted padding
+      border: 1px solid rgba(32, 174, 243, 0.2);
+      border-radius: 0.8rem;
+      font-size: 1rem; // Decreased font size
+      background: rgba(255, 255, 255, 0.9);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 2;
+
+      &:focus {
+        border-color: var(--primary-blue);
+        box-shadow: 0 4px 12px rgba(32, 174, 243, 0.15);
+        background: white;
+      }
+    }
+
+    .textarea {
+      min-height: 120px;
+      line-height: 1.6;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+/* src/components/Itinerary/ItineraryItem.module.scss */
+
+.itineraryItem {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .dayNumber {
+    font: 600 1rem "Poppins", sans-serif; // Decreased font size
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #1e88e5 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(32, 174, 243, 0.2);
+  }
+
+  .itineraryContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+      font: 500 1rem "Inter", sans-serif; // Decreased font size
+      color: var(--text-primary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    textarea {
+      padding: 0.9rem 1.2rem; // Adjusted padding
+      border: 1px solid var(--light-gray);
+      border-radius: 0.8rem;
+      font-size: 1rem; // Decreased font size
+      outline: none;
+      background: rgba(255, 255, 255, 0.9);
+      transition: border 0.3s ease;
+
+      &:focus {
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 2px rgba(32, 174, 243, 0.2);
+      }
+
+      resize: vertical;
+      min-height: 80px;
+    }
+  }
+}

@@ -1,0 +1,146 @@
+/* src/components/Itinerary/styles/Itinerary.module.scss */
+
+.itinerary {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: linear-gradient(135deg, rgba(255, 228, 225, 0.8) 0%, rgba(255, 255, 255, 1) 100%); // Soft pink gradient
+  padding: 2.5rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 8px 32px rgba(255, 99, 71, 0.1); // Tomato-colored shadow
+  border: 1px solid rgba(255, 99, 71, 0.12);
+  margin-bottom: 2.5rem;
+
+  h3 {
+    font: 700 1.6rem "Poppins", sans-serif; // Enhanced typography
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: left; // Left-aligned heading
+  }
+
+  .fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; // Ensuring gap of 5px between fields
+    background-color: rgba(255, 240, 245, 0.9); // Light pink background
+    padding: 1.5rem;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 4px 8px rgba(255, 99, 71, 0.05); // Subtle shadow
+  }
+
+  .itineraryItem {
+    display: flex;
+    align-items: center;
+    gap: 5px; // Ensuring gap of 5px between elements
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 2px 4px rgba(255, 99, 71, 0.1); // Tomato-colored shadow
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(255, 99, 71, 0.15); // Enhanced shadow on hover
+    }
+
+    .dayNumber {
+      font: 600 1rem "Poppins", sans-serif;
+      color: #fff;
+      width: 50px; // Reduced size for better fit
+      height: 50px;
+      background: linear-gradient(135deg, var(--tomato-red) 0%, #ff6347 100%); // Tomato red gradient
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 99, 71, 0.2);
+      flex-shrink: 0;
+    }
+
+    .itineraryContent {
+      display: flex;
+      flex-direction: column;
+      gap: 5px; // Ensuring gap of 5px between content lines
+
+      p {
+        font: 500 0.9rem "Inter", sans-serif; // Decreased font size
+        color: var(--text-primary);
+        line-height: 1.4;
+        margin: 0;
+      }
+
+      textarea {
+        padding: 0.7rem 1rem; // Adjusted padding
+        border: 1px solid var(--light-gray);
+        border-radius: 0.6rem;
+        font-size: 0.9rem; // Decreased font size
+        outline: none;
+        background: rgba(255, 255, 255, 0.9);
+        transition: border 0.3s ease;
+
+        &:focus {
+          border-color: var(--tomato-red);
+          box-shadow: 0 0 0 2px rgba(255, 99, 71, 0.2);
+        }
+
+        resize: vertical;
+        min-height: 60px;
+      }
+    }
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .itinerary {
+      padding: 2rem;
+
+      .fieldGroup {
+        padding: 1.5rem;
+      }
+
+      .itineraryItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        .dayNumber {
+          width: 40px;
+          height: 40px;
+        }
+
+        .itineraryContent {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .itinerary {
+      padding: 1.5rem;
+
+      .fieldGroup {
+        padding: 1rem;
+      }
+
+      .itineraryItem {
+        .dayNumber {
+          width: 35px;
+          height: 35px;
+        }
+
+        .itineraryContent {
+          p {
+            font-size: 0.8rem;
+          }
+
+          textarea {
+            font-size: 0.8rem;
+            padding: 0.6rem 0.8rem;
+            min-height: 50px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+/* src/components/Transport/styles/Transport.module.scss */
+
+.transport {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; // Ensuring gap of 5px between main elements
+  background: linear-gradient(135deg, rgba(230, 230, 250, 0.8) 0%, rgba(255, 255, 255, 1) 100%); // Lavender gradient
+  padding: 2rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 8px 32px rgba(138, 43, 226, 0.1); // BlueViolet shadow
+  border: 1px solid rgba(138, 43, 226, 0.12);
+  margin-bottom: 2.5rem;
+
+  h3 {
+    font: 700 1.6rem "Poppins", sans-serif; // Enhanced typography
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: left; // Left-aligned heading
+  }
+
+  .fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; // Ensuring gap of 5px between fields
+    background-color: rgba(230, 230, 250, 0.9); // Light lavender background
+    padding: 1.5rem;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 4px 8px rgba(138, 43, 226, 0.05); // Subtle shadow
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; // Ensuring gap of 5px between label and input
+
+    label {
+      font: 600 0.9rem "Inter", sans-serif; // Decreased font size
+      color: var(--text-secondary);
+      margin-bottom: 2px;
+    }
+
+    select,
+    textarea {
+      padding: 0.7rem 1rem; // Adjusted padding
+      border: 1px solid var(--light-gray);
+      border-radius: var(--border-radius-sm);
+      font-size: 0.9rem; // Decreased font size
+      background: rgba(255, 255, 255, 0.95);
+      outline: none;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+
+      &:focus {
+        border-color: var(--purple);
+        box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .transport {
+      padding: 1.8rem;
+
+      .fieldGroup {
+        padding: 1.5rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .transport {
+      padding: 1.5rem;
+
+      .fieldGroup {
+        padding: 1rem;
+      }
+
+      .field {
+        label {
+          font-size: 0.8rem;
+        }
+
+        select,
+        textarea {
+          font-size: 0.8rem;
+          padding: 0.6rem 0.8rem;
+        }
+      }
+    }
+  }
+}

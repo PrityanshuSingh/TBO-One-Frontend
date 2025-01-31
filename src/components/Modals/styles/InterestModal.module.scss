@@ -1,0 +1,113 @@
+/* src/components/Sections/PackageDetails/InterestModal/InterestModal.module.scss */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001; // Above sidebar
+}
+
+.modal {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px 30px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--gray);
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--primary-blue);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.modalTitle {
+  font: 700 20px "Poppins", sans-serif;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font: 500 14px "Inter", sans-serif;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 8px 12px;
+  border: 1px solid var(--gray);
+  border-radius: 0.6rem;
+  font-size: 14px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  
+  &:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(32, 174, 243, 0.2);
+    outline: none;
+  }
+}
+
+.inputError {
+  border-color: var(--danger-red);
+}
+
+.error {
+  color: var(--danger-red);
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.sendButton {
+  padding: 10px 16px;
+  background-color: var(--primary-blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font: 600 14px "Inter", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  
+  &:hover {
+    background-color: #1a8ecb;
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: 2px solid var(--primary-blue);
+  }
+}

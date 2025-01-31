@@ -1,0 +1,49 @@
+/* src/components/ImageSection/ImageSection.module.scss */
+
+.imageSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .packageImage {
+    width: 100%;
+    max-width: 800px; // Increased image size for better visibility
+    height: 300px;
+    border-radius: 10px;
+    object-fit:cover;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02); // Subtle zoom on hover
+    }
+  }
+
+  .imageUpload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input[type="file"] {
+      display: none;
+    }
+
+    label {
+      background-color: var(--primary-blue);
+      color: #fff;
+      padding: 6px 14px; // Slightly adjusted padding
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-size: 13px; // Decreased font size
+      font-weight: 500;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background-color: #1a8ecb; // Softer hover color
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
