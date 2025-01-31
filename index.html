@@ -2,38 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TBO-One</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>TBO-One | AI-Powered Travel CRM</title>
+
+    <!-- Security: Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src * data: https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com; connect-src 'self' https://tbo-one.com; object-src 'none'; frame-ancestors 'none';">
 
     <!-- Favicon -->
-    <link 
-      rel="icon" 
-      type="image/png" 
-      href="https://cdn.builder.io/api/v1/image/assets/4aa0ae1a0e814437847f3f8ff6c4ef38/c578015e8606763f9e8adcdfdd8f61741209ff6ceba17ba0c052d62d6d8182b5?apiKey=4aa0ae1a0e814437847f3f8ff6c4ef38&"
-    />
-    
-    <!-- Preload Key Resources -->
-    <link rel="preconnect" href="https://cdn.builder.io" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://cdn.builder.io" />
+    <link rel="icon" type="image/png" href="https://cdn.builder.io/api/v1/image/assets/4aa0ae1a0e814437847f3f8ff6c4ef38/c578015e8606763f9e8adcdfdd8f61741209ff6ceba17ba0c052d62d6d8182b5?apiKey=4aa0ae1a0e814437847f3f8ff6c4ef38&" />
 
-    <!-- Open Graph / Social Media Metadata -->
-    <meta property="og:title" content="TBO-One - Your Ultimate Travel Booking Platform" />
-    <meta property="og:description" content="Book flights, hotels, and packages with ease using TBO-One." />
+    <!-- Preloading Key Resources -->
+    <link rel="preconnect" href="https://cdn.builder.io" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.builder.io" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" as="style" />
+
+    <!-- Open Graph Metadata (Social Media Sharing) -->
+    <meta property="og:title" content="TBO-One - AI-Powered Travel CRM" />
+    <meta property="og:description" content="Manage customer-preferred packages with AI-powered automation and seamless travel booking experience using TBO-One." />
     <meta property="og:image" content="https://cdn.builder.io/api/v1/image/assets/4aa0ae1a0e814437847f3f8ff6c4ef38/c578015e8606763f9e8adcdfdd8f61741209ff6ceba17ba0c052d62d6d8182b5?apiKey=4aa0ae1a0e814437847f3f8ff6c4ef38&" />
     <meta property="og:url" content="https://tbo-one.com" />
     <meta property="og:type" content="website" />
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="TBO-One provides a seamless booking experience for flights, hotels, and vacation packages." />
-    <meta name="keywords" content="TBO-One, travel booking, flights, hotels, vacation packages" />
-    <meta name="author" content="TBO-One Team" />
+    <meta property="og:site_name" content="TBO-One" />
 
-    <!-- Main App -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
+    <!-- Twitter Card (Social Media Preview) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TBO-One - AI-Powered Travel CRM" />
+    <meta name="twitter:description" content="Automate customer-preferred packages with AI and seamlessly book flights, hotels, and more." />
+    <meta name="twitter:image" content="https://cdn.builder.io/api/v1/image/assets/4aa0ae1a0e814437847f3f8ff6c4ef38/c578015e8606763f9e8adcdfdd8f61741209ff6ceba17ba0c052d62d6d8182b5?apiKey=4aa0ae1a0e814437847f3f8ff6c4ef38&" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="TBO-One provides a seamless AI-driven travel booking experience for flights, hotels, and vacation packages. Manage customer-preferred packages effortlessly." />
+    <meta name="keywords" content="TBO-One, AI Travel CRM, travel automation, flights, hotels, vacation packages, travel booking software" />
+    <meta name="author" content="TBO-One Team" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- JavaScript (async & defer for better performance) -->
+    <script type="module" src="/src/main.jsx" defer></script>
   </head>
+
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
