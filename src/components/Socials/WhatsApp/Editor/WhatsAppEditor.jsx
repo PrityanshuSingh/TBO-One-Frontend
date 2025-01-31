@@ -23,6 +23,7 @@ const WhatsAppEditor = ({
   onScheduleTimeChange,
   location,
   price,    
+  currency,
   duration,
   travelerMobile,
   travelerEmail,
@@ -95,13 +96,15 @@ const WhatsAppEditor = ({
   const previewMessage = `Check out this package: ${title}
   
 Location: ${location}
-Price: ${price.basePrice}
+Price:  ${currency} ${price}
 Duration: ${duration}
 
 ${description}
 
 Details: ${baseUrl}/packages/details/${packageId}
 Travelers: ${travelerMobile}, ${travelerEmail}`;
+
+console.log('Preview Message:', previewMessage); // Debugging
 
   return (
     <div className={styles.editorContainer}>
@@ -133,7 +136,7 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
             <p><strong>Check out this package:</strong> {title}</p>
             <br/>
             <p><strong>Location:</strong> {location}</p>
-            <p><strong>Price:</strong> {price}</p>
+            <p><strong>Price:</strong> {currency} {price}</p>
             <p><strong>Duration:</strong> {duration}</p>
             <br/>
             <p className={styles.wpDescription}>{description}</p>

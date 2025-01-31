@@ -57,16 +57,17 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
     setScheduleTime(newTime);
   };
 
+
   // Compute previewMessage using useMemo for performance optimization
   const previewMessage = useMemo(() => {
     return `Check out this package: ${title}
 Location: ${packageData.location || ""}
-Price: ${packageData.price.basePrice || ""}
+Price: ${packageData?.currency || ""} ${packageData?.price || ""}
 Duration: ${packageData.duration || ""}
 Description: ${description}
 Details: https://your-website.com/package/details/${packageId}
 Travelers: ${travelerMobile}, ${travelerEmail}`;
-  }, [title, packageData.location, packageData.price.basePrice, description, packageId, travelerMobile, travelerEmail]);
+  }, [title, packageData.location, packageData.price, packageData.currency, description, packageId, travelerMobile, travelerEmail]);
 
   return (
     isOpen && (
@@ -98,7 +99,8 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
               scheduleTime={scheduleTime}
               onScheduleTimeChange={handleScheduleTimeChange}
               location={packageData.location || ""}
-              price={packageData.price.basePrice || ""} 
+              price={packageData?.price || ""} 
+              currency={packageData?.currency || ""}
               duration={packageData.duration || ""} 
               travelerMobile={travelerMobile}    
               travelerEmail={travelerEmail}        

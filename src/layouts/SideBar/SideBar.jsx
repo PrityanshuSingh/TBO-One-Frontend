@@ -76,7 +76,7 @@ function Sidebar() {
     { path: '/', text: 'Dashboard', icon: <FaTachometerAlt /> },
     { path: '/u/packages', text: 'Packages', icon: <FaBox /> },
     { path: '/u/campaigns', text: 'Campaigns', icon: <FaUsers /> },
-    { path: '/u/interests', text: 'Interests', icon: <FaRegAddressCard /> },
+    { path: '/u/customers', text: 'Customers', icon: <FaRegAddressCard /> },
     { path: '/u/socials', text: 'GenAI Socials', icon: <FaRegAddressCard /> },
   ];
 

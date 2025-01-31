@@ -1,0 +1,194 @@
+/* src/components/Cards/styles/CustomerCard.module.scss */
+@import '../../../assets/styles/variables.scss';
+
+/* Table row styling */
+.campaignRow {
+  border-bottom: 1px solid var(--light-gray);
+  transition: background-color 0.2s ease;
+  font-size: var(--font-size-small);
+
+  &:hover {
+    background-color: var(--hover-gray);
+  }
+
+  td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .checkboxCol {
+    width: 40px;
+    text-align: center;
+
+    input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+  }
+}
+
+/* Prompt column */
+.promptCol {
+  width: 220px;
+
+  .promptText {
+    cursor: help;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Old Pkg link style */
+.oldPkgLink {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+  color: var(--primary-blue);
+  background-color: var(--lightest-blue);
+  font-size: var(--font-size-smaller);
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover {
+    background-color: #1976d2; /* darker blue */
+    color: var(--white);
+    text-decoration: none;
+  }
+}
+
+/* New Pkg & Edit container */
+.newPkgActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  .newPkgBtn {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: var(--border-radius-sm);
+    color: var(--success-green);
+    background-color: var(--lightest-green);
+    font-size: var(--font-size-smaller);
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: #388e3c; /* darker green */
+      color: var(--white);
+      text-decoration: none;
+    }
+  }
+
+  .editButton {
+    width: 40px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    color: var(--primary-blue);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    transition: border-color 0.2s, color 0.2s;
+
+    &:hover {
+      color: #0d47a1;
+      border-color: #0d47a1;
+    }
+    &:focus {
+      outline: 2px solid var(--primary-blue);
+    }
+  }
+}
+
+/* Buttons for generate & send states */
+.generateBtn {
+  width: 100px;
+  text-align: center;
+  padding: 5px 10px;
+  background-color: #ff9800; /* orange */
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-small);
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #e68900; /* slightly darker orange */
+  }
+  &:focus {
+    outline: 2px solid #cc7a00; /* deeper orange for focus */
+  }
+}
+
+.sendBtn {
+  width: 100px;
+  text-align: center;
+  padding: 5px 10px;
+  background-color: #2196f3; /* typical blue */
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-small);
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #1976d2;
+  }
+
+  &:focus {
+    outline: 2px solid #1565c0;
+  }
+}
+
+.sentTag {
+  font-weight: 600;
+  color: var(--status-running);
+  font-size: var(--font-size-smaller);
+}
+
+/* If status is unknown, show in red */
+.unknownStatus {
+  font-weight: 600;
+  color: var(--danger-red);
+  font-size: var(--font-size-smaller);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .campaignRow {
+    td {
+      padding: 8px;
+      font-size: var(--font-size-smaller);
+    }
+  }
+
+  .promptCol {
+    width: 150px;
+  }
+  .oldPkgLink,
+  .newPkgBtn,
+  .generateBtn,
+  .sendBtn {
+    width: 90px;
+    font-size: var(--font-size-smaller);
+  }
+  .editButton {
+    width: 36px;
+    height: 28px;
+  }
+}

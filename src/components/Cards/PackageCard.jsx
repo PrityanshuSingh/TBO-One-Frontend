@@ -14,6 +14,7 @@ const PackageCard = ({
   location,
   duration,
   price,
+  currency,
   campaignStatus,
   onDetailsClick
 }) => {
@@ -65,7 +66,7 @@ const PackageCard = ({
           <div className={styles.location}>{location}</div>
           <div className={styles.duration}>{duration}</div>
           <div className={styles.price} style={{ color: "green" }}>
-            <span className={styles.amount}>{price.currency} {price.basePrice}</span>
+            <span className={styles.amount}>{currency} {price}</span>
             <span className={styles.perPerson}>per person</span>
           </div>
         </div>
@@ -81,7 +82,7 @@ const PackageCard = ({
             className={styles.whatsappButton}
             onClick={() =>
               navigate(`/u/packages/campaign/${id}`, {
-                state: { id, title: packageTitle, image, location, price, duration}
+                state: { id, title: packageTitle, image, location, price, currency, duration}
               })
             }
           >

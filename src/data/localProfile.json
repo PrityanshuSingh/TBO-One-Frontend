@@ -37,12 +37,16 @@
           {
             "id": "5",
             "name": "Rajesh Kumar",
-            "whatsApp": "9876543210"
+            "whatsApp": "9876543210",
+            "status": "send",
+            "prompts":"Hi I want to modify the packge according to my needs, can you look for more beaches and less crowded places?"
           },
           {
             "id": "6",
             "name": "Neha Gupta",
-            "whatsApp": "1231231231"
+            "whatsApp": "1231231231",
+            "status": "generate",
+            "prompts":"Hi I want to modify the packge according to my needs, can you look for more beaches and less crowded places?"
           }
         ]
       },
@@ -57,12 +61,16 @@
           {
             "id": "7",
             "name": "Rohit Verma",
-            "whatsApp": "91321321232"
+            "whatsApp": "91321321232",
+            "status": "generate",
+            "prompts":"Hi I want to add a camping experience in the package, can you add some adventure activities?"
           },
           {
             "id": "8",
             "name": "Kavita Rao",
-            "whatsApp": "1231231231"
+            "whatsApp": "1231231231",
+            "status": "generate",
+            "prompts":"Hi I want to add a camping experience in the package, can you add some adventure activities?"
           }
         ]
       },
@@ -77,12 +85,16 @@
           {
             "id": "9",
             "name": "Suresh Iyer",
-            "whatsApp": "9876543200"
+            "whatsApp": "9876543200",
+            "status": "generate",
+            "prompts":"Hi I want to add a houseboat stay in the package, can you add some adventure activities?"
           },
           {
             "id": "10",
             "name": "Anjali Desai",
-            "whatsApp": "9123456700"
+            "whatsApp": "9123456700",
+            "status": "send",
+            "prompts":"Hi I want to add a houseboat stay in the package, can you add some adventure activities?"
           }
         ]
       },
@@ -115,22 +127,30 @@
           {
             "id": "11",
             "name": "Deepak Joshi",
-            "whatsApp": "9132132100"
+            "whatsApp": "9132132100",
+            "status": "send",
+            "prompts":"Hi I want to modify the packge according to my needs, can you look for more beaches and less crowded places?"
           },
           {
             "id": "12",
             "name": "Sunita Reddy",
-            "whatsApp": "1231231200"
+            "whatsApp": "1231231200",
+            "status": "sent",
+            "prompts":"Hi I want to modify the packge according to my needs, can you look for more beaches and less crowded places?"
           },
           {
             "id": "13",
             "name": "Kiran Rao",
-            "whatsApp": "9132132101"
+            "whatsApp": "9132132101",
+            "status": "generate",
+            "prompts":"Hi I want to modify the packge according to my needs, can you look for more beaches and less crowded places?"
           },
           {
             "id": "14",
             "name": "Meera Nair",
-            "whatsApp": "1231231201"
+            "whatsApp": "1231231201",
+            "status": "generate",
+            "prompts":"Hi I want to modify the packge according to my needs, can you look for more beaches and less crowded places?"
           }
         ]
       }

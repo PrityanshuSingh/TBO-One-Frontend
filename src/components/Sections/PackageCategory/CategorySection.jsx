@@ -36,7 +36,8 @@ const CategorySection = ({
                 image={pkg.image}
                 location={pkg.location}
                 duration={pkg.duration}
-                price={pkg.price.basePrice}
+                price={pkg.price.totalPrice}
+                currency={pkg.price.currency}
                 campaignStatus={getCampaignStatus(pkg.id)}
                 onDetailsClick={() => onDetailsClick(pkg.id)}
               />

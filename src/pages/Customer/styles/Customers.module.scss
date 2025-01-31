@@ -1,0 +1,316 @@
+/* src/pages/Customers/styles/Customers.module.scss */
+@import '../../../assets/styles/variables.scss';
+
+.customersContainer {
+  width: 100%;
+  max-width: 70.9vw;
+  max-height: 94vh;
+  height: 87.1vh;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-x: auto;
+
+  .headerRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: var(--spacing-sm);
+
+    .backButton {
+      color: var(--primary-blue);
+    }
+
+    .title {
+      font: 600 1.25rem "Poppins", sans-serif;
+      color: var(--text-primary);
+      flex: 1;
+      margin: 0;
+    }
+
+    .loyaltyToggleBtn {
+      background-color: var(--primary-blue);
+      color: var(--white);
+
+      &:hover {
+        background-color: darkblue;
+      }
+
+      &:focus {
+        outline: 2px solid darkblue;
+      }
+    }
+  }
+
+  .autoSendToggle {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: 15px;
+
+    label {
+      font-size: var(--font-size-small);
+      color: var(--text-primary);
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    .searchBar {
+      display: flex;
+      align-items: center;
+      background-color: var(--very-light-gray);
+      padding: 6px 10px;
+      border-radius: var(--border-radius-sm);
+      width: 280px;
+      position: relative;
+
+      .searchIcon {
+        color: var(--text-secondary);
+        margin-right: var(--spacing-xs);
+      }
+
+      .searchInput {
+        border: none;
+        outline: none;
+        font-size: var(--font-size-small);
+        width: 100%;
+        background: transparent;
+
+        &::placeholder {
+          color: var(--text-secondary);
+        }
+      }
+    }
+
+    .filters {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+
+      .filterSection {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-xs);
+
+        label {
+          font-size: var(--font-size-small);
+          color: var(--text-primary);
+        }
+
+        .contactFilterSelect {
+          padding: 6px 8px;
+          border: 1px solid var(--text-secondary);
+          border-radius: var(--border-radius-sm);
+          font-size: var(--font-size-small);
+          outline: none;
+          cursor: pointer;
+          background-color: var(--white);
+          transition: border 0.2s ease-in-out;
+
+          &:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(32, 174, 243, 0.2);
+          }
+        }
+      }
+    }
+
+    .deleteButton {
+      background-color: var(--danger-red);
+      color: var(--white);
+      &:hover {
+        background-color: darkred;
+      }
+      &:focus {
+        outline: 2px solid darkred;
+      }
+    }
+  }
+
+  /* Reusable style for all action buttons (back, toggle, delete, etc.) */
+  .actionBtn {
+    width: 100px; /* Same width for all primary action buttons */
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: var(--font-size-small);
+    gap: var(--spacing-xs);
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .loadingMsg,
+  .errorMsg,
+  .noDataMsg {
+    text-align: center;
+    font-size: var(--font-size-small);
+    color: var(--text-secondary);
+  }
+
+  .tableWrapper {
+    overflow: auto;
+    flex: 1;
+  }
+
+  .customerTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid var(--light-gray);
+      white-space: nowrap;
+    }
+
+    th {
+      background-color: var(--light-blue);
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 14px;
+      text-transform: capitalize;
+    }
+
+    td {
+      font-size: var(--font-size-small);
+      vertical-align: middle;
+    }
+
+    .checkboxCol {
+      width: 40px;
+    }
+
+    .numberCol {
+      width: 40px;
+      text-align: center;
+    }
+
+    .campaignCol {
+      width: 180px;
+    }
+
+    .contactCol {
+      width: 140px;
+    }
+
+    .promptCol {
+      width: 220px;
+      position: relative;
+    }
+
+    .oldPreviewCol,
+    .newPreviewCol {
+      width: 100px;
+    }
+
+    .sendCol {
+      width: 60px;
+      text-align: center;
+    }
+  }
+
+  .promptCell {
+    .promptText {
+      cursor: help;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .previewLink {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+    width: 100px; /* unify link width if needed */
+    display: inline-block;
+    text-align: center;
+
+    &:hover {
+      color: darkblue;
+      text-decoration: underline;
+    }
+  }
+
+  .sendButton {
+    width: 100px; /* unify button width */
+    text-align: center;
+    padding: 5px 10px;
+    background-color: var(--success-green);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: var(--font-size-small);
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: darkgreen;
+    }
+
+    &:focus {
+      outline: 2px solid darkgreen;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .customersContainer {
+    width: 100%;
+    max-width: 86vw;
+    max-height: 94vh;
+    flex-direction: column;
+    overflow: auto;
+    padding: 10px;
+
+    .headerRow {
+      margin-bottom: 10px;
+      .title {
+        font-size: 1rem;
+      }
+    }
+    .controls {
+      flex-direction: column;
+      gap: 8px;
+
+      .searchBar {
+        width: 100%;
+      }
+    }
+    .tableWrapper {
+      margin-top: 10px;
+    }
+    .customerTable {
+      font-size: var(--font-size-small);
+
+      .campaignCol {
+        width: 150px;
+      }
+      .promptCol {
+        width: 180px;
+      }
+    }
+  }
+}

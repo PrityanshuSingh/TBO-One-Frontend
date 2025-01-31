@@ -124,6 +124,7 @@ const Packages = () => {
     setCategories(categorizePackages(packagesData));
   }, [packagesData]);
 
+  
   /**
    * Returns the campaign status for a specific package ID, or null if none found.
    * @param {string|number} pkgId
@@ -272,7 +273,8 @@ const Packages = () => {
                       image={pkg.image}
                       location={pkg.location}
                       duration={pkg.duration}
-                      price={pkg.price}
+                      price={pkg.price.totalPrice}
+                      currency={pkg.price.currency}
                       campaignStatus={getCampaignStatus(pkg.id)}
                       onDetailsClick={() => handleDetailsClick(pkg.id)}
                     />

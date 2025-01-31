@@ -8,6 +8,14 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: ["modern"],
+          silenceDeprecations: ["legacy-js-api"],
+        },
+      },
+    },
     server: {
       proxy: {
         "/api": {

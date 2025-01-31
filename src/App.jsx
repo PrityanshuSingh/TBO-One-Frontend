@@ -10,10 +10,15 @@ import Signup from './pages/Auth/SignUp';
 const Packages = lazy(() => import('./pages/Packages/Packages'));
 const PackageDetails = lazy(() => import('./pages/Packages/PackageDetails'));
 const SavedPackages = lazy(() => import('./pages/Packages/SavedPackages'));
+
 const WhatsAppCampaign = lazy(() => import('./pages/Campaign/WhatsAppCampaign'));
 const EditCampign = lazy(() => import('./pages/Campaign/EditCampaign'));
 const Campaigns = lazy(() => import('./pages/Campaign/Campaigns'));
-const ErrorPage = lazy(() => import('./pages/Error/Error')); // Import your error page
+
+const Customers = lazy(() => import('./pages/Customer/Customers'));
+
+const SocialMedia = lazy(() => import('./pages/SocialMedia/SocialMedia'));  
+const ErrorPage = lazy(() => import('./pages/Error/Error'));
 
 function App() {
   const [searchParams] = useSearchParams();
@@ -57,6 +62,12 @@ function App() {
 
                     <Route path="/u/campaigns" element={<Campaigns />} />
                     <Route path="/u/campaigns/edit/:id" element={[<Campaigns />,<EditCampign />]} />
+
+                    <Route path="/u/customers" element={<Customers />} />
+                    <Route path="/u/customers/:id" element={<Customers />} />
+
+                    <Route path="/u/socials" element={<SocialMedia />} />
+                    <Route path="/u/socials/:id" element={<SocialMedia />} />
 
                     {/* Catch-all route for 404 errors */}
                     <Route path="*" element={<ErrorPage />} />
