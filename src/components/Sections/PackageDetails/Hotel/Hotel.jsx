@@ -22,7 +22,7 @@ const Hotel = ({
               type="text"
               id="hotelName"
               name="name"
-              value={hotelDetails.name || ""}
+              value={hotelDetails?.name || ""}
               onChange={onChange}
               className={styles.input}
               aria-required="true"
@@ -34,7 +34,7 @@ const Hotel = ({
               type="text"
               id="hotelAddress"
               name="address"
-              value={hotelDetails.address || ""}
+              value={hotelDetails?.address || ""}
               onChange={onChange}
               className={styles.input}
               aria-required="true"
@@ -46,7 +46,7 @@ const Hotel = ({
               type="date"
               id="checkInDate"
               name="checkInDate"
-              value={hotelDetails.checkInDate?.split("T")[0] || ""}
+              value={hotelDetails?.checkInDate?.split("T")[0] || ""}
               onChange={onChange}
               className={styles.input}
               aria-required="true"
@@ -58,7 +58,7 @@ const Hotel = ({
               type="date"
               id="checkOutDate"
               name="checkOutDate"
-              value={hotelDetails.checkOutDate?.split("T")[0] || ""}
+              value={hotelDetails?.checkOutDate?.split("T")[0] || ""}
               onChange={onChange}
               className={styles.input}
               aria-required="true"
@@ -70,7 +70,7 @@ const Hotel = ({
               type="text"
               id="roomType"
               name="roomType"
-              value={hotelDetails.roomType || ""}
+              value={hotelDetails?.roomType || ""}
               onChange={onChange}
               className={styles.input}
               aria-required="false"
@@ -82,7 +82,7 @@ const Hotel = ({
               type="text"
               id="amenities"
               name="amenities"
-              value={hotelDetails.amenities?.join(", ") || ""}
+              value={hotelDetails?.amenities?.join(", ") || ""}
               onChange={onAmenitiesChange}
               className={styles.input}
               placeholder="Enter amenities separated by commas"
@@ -93,29 +93,29 @@ const Hotel = ({
       ) : (
         <>
           <p>
-            <strong>Name:</strong> {hotelDetails.name || "N/A"}
+            <strong>Name:</strong> {hotelDetails?.name || "N/A"}
           </p>
           <p>
-            <strong>Address:</strong> {hotelDetails.address || "N/A"}
+            <strong>Address:</strong> {hotelDetails?.address || "N/A"}
           </p>
           <p>
             <strong>Check-In Date:</strong>{" "}
             {hotelDetails.checkInDate
-              ? new Date(hotelDetails.checkInDate).toLocaleDateString()
+              ? new Date(hotelDetails?.checkInDate).toLocaleDateString()
               : "N/A"}
           </p>
           <p>
             <strong>Check-Out Date:</strong>{" "}
             {hotelDetails.checkOutDate
-              ? new Date(hotelDetails.checkOutDate).toLocaleDateString()
+              ? new Date(hotelDetails?.checkOutDate).toLocaleDateString()
               : "N/A"}
           </p>
           <p>
-            <strong>Room Type:</strong> {hotelDetails.roomType || "N/A"}
+            <strong>Room Type:</strong> {hotelDetails?.roomType || "N/A"}
           </p>
           <p>
             <strong>Amenities:</strong>{" "}
-            {hotelDetails.amenities?.join(", ") || "N/A"}
+            {hotelDetails?.amenities?.join(", ") || "N/A"}
           </p>
         </>
       )}
