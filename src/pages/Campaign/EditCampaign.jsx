@@ -5,7 +5,7 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import EditCampaignModal from '../../components/Modals/EditCampaignModal';
 import { CampaignContext } from '../../context/CampaignContext';
 import { AuthContext } from '../../context/AuthContext';
-import axios from 'axios';
+import api from "../../utils/api";
 
 const EditCampaign = () => {
   const { id } = useParams(); // Extract ID from URL
@@ -35,7 +35,7 @@ const EditCampaign = () => {
 
         if (!data) {
           // If still not found, fetch from backend
-          const response = await axios.get(`/api/packages/${id}`);
+          const response = await api.get(`/api/packages/${id}`);
           data = response.data;
           console.log('Package Data from backend:', data);
         }

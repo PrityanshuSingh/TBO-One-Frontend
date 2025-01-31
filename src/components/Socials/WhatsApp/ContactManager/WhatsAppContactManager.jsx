@@ -2,7 +2,7 @@
 
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../../context/AuthContext";
-import axios from "axios";
+import api from "../../../../utils/api";
 import { FiArrowLeft } from "react-icons/fi"; // Importing the left arrow icon
 import styles from "./styles/WhatsAppContactManager.module.scss";
 import SelectGroups from "./Groups/SelectGroups";
@@ -124,7 +124,7 @@ const WhatsAppContactManager = ({
 
     setIsCreatingGroup(true);
     setIsUpdating(true);
-    axios
+    api
       .post("/api/user/update", updatedUserData)
       .then((response) => {
         updateUserData(updatedUserData);
@@ -187,7 +187,7 @@ const WhatsAppContactManager = ({
     };
 
     setIsUpdating(true);
-    axios
+    api
       .post("/api/user/update", updatedUserData)
       .then((response) => {
         updateUserData(updatedUserData);
@@ -250,7 +250,7 @@ const WhatsAppContactManager = ({
     }
   
     try {
-      const response = await axios.post("/api/whatsapp/send", formData, {
+      const response = await api.post("/api/whatsapp/send", formData, {
         headers: { "Content-Type": "multipart/form-data" }, // Ensure correct content type
       });
   

@@ -2,7 +2,8 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
+import { CampaignContext } from "../../context/CampaignContext";
 import { AuthContext } from "../../context/AuthContext";
 import localPackages from "../../data/localPackages.json";
 import CategorySection from "../../components/Sections/PackageCategory/CategorySection";
@@ -11,6 +12,7 @@ import styles from "./styles/SavedPackages.module.scss";
 
 function SavedPackages() {
   const { userData } = useContext(AuthContext);
+  const { campaigns } = useContext(CampaignContext);
   const navigate = useNavigate();
   const userEmail = userData?.Profile?.email;
 
@@ -26,10 +28,13 @@ function SavedPackages() {
       if (!userEmail) return;
 
       try {
-        const res = await axios.get("/api/package/saved", {
+        const res = await api.get("/api/package/saved", {
           params: { email: userEmail },
         });
 
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setSavedPackages(res.data);
+        }
         // setSavedPackages(res.data || []);
         // setFilteredPackages(res.data || []);
       } catch (error) {
@@ -66,6 +71,11 @@ function SavedPackages() {
     }
   }, [filterValue, savedPackages]);
 
+  const getCampaignStatus = (pkgId) => {
+    if (!Array.isArray(campaigns) || campaigns.length === 0) return null;
+    const foundCampaign = campaigns.find((c) => c.pkgId === pkgId);
+    return foundCampaign ? foundCampaign.status : null;
+  };
   return (
     <div className={styles.savedContainer}>
       <div className={styles.headerRow}>
@@ -87,9 +97,7 @@ function SavedPackages() {
             filterValue={filterValue}
             setFilterValue={setFilterValue}
             onDetailsClick={(pkgId) => navigate(`/packages?id=${pkgId}`)}
-            getCampaignStatus={(pkgId) =>
-              savedPackages.find((pkg) => pkg.id === pkgId)?.campaignStatus
-            }
+            getCampaignStatus={getCampaignStatus}
           />
         </div>
       )}

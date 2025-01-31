@@ -1,6 +1,6 @@
 // src/hooks/useDestinationCountryCity.js
 import { useState } from "react";
-import axios from "axios";
+import api from "../utils/api";
 import { parseCountryListXML, parseCityList } from "../utils/Parsers";
 
 /**
@@ -50,7 +50,7 @@ export function useDestinationCountryCity(userToken, userIP) {
         EndUserIp: userIP,
         TokenId: tokenId,
       };
-      const res = await axios.post(TBO_COUNTRYLIST_URL, body);
+      const res = await api.post(TBO_COUNTRYLIST_URL, body);
       const xmlStr = res.data.CountryList;
       const allCountries = parseCountryListXML(xmlStr);
       const filtered = allCountries.filter((c) =>
@@ -77,7 +77,7 @@ export function useDestinationCountryCity(userToken, userIP) {
         CountryCode: obj.code,
         SearchType: "1",
       };
-      const res = await axios.post(TBO_CITYLIST_URL, body);
+      const res = await api.post(TBO_CITYLIST_URL, body);
       const cityArr = parseCityList(res.data?.Destinations || []);
       setDestinationCitiesData(cityArr);
 

@@ -5,11 +5,7 @@ import PropTypes from "prop-types";
 
 import styles from "./styles/Transport.module.scss";
 
-const Transport = ({
-  isEditMode,
-  transportDetails,
-  onTransportChange,
-}) => {
+const Transport = ({ isEditMode, transportDetails, onTransportChange }) => {
   const handlePickupChange = (e) => {
     const { name, value } = e.target;
     onTransportChange("pickup", name, value);
@@ -33,7 +29,7 @@ const Transport = ({
               type="text"
               id="pickupType"
               name="type"
-              value={transportDetails.airportTransfers.pickup.type || ""}
+              value={transportDetails?.airportTransfers?.pickup?.type || ""}
               onChange={handlePickupChange}
               className={styles.input}
               aria-required="false"
@@ -46,8 +42,8 @@ const Transport = ({
               id="pickupDatetime"
               name="datetime"
               value={
-                transportDetails.airportTransfers.pickup.datetime
-                  ? transportDetails.airportTransfers.pickup.datetime.split(".")[0]
+                transportDetails?.airportTransfers?.pickup?.datetime
+                  ? transportDetails?.airportTransfers?.pickup?.datetime.split(".")[0]
                   : ""
               }
               onChange={handlePickupChange}
@@ -61,7 +57,7 @@ const Transport = ({
               type="text"
               id="pickupLocation"
               name="pickupLocation"
-              value={transportDetails.airportTransfers.pickup.pickupLocation || ""}
+              value={transportDetails?.airportTransfers?.pickup?.pickupLocation || ""}
               onChange={handlePickupChange}
               className={styles.input}
               aria-required="false"
@@ -76,7 +72,7 @@ const Transport = ({
               type="text"
               id="dropoffType"
               name="type"
-              value={transportDetails.airportTransfers.dropoff.type || ""}
+              value={transportDetails?.airportTransfers?.dropoff?.type || ""}
               onChange={handleDropoffChange}
               className={styles.input}
               aria-required="false"
@@ -89,8 +85,8 @@ const Transport = ({
               id="dropoffDatetime"
               name="datetime"
               value={
-                transportDetails.airportTransfers.dropoff.datetime
-                  ? transportDetails.airportTransfers.dropoff.datetime.split(".")[0]
+                transportDetails?.airportTransfers?.dropoff?.datetime
+                  ? transportDetails?.airportTransfers?.dropoff?.datetime.split(".")[0]
                   : ""
               }
               onChange={handleDropoffChange}
@@ -104,7 +100,7 @@ const Transport = ({
               type="text"
               id="dropoffLocation"
               name="dropoffLocation"
-              value={transportDetails.airportTransfers.dropoff.dropoffLocation || ""}
+              value={transportDetails?.airportTransfers?.dropoff?.dropoffLocation || ""}
               onChange={handleDropoffChange}
               className={styles.input}
               aria-required="false"
@@ -115,23 +111,19 @@ const Transport = ({
         <>
           <p>
             <strong>Pickup:</strong>{" "}
-            {transportDetails.airportTransfers.pickup.type || "N/A"} at{" "}
-            {transportDetails.airportTransfers.pickup.datetime
-              ? new Date(
-                  transportDetails.airportTransfers.pickup.datetime
-                ).toLocaleString()
+            {transportDetails?.airportTransfers?.pickup?.type || "N/A"} at{" "}
+            {transportDetails?.airportTransfers?.pickup?.datetime
+              ? new Date(transportDetails?.airportTransfers?.pickup?.datetime).toLocaleString()
               : "N/A"}{" "}
-            from {transportDetails.airportTransfers.pickup.pickupLocation || "N/A"}
+            from {transportDetails?.airportTransfers?.pickup?.pickupLocation || "N/A"}
           </p>
           <p>
             <strong>Dropoff:</strong>{" "}
-            {transportDetails.airportTransfers.dropoff.type || "N/A"} at{" "}
-            {transportDetails.airportTransfers.dropoff.datetime
-              ? new Date(
-                  transportDetails.airportTransfers.dropoff.datetime
-                ).toLocaleString()
+            {transportDetails?.airportTransfers?.dropoff?.type || "N/A"} at{" "}
+            {transportDetails?.airportTransfers?.dropoff?.datetime
+              ? new Date(transportDetails?.airportTransfers?.dropoff?.datetime).toLocaleString()
               : "N/A"}{" "}
-            to {transportDetails.airportTransfers.dropoff.dropoffLocation || "N/A"}
+            to {transportDetails?.airportTransfers?.dropoff?.dropoffLocation || "N/A"}
           </p>
         </>
       )}

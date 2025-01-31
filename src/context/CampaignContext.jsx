@@ -1,7 +1,7 @@
 // src/context/CampaignContext.jsx
 
 import React, { createContext, useState, useEffect, useContext } from "react";
-import axios from "axios";
+import api from "../utils/api";
 import { AuthContext } from "./AuthContext";
 import fallbackPackages from "../data/localPackages.json";
 
@@ -28,7 +28,7 @@ export const CampaignProvider = ({ children }) => {
     setCampaignError("");
     try {
       await Promise.all(
-        campaignIds.map((id) => axios.delete(`/api/campaigns/${id}`))
+        campaignIds.map((id) => api.delete(`/api/campaigns/${id}`))
       );
 
       // Update local campaigns state
@@ -57,7 +57,7 @@ export const CampaignProvider = ({ children }) => {
 
     try {
       const fetchPromises = ids.map((id) =>
-        axios.get(`/api/packages/${id}`).then((res) => ({
+        api.get(`/api/packages/${id}`).then((res) => ({
           id,
           packageTitle: res.data.packageTitle, // Adjust according to API response
         }))

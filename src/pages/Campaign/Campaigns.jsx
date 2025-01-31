@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import api from "../../utils/api";
 import { CampaignContext } from "../../context/CampaignContext";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -107,7 +106,7 @@ const Campaigns = () => {
     setDeleteError("");
     try {
       // API call to delete campaigns
-      await axios.post("/api/campaigns/delete", { campaignIds: selectedCampaigns });
+      await api.post("/api/campaigns/delete", { campaignIds: selectedCampaigns });
       await deleteCampaigns(selectedCampaigns); // Update local state
       setSelectedCampaigns([]);
     } catch (error) {
@@ -121,7 +120,7 @@ const Campaigns = () => {
     setStatusChangeError("");
     try {
       // API call to update campaign status
-      await axios.post("/api/campaigns/update-status", {
+      await api.post("/api/campaigns/update-status", {
         campaignIds: selectedCampaigns,
         newStatus: newStatus,
       });

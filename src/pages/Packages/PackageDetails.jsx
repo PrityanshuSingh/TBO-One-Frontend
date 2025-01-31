@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
 
 import styles from "./styles/PackageDetails.module.scss";
 
@@ -51,7 +51,7 @@ const PackageDetails = () => {
   useEffect(() => {
     const fetchPackageDetails = async () => {
       try {
-        const response = await axios.get(`/u/packages/details/${id}`);
+        const response = await api.get(`/u/packages/details/${id}`);
         setPackageData(response.data);
         setEditedData(response.data);
       } catch (err) {
@@ -242,7 +242,7 @@ const PackageDetails = () => {
     setSaveError("");
     try {
       // Send the entire editedData JSON to the backend
-      await axios.put(`/u/packages/details/${id}`, editedData);
+      await api.put(`/u/packages/details/${id}`, editedData);
       setPackageData(editedData);
       setIsEditMode(false);
     } catch (err) {
@@ -265,7 +265,7 @@ const PackageDetails = () => {
   // Handle Interest form submission
   const handleInterestSubmit = async (formData) => {
     try {
-      await axios.post(`/u/packages/interested`, {
+      await api.post(`/u/packages/interested`, {
         packageId: id,
         name: formData.name,
         whatsappNumber: formData.whatsappNumber,

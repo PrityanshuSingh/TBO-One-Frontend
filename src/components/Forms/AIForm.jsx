@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import api from "../../utils/api";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./styles/AIForm.module.scss";
@@ -190,7 +191,7 @@ function AIForm({
     console.log("Sending AI form details =>", finalData);
 
     try {
-      await axios.post("/api/aiForm", finalData);
+      await api.post("/api/aiForm", finalData);
     } catch (err) {
       console.error("Error posting AI form =>", err);
     }

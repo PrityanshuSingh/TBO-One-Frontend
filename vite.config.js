@@ -8,24 +8,18 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: ["modern"],
-          silenceDeprecations: ["legacy-js-api"],
-        },
-      },
-    },
     server: {
       proxy: {
         "/api": {
           target: apiTarget,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ""),
+          secure: false, // Ensures compatibility with HTTP and HTTPS
+          rewrite: (path) => path.replace(/^\/api/, ""), // Fixes path rewriting
         },
         "/tbo": {
           target: tboApiTarget,
           changeOrigin: true,
+          secure: false,
           rewrite: (path) => path.replace(/^\/tbo/, ""),
         },
       },

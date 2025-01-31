@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
 
 import { CampaignContext } from "../../context/CampaignContext";
 import { AuthContext } from "../../context/AuthContext";
@@ -103,7 +103,7 @@ const Packages = () => {
   useEffect(() => {
     async function fetchPackages() {
       try {
-        const res = await axios.get("/api/packages");
+        const res = await api.get("/api/packages");
         // Validate the data before setting to state
         if (Array.isArray(res.data) && res.data.length > 0) {
           setPackagesData(res.data);
@@ -186,7 +186,7 @@ const Packages = () => {
     console.log("AI search formData = ", formData);
 
     try {
-      const res = await axios.post("/api/ai/packages", formData);
+      const res = await api.post("/api/ai/packages", formData);
       if (Array.isArray(res.data)) {
         setAiPackages(res.data);
       } else {

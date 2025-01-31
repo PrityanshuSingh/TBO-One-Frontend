@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import WhatsAppModal from '../../components/Modals/WhatsAppModal';
 import { AuthContext } from '../../context/AuthContext';
-import axios from 'axios';
+import api from "../../utils/api";
 
 const WhatsAppCampaign = () => {
   const { id } = useParams(); // Extract ID from URL
@@ -33,7 +33,7 @@ const WhatsAppCampaign = () => {
 
         if (!data) {
           // If still not found, fetch from backend
-          const response = await axios.get(`/api/packages/${id}`);
+          const response = await api.get(`/api/packages/${id}`);
           data = response.data;
           console.log('Package Data from backend:', data);
         }

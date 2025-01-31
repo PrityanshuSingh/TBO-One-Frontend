@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import api from "../utils/api";
 import fallbackData from "../data/localProfile.json";
 
 export const AuthContext = createContext();
@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
 
   const login = async (userName, password) => {
     try {
-      const response = await axios.post("/api/login", { userName, password });
+      const response = await api.post("/api/login", { userName, password });
       const { success, profile } = response.data;
 
       if (!success) {
@@ -60,7 +60,7 @@ export function AuthProvider({ children }) {
 
   const signUp = async (email, userName, password) => {
     try {
-      const response = await axios.post("/api/signup", {
+      const response = await api.post("/api/signup", {
         email,
         userName,
         password,
