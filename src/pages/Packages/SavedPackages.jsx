@@ -37,8 +37,8 @@ function SavedPackages() {
           data = Array.isArray(data?.packages) ? data.packages : [];
         }
 
-        setSavedPackages(data);
-        setFilteredPackages(data);
+        // setSavedPackages(data);
+        // setFilteredPackages(data);
       } catch (error) {
         console.error(
           "Failed to fetch saved packages. Using fallback data.",

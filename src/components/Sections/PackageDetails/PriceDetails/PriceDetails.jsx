@@ -20,13 +20,13 @@ const PriceDetails = ({
             type="text"
             id="price.currency"
             name="currency"
-            value={priceDetails.currency || ""}
+            value={priceDetails?.currency || ""}
             onChange={onChange}
             className={styles.input}
             aria-required="true"
           />
         ) : (
-          <span>{priceDetails.currency || "N/A"}</span>
+          <span>{priceDetails?.currency || "N/A"}</span>
         )}
       </div>
       <div className={styles.field}>
@@ -36,13 +36,13 @@ const PriceDetails = ({
             type="number"
             id="price.basePrice"
             name="basePrice"
-            value={priceDetails.basePrice || ""}
+            value={priceDetails?.basePrice || ""}
             onChange={onChange}
             className={styles.input}
             aria-required="true"
           />
         ) : (
-          <span>{priceDetails.basePrice || "N/A"}</span>
+          <span>{priceDetails?.basePrice || "N/A"}</span>
         )}
       </div>
       <div className={styles.field}>
@@ -52,13 +52,13 @@ const PriceDetails = ({
             type="number"
             id="price.taxes"
             name="taxes"
-            value={priceDetails.taxes || ""}
+            value={priceDetails?.taxes || ""}
             onChange={onChange}
             className={styles.input}
             aria-required="true"
           />
         ) : (
-          <span>{priceDetails.taxes || "N/A"}</span>
+          <span>{priceDetails?.taxes || "N/A"}</span>
         )}
       </div>
       <div className={styles.field}>
@@ -68,13 +68,13 @@ const PriceDetails = ({
             type="number"
             id="price.discount"
             name="discount"
-            value={priceDetails.discount || ""}
+            value={priceDetails?.discount || ""}
             onChange={onChange}
             className={styles.input}
             aria-required="false"
           />
         ) : (
-          <span>{priceDetails.discount || "N/A"}</span>
+          <span>{priceDetails?.discount || "N/A"}</span>
         )}
       </div>
       <div className={styles.field}>
@@ -84,13 +84,13 @@ const PriceDetails = ({
             type="number"
             id="price.totalPrice"
             name="totalPrice"
-            value={priceDetails.totalPrice || ""}
+            value={priceDetails?.totalPrice || ""}
             onChange={onChange}
             className={styles.input}
             aria-required="true"
           />
         ) : (
-          <span>{priceDetails.totalPrice || "N/A"}</span>
+          <span>{priceDetails?.totalPrice || "N/A"}</span>
         )}
       </div>
     </div>
