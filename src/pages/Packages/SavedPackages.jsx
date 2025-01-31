@@ -38,6 +38,7 @@ function SavedPackages() {
           error
         );
         const savedIds = userData?.Profile?.saved || [];
+        console.log("Saved IDs:", savedIds);
         const fallbackData = localPackages.filter((pkg) =>
           savedIds.includes(pkg.id)
         );

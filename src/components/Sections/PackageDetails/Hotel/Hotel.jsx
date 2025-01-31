@@ -100,13 +100,13 @@ const Hotel = ({
           </p>
           <p>
             <strong>Check-In Date:</strong>{" "}
-            {hotelDetails.checkInDate
+            {hotelDetails?.checkInDate
               ? new Date(hotelDetails?.checkInDate).toLocaleDateString()
               : "N/A"}
           </p>
           <p>
             <strong>Check-Out Date:</strong>{" "}
-            {hotelDetails.checkOutDate
+            {hotelDetails?.checkOutDate
               ? new Date(hotelDetails?.checkOutDate).toLocaleDateString()
               : "N/A"}
           </p>
