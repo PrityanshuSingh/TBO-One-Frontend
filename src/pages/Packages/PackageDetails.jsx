@@ -342,7 +342,7 @@ const PackageDetails = () => {
           {/* Hotel */}
           <Hotel
             isEditMode={isEditMode}
-            hotelDetails={isEditMode ? editedData.details.hotel : packageData.details.hotel}
+            hotelDetails={isEditMode ? editedData?.details?.hotel : packageData?.details?.hotel}
             onChange={handlePriceDetailsChange}
             onAmenitiesChange={handleBasicDetailsChange}
           />
@@ -350,35 +350,35 @@ const PackageDetails = () => {
           {/* Sightseeing */}
           <Sightseeing
             isEditMode={isEditMode}
-            sightseeing={isEditMode ? editedData.details.sightseeing : packageData.details.sightseeing}
+            sightseeing={isEditMode ? editedData?.details?.sightseeing : packageData?.details?.sightseeing}
             onSightseeingChange={handleSightseeingChange}
           />
 
           {/* Transport */}
           <Transport
             isEditMode={isEditMode}
-            transportDetails={isEditMode ? editedData.details.transport : packageData.details.transport}
+            transportDetails={isEditMode ? editedData?.details?.transport : packageData?.details?.transport}
             onTransportChange={handleTransportChange}
           />
 
           {/* Itinerary */}
           <Itinerary
             isEditMode={isEditMode}
-            itinerary={isEditMode ? editedData.details.itinerary : packageData.details.itinerary}
+            itinerary={isEditMode ? editedData?.details?.itinerary : packageData?.details?.itinerary}
             onItineraryChange={handleItineraryChange}
           />
 
           {/* Additional Services */}
           <AdditionalServices
             isEditMode={isEditMode}
-            additionalServices={isEditMode ? editedData.details.additionalServices : packageData.details.additionalServices}
+            additionalServices={isEditMode ? editedData?.details?.additionalServices : packageData?.details?.additionalServices}
             onChange={handleAdditionalServicesChange}
           />
 
           {/* FAQs */}
           <FAQs
             isEditMode={isEditMode}
-            faqs={isEditMode ? editedData.faqs : packageData.faqs}
+            faqs={isEditMode ? editedData?.faqs : packageData?.faqs}
             onFAQChange={handleFAQChange}
           />
         </div>

@@ -14,24 +14,31 @@ function SavedPackages() {
   const navigate = useNavigate();
   const userEmail = userData?.Profile?.email;
 
-  // State for saved packages
   const [savedPackages, setSavedPackages] = useState([]);
   const [filteredPackages, setFilteredPackages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filterValue, setFilterValue] = useState(""); // Category search filter
+  const [filterValue, setFilterValue] = useState("");
 
-  // Fetch saved packages from API
   useEffect(() => {
     const fetchSavedPackages = async () => {
-      if (!userEmail) return;
-
+      if (!userEmail) {
+        setLoading(false);
+        return;
+      }
       try {
         const res = await axios.get("/api/package/saved", {
           params: { email: userEmail },
         });
 
-        setSavedPackages(res.data || []);
-        setFilteredPackages(res.data || []);
+        // Ensure res.data is an array or convert it properly
+        let data = res.data;
+        if (!Array.isArray(data)) {
+          // Check if data might have a "packages" array or fallback to empty array
+          data = Array.isArray(data?.packages) ? data.packages : [];
+        }
+
+        setSavedPackages(data);
+        setFilteredPackages(data);
       } catch (error) {
         console.error(
           "Failed to fetch saved packages. Using fallback data.",
@@ -51,7 +58,6 @@ function SavedPackages() {
     fetchSavedPackages();
   }, [userEmail, userData]);
 
-  // Filter saved packages when filterValue changes
   useEffect(() => {
     if (!filterValue.trim()) {
       setFilteredPackages(savedPackages);
@@ -64,6 +70,14 @@ function SavedPackages() {
       setFilteredPackages(filtered);
     }
   }, [filterValue, savedPackages]);
+
+  const handleDetailsClick = (pkgId) => {
+    navigate(`/u/packages/details/${pkgId}`);
+  };
+
+  const getCampaignStatus = (pkgId) => {
+    return savedPackages.find((pkg) => pkg.id === pkgId)?.campaignStatus;
+  };
 
   return (
     <div className={styles.savedContainer}>
@@ -82,13 +96,11 @@ function SavedPackages() {
         <div className={styles.categorySection}>
           <CategorySection
             tag="Saved"
-            packages={filteredPackages}
+            packages={filteredPackages}  // Guaranteed to be an array
             filterValue={filterValue}
             setFilterValue={setFilterValue}
-            onDetailsClick={(pkgId) => navigate(`/packages?id=${pkgId}`)}
-            getCampaignStatus={(pkgId) =>
-              savedPackages.find((pkg) => pkg.id === pkgId)?.campaignStatus
-            }
+            onDetailsClick={handleDetailsClick}
+            getCampaignStatus={getCampaignStatus}
           />
         </div>
       )}
