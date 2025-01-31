@@ -96,7 +96,7 @@ function SavedPackages() {
             packages={filteredPackages}
             filterValue={filterValue}
             setFilterValue={setFilterValue}
-            onDetailsClick={(pkgId) => navigate(`/packages?id=${pkgId}`)}
+            onDetailsClick={(pkgId) => navigate(`/packages/details/${pkgId}`)}
             getCampaignStatus={getCampaignStatus}
           />
         </div>
