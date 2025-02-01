@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
 
   const login = async (userName, password) => {
     try {
-      const response = await api.post("/api/login", { userName, password });
+      const response = await api.post("/api/auth/login", { userName, password });
       const { success, profile } = response.data;
 
       if (!success) {
