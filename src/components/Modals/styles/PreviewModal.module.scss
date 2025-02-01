@@ -1,0 +1,121 @@
+/* src/components/Modals/styles/PreviewModal.module.scss */
+@import '../../../assets/styles/variables.scss';
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  padding:50px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gray);
+  font-size: 18px;
+}
+
+/* Two-column layout */
+.modalBody {
+  display: flex;
+  flex-direction: row;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.previewLeft {
+  flex: 1; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewRight {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  h3 {
+    margin: 0;
+    color: var(--black);
+  }
+
+  p {
+    margin: 8px 0 16px;
+    font-size: 14px;
+    color: var(--dark-gray);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  h4 {
+    margin: 0;
+    color: var(--black);
+    font-size: 14px;
+  }
+
+  input[type="datetime-local"] {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid var(--gray);
+    border-radius: 6px;
+  }
+
+  .modalButtons {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+
+    .postNowBtn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--primary-blue);
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    .scheduleBtn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--secondary-green);
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}

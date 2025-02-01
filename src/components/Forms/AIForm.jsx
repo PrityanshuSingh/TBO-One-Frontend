@@ -191,7 +191,7 @@ function AIForm({
     console.log("Sending AI form details =>", finalData);
 
     try {
-      await api.post("/api/aiForm", finalData);
+      await api.post("/api/ai/form", finalData);
     } catch (err) {
       console.error("Error posting AI form =>", err);
     }

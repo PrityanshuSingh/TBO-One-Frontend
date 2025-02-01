@@ -14,6 +14,7 @@
   flex-direction: column;
   overflow: hidden;
   overflow-x: auto;
+  
 
   .headerRow {
     display: flex;
@@ -25,32 +26,36 @@
       color: var(--primary-blue);
     }
 
+    
+
     .title {
-      font: 600 1.25rem "Poppins", sans-serif;
+      font: 600 1.6rem "Poppins", sans-serif;
       color: var(--text-primary);
       flex: 1;
       margin: 0;
+    }
+    .subtitle {
+      color: var(--gray);
+      font: 500 14px 'Inter', sans-serif;
+      margin: 8px 0 8px;
     }
 
     .loyaltyToggleBtn {
       background-color: var(--primary-blue);
       color: var(--white);
+      padding: 6px 10px;
+      width:20%;
 
       &:hover {
-        background-color: darkblue;
-      }
-
-      &:focus {
-        outline: 2px solid darkblue;
+        background-color: #1b9cd9;
       }
     }
   }
 
   .autoSendToggle {
     display: flex;
-    align-items: center;
+    align-items:right;
     gap: var(--spacing-xs);
-    margin-bottom: 15px;
 
     label {
       font-size: var(--font-size-small);
@@ -58,8 +63,9 @@
     }
 
     input[type="checkbox"] {
-      width: 20px;
-      height: 20px;
+      margin-top: 0px;
+      width: 14px;
+      height: 14px;
       cursor: pointer;
     }
   }
@@ -170,12 +176,26 @@
   .tableWrapper {
     overflow: auto;
     flex: 1;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 5px;
+      border: 2px solid #f1f1f1;
+    }
   }
 
   .customerTable {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 15px;
+
+    
 
     th,
     td {

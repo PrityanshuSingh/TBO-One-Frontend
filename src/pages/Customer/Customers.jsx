@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import styles from "./styles/Customers.module.scss";
 import CustomerCard from "../../components/Cards/CustomerCard";
 import { FaSearch, FaArrowLeft, FaTrash } from "react-icons/fa";
-import axios from "axios";
+import api from "../../utils/api";
 
 const CONTACT_FILTER_OPTIONS = {
   ALL: "All Contacts",
@@ -30,7 +30,8 @@ export default function Customers() {
   const [autoSending, setAutoSending] = useState(false);
   const [autoGenIntervalId, setAutoGenIntervalId] = useState(null);
 
-  const existingCustomerIds = userData?.Profile?.customer?.map((c) => c.id) || [];
+  const existingCustomerIds =
+    userData?.Profile?.customer?.map((c) => c.id) || [];
   const loyaltyGroup = userData?.Profile?.groups?.find((g) => g.id === "100");
   const loyaltyCustomerIds = loyaltyGroup?.contactId || [];
 
@@ -118,7 +119,9 @@ export default function Customers() {
 
   const handleSelectRow = (rowId) => {
     setSelectedRows((prev) =>
-      prev.includes(rowId) ? prev.filter((id) => id !== rowId) : [...prev, rowId]
+      prev.includes(rowId)
+        ? prev.filter((id) => id !== rowId)
+        : [...prev, rowId]
     );
   };
 
@@ -147,7 +150,7 @@ export default function Customers() {
           oldPkgId: row.oldPkgId,
           prompt: row.prompt,
         };
-        const res = await axios.post("/api/packages/generate", payload);
+        const res = await api.post("/api/packages/generate", payload);
         const { newPkgJson } = res.data;
         console.log("Auto gen for row =>", row.rowId, newPkgJson);
         // In real usage, you'd update local or global state with newPkgJson.id
@@ -177,25 +180,21 @@ export default function Customers() {
   return (
     <div className={styles.customersContainer}>
       <div className={styles.headerRow}>
-        <button className={`${styles.backButton} ${styles.actionBtn}`} onClick={handleBackClick}>
-          <FaArrowLeft size={18} />
-        </button>
         <h2 className={styles.title}>
           {loyaltyMode ? "Loyalty Customers" : "Interested Campaign Contacts"}
+          <p className={styles.subtitle}>
+            {loyaltyMode
+              ? " Top loyalty customers who have shown interest in your campaigns."
+              : "View and manage contacts who have shown interest in your campaigns."}
+          </p>
         </h2>
-        <button className={`${styles.loyaltyToggleBtn} ${styles.actionBtn}`} onClick={toggleLoyaltyMode}>
-          {loyaltyMode ? "Go Back to Campaign Contacts" : "Show Loyalty Customers"}
-        </button>
-      </div>
 
-      <div className={styles.autoSendToggle}>
-        <label htmlFor="autoSendingSwitch">Auto Send?</label>
-        <input
-          type="checkbox"
-          id="autoSendingSwitch"
-          checked={autoSending}
-          onChange={() => setAutoSending((prev) => !prev)}
-        />
+        <button
+          className={`${styles.loyaltyToggleBtn} ${styles.actionBtn}`}
+          onClick={toggleLoyaltyMode}
+        >
+          {loyaltyMode ? "Go Back" : "Show Loyalty Customers"}
+        </button>
       </div>
 
       <div className={styles.controls}>
@@ -243,6 +242,15 @@ export default function Customers() {
                   </option>
                 ))}
               </select>
+            </div>
+            <div className={styles.autoSendToggle}>
+              <label htmlFor="autoSendingSwitch">Auto Send?</label>
+              <input
+                type="checkbox"
+                id="autoSendingSwitch"
+                checked={autoSending}
+                onChange={() => setAutoSending((prev) => !prev)}
+              />
             </div>
           </div>
         )}

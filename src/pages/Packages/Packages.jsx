@@ -75,6 +75,7 @@ const Packages = () => {
   const { userData } = useContext(AuthContext);
   const { campaigns } = useContext(CampaignContext);
 
+  console.log("Campaigns:", campaigns);
   const [packagesData, setPackagesData] = useState([]);
   const [categories, setCategories] = useState({});
 
@@ -132,7 +133,9 @@ const Packages = () => {
    */
   const getCampaignStatus = (pkgId) => {
     if (!Array.isArray(campaigns) || campaigns.length === 0) return null;
-    const foundCampaign = campaigns.find((c) => c.pkgId === pkgId);
+    // console.log("getCampaignStatus => pkgId:", pkgId);
+    // console.log("getCampaigns:", campaigns);
+    const foundCampaign = campaigns.find((c) => c.pkgId == pkgId);
     return foundCampaign ? foundCampaign.status : null;
   };
 
@@ -184,7 +187,6 @@ const Packages = () => {
       toDate,
       adultCount,
     };
-    console.log("AI search formData = ", formData);
 
     try {
       const res = await api.post("/api/ai/packages", formData);

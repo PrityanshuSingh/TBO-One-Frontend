@@ -1,311 +1,339 @@
-// src/pages/Packages/Packages.jsx
+// src/pages/SocialMedia/SocialMedia.jsx
 
-import React, { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../../utils/api";
+import React, { useState, useEffect } from 'react';
+import { FaInstagram, FaXing } from 'react-icons/fa';
+import api from '../../utils/api';
+import Template from '../../components/Cards/TemplateCard';
+import PreviewModal from '../../components/Modals/PreviewModal';
+import templatesData from '../../data/localTemplates.json';
+import styles from './styles/SocialMedia.module.scss';
 
-import { CampaignContext } from "../../context/CampaignContext";
-import { AuthContext } from "../../context/AuthContext";
-import localPackages from "../../data/localPackages.json";
+const typeFilterOptions = ["ALL", "Festive", "Destination", "Brand", "Scenic", "Quiz", "Trends"];
+const segmentFilterOptions = ["ALL", "post", "ad"];
+const socialFilterOptions = ["ALL", "instagram", "twitter"];
 
-import CampaignFilter from "../../components/Filters/CampaignFilter";
-import AIForm from "../../components/Forms/AIForm";
-import CategorySection from "../../components/Sections/PackageCategory/CategorySection";
-import PackageCard from "../.././components/Cards/PackageCard";
+const SocialMedia = () => {
+  const [isInstagramConnected, setIsInstagramConnected] = useState(false);
 
-import { FaRegBookmark } from "react-icons/fa";
+  // Example agent data
+  const agentName = "Rohit Sharma";
+  const agentContact = "+91 (22) 9876-5432";
+  const agentEmail = "rohit.sharma@tbotravels.com";
 
-import styles from "./styles/SocialMedia.module.scss";
+  // Filter states
+  const [typeFilter, setTypeFilter] = useState("ALL");
+  const [segmentFilter, setSegmentFilter] = useState("ALL");
+  const [socialFilter, setSocialFilter] = useState("ALL");
 
-/**
- * Priority tags that we want to display as categories.
- */
-const PRIORITY_TAGS = [
-  "Trending",
-  "Cultural",
-  "Heritage",
-  "Royal",
-  "Adventure",
-  "Shopping",
-  "Scenic",
-  "Relaxation",
-  "Backwaters",
-  "History",
-  "Beach",
-  "Spa",
-  "Nightlife",
-  "Water Sports",
-  "Pop Culture",
-  "Foodie",
-  "City Tour",
-  "Shopping",
-  "K-Pop",
-];
+  // Template selection & user inputs
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [imageQuery, setImageQuery] = useState("");
+  const [captionQuery, setCaptionQuery] = useState("");
 
-/**
- * Categorizes an array of packages into a record keyed by tags from PRIORITY_TAGS.
- * @param {Array} allPackages
- * @returns {Object} categories where keys are tags and values are arrays of packages
- */
-function categorizePackages(allPackages) {
-  const categories = {};
-  PRIORITY_TAGS.forEach((tag) => {
-    categories[tag] = [];
-  });
+  // Preview modal
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [generatedData, setGeneratedData] = useState(null);
 
-  if (Array.isArray(allPackages) && allPackages.length > 0) {
-    allPackages.forEach((pkg) => {
-      const matchedTags = (pkg.recommendationTags || [])
-        .filter((t) => PRIORITY_TAGS.includes(t))
-        .slice(0, 3); // Get first 3 matching tags
-
-      matchedTags.forEach((tag) => {
-        categories[tag].push(pkg);
-      });
-    });
-  } else {
-    console.warn("categorizePackages => Invalid or empty packages data");
-  }
-
-  return categories;
-}
-
-const Packages = () => {
-  const navigate = useNavigate();
-  const { userData } = useContext(AuthContext);
-  const { campaigns } = useContext(CampaignContext);
-
-  const [packagesData, setPackagesData] = useState([]);
-  const [categories, setCategories] = useState({});
-
-  // States for AI form
-  const [aiPackages, setAiPackages] = useState([]);
-  const [isAiActive, setIsAiActive] = useState(false);
-  const [isAiLoading, setIsAiLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const [aiPrompt, setAiPrompt] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
-  const [adultCount, setAdultCount] = useState("1");
-
-  // States for campaign filter
-  const [campaignFilter, setCampaignFilter] = useState("ALL");
-
-  // Category-based search states
-  const [categoryFilters, setCategoryFilters] = useState(
-    PRIORITY_TAGS.reduce((acc, tag) => ({ ...acc, [tag]: "" }), {})
-  );
-
-  // Fetch initial packages
+  // On mount, check if there's an Instagram code in the URL
   useEffect(() => {
-    async function fetchPackages() {
-      try {
-        const res = await api.get("/api/packages");
-        // Validate the data before setting to state
-        if (Array.isArray(res.data) && res.data.length > 0) {
-          setPackagesData(res.data);
-        } else {
-          console.warn("Invalid data from /api/packages, using fallback");
-          setPackagesData(localPackages);
-        }
-      } catch (error) {
-        console.error("Failed to fetch from API. Using local fallback.", error);
-        setPackagesData(localPackages);
-      }
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+    if (code) {
+      api.post('/auth/instagram/callback', { code })
+        .then(() => {
+          setIsInstagramConnected(true);
+          // Remove the code param from URL
+          window.history.replaceState(null, '', window.location.pathname);
+        })
+        .catch(() => {
+          alert('Failed to connect Instagram.');
+        });
     }
-    fetchPackages();
   }, []);
 
-  // Categorize packages whenever packagesData changes
-  useEffect(() => {
-    setCategories(categorizePackages(packagesData));
-  }, [packagesData]);
-
-  /**
-   * Returns the campaign status for a specific package ID, or null if none found.
-   * @param {string|number} pkgId
-   * @returns {string|null} e.g., "ACTIVE", "ENDED", or null
-   */
-  const getCampaignStatus = (pkgId) => {
-    if (!Array.isArray(campaigns) || campaigns.length === 0) return null;
-    const foundCampaign = campaigns.find((c) => c.pkgId === pkgId);
-    return foundCampaign ? foundCampaign.status : null;
+  const handleInstagramAuth = () => {
+    const hostname = window.location.hostname;
+    window.location.href = `${hostname}/auth/instagram`;
   };
 
-  /**
-   * Checks whether a package matches the category filter text
-   * and the currently selected campaign filter (if any).
-   * @param {Object} pkg - The package to filter.
-   * @param {string} tag - The category tag used as a filter key.
-   */
-  const filterPackage = (pkg, tag) => {
-    const text = (pkg.packageTitle + pkg.location).toLowerCase();
-    if (!text.includes(categoryFilters[tag].toLowerCase())) return false;
-    if (campaignFilter !== "ALL") {
-      const status = getCampaignStatus(pkg.id);
-      if (status !== campaignFilter) return false;
-    }
+  // Filter the templates by type, segment, and social
+  const filteredTemplates = templatesData.filter((tpl) => {
+    if (typeFilter !== "ALL" && tpl.type !== typeFilter) return false;
+    if (segmentFilter !== "ALL" && tpl.segment !== segmentFilter) return false;
+    if (socialFilter !== "ALL" && tpl.social !== socialFilter) return false;
     return true;
+  });
+
+  // Select a template
+  const handleTemplateSelect = (template) => {
+    setSelectedTemplate(template);
+    setImageQuery("");
+    setCaptionQuery("");
   };
 
-  const handleDetailsClick = (pkgId) => {
-    navigate(`/u/packages/details/${pkgId}`);
+  const handleCloseCustomization = () => {
+    setSelectedTemplate(null);
+    setImageQuery("");
+    setCaptionQuery("");
   };
 
-  // Validate required fields for the AI form
-  const validateAiForm = () => {
-    if (!aiPrompt.trim()) {
-      return "Please provide a prompt.";
-    }
-    return "";
-  };
-
-  // AI prompt submission
-  const handleAiSearch = async (e) => {
-    e.preventDefault();
-    setErrorMsg("");
-    const err = validateAiForm();
-    if (err) {
-      setErrorMsg(err);
+  const handleGenerateCaptionAi = async () => {
+    if (!imageQuery.trim()) {
+      alert("Please enter an image prompt (or URL) first.");
       return;
     }
-    setIsAiLoading(true);
-    setIsAiActive(false);
-
-    const formData = {
-      prompt: aiPrompt,
-      city,
-      country,
-      fromDate,
-      toDate,
-      adultCount,
-    };
-    console.log("AI search formData = ", formData);
-
+    const payload = { prompt: imageQuery.trim() };
     try {
-      const res = await api.post("/api/ai/packages", formData);
-      if (Array.isArray(res.data)) {
-        setAiPackages(res.data);
-      } else {
-        console.warn("Invalid AI data, using empty array for suggestions");
-        setAiPackages([]);
-      }
-      setIsAiActive(true);
-    } catch (error) {
-      console.error("AI prompt failed. Using local fallback.", error);
-      setAiPackages([]);
-      setIsAiActive(true);
-    } finally {
-      setIsAiLoading(false);
+      const res = await api.post('/api/genai/caption', payload);
+      setCaptionQuery(res.data.caption);
+    } catch (err) {
+      console.error("Error from /api/genai/caption:", err);
+      alert("Failed to generate AI caption. Using fallback data.");
+      // Fallback
+      setCaptionQuery(`(Fallback) AI-Generated Caption from "${imageQuery}"`);
     }
   };
 
-  const handleSavedRoute = () => {
-    navigate("/u/packages/saved");
+  const handleGenerateImageAi = async () => {
+    if (!imageQuery.trim()) {
+      alert("Please enter a prompt for AI image generation.");
+      return;
+    }
+    const payload = { prompt: imageQuery.trim() };
+    try {
+      const res = await api.post('/api/genai/image', payload);
+      // Suppose the server responds with { imageUrl: "..." }
+      setImageQuery(res.data.imageUrl);
+    } catch (err) {
+      console.error("Error from /api/genai/image:", err);
+      alert("Failed to generate AI image. Using fallback data.");
+      // Fallback
+      const fallbackUrl = `https://via.placeholder.com/400?text=AI+for:${encodeURIComponent(imageQuery)}`;
+      setImageQuery(fallbackUrl);
+    }
+  };
+
+
+  const handleGeneratePreview = () => {
+    if (!imageQuery.trim() && !captionQuery.trim()) {
+      alert("Please provide a caption or an image query/URL.");
+      return;
+    }
+    let finalImageUrl = "";
+    if (imageQuery.trim()) {
+      if (imageQuery.startsWith("http")) {
+        finalImageUrl = imageQuery.trim();
+      } else {
+        // Possibly an AI placeholder
+        finalImageUrl = `https://via.placeholder.com/300?text=AI+for:${encodeURIComponent(imageQuery)}`;
+      }
+    }
+    const responseData = {
+      image: finalImageUrl,
+      caption: captionQuery
+    };
+    setGeneratedData(responseData);
+    setShowPreviewModal(true);
+  };
+
+
+  const handlePostNow = async () => {
+    if (!selectedTemplate || !generatedData) return;
+    const payload = {
+      templateId: selectedTemplate.id,
+      templateName: selectedTemplate.name,
+      agentName,
+      agentContact,
+      agentEmail,
+      image: generatedData.image,
+      caption: generatedData.caption,
+      action: 'post-now'
+    };
+    try {
+      const res = await api.post('/api/social/postNow', payload);
+      // If success
+      alert("Post published immediately!");
+      setShowPreviewModal(false);
+    } catch (error) {
+      console.error("Failed immediate post", error);
+      alert("Failed to post now. Using fallback response instead.");
+      // Fallback
+      setShowPreviewModal(false);
+    }
+  };
+
+
+  const handleSchedulePost = async (scheduleTime) => {
+    if (!selectedTemplate || !generatedData) return;
+    if (!scheduleTime) {
+      alert("Please select a date/time for scheduling.");
+      return;
+    }
+    const payload = {
+      templateId: selectedTemplate.id,
+      templateName: selectedTemplate.name,
+      agentName,
+      agentContact,
+      agentEmail,
+      image: generatedData.image,
+      caption: generatedData.caption,
+      scheduleTime,
+      action: 'schedule'
+    };
+    try {
+      const res = await api.post('/api/social/schedule', payload);
+      alert(`Post scheduled for ${scheduleTime}!`);
+      setShowPreviewModal(false);
+    } catch (error) {
+      console.error("Failed scheduling", error);
+      alert("Failed to schedule post. Fallback: scheduled in local DB (simulated).");
+      // Fallback
+      setShowPreviewModal(false);
+    }
   };
 
   return (
-    <div className={styles.packagesContainer}>
+    <div className={styles.socialMediaContainer}>
+      {/* Header */}
       <div className={styles.fixedHeader}>
-        <div className={styles.topBar}>
-          <div className={styles.headingArea}>
-            <h1 className={styles.mainTitle}>AI-Powered Packages</h1>
-            <p className={styles.subtitle}>
-              Top Travel Packages Curated for You
-            </p>
-          </div>
-          <div className={styles.rightActions}>
-            <CampaignFilter
-              campaignFilter={campaignFilter}
-              onChange={setCampaignFilter}
-            />
-            <button
-              className={styles.savedBtn}
-              onClick={handleSavedRoute}
-              title="View Saved Packages"
-            >
-              <FaRegBookmark size={18} />
-            </button>
-          </div>
+        <div className={styles.headingArea}>
+          <h1>Social Media Templates</h1>
+          <p>Customize and schedule your Instagram or Twitter posts</p>
+        </div>
+        <div className={styles.socialIcons}>
+          <button onClick={handleInstagramAuth} title="Connect Instagram">
+            <FaInstagram size={24} />
+          </button>
+          {!isInstagramConnected && (
+            <span className={styles.connectedTag}>Connected</span>
+          )}
         </div>
       </div>
 
-      <div className={styles.scrollContent}>
-        <AIForm
-          aiPrompt={aiPrompt}
-          setAiPrompt={setAiPrompt}
-          city={city}
-          setCity={setCity}
-          country={country}
-          setCountry={setCountry}
-          fromDate={fromDate}
-          setFromDate={setFromDate}
-          toDate={toDate}
-          setToDate={setToDate}
-          adultCount={adultCount}
-          setAdultCount={setAdultCount}
-          onSubmit={handleAiSearch}
-          isAiActive={isAiActive}
-          setIsAiActive={setIsAiActive}
-          isAiLoading={isAiLoading}
-          errorMsg={errorMsg}
-        />
+      {/* Filters */}
+      <div className={styles.filtersRow}>
+        <div className={styles.filterGroup}>
+          <label>Type:</label>
+          {typeFilterOptions.map((option) => (
+            <button
+              key={option}
+              // highlight if active
+              className={typeFilter === option ? "active" : ""}
+              onClick={() => setTypeFilter(option)}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+        <div className={styles.filterGroup}>
+          <label>Segment:</label>
+          {segmentFilterOptions.map((option) => (
+            <button
+              key={option}
+              className={segmentFilter === option ? "active" : ""}
+              onClick={() => setSegmentFilter(option)}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+        <div className={styles.filterGroup}>
+          <label>Social:</label>
+          {socialFilterOptions.map((option) => (
+            <button
+              key={option}
+              className={socialFilter === option ? "active" : ""}
+              onClick={() => setSocialFilter(option)}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      </div>
 
-        {isAiActive ? (
-          <div className={styles.aiSuggestionSection}>
-            <h2 className={styles.categoryTitle}>AI Suggested Packages</h2>
-            <div className={styles.categoryContainer}>
-              {aiPackages.length === 0 ? (
-                <div className={styles.noPackagesMsg}>
-                  No suggested packages found.
-                </div>
-              ) : (
-                <div className={styles.cardsGrid}>
-                  {aiPackages.map((pkg) => (
-                    <PackageCard
-                      key={pkg.id}
-                      id={pkg.id}
-                      packageTitle={pkg.packageTitle}
-                      image={pkg.image}
-                      location={pkg.location}
-                      duration={pkg.duration}
-                      price={pkg.price}
-                      campaignStatus={getCampaignStatus(pkg.id)}
-                      onDetailsClick={() => handleDetailsClick(pkg.id)}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
+      {/* Templates Grid */}
+      <div className={styles.templatesGrid}>
+        {filteredTemplates.length === 0 ? (
+          <div>No templates available for these filters.</div>
         ) : (
-          PRIORITY_TAGS.map((tag) => {
-            const catPackages = categories[tag] || [];
-            if (catPackages.length === 0) return null;
-            const filtered = catPackages.filter((pkg) =>
-              filterPackage(pkg, tag)
-            );
-            return (
-              <CategorySection
-                key={tag}
-                tag={tag}
-                packages={filtered}
-                filterValue={categoryFilters[tag]}
-                setFilterValue={(val) =>
-                  setCategoryFilters((prev) => ({ ...prev, [tag]: val }))
-                }
-                onDetailsClick={handleDetailsClick}
-                getCampaignStatus={getCampaignStatus}
-              />
-            );
-          })
+          filteredTemplates.map((template) => (
+            <Template
+              key={template.id}
+              template={template}
+              onSelect={handleTemplateSelect}
+              isSelected={selectedTemplate && selectedTemplate.id === template.id}
+            />
+          ))
         )}
       </div>
+
+      {/* Customization if a template is selected */}
+      {selectedTemplate && (
+        <div className={styles.inputSection}>
+          <div className={styles.customizeHeader}>
+            <h2>Customize Template: {selectedTemplate.name}</h2>
+            <button
+              className={styles.closeCustomizationBtn}
+              onClick={handleCloseCustomization}
+            >
+              Close
+            </button>
+          </div>
+
+          {/* AI image generation */}
+          <label>Image (Prompt or URL)</label>
+          <input
+            type="text"
+            placeholder="Use AI prompt or enter image URL..."
+            value={imageQuery}
+            onChange={(e) => setImageQuery(e.target.value)}
+          />
+          <div style={{ display: 'flex', gap: '10px', margin: '6px 0 12px' }}>
+            <button
+              className={styles.generateButton}
+              onClick={handleGenerateImageAi}
+            >
+              Generate AI Image
+            </button>
+          </div>
+
+          <label>Caption</label>
+          <input
+            type="text"
+            placeholder="Type your caption or use AI..."
+            value={captionQuery}
+            onChange={(e) => setCaptionQuery(e.target.value)}
+          />
+          <div style={{ display: 'flex', gap: '10px', margin: '6px 0 12px' }}>
+            <button
+              className={styles.generateButton}
+              onClick={handleGenerateCaptionAi}
+            >
+              Generate AI Caption & Tags
+            </button>
+          </div>
+
+          <button className={styles.generateButton} onClick={handleGeneratePreview}>
+            Generate Preview
+          </button>
+        </div>
+      )}
+
+      {/* Preview Modal */}
+      {showPreviewModal && selectedTemplate && generatedData && (
+        <PreviewModal
+          template={selectedTemplate}
+          generatedData={generatedData}
+          agentName={agentName}
+          agentContact={agentContact}
+          agentEmail={agentEmail}
+          onClose={() => setShowPreviewModal(false)}
+          onPostNow={handlePostNow}
+          onSchedule={handleSchedulePost}
+        />
+      )}
     </div>
   );
 };
 
-export default Packages;
+export default SocialMedia;

@@ -53,7 +53,7 @@ export const CampaignProvider = ({ children }) => {
 
   // Function to fetch additional package details if needed
   const fetchPackageDetails = async () => {
-    const ids = [...new Set(campaigns.map((campaign) => campaign.id))];
+    const ids = [...new Set(campaigns.map((campaign) => campaign.pkgId))];
 
     try {
       const fetchPromises = ids.map((id) =>
@@ -64,6 +64,7 @@ export const CampaignProvider = ({ children }) => {
       );
 
       const fetchedPackages = await Promise.all(fetchPromises);
+      console.log("Fetched package details:", fetchedPackages);
 
       // Create a mapping of id to packageTitle
       const packagesMap = {};
@@ -79,6 +80,7 @@ export const CampaignProvider = ({ children }) => {
       fetchedPackages.forEach(({ id, packageTitle }) => {
         packagesMap[id] = packageTitle;
       });
+      console.log("Fetched package details (fallback):", packagesMap);
       return packagesMap;
     }
   };

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function MicroLoad() {
+function Dashboard() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function MicroLoad() {
   )
 }
 
-export default MicroLoad
+export default Dashboard

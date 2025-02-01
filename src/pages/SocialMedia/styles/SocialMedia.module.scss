@@ -1,9 +1,9 @@
-/* src/pages/Packages/styles/Packages.module.scss */
+/* src/pages/SocialMedia/styles/SocialMedia.module.scss */
 @import '../../../assets/styles/variables.scss';
 
-.packagesContainer {
+.socialMediaContainer {
   width: 100%;
-  max-width: 76vw; 
+  max-width: 74vw;
   max-height: 94vh;
   height: 94vh;
   margin: 0 auto;
@@ -20,12 +20,94 @@
   z-index: 10;
   background-color: white;
   padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.scrollContent {
-  flex: 1;
-  overflow-y: auto;
+.headingArea {
+  h1 {
+    color: var(--black);
+    font: 600 24px 'Poppins', sans-serif;
+    margin: 0;
+  }
+  p {
+    color: var(--gray);
+    font: 500 14px 'Inter', sans-serif;
+    margin: 4px 0 0;
+  }
+}
+
+.socialIcons {
+  display: flex;
+  align-items: center;
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-blue);
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--primary-blue);
+    }
+  }
+
+  .connectedTag {
+    margin-left: 4px;
+    padding: 2px 6px;
+    background-color: var(--light-blue);
+    color: var(--primary-blue);
+    border-radius: 4px;
+    font-size: 12px;
+  }
+}
+
+/* The triple filter row */
+.filtersRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   padding: 16px 20px;
+  background-color: white; /* or keep as is */
+
+  .filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dark-gray);
+    }
+
+    button {
+      padding: 6px 12px;
+      border: 1px solid var(--primary-blue);
+      border-radius: 8px;
+      background-color: white;
+      color: var(--primary-blue);
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+
+      &.active {
+        background-color: var(--primary-blue);
+        color: white;
+      }
+    }
+  }
+}
+
+/* The grid of templates */
+.templatesGrid {
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  overflow-y: auto;
+  flex: 1;
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -40,102 +122,91 @@
   }
 }
 
-.topBar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.headingArea {
+/* The input section for customization */
+.inputSection {
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-}
+  gap: 6px;
+  overflow-y: auto;
+  background-color: #fafafa;
 
-.mainTitle {
-  color: var(--black);
-  font: 600 24px 'Poppins', sans-serif;
-  margin: 6px 0 0;
-}
+  
 
-.subtitle {
-  color: var(--gray);
-  font: 500 14px 'Inter', sans-serif;
-  margin: 4px 0 0;
-}
+  .customizeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
 
-/* 
-  AI Suggestions Section 
-  Reuse the same styles as your category container to have same light-blue background, etc.
-*/
-.aiSuggestionSection {
-  margin-bottom: 24px; /* spacing, up to you */
-}
+    h2 {
+      margin: 0;
+      color: var(--black);
+      font-size: 16px;
+    }
 
-/* We can reuse classes from CategorySection if you want consistent design: */
-.categoryTitle {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--black);
-  margin: 0 0 6px;
-}
+    .closeCustomizationBtn {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--primary-blue);
+      background-color: white;
+      color: var(--primary-blue);
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
 
-.categoryContainer {
-  background-color: var(--light-blue);
-  border-radius: 20px;
-  padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
+      &:hover {
+        background-color: var(--light-blue);
+        color: var(--black);
+      }
+    }
+  }
 
-.noPackagesMsg {
-  font-size: 12px;
-  font-style: italic;
-  color: var(--dark-gray);
-  padding: 6px;
-  text-align: center;
-}
+  label {
+    font-size: 13px;
+    color: var(--dark-gray);
+  }
 
-.cardsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-  grid-auto-rows: minmax(220px, auto);
-}
-
-.rightActions {
-  display: flex;
-  align-items: center;
-
-  button {
-    padding: 8px 6px 6px 6px;
+  input {
+    padding: 8px 12px;
+    border: 1px solid var(--gray);
     border-radius: 8px;
-    margin-top: 10px;
-    margin-right: 10px;
-    border: 1px solid white;
-    background-color: white;
-    color: var(--primary-blue);
+    font-size: 14px;
+  }
+
+  .generateButton {
+    padding: 8px 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-blue);
+    color: white;
     cursor: pointer;
+    font-size: 12px;
     transition: background-color 0.2s, color 0.2s;
 
     &:hover {
-      background-color: var(--light-blue);
-    }
+        background-color: #1b9cd9;
+      }
   }
 }
 
+/* The bottom section for scheduling automation */
+.automationSection {
+  padding: 16px 20px;
+  text-align: center;
+  background-color: #fafafa;
 
+  .scheduleButton {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--secondary-green);
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: opacity 0.2s;
 
-@media screen and (max-width: 768px) {
-  .packagesContainer {
-    width: 100%;
-    max-width: 90vw; 
-    max-height: 94vh;
-    margin: 0 auto;
-    background-color: white;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    &:hover {
+      opacity: 0.9;
+    }
   }
 }

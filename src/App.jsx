@@ -5,8 +5,9 @@ import ProtectedRoute from './authentication/ProtectedRoute';
 import styles from './App.module.scss';
 
 // Pages
-import Login from './pages/Auth/Login';
-import Signup from './pages/Auth/SignUp';
+const Login = lazy(() => import('./pages/Auth/Login'));
+const Signup = lazy(() => import('./pages/Auth/SignUp'));
+
 const Packages = lazy(() => import('./pages/Packages/Packages'));
 const PackageDetails = lazy(() => import('./pages/Packages/PackageDetails'));
 const SavedPackages = lazy(() => import('./pages/Packages/SavedPackages'));
@@ -17,7 +18,8 @@ const Campaigns = lazy(() => import('./pages/Campaign/Campaigns'));
 
 const Customers = lazy(() => import('./pages/Customer/Customers'));
 
-const SocialMedia = lazy(() => import('./pages/SocialMedia/SocialMedia'));  
+const SocialMedia = lazy(() => import('./pages/SocialMedia/SocialMedia'));
+
 const ErrorPage = lazy(() => import('./pages/Error/Error'));
 
 function App() {

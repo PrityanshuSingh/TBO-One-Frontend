@@ -1,0 +1,52 @@
+[
+    {
+      "id": 1,
+      "type": "Festive",
+      "segment": "post",
+      "social": "instagram",
+      "name": "Festive Celebration Post",
+      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3') center/cover no-repeat;\">  <div style='position:absolute; top:0; left:0; width:100%; padding:6px; background:rgba(255,255,255,0.3);'>    <h4 style='margin:4px;'>@{{agentName}} - Festive Time!</h4>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.6); color:#fff; padding:6px; box-sizing:border-box;'>    <p style='margin:2px 0; font-size:12px;'>Contact: {{agentContact}}, {{agentEmail}}</p>    <h3 style='margin:0;'>Celebrate with Us</h3>  </div></div>"
+    },
+    {
+      "id": 2,
+      "type": "Destination",
+      "segment": "ad",
+      "social": "instagram",
+      "name": "Dream Destination Ad",
+      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;\">  <div style='position:absolute; top:0; right:0; background:rgba(255,255,255,0.3); padding:4px; border-bottom-left-radius:8px;'>    <span style='color:#333; font-size:12px;'>Sponsored</span>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.6); color:#fff; padding:6px; box-sizing:border-box;'>    <h3 style='margin:0;'>Your Next Adventure</h3>    <p style='margin:4px 0;'>{{caption}}</p>    <p style='font-size:12px;'>@{{agentName}} for details: {{agentContact}}</p>  </div></div>"
+    },
+    {
+      "id": 3,
+      "type": "Brand",
+      "segment": "post",
+      "social": "twitter",
+      "name": "Level Up Your Brand Post",
+      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1629140233255-a709e3fce3d8?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;\">  <div style='position:absolute; top:8px; left:8px; background:rgba(255,255,255,0.6); padding:4px; border-radius:6px;'>    <h4 style='margin:0; font-size:14px;'>@{{agentName}}</h4>    <p style='margin:0; font-size:12px;'>Boosting Brands</p>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.5); color:#fff; padding:6px;'>    <p style='margin:4px 0; font-size:12px;'>Contact: {{agentEmail}}</p>    <h3 style='margin:0;'>Elevate Visibility</h3>  </div></div>"
+    },
+    {
+      "id": 4,
+      "type": "Scenic",
+      "segment": "ad",
+      "social": "instagram",
+      "name": "Scenic Escape Ad",
+      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1582779134183-54d9709418c1?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;\">  <div style='position:absolute; top:0; width:100%; background:rgba(255,255,255,0.2); color:#333; padding:4px; box-sizing:border-box;'>    <h4 style='margin:0;'>@{{agentName}} - Scenic</h4>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.6); color:#fff; padding:8px; box-sizing:border-box;'>    <h3 style='margin:0;'>Escape the Ordinary</h3>    <p style='margin:4px 0;'>{{caption}}</p>    <p style='font-size:12px;'>Call: {{agentContact}}</p>  </div></div>"
+    },
+    {
+      "id": 5,
+      "type": "Quiz",
+      "segment": "post",
+      "social": "twitter",
+      "name": "Fun Travel Quiz Post",
+      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;\">  <div style='position:absolute; top:0; left:0; width:100%; background:rgba(255,255,0,0.2); padding:4px; box-sizing:border-box;'>    <h4 style='margin:0; color:#444;'>Pop Quiz</h4>    <p style='margin:2px 0; font-size:12px;'>By {{agentName}} ({{agentEmail}})</p>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.6); color:#fff; padding:6px;'>    <h3 style='margin:0;'>Test Your Knowledge</h3>  </div></div>"
+    },
+    {
+      "id": 6,
+      "type": "Trends",
+      "segment": "ad",
+      "social": "instagram",
+      "name": "Latest Travel Trends Ad",
+      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;\">  <div style='position:absolute; top:8px; right:8px; background:rgba(255,255,255,0.4); padding:4px; border-radius:6px;'>    <h5 style='margin:0; color:#333;'>@{{agentName}}</h5>    <span style='font-size:11px;'>{{agentContact}}</span>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.5); color:#fff; padding:6px; box-sizing:border-box;'>    <h3 style='margin:0;'>Stay Ahead!</h3>    <p style='margin:4px 0;'>{{caption}}</p>  </div></div>"
+    }
+  ]
+  
+  

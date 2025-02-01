@@ -1,12 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom/client"; // Correct import for React 18+
+import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { CampaignProvider } from "./context/CampaignContext";
 import App from "./App";
 import "./assets/styles/index.scss";
 
-const root = ReactDOM.createRoot(document.getElementById("root")); // Use createRoot instead of render
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
