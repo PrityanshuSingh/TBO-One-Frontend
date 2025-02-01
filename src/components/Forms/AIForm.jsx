@@ -1,46 +1,55 @@
+// src/components/Forms/AIForm.jsx
 import React, { useContext, useState, useEffect } from "react";
-import api from "../../utils/api";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import api from "../../utils/api";
 import styles from "./styles/AIForm.module.scss";
 
 const TBO_COUNTRYLIST_URL = import.meta.env.VITE_TBO_COUNTRYLIST_URL;
 const TBO_CITYLIST_URL = import.meta.env.VITE_TBO_CITYLIST_URL;
 
 function AIForm({
-  aiPrompt,
-  setAiPrompt,
+  // All the parent states + setters
+  originCountry,
+  setOriginCountry,
+  originCountryCode,
+  setOriginCountryCode,
+  originCity,
+  setOriginCity,
+  originCityCode,
+  setOriginCityCode,
+  destinationCountry,
+  setDestinationCountry,
+  destinationCountryCode,
+  setDestinationCountryCode,
+  destinationCity,
+  setDestinationCity,
+  destinationCityCode,
+  setDestinationCityCode,
   fromDate,
   setFromDate,
   toDate,
   setToDate,
   adultCount,
   setAdultCount,
+  aiPrompt,
+  setAiPrompt,
+
+  // Handlers
   onSubmit,
-  isAiActive,
-  errorMsg,
-  setIsAiActive,
-  setAiPackages,
   onReset,
+
+  isAiActive,
+  setIsAiActive,
+  isAiLoading,
+  errorMsg,
 }) {
   const { userData } = useContext(AuthContext);
 
-  // Country & City Arrays
+  // Reintroduce these states for country/city suggestions
   const [countries, setCountries] = useState([]);
   const [originCities, setOriginCities] = useState([]);
   const [destinationCities, setDestinationCities] = useState([]);
-
-  // Inputs for origin/destination
-  const [originCountry, setOriginCountry] = useState("");
-  const [originCity, setOriginCity] = useState("");
-  const [destinationCountry, setDestinationCountry] = useState("");
-  const [destinationCity, setDestinationCity] = useState("");
-
-  // Codes for origin/destination
-  const [originCountryCode, setOriginCountryCode] = useState("");
-  const [originCityCode, setOriginCityCode] = useState("");
-  const [destinationCountryCode, setDestinationCountryCode] = useState("");
-  const [destinationCityCode, setDestinationCityCode] = useState("");
 
   // Show/hide states for suggestions
   const [showOriginCountrySuggestions, setShowOriginCountrySuggestions] =
@@ -109,14 +118,14 @@ function AIForm({
     }
   };
 
-  // Filter a list of items by the user input
+  // Filter a list by user input
   const filterSuggestions = (list, input) => {
     return list.filter((item) =>
       item.Name.toLowerCase().includes(input.toLowerCase())
     );
   };
 
-  // User typed in the country input -> update text, show suggestions
+  // For changing country input
   const handleCountryChange = (
     e,
     setCountryText,
@@ -126,13 +135,11 @@ function AIForm({
   ) => {
     const value = e.target.value;
     setCountryText(value);
-    // reset code if user starts typing
     setCountryCode("");
-    // show suggestions whenever there's a non-empty value
     setShowSuggestions(value.trim() !== "");
   };
 
-  // User typed in the city input -> update text, show suggestions
+  // For changing city input
   const handleCityChange = (
     e,
     setCityText,
@@ -145,7 +152,7 @@ function AIForm({
     setShowSuggestions(value.trim() !== "");
   };
 
-  // When user selects a country from suggestions
+  // Selecting a country from suggestions
   const handleCountrySelect = (
     countryObj,
     setCountryText,
@@ -155,11 +162,11 @@ function AIForm({
   ) => {
     setCountryText(countryObj.Name);
     setCountryCode(countryObj.Code);
-    setShowSuggestions(false); // Hide suggestions
+    setShowSuggestions(false);
     fetchCities(countryObj.Code, setCitiesArray);
   };
 
-  // When user selects a city from suggestions
+  // Selecting a city
   const handleCitySelect = (
     cityObj,
     setCityText,
@@ -168,37 +175,16 @@ function AIForm({
   ) => {
     setCityText(cityObj.Name);
     setCityCode(cityObj.Code);
-    setShowSuggestions(false); // Hide suggestions
+    setShowSuggestions(false);
   };
 
-  // Submit form -> gather all data
+  // Form submit -> parent's onSubmit
   const handleLocalSubmit = async (e) => {
     e.preventDefault();
-    const finalData = {
-      originCountry,
-      originCountryCode,
-      originCity,
-      originCityCode,
-      destinationCountry,
-      destinationCountryCode,
-      destinationCity,
-      destinationCityCode,
-      fromDate,
-      toDate,
-      adultCount,
-      aiPrompt,
-    };
-    console.log("Sending AI form details =>", finalData);
-
-    try {
-      await api.post("/api/ai/form", finalData);
-    } catch (err) {
-      console.error("Error posting AI form =>", err);
-    }
     onSubmit(e);
   };
 
-  // Reset form -> clear everything
+  // Reset form
   const handleResetClick = () => {
     setOriginCountry("");
     setOriginCity("");
@@ -213,8 +199,7 @@ function AIForm({
     setAdultCount("1");
     setAiPrompt("");
     setIsAiActive(false);
-    setAiPackages([]);
-    onReset();
+    onReset?.(); // call parent's onReset if provided
   };
 
   return (

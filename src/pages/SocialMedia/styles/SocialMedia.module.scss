@@ -187,6 +187,20 @@
         background-color: #1b9cd9;
       }
   }
+  .previewButton {
+    padding: 8px 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-blue);
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+        background-color: #1b9cd9;
+      }
+  }
 }
 
 /* The bottom section for scheduling automation */

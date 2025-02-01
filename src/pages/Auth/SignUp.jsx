@@ -1,4 +1,4 @@
-// Signup.jsx
+// src/pages/Signup/Signup.jsx
 import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -14,15 +14,22 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  
+  // New: track loading state for signUp request
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg("");
+    setIsLoading(true); // Start loading
+
     try {
       await signUp(email, userName, password);
       navigate("/");
     } catch (err) {
       setErrorMsg(err.message || "Sign up failed");
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
@@ -43,9 +50,7 @@ function Signup() {
       <div className={styles.formSection}>
         <div className={styles.formContainer}>
           <h2 className={styles.title}>Create an Account</h2>
-          <p className={styles.subtitle}>
-            Sign up to get started (TBO Credentials)
-          </p>
+          <p className={styles.subtitle}>Sign up to get started (TBO Credentials)</p>
 
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.inputGroup}>
@@ -91,8 +96,8 @@ function Signup() {
             </div>
 
             {errorMsg && <div className={styles.errorMsg}>{errorMsg}</div>}
-            <button type="submit" className={styles.signupButton}>
-              Sign Up
+            <button type="submit" className={styles.signupButton} disabled={isLoading}>
+              {isLoading ? "Loading..." : "Sign Up"}
             </button>
           </form>
 

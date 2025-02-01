@@ -1,4 +1,4 @@
-// Login.jsx
+// src/pages/Login/Login.jsx
 import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -13,15 +13,22 @@ function Login() {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  
+  // New: loading state for the login request
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg("");
+    setIsLoading(true); // begin loading
+
     try {
       await login(userName, password);
       navigate("/");
     } catch (err) {
       setErrorMsg(err.message || "Login failed");
+    } finally {
+      setIsLoading(false); // done loading
     }
   };
 
@@ -77,8 +84,10 @@ function Login() {
             </div>
 
             {errorMsg && <div className={styles.errorMsg}>{errorMsg}</div>}
-            <button type="submit" className={styles.loginButton}>
-              Login
+            
+            {/* Conditionally show "Loading..." or "Login" */}
+            <button type="submit" className={styles.loginButton} disabled={isLoading}>
+              {isLoading ? "Loading..." : "Login"}
             </button>
           </form>
 

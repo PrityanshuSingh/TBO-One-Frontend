@@ -75,7 +75,6 @@ const Packages = () => {
   const { userData } = useContext(AuthContext);
   const { campaigns } = useContext(CampaignContext);
 
-  console.log("Campaigns:", campaigns);
   const [packagesData, setPackagesData] = useState([]);
   const [categories, setCategories] = useState({});
 
@@ -85,12 +84,18 @@ const Packages = () => {
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const [aiPrompt, setAiPrompt] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
+  const [originCountry, setOriginCountry] = useState("");
+  const [originCountryCode, setOriginCountryCode] = useState("");
+  const [originCity, setOriginCity] = useState("");
+  const [originCityCode, setOriginCityCode] = useState("");
+  const [destinationCountry, setDestinationCountry] = useState("");
+  const [destinationCountryCode, setDestinationCountryCode] = useState("");
+  const [destinationCity, setDestinationCity] = useState("");
+  const [destinationCityCode, setDestinationCityCode] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [adultCount, setAdultCount] = useState("1");
+  const [aiPrompt, setAiPrompt] = useState("");
 
   // States for campaign filter
   const [campaignFilter, setCampaignFilter] = useState("ALL");
@@ -125,7 +130,6 @@ const Packages = () => {
     setCategories(categorizePackages(packagesData));
   }, [packagesData]);
 
-  
   /**
    * Returns the campaign status for a specific package ID, or null if none found.
    * @param {string|number} pkgId
@@ -133,9 +137,8 @@ const Packages = () => {
    */
   const getCampaignStatus = (pkgId) => {
     if (!Array.isArray(campaigns) || campaigns.length === 0) return null;
-    // console.log("getCampaignStatus => pkgId:", pkgId);
-    // console.log("getCampaigns:", campaigns);
-    const foundCampaign = campaigns.find((c) => c.pkgId == pkgId);
+
+    const foundCampaign = campaigns.find((c) => c.pkgId === pkgId);
     return foundCampaign ? foundCampaign.status : null;
   };
 
@@ -179,17 +182,28 @@ const Packages = () => {
     setIsAiLoading(true);
     setIsAiActive(false);
 
-    const formData = {
-      prompt: aiPrompt,
-      city,
-      country,
+    const finalData = {
+      originCountry,
+      originCountryCode,
+      originCity,
+      originCityCode,
+      destinationCountry,
+      destinationCountryCode,
+      destinationCity,
+      destinationCityCode,
       fromDate,
       toDate,
       adultCount,
+      aiPrompt,
     };
+    console.log("AI Search finalData =>", finalData);
 
     try {
-      const res = await api.post("/api/ai/packages", formData);
+      const res = await api.post("/api/ai/packages", finalData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       if (Array.isArray(res.data)) {
         setAiPackages(res.data);
       } else {
@@ -238,18 +252,30 @@ const Packages = () => {
 
       <div className={styles.scrollContent}>
         <AIForm
-          aiPrompt={aiPrompt}
-          setAiPrompt={setAiPrompt}
-          city={city}
-          setCity={setCity}
-          country={country}
-          setCountry={setCountry}
+          originCountry={originCountry}
+          setOriginCountry={setOriginCountry}
+          originCountryCode={originCountryCode}
+          setOriginCountryCode={setOriginCountryCode}
+          originCity={originCity}
+          setOriginCity={setOriginCity}
+          originCityCode={originCityCode}
+          setOriginCityCode={setOriginCityCode}
+          destinationCountry={destinationCountry}
+          setDestinationCountry={setDestinationCountry}
+          destinationCountryCode={destinationCountryCode}
+          setDestinationCountryCode={setDestinationCountryCode}
+          destinationCity={destinationCity}
+          setDestinationCity={setDestinationCity}
+          destinationCityCode={destinationCityCode}
+          setDestinationCityCode={setDestinationCityCode}
           fromDate={fromDate}
           setFromDate={setFromDate}
           toDate={toDate}
           setToDate={setToDate}
           adultCount={adultCount}
           setAdultCount={setAdultCount}
+          aiPrompt={aiPrompt}
+          setAiPrompt={setAiPrompt}
           onSubmit={handleAiSearch}
           isAiActive={isAiActive}
           setIsAiActive={setIsAiActive}

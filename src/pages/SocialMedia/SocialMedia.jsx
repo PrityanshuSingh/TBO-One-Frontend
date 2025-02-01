@@ -1,12 +1,13 @@
 // src/pages/SocialMedia/SocialMedia.jsx
 
-import React, { useState, useEffect } from 'react';
-import { FaInstagram, FaXing } from 'react-icons/fa';
-import api from '../../utils/api';
-import Template from '../../components/Cards/TemplateCard';
-import PreviewModal from '../../components/Modals/PreviewModal';
-import templatesData from '../../data/localTemplates.json';
-import styles from './styles/SocialMedia.module.scss';
+import React, { useState, useEffect } from "react";
+import { FaInstagram } from "react-icons/fa";
+import axios from "axios";
+import api from "../../utils/api";
+import Template from "../../components/Cards/TemplateCard";
+import PreviewModal from "../../components/Modals/PreviewModal";
+import templatesData from "../../data/localTemplates.json";
+import styles from "./styles/SocialMedia.module.scss";
 
 const typeFilterOptions = ["ALL", "Festive", "Destination", "Brand", "Scenic", "Quiz", "Trends"];
 const segmentFilterOptions = ["ALL", "post", "ad"];
@@ -34,26 +35,46 @@ const SocialMedia = () => {
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [generatedData, setGeneratedData] = useState(null);
 
-  // On mount, check if there's an Instagram code in the URL
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
-    if (code) {
-      api.post('/auth/instagram/callback', { code })
-        .then(() => {
-          setIsInstagramConnected(true);
-          // Remove the code param from URL
-          window.history.replaceState(null, '', window.location.pathname);
-        })
-        .catch(() => {
-          alert('Failed to connect Instagram.');
-        });
-    }
+   useEffect(() => {
+    checkInstagramConnection();
   }, []);
 
+  async function checkInstagramConnection() {
+    try {
+      const res = await api.get("/auth/instagram/status");
+      if (res.data?.connected) {
+        setIsInstagramConnected(true);
+      } else {
+        setIsInstagramConnected(false);
+      }
+    } catch (err) {
+      console.warn("Unable to check Instagram status:", err);
+      setIsInstagramConnected(false);
+    }
+  }
+
   const handleInstagramAuth = () => {
-    const hostname = window.location.hostname;
-    window.location.href = `${hostname}/auth/instagram`;
+    const popupWidth = 600;
+    const popupHeight = 700;
+    const left = (window.screen.width - popupWidth) / 2;
+    const top = (window.screen.height - popupHeight) / 2;
+
+    const authUrl = `${import.meta.env.VITE_API_BASE_URL}/auth/instagram/connect`;
+
+    // Open a new popup for the OAuth flow
+    const popup = window.open(
+      authUrl,
+      "instagramAuthWindow",
+      `width=${popupWidth},height=${popupHeight},top=${top},left=${left},status=no,toolbar=no,menubar=no`
+    );
+
+    // Poll to see if user is connected once the popup closes
+    const timer = setInterval(() => {
+      if (popup && popup.closed) {
+        clearInterval(timer);
+        checkInstagramConnection();
+      }
+    }, 1000);
   };
 
   // Filter the templates by type, segment, and social
@@ -77,20 +98,20 @@ const SocialMedia = () => {
     setCaptionQuery("");
   };
 
+  // AI or manual generation for image & caption
   const handleGenerateCaptionAi = async () => {
     if (!imageQuery.trim()) {
-      alert("Please enter an image prompt (or URL) first.");
+      alert("Please enter an image prompt (or URL) first to help AI captioning.");
       return;
     }
     const payload = { prompt: imageQuery.trim() };
     try {
-      const res = await api.post('/api/genai/caption', payload);
+      const res = await api.post("/api/genai/caption", payload);
       setCaptionQuery(res.data.caption);
     } catch (err) {
-      console.error("Error from /api/genai/caption:", err);
-      alert("Failed to generate AI caption. Using fallback data.");
-      // Fallback
-      setCaptionQuery(`(Fallback) AI-Generated Caption from "${imageQuery}"`);
+      console.error("Error generating AI caption:", err);
+      alert("Failed AI caption. Using fallback text.");
+      setCaptionQuery(`(Fallback) AI-Generated Caption from: ${imageQuery}`);
     }
   };
 
@@ -101,42 +122,35 @@ const SocialMedia = () => {
     }
     const payload = { prompt: imageQuery.trim() };
     try {
-      const res = await api.post('/api/genai/image', payload);
-      // Suppose the server responds with { imageUrl: "..." }
-      setImageQuery(res.data.imageUrl);
+      const res = await api.post("/api/genai/image", payload);
+      setImageQuery(res.data.imageUrl); // Suppose the server returns { imageUrl: "..." }
     } catch (err) {
-      console.error("Error from /api/genai/image:", err);
-      alert("Failed to generate AI image. Using fallback data.");
-      // Fallback
-      const fallbackUrl = `https://via.placeholder.com/400?text=AI+for:${encodeURIComponent(imageQuery)}`;
+      console.error("Error generating AI image:", err);
+      alert("Failed AI image. Using fallback image instead.");
+      const fallbackUrl = `https://via.placeholder.com/400?text=AIFallback:${encodeURIComponent(imageQuery)}`;
       setImageQuery(fallbackUrl);
     }
   };
 
-
   const handleGeneratePreview = () => {
     if (!imageQuery.trim() && !captionQuery.trim()) {
-      alert("Please provide a caption or an image query/URL.");
+      alert("Please provide a caption or an image before generating preview.");
       return;
     }
     let finalImageUrl = "";
-    if (imageQuery.trim()) {
-      if (imageQuery.startsWith("http")) {
-        finalImageUrl = imageQuery.trim();
-      } else {
-        // Possibly an AI placeholder
-        finalImageUrl = `https://via.placeholder.com/300?text=AI+for:${encodeURIComponent(imageQuery)}`;
-      }
+    if (imageQuery.startsWith("http")) {
+      finalImageUrl = imageQuery.trim();
+    } else {
+      finalImageUrl = `https://via.placeholder.com/400?text=AI+${encodeURIComponent(imageQuery)}`;
     }
-    const responseData = {
+    setGeneratedData({
       image: finalImageUrl,
-      caption: captionQuery
-    };
-    setGeneratedData(responseData);
+      caption: captionQuery,
+    });
     setShowPreviewModal(true);
   };
 
-
+  // Called by PreviewModal => "Post Now"
   const handlePostNow = async () => {
     if (!selectedTemplate || !generatedData) return;
     const payload = {
@@ -147,22 +161,20 @@ const SocialMedia = () => {
       agentEmail,
       image: generatedData.image,
       caption: generatedData.caption,
-      action: 'post-now'
+      action: "post-now",
     };
     try {
-      const res = await api.post('/api/social/postNow', payload);
-      // If success
+      const res = await api.post("/api/social/postNow", payload);
       alert("Post published immediately!");
       setShowPreviewModal(false);
     } catch (error) {
       console.error("Failed immediate post", error);
-      alert("Failed to post now. Using fallback response instead.");
-      // Fallback
+      alert("Failed to post now. Possibly fallback used.");
       setShowPreviewModal(false);
     }
   };
 
-
+  // Called by PreviewModal => "Schedule"
   const handleSchedulePost = async (scheduleTime) => {
     if (!selectedTemplate || !generatedData) return;
     if (!scheduleTime) {
@@ -178,16 +190,15 @@ const SocialMedia = () => {
       image: generatedData.image,
       caption: generatedData.caption,
       scheduleTime,
-      action: 'schedule'
+      action: "schedule",
     };
     try {
-      const res = await api.post('/api/social/schedule', payload);
+      const res = await api.post("/api/social/schedule", payload);
       alert(`Post scheduled for ${scheduleTime}!`);
       setShowPreviewModal(false);
     } catch (error) {
       console.error("Failed scheduling", error);
-      alert("Failed to schedule post. Fallback: scheduled in local DB (simulated).");
-      // Fallback
+      alert("Failed to schedule post. Possibly fallback used.");
       setShowPreviewModal(false);
     }
   };
@@ -198,27 +209,40 @@ const SocialMedia = () => {
       <div className={styles.fixedHeader}>
         <div className={styles.headingArea}>
           <h1>Social Media Templates</h1>
-          <p>Customize and schedule your Instagram or Twitter posts</p>
+          <p>Customize and schedule your Instagram posts (and more)</p>
         </div>
+
+        {/* Instagram Connect Button */}
         <div className={styles.socialIcons}>
-          <button onClick={handleInstagramAuth} title="Connect Instagram">
+          <button
+            onClick={handleInstagramAuth}
+            title={
+              isInstagramConnected
+                ? "Instagram is connected!"
+                : "Connect your Instagram Business Account"
+            }
+            className={
+              isInstagramConnected
+                ? styles.instagramBtnConnected
+                : styles.instagramBtn
+            }
+          >
             <FaInstagram size={24} />
           </button>
-          {!isInstagramConnected && (
-            <span className={styles.connectedTag}>Connected</span>
+          {isInstagramConnected && (
+            <span className={styles.connectedTag}>IG Connected</span>
           )}
         </div>
       </div>
 
-      {/* Filters */}
+      {/* Filter Options */}
       <div className={styles.filtersRow}>
         <div className={styles.filterGroup}>
           <label>Type:</label>
           {typeFilterOptions.map((option) => (
             <button
               key={option}
-              // highlight if active
-              className={typeFilter === option ? "active" : ""}
+              className={typeFilter === option ? styles.activeFilter : ""}
               onClick={() => setTypeFilter(option)}
             >
               {option}
@@ -230,7 +254,7 @@ const SocialMedia = () => {
           {segmentFilterOptions.map((option) => (
             <button
               key={option}
-              className={segmentFilter === option ? "active" : ""}
+              className={segmentFilter === option ? styles.activeFilter : ""}
               onClick={() => setSegmentFilter(option)}
             >
               {option}
@@ -242,7 +266,7 @@ const SocialMedia = () => {
           {socialFilterOptions.map((option) => (
             <button
               key={option}
-              className={socialFilter === option ? "active" : ""}
+              className={socialFilter === option ? styles.activeFilter : ""}
               onClick={() => setSocialFilter(option)}
             >
               {option}
@@ -254,20 +278,20 @@ const SocialMedia = () => {
       {/* Templates Grid */}
       <div className={styles.templatesGrid}>
         {filteredTemplates.length === 0 ? (
-          <div>No templates available for these filters.</div>
+          <div>No templates match your filters.</div>
         ) : (
           filteredTemplates.map((template) => (
             <Template
               key={template.id}
               template={template}
               onSelect={handleTemplateSelect}
-              isSelected={selectedTemplate && selectedTemplate.id === template.id}
+              isSelected={selectedTemplate?.id === template.id}
             />
           ))
         )}
       </div>
 
-      {/* Customization if a template is selected */}
+      {/* If a template is selected, show customization UI */}
       {selectedTemplate && (
         <div className={styles.inputSection}>
           <div className={styles.customizeHeader}>
@@ -281,39 +305,34 @@ const SocialMedia = () => {
           </div>
 
           {/* AI image generation */}
-          <label>Image (Prompt or URL)</label>
+          <label>Image Prompt or URL</label>
           <input
             type="text"
-            placeholder="Use AI prompt or enter image URL..."
+            placeholder="Use AI prompt or paste image URL..."
             value={imageQuery}
             onChange={(e) => setImageQuery(e.target.value)}
           />
-          <div style={{ display: 'flex', gap: '10px', margin: '6px 0 12px' }}>
-            <button
-              className={styles.generateButton}
-              onClick={handleGenerateImageAi}
-            >
-              Generate AI Image
+          <div className={styles.aiActions}>
+            <button className={styles.generateButton} onClick={handleGenerateImageAi}>
+              AI Generate Image
             </button>
           </div>
 
+          {/* AI caption generation */}
           <label>Caption</label>
           <input
             type="text"
-            placeholder="Type your caption or use AI..."
+            placeholder="Write your caption or let AI do it"
             value={captionQuery}
             onChange={(e) => setCaptionQuery(e.target.value)}
           />
-          <div style={{ display: 'flex', gap: '10px', margin: '6px 0 12px' }}>
-            <button
-              className={styles.generateButton}
-              onClick={handleGenerateCaptionAi}
-            >
-              Generate AI Caption & Tags
+          <div className={styles.aiActions}>
+            <button className={styles.generateButton} onClick={handleGenerateCaptionAi}>
+              AI Generate Caption & Tags
             </button>
           </div>
 
-          <button className={styles.generateButton} onClick={handleGeneratePreview}>
+          <button className={styles.previewButton} onClick={handleGeneratePreview}>
             Generate Preview
           </button>
         </div>
