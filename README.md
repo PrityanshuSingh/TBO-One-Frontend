@@ -236,7 +236,7 @@ If you would like to contribute to TBO-One, follow these steps:
   [TBO-One AI Model Link](https://github.com/amaldeeppatra/tbo-place-recommendation-api)
 
 - **Reference Video:**  
-  [Demo Video Link](#)
+  [Demo Video Link](https://drive.google.com/file/d/1gIZSc7z7gtSuOxfw792d4Leo6gI5lhOM/view?usp=drive_link)
 
 ---
 
