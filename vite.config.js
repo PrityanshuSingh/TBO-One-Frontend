@@ -21,8 +21,8 @@ export default defineConfig(({ mode }) => {
         "/api": {
           target: apiTarget,
           changeOrigin: true,
-          secure: false, // Ensures compatibility with HTTP and HTTPS
-          rewrite: (path) => path.replace(/^\/api/, ""), // Fixes path rewriting
+          secure: false,
+          rewrite: (path) => path.replace(/^\/api/, ""),
         },
         "/tbo": {
           target: tboApiTarget,
