@@ -85,7 +85,7 @@ const SocialMedia = () => {
         setTemplates(response.data || []);
       } catch (error) {
         console.warn("Failed to fetch templates from API, using fallback data.", error);
-        
+        setTemplates(templatesData);
       }
     };
 
