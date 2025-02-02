@@ -199,7 +199,7 @@ const Packages = () => {
     console.log("AI Search finalData =>", finalData);
 
     try {
-      const res = await api.post("/api/ai/packages", finalData, {
+      const res = await api.post("/api/ai/packages/generate", finalData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

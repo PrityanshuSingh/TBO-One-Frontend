@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import styles from './styles/WhatsAppEditor.module.scss';
 import { FiEdit, FiRefreshCw } from 'react-icons/fi'; // Importing React Icons
 import { AuthContext } from '../../../../context/AuthContext';
+import api from '../../../../utils/api';
 
 const WhatsAppEditor = ({
   onNext,
@@ -56,13 +57,8 @@ const WhatsAppEditor = ({
     setIsGenerating(true);
     setAiError(null);
     try {
-      const response = await fetch('/api/ai/generate-description', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ packageId }),
-      });
+      const payload = { packageId: packageId, email: email };
+      const response = await api.post('/api/ai/wpDescription', payload);
 
       if (!response.ok) {
         throw new Error('Failed to generate description.');

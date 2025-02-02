@@ -33,7 +33,7 @@ const PackageCard = ({
   const handleBookmarkClick = async () => {
     if (!userEmail) return;
     try {
-      const res = await api.post('/api/package/bookmark', { email: userEmail, packageId: id });
+      const res = await api.post('/api/packages/bookmark', { email: userEmail, packageId: id });
       const updatedSaved = res.data.saved || [];
       setUserData(prev => ({ ...prev, Profile: { ...prev.Profile, saved: updatedSaved } }));
       setIsSaved(updatedSaved.includes(id));

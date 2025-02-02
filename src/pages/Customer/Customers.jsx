@@ -150,7 +150,7 @@ export default function Customers() {
           oldPkgId: row.oldPkgId,
           prompt: row.prompt,
         };
-        const res = await api.post("/api/packages/generate", payload);
+        const res = await api.post("/api/ai/packages/customize", payload);
         const { newPkgJson } = res.data;
         console.log("Auto gen for row =>", row.rowId, newPkgJson);
         // In real usage, you'd update local or global state with newPkgJson.id

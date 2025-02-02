@@ -51,7 +51,7 @@ const PackageDetails = () => {
   useEffect(() => {
     const fetchPackageDetails = async () => {
       try {
-        const response = await api.get(`/u/packages/details/${id}`);
+        const response = await api.get(`/api/packages/${id}`);
         setPackageData(response.data);
         setEditedData(response.data);
       } catch (err) {
@@ -242,7 +242,7 @@ const PackageDetails = () => {
     setSaveError("");
     try {
       // Send the entire editedData JSON to the backend
-      await api.put(`/u/packages/details/${id}`, editedData);
+      await api.put(`/api/packages/${id}`, editedData);
       setPackageData(editedData);
       setIsEditMode(false);
     } catch (err) {
@@ -265,7 +265,7 @@ const PackageDetails = () => {
   // Handle Interest form submission
   const handleInterestSubmit = async (formData) => {
     try {
-      await api.post(`/u/packages/interested`, {
+      await api.post(`/api/packages/interest`, {
         packageId: id,
         name: formData.name,
         whatsappNumber: formData.whatsappNumber,

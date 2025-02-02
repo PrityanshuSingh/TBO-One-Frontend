@@ -6,6 +6,7 @@ import styles from "./styles/CustomerCard.module.scss";
 import { AuthContext } from "../../context/AuthContext";
 import { FaEdit } from "react-icons/fa";
 import axios from "axios";
+import api from "../../utils/api";
 
 // Example fallback old package JSON
 const fallbackOldPkg = {
@@ -42,7 +43,7 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
     onSelectRow(row.rowId);
   };
 
-  // 1. GENERATE – Get old package data by oldPkgId, then call /api/packages/generate
+  // 1. GENERATE – Get old package data by oldPkgId
   const handleGenerate = async () => {
     try {
       // Step A: fetch entire old package JSON by oldPkgId
@@ -63,12 +64,12 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
         }
       }
 
-      // Step B: Send old package data + prompt to /api/packages/generate
+      // Step B: Send old package data + prompt to /api/packageGenerate
       const generatePayload = {
         oldPkg: oldPkgData,
         prompt: row.prompt,
       };
-      const genRes = await axios.post("/api/packages/generate", generatePayload);
+      const genRes = await axios.post("/api/ai/packages/customize", generatePayload);
       // Suppose this returns { newPkgId: "someGeneratedId" }
       const { newPkgId } = genRes.data;
       if (!newPkgId) {
@@ -109,7 +110,7 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
       formData.append("contactIds", JSON.stringify([row.contactId]));
       formData.append("imageUrl", "data:image/png;base64,sendExample");
 
-      await axios.post("/api/whatsapp/send", formData);
+      await api.post("/api/whatsapp/send", formData);
       setLocalStatus("sent");
     } catch (err) {
       console.error("Send package failed =>", err);

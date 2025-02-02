@@ -225,7 +225,7 @@ function AIForm({
                 )
               }
               className={styles.aiPromptInput}
-              placeholder="e.g. 'United Kingdom'"
+              placeholder="e.g. 'India'"
             />
             {showOriginCountrySuggestions && originCountry && (
               <ul className={styles.suggestionsList}>
@@ -264,7 +264,7 @@ function AIForm({
                 )
               }
               className={styles.aiPromptInput}
-              placeholder="e.g. 'London'"
+              placeholder="e.g. 'New Delhi'"
             />
             {showOriginCitySuggestions && originCity && (
               <ul className={styles.suggestionsList}>
@@ -414,7 +414,7 @@ function AIForm({
               type="text"
               value={aiPrompt}
               onChange={(e) => setAiPrompt(e.target.value)}
-              placeholder="e.g. 'luxury beach honeymoon'"
+              placeholder="e.g. 'Beach vacation'"
               className={styles.promptInput}
             />
           </div>

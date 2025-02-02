@@ -25,8 +25,9 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const stored = loadUserSession();
     if (stored?.username && stored?.password) {
+      console.log("Stored session:", stored);
       setIsAuthenticated(true);
-      setUserData(fallbackData); // Load fallback data for offline or testing
+      // setUserData(fallbackData); // Load fallback data for offline or testing
     }
     setIsAuthLoading(false);
   }, []);

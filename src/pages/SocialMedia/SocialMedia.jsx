@@ -77,6 +77,20 @@ const SocialMedia = () => {
     }, 1000);
   };
 
+  useEffect(() => {
+    const fetchTemplates = async () => {
+      try {
+        const response = await axios.get("/api/ai/templates");
+        setTemplates(response.data || []);
+      } catch (error) {
+        console.warn("Failed to fetch templates from API, using fallback data.", error);
+        setTemplates(templatesData);
+      }
+    };
+
+    fetchTemplates();
+  }, []);
+
   // Filter the templates by type, segment, and social
   const filteredTemplates = templatesData.filter((tpl) => {
     if (typeFilter !== "ALL" && tpl.type !== typeFilter) return false;
@@ -106,7 +120,7 @@ const SocialMedia = () => {
     }
     const payload = { prompt: imageQuery.trim() };
     try {
-      const res = await api.post("/api/genai/caption", payload);
+      const res = await api.post("/api/ai/caption", payload);
       setCaptionQuery(res.data.caption);
     } catch (err) {
       console.error("Error generating AI caption:", err);
@@ -122,7 +136,7 @@ const SocialMedia = () => {
     }
     const payload = { prompt: imageQuery.trim() };
     try {
-      const res = await api.post("/api/genai/image", payload);
+      const res = await api.post("/api/ai/image", payload);
       setImageQuery(res.data.imageUrl); // Suppose the server returns { imageUrl: "..." }
     } catch (err) {
       console.error("Error generating AI image:", err);
@@ -164,7 +178,7 @@ const SocialMedia = () => {
       action: "post-now",
     };
     try {
-      const res = await api.post("/api/social/postNow", payload);
+      const res = await api.post("/api/social/post", payload);
       alert("Post published immediately!");
       setShowPreviewModal(false);
     } catch (error) {
@@ -193,7 +207,7 @@ const SocialMedia = () => {
       action: "schedule",
     };
     try {
-      const res = await api.post("/api/social/schedule", payload);
+      const res = await api.post("/api/social/schedulePost", payload);
       alert(`Post scheduled for ${scheduleTime}!`);
       setShowPreviewModal(false);
     } catch (error) {
