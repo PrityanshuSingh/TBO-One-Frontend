@@ -221,16 +221,22 @@ If you would like to contribute to TBO-One, follow these steps:
 
 - **SRS Documentation:**  
   Detailed Software Requirements Specification (SRS) outlining the system’s objectives, scope, and functionalities.
-  [https://docs.google.com/document/d/1zctQLjKve1-x8Rq6wjXzjg7k4mLKzZkz0N2cIJWhCoc/edit?usp=sharing](#)
-  
-- **Live Hosted Link:**  
-  [https://tbo-one.vercel.app](#)
+  [SRS Document](https://docs.google.com/document/d/1zctQLjKve1-x8Rq6wjXzjg7k4mLKzZkz0N2cIJWhCoc/edit?usp=sharing)
 
 - **PostMan API Collection:**  
-  [https://tinyurl.com/5n6phsyc](#)
+  [Postman API Collection Link](https://tinyurl.com/5n6phsyc)
+
+- **Live Hosted Link:**  
+  [TBO-One Live Link](https://docs.google.com/document/d/1zctQLjKve1-x8Rq6wjXzjg7k4mLKzZkz0N2cIJWhCoc/edit?usp=sharing)
+
+- **TBO-One Backend Link:**  
+  [TBO-One Backend Link](https://github.com/PrityanshuSingh/TBO-One-Backend)
+
+- **TBO-One AI Model Link:**  
+  [TBO-One AI Model Link](https://github.com/amaldeeppatra/tbo-place-recommendation-api)
 
 - **Reference Video:**  
-  [Reference Video Link Here](#)
+  [Demo Video Link](#)
 
 ---
 
