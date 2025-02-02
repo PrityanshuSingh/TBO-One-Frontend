@@ -1,5 +1,5 @@
 /* src/pages/Customers/styles/Customers.module.scss */
-@import '../../../assets/styles/variables.scss';
+@use "../../../assets/styles/variables" as *;
 
 .customersContainer {
   width: 100%;

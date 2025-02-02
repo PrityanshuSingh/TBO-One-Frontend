@@ -1,5 +1,5 @@
 /* src/components/Cards/styles/CustomerCard.module.scss */
-@import '../../../assets/styles/variables.scss';
+@use "../../../assets/styles/variables" as *;
 
 /* Table row styling */
 .campaignRow {

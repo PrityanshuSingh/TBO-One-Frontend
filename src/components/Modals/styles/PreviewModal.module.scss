@@ -1,5 +1,5 @@
 /* src/components/Modals/styles/PreviewModal.module.scss */
-@import '../../../assets/styles/variables.scss';
+@use "../../../assets/styles/variables" as *;
 
 .modalOverlay {
   position: fixed;

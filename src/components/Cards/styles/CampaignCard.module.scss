@@ -1,5 +1,6 @@
 /* src/components/Cards/styles/CampaignCard.module.scss */
-@import '../../../assets/styles/variables.scss';
+@use "../../../assets/styles/variables" as *;
+
 
 .campaignRow {
   border-bottom: 1px solid var(--light-gray);

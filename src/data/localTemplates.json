@@ -1,52 +1,82 @@
 [
-    {
-      "id": 1,
-      "type": "Festive",
-      "segment": "post",
-      "social": "instagram",
-      "name": "Festive Celebration Post",
-      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3') center/cover no-repeat;\">  <div style='position:absolute; top:0; left:0; width:100%; padding:6px; background:rgba(255,255,255,0.3);'>    <h4 style='margin:4px;'>@{{agentName}} - Festive Time!</h4>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.6); color:#fff; padding:6px; box-sizing:border-box;'>    <p style='margin:2px 0; font-size:12px;'>Contact: {{agentContact}}, {{agentEmail}}</p>    <h3 style='margin:0;'>Celebrate with Us</h3>  </div></div>"
-    },
-    {
-      "id": 2,
-      "type": "Destination",
-      "segment": "ad",
-      "social": "instagram",
-      "name": "Dream Destination Ad",
-      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;\">  <div style='position:absolute; top:0; right:0; background:rgba(255,255,255,0.3); padding:4px; border-bottom-left-radius:8px;'>    <span style='color:#333; font-size:12px;'>Sponsored</span>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.6); color:#fff; padding:6px; box-sizing:border-box;'>    <h3 style='margin:0;'>Your Next Adventure</h3>    <p style='margin:4px 0;'>{{caption}}</p>    <p style='font-size:12px;'>@{{agentName}} for details: {{agentContact}}</p>  </div></div>"
-    },
-    {
-      "id": 3,
-      "type": "Brand",
-      "segment": "post",
-      "social": "twitter",
-      "name": "Level Up Your Brand Post",
-      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1629140233255-a709e3fce3d8?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;\">  <div style='position:absolute; top:8px; left:8px; background:rgba(255,255,255,0.6); padding:4px; border-radius:6px;'>    <h4 style='margin:0; font-size:14px;'>@{{agentName}}</h4>    <p style='margin:0; font-size:12px;'>Boosting Brands</p>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.5); color:#fff; padding:6px;'>    <p style='margin:4px 0; font-size:12px;'>Contact: {{agentEmail}}</p>    <h3 style='margin:0;'>Elevate Visibility</h3>  </div></div>"
-    },
-    {
-      "id": 4,
-      "type": "Scenic",
-      "segment": "ad",
-      "social": "instagram",
-      "name": "Scenic Escape Ad",
-      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1582779134183-54d9709418c1?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;\">  <div style='position:absolute; top:0; width:100%; background:rgba(255,255,255,0.2); color:#333; padding:4px; box-sizing:border-box;'>    <h4 style='margin:0;'>@{{agentName}} - Scenic</h4>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.6); color:#fff; padding:8px; box-sizing:border-box;'>    <h3 style='margin:0;'>Escape the Ordinary</h3>    <p style='margin:4px 0;'>{{caption}}</p>    <p style='font-size:12px;'>Call: {{agentContact}}</p>  </div></div>"
-    },
-    {
-      "id": 5,
-      "type": "Quiz",
-      "segment": "post",
-      "social": "twitter",
-      "name": "Fun Travel Quiz Post",
-      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;\">  <div style='position:absolute; top:0; left:0; width:100%; background:rgba(255,255,0,0.2); padding:4px; box-sizing:border-box;'>    <h4 style='margin:0; color:#444;'>Pop Quiz</h4>    <p style='margin:2px 0; font-size:12px;'>By {{agentName}} ({{agentEmail}})</p>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.6); color:#fff; padding:6px;'>    <h3 style='margin:0;'>Test Your Knowledge</h3>  </div></div>"
-    },
-    {
-      "id": 6,
-      "type": "Trends",
-      "segment": "ad",
-      "social": "instagram",
-      "name": "Latest Travel Trends Ad",
-      "html": "<div style=\"width:250px; height:250px; position:relative; border-radius:12px; background:url('https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;\">  <div style='position:absolute; top:8px; right:8px; background:rgba(255,255,255,0.4); padding:4px; border-radius:6px;'>    <h5 style='margin:0; color:#333;'>@{{agentName}}</h5>    <span style='font-size:11px;'>{{agentContact}}</span>  </div>  <div style='position:absolute; bottom:0; width:100%; background:rgba(0,0,0,0.5); color:#fff; padding:6px; box-sizing:border-box;'>    <h3 style='margin:0;'>Stay Ahead!</h3>    <p style='margin:4px 0;'>{{caption}}</p>  </div></div>"
-    }
-  ]
-  
-  
+  {
+    "id": 1,
+    "type": "Festive",
+    "segment": "post",
+    "social": "instagram",
+    "name": "Festive Celebration Post",
+    "html": "<div style=\"width:300px; height:300px; position:relative; border-radius:16px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.2); background: url('https://media.istockphoto.com/id/950698218/photo/honeymoon-couple-is-having-a-private-romantic-dinner.webp?a=1&b=1&s=612x612&w=0&k=20&c=yqSsmGxS92DuHLuA_oJiNSft_YRxmvPt4-tqdFgsL7I=') center/cover no-repeat;\">\n  <div style=\"position:absolute; top:0; left:0; width:100%; padding:10px; background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0));\">\n    <h4 style=\"margin:0; font-family: 'Arial', sans-serif; color:#333;\">@{{agentName}} - Festive Vibes!</h4>\n  </div>\n  <div style=\"position:absolute; bottom:0; width:100%; padding:10px; background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));\">\n    <p style=\"margin:0; font-size:14px; color:#fff;\">Contact: {{agentContact}} | {{agentEmail}}</p>\n    <h3 style=\"margin:5px 0 0; font-family: 'Georgia', serif; color:#FFD700;\">Celebrate with Us</h3>\n  </div>\n</div>"
+  },
+  {
+    "id": 2,
+    "type": "Destination",
+    "segment": "ad",
+    "social": "instagram",
+    "name": "Dream Destination Ad",
+    "html": "<div style=\"width:300px; height:300px; position:relative; border-radius:16px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.3); background: url('https://media.istockphoto.com/id/146060521/photo/friends.webp?a=1&b=1&s=612x612&w=0&k=20&c=aDYYA5tMgjWAzKnvKtfKt87sn0esRuyw-Hx5V4GVqY8=') center/cover no-repeat;\">\n  <div style=\"position:absolute; top:0; right:0; background: rgba(255,255,255,0.8); padding:6px; border-bottom-left-radius:8px;\">\n    <span style=\"color:#333; font-size:14px; font-weight:bold;\">Sponsored</span>\n  </div>\n  <div style=\"position:absolute; bottom:0; width:100%; padding:10px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);\">\n    <h3 style=\"margin:0; font-family:'Georgia', serif; color:#FFD700;\">Your Next Adventure</h3>\n    <p style=\"margin:4px 0; font-size:14px; color:#fff;\">{{caption}}</p>\n    <p style=\"font-size:12px; color:#ddd;\">@{{agentName}} | {{agentContact}}</p>\n  </div>\n</div>"
+  },
+  {
+    "id": 3,
+    "type": "Brand",
+    "segment": "post",
+    "social": "twitter",
+    "name": "Level Up Your Brand Post",
+    "html": "<div style=\"width:300px; height:300px; position:relative; border-radius:16px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.3); background: url('https://media.istockphoto.com/id/1131877130/photo/plastic-travel-bag-with-worlds-famous-landmarks-and-tourist-destinations-elements-in-colorful.webp?a=1&b=1&s=612x612&w=0&k=20&c=yn23KzGTUA074HSSWrwt3O9ad5DJmBgkW0NWrHedWuk=') center/cover no-repeat;\">\n  <div style=\"position:absolute; top:10px; left:10px; background: rgba(255,255,255,0.9); padding:8px; border-radius:8px;\">\n    <h4 style=\"margin:0; font-size:16px; color:#333;\">@{{agentName}}</h4>\n    <p style=\"margin:2px 0 0; font-size:13px; color:#555;\">Boosting Brands</p>\n  </div>\n  <div style=\"position:absolute; bottom:0; width:100%; padding:10px; background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));\">\n    <p style=\"margin:0; font-size:13px; color:#fff;\">Contact: {{agentEmail}}</p>\n    <h3 style=\"margin:4px 0 0; font-family:'Georgia', serif; color:#FFD700;\">Elevate Visibility</h3>\n  </div>\n</div>"
+  },
+  {
+    "id": 4,
+    "type": "Scenic",
+    "segment": "ad",
+    "social": "instagram",
+    "name": "Scenic Escape Ad",
+    "html": "<div style=\"width:300px; height:300px; position:relative; border-radius:16px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.3); background: url('https://media.istockphoto.com/id/2187468573/photo/vibrant-rainbow-color-color-sunset.webp?a=1&b=1&s=612x612&w=0&k=20&c=axHGnzg_VlkjWWKaOwSfw8DeC3mfOxVaRz29dzO0EgI=') center/cover no-repeat;\">\n  <div style=\"position:absolute; top:0; width:100%; padding:8px; background: rgba(255,255,255,0.3); text-align:center;\">\n    <h4 style=\"margin:0; font-family:'Arial', sans-serif; color:#333;\">@{{agentName}} - Scenic Views</h4>\n  </div>\n  <div style=\"position:absolute; bottom:0; width:100%; padding:10px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);\">\n    <h3 style=\"margin:0; font-family:'Georgia', serif; color:#FFD700;\">Escape the Ordinary</h3>\n    <p style=\"margin:4px 0; font-size:14px; color:#fff;\">{{caption}}</p>\n    <p style=\"font-size:12px; color:#ddd;\">Call: {{agentContact}}</p>\n  </div>\n</div>"
+  },
+  {
+    "id": 5,
+    "type": "Quiz",
+    "segment": "post",
+    "social": "twitter",
+    "name": "Fun Travel Quiz Post",
+    "html": "<div style=\"width:300px; height:300px; position:relative; border-radius:16px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.3); background: url('https://plus.unsplash.com/premium_photo-1661425611469-3a1f8acd6058?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RnVuJTIwVHJhdmVsJTIwUXVpeiUyMFBvc3R8ZW58MHx8MHx8fDA%3D') center/cover no-repeat;\">\n  <div style=\"position:absolute; top:0; left:0; width:100%; padding:8px; background: rgba(255,255,0,0.4);\">\n    <h4 style=\"margin:0; color:#333; font-family:'Arial', sans-serif;\">Pop Quiz</h4>\n    <p style=\"margin:2px 0; font-size:13px; color:#333;\">By {{agentName}} ({{agentEmail}})</p>\n  </div>\n  <div style=\"position:absolute; bottom:0; width:100%; padding:10px; background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));\">\n    <h3 style=\"margin:0; font-family:'Georgia', serif; color:#FFD700;\">Test Your Knowledge</h3>\n  </div>\n</div>"
+  },
+  {
+    "id": 6,
+    "type": "Trends",
+    "segment": "ad",
+    "social": "instagram",
+    "name": "Latest Travel Trends Ad",
+    "html": "<div style=\"width:300px; height:300px; position:relative; border-radius:16px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.3); background: url('https://media.istockphoto.com/id/654289190/photo/four-poster-bed-with-mosquito-net-in-bright-hotel-room.webp?a=1&b=1&s=612x612&w=0&k=20&c=unNRzijUCSqltoxFGu3pCamPKBUyhy5XJk3ivpshtog=') center/cover no-repeat;\">\n  <div style=\"position:absolute; top:10px; right:10px; background: rgba(255,255,255,0.8); padding:6px; border-radius:8px;\">\n    <h5 style=\"margin:0; font-size:15px; color:#333;\">@{{agentName}}</h5>\n    <span style=\"font-size:12px; color:#555;\">{{agentContact}}</span>\n  </div>\n  <div style=\"position:absolute; bottom:0; width:100%; padding:10px; background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));\">\n    <h3 style=\"margin:0; font-family:'Georgia', serif; color:#FFD700;\">Stay Ahead!</h3>\n    <p style=\"margin:4px 0; font-size:14px; color:#fff;\">{{caption}}</p>\n  </div>\n</div>"
+  },
+  {
+    "id": 7,
+    "type": "Adventure",
+    "segment": "post",
+    "social": "instagram",
+    "name": "Adventure Awaits Post",
+    "html": "<div style=\"width:300px; height:300px; position:relative; border-radius:16px; overflow:hidden; background: url('https://media.istockphoto.com/id/2173582899/photo/woman-contemplating-the-trail-ahead-on-a-hike-in-the-lake-district.webp?a=1&b=1&s=612x612&w=0&k=20&c=m2t7eAw9fEw8mMmoQGtjlfJETGGBJdQypwXhNiPLzrg=') center/cover no-repeat; box-shadow:0 6px 12px rgba(0,0,0,0.4);\">\n  <div style=\"position:absolute; top:0; left:0; width:100%; padding:12px; background: linear-gradient(135deg, rgba(255,165,0,0.8), rgba(255,69,0,0.6));\">\n    <h4 style=\"margin:0; font-family: 'Roboto', sans-serif; color:#fff;\">@{{agentName}} Adventure</h4>\n  </div>\n  <div style=\"position:absolute; bottom:0; width:100%; padding:12px; background: linear-gradient(90deg, rgba(0,0,0,0.8), transparent);\">\n    <h3 style=\"margin:0; font-family:'Georgia', serif; color:#FFD700;\">Dare to Explore</h3>\n    <p style=\"margin:4px 0 0; font-size:14px; color:#fff;\">Call: {{agentContact}}</p>\n  </div>\n</div>"
+  },
+  {
+    "id": 8,
+    "type": "Luxury",
+    "segment": "ad",
+    "social": "instagram",
+    "name": "Luxury Escapade Ad",
+    "html": "<div style=\"width:300px; height:300px; position:relative; border-radius:16px; overflow:hidden; background: url('https://media.istockphoto.com/id/2170652141/photo/large-airliner-passengers-view-is-landing-on-the-landing-strip-at-the-airport-against-the.webp?a=1&b=1&s=612x612&w=0&k=20&c=ysw0oxz6KT-XnxLcQuNHtHfLtm6EsgoN8Xty9edNhUo=') center/cover no-repeat; box-shadow:0 6px 12px rgba(0,0,0,0.5);\">\n  <div style=\"position:absolute; top:0; right:0; padding:8px; background: rgba(255,255,255,0.7); border-bottom-left-radius:10px;\">\n    <span style=\"font-size:14px; color:#333; font-weight:bold;\">Exclusive</span>\n  </div>\n  <div style=\"position:absolute; bottom:0; width:100%; padding:12px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);\">\n    <h3 style=\"margin:0; font-family:'Times New Roman', serif; color:#FFD700;\">Indulge in Luxury</h3>\n    <p style=\"margin:4px 0; font-size:14px; color:#fff;\">{{caption}}</p>\n    <p style=\"font-size:12px; color:#ccc;\">Contact: {{agentContact}}</p>\n  </div>\n</div>"
+  },
+  {
+    "id": 9,
+    "type": "Cultural",
+    "segment": "post",
+    "social": "instagram",
+    "name": "Cultural Festivity Post",
+    "html": "<div style=\"width:300px; height:300px; position:relative; border-radius:16px; overflow:hidden; background: url('https://media.istockphoto.com/id/2166059695/photo/young-girl-holding-basket-of-flowers-onam-festival-celebration.webp?a=1&b=1&s=612x612&w=0&k=20&c=v9bE0l9g9Se9dyeFXQWmqNmnptmKvNnTriXJPf0Bsb8=') center/cover no-repeat; box-shadow:0 6px 12px rgba(0,0,0,0.3);\">\n  <div style=\"position:absolute; top:0; left:0; width:100%; padding:10px; background: linear-gradient(to bottom, rgba(255,255,255,0.7), transparent);\">\n    <h4 style=\"margin:0; font-family:'Verdana', sans-serif; color:#333;\">@{{agentName}} Cultural Vibes</h4>\n  </div>\n  <div style=\"position:absolute; bottom:0; width:100%; padding:10px; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);\">\n    <h3 style=\"margin:0; font-family:'Georgia', serif; color:#FFD700;\">Experience Tradition</h3>\n    <p style=\"margin:4px 0; font-size:14px; color:#fff;\">{{caption}}</p>\n  </div>\n</div>"
+  },
+  {
+    "id": 10,
+    "type": "Eco",
+    "segment": "ad",
+    "social": "instagram",
+    "name": "Eco Travel Impact Ad",
+    "html": "<div style=\"width:300px; height:300px; position:relative; border-radius:16px; overflow:hidden; background: url('https://media.istockphoto.com/id/1663787280/photo/green-energy-concept-aerial-top-view-green-forest-with-green-energy-icon-on-vr-screen.webp?a=1&b=1&s=612x612&w=0&k=20&c=mJVEzV5_Iz0zzFxgCghQL3mNVT5YgxRGmMeSdMiT87M=') center/cover no-repeat; box-shadow:0 6px 12px rgba(0,0,0,0.4);\">\n  <div style=\"position:absolute; top:0; left:0; width:100%; padding:10px; background: rgba(34,139,34,0.7);\">\n    <h4 style=\"margin:0; font-family:'Helvetica', sans-serif; color:#fff;\">Eco Travel</h4>\n  </div>\n  <div style=\"position:absolute; bottom:0; width:100%; padding:10px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);\">\n    <h3 style=\"margin:0; font-family:'Georgia', serif; color:#ADFF2F;\">Travel Green</h3>\n    <p style=\"margin:4px 0; font-size:14px; color:#fff;\">Join the Movement</p>\n    <p style=\"font-size:12px; color:#ccc;\">Contact: {{agentContact}}</p>\n  </div>\n</div>"
+  }
+]

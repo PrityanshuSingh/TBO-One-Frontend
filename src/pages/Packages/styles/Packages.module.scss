@@ -1,5 +1,5 @@
 /* src/pages/Packages/styles/Packages.module.scss */
-@import '../../../assets/styles/variables.scss';
+@use "../../../assets/styles/variables" as *;
 
 .packagesContainer {
   width: 100%;

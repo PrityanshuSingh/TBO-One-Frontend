@@ -1,5 +1,5 @@
 /* src/components/Filters/styles/CampaignFilter.module.scss */
-@import '../../../assets/styles/variables.scss';
+@use "../../../assets/styles/variables" as *;
 
 .campaignFilterWrapper {
   display: flex;

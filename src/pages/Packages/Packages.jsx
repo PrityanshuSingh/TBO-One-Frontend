@@ -23,6 +23,7 @@ import styles from "./styles/Packages.module.scss";
 const PRIORITY_TAGS = [
   "Trending",
   "Cultural",
+  "Loyalty",
   "Heritage",
   "Royal",
   "Adventure",
