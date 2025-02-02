@@ -28,6 +28,7 @@ const SocialMedia = () => {
 
   // Template selection & user inputs
   const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [templates, setTemplates] = useState([]);
   const [imageQuery, setImageQuery] = useState("");
   const [captionQuery, setCaptionQuery] = useState("");
 
@@ -80,11 +81,11 @@ const SocialMedia = () => {
   useEffect(() => {
     const fetchTemplates = async () => {
       try {
-        const response = await axios.get("/api/ai/templates");
+        const response = await api.get("/api/ai/templates");
         setTemplates(response.data || []);
       } catch (error) {
         console.warn("Failed to fetch templates from API, using fallback data.", error);
-        setTemplates(templatesData);
+        
       }
     };
 
@@ -92,7 +93,7 @@ const SocialMedia = () => {
   }, []);
 
   // Filter the templates by type, segment, and social
-  const filteredTemplates = templatesData.filter((tpl) => {
+  const filteredTemplates = templates.filter((tpl) => {
     if (typeFilter !== "ALL" && tpl.type !== typeFilter) return false;
     if (segmentFilter !== "ALL" && tpl.segment !== segmentFilter) return false;
     if (socialFilter !== "ALL" && tpl.social !== socialFilter) return false;
