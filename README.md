@@ -1,5 +1,4 @@
-```md
-# TBO-One Frontend
+# TBO-One - AI Powered Travel CRM
 
 **TBO-One** is an all-in-one, AI-powered platform designed specifically for travel agents. It empowers agents to create, customize, and optimize travel packages while managing customer relationships effectively. Leveraging TBO’s extensive travel inventory and modern technologies—including the MERN stack and AI/ML tools—TBO-One provides personalized package recommendations, campaign management, customer and loyalty programs, and targeted social media automation.
 
@@ -11,8 +10,8 @@
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Installation and Setup](#installation-and-setup)
-- [Usage](#usage)
 - [Fork and Contribution](#fork-and-contribution)
+- [ScreenShots](#screenshots)
 - [Documentation and References](#documentation-and-references)
 - [Future Enhancements](#future-enhancements)
 - [Acknowledgements](#acknowledgements)
@@ -61,7 +60,7 @@ This README serves as a comprehensive guide for project stakeholders, developers
   - Complies with accessibility standards (WCAG 2.1).
 
 - **Automated Workflows:**  
-  - Streamlines routine tasks (booking confirmations, follow-ups) to enhance operational efficiency.
+  - Streamlines routine tasks (campaigns, follow-ups and customer personalized package development) to enhance operational efficiency.
   - Provides immediate feedback in the package builder as components are updated.
 
 - **Security and Compliance:**  
@@ -136,17 +135,18 @@ This README serves as a comprehensive guide for project stakeholders, developers
 5. **Set Up Environment Variables:**
    - Create a test `.env` file in the root directory and add the required environment variables to test your local setup:
      ```
-     VITE_API_BASE_URL=http://localhost:5000
-     VITE_TBO_API_BASE_URL=http://api.tbotechnology.in
-     VITE_TBO_COUNTRYLIST_URL=/tbo/TBOHolidays_HotelAPI/CountryList
-     VITE_TBO_CITYLIST_URL=/tbo/TBOHolidays_HotelAPI/CityList
-
+     VITE_API_BASE_URL=YOUR_API_URL
+     VITE_TBO_API_BASE_URL=YOUR_TBO_API_URL
+     VITE_TBO_COUNTRYLIST_URL=YOUR_COUNTRYLIST_ENDPOINT
+     VITE_TBO_CITYLIST_URL=YOUR_CITYLIST_ENDPOINT
      ```
 
 6. **Start Development Server:**
    ```bash
    bun run dev
-   ```
+   # or
+   npm run dev
+
 
 7. **Access Local Deployment:**
    Open your browser and navigate to `http://localhost:5173` to view TBO-One Frontend locally.
@@ -200,9 +200,19 @@ If you would like to contribute to TBO-One, follow these steps:
 ## Screenshots
 
 - **AI-Powered Package Recommendations:** Showcasing personalized travel package suggestions.
+![image](https://github.com/user-attachments/assets/e34a59b0-175f-4f81-8e62-05c27233ea1e)
+
+
 - **Campaign Manangement:** Demonstrating the interactive whatsApp campaign management.
+![image](https://github.com/user-attachments/assets/6627a581-ca7b-4df6-b6ff-81836e188ed5)
+
+
 - **Customer Personalized Package Generation:** Customizing Packages using AI based on customer's need and preferences.
+![image](https://github.com/user-attachments/assets/e454af4d-92a0-46a6-9b89-651791e93cb5)
+
+
 - **Social Media GenAI Integration:** Illustrating Instagram Posts and Ads generation automation with predefined templates.
+![image](https://github.com/user-attachments/assets/269e9a9c-fd84-49c8-a32e-d1018859eb74)
 
 
 ---
@@ -211,12 +221,13 @@ If you would like to contribute to TBO-One, follow these steps:
 
 - **SRS Documentation:**  
   Detailed Software Requirements Specification (SRS) outlining the system’s objectives, scope, and functionalities.
+  [https://docs.google.com/document/d/1zctQLjKve1-x8Rq6wjXzjg7k4mLKzZkz0N2cIJWhCoc/edit?usp=sharing](#)
   
 - **Live Hosted Link:**  
-  [Your Live Hosted Link Here](#)
+  [https://tbo-one.vercel.app](#)
 
 - **PostMan API Collection:**  
-  [PostMan API Collection Link Here](#)
+  [https://tinyurl.com/5n6phsyc](#)
 
 - **Reference Video:**  
   [Reference Video Link Here](#)
@@ -239,7 +250,6 @@ If you would like to contribute to TBO-One, follow these steps:
 
 ## Acknowledgements
 
-TBO-One is built and maintained by [Prityanshu Singh](https://github.com/PrityanshuSingh) and contributors. Special thanks to all the open-source libraries and frameworks powering this project, including React, Express.js, MongoDB, Bun, SCSS, Flask, and scikit-learn.
+TBO-One is built and maintained by team Veltrix during VoyageHack2.0 Hackathon which inlcudes contributors : [Prityanshu Singh](https://github.com/PrityanshuSingh), [Prakash Pramanick](https://github.com/prakash2003pramanick) and [Amaldeep Patra](https://github.com/amaldeeppatra). Special thanks to all the open-source libraries and frameworks powering this project, including React, Express.js, MongoDB, Bun, SCSS, Flask, and scikit-learn and the TBO API Inventory provided for reference.
 
-Happy coding!
-```
+Happy Coding and Travelling!
