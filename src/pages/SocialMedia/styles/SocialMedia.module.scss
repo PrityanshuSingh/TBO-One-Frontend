@@ -1,5 +1,5 @@
 /* src/pages/SocialMedia/styles/SocialMedia.module.scss */
-@import '../../../assets/styles/variables.scss';
+@use "../../../assets/styles/variables" as *;
 
 .socialMediaContainer {
   width: 100%;

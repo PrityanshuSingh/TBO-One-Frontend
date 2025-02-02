@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables.scss';
+@use "../../../assets/styles/variables" as *;
 
 .savedContainer {
   background-color: white;
