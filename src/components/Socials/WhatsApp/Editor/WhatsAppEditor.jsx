@@ -59,17 +59,15 @@ const WhatsAppEditor = ({
     try {
       const payload = { packageId: packageId, email: email };
       const response = await api.post('/api/ai/wpDescription', payload);
-
-      if (!response.ok) {
-        throw new Error('Failed to generate description.');
-      }
-
-      const data = await response.json();
-      if (data.description) {
-        onDescriptionChange(data.description);
-      } else {
+  
+      if (!response.data.caption) {
         throw new Error('Invalid response from AI generator.');
       }
+  
+  
+      const caption = response.data.caption;
+      onDescriptionChange(caption);
+  
     } catch (error) {
       console.error('AI Generation Error:', error);
       setAiError(error.message);
@@ -77,6 +75,7 @@ const WhatsAppEditor = ({
       setIsGenerating(false);
     }
   };
+  
 
   // Clean up the object URL when component unmounts or image changes
   useEffect(() => {
