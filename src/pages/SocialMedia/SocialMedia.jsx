@@ -42,7 +42,7 @@ const SocialMedia = () => {
 
   async function checkInstagramConnection() {
     try {
-      const res = await api.get("/auth/instagram/status");
+      const res = await api.get("/api/instagram/status");
       if (res.data?.connected) {
         setIsInstagramConnected(true);
       } else {
@@ -60,7 +60,7 @@ const SocialMedia = () => {
     const left = (window.screen.width - popupWidth) / 2;
     const top = (window.screen.height - popupHeight) / 2;
 
-    const authUrl = `${import.meta.env.VITE_API_BASE_URL}/auth/instagram/connect`;
+    const authUrl = `${import.meta.env.VITE_API_BASE_URL}/api/instagram/connect`;
 
     // Open a new popup for the OAuth flow
     const popup = window.open(
