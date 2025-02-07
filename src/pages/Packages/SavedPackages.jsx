@@ -28,6 +28,8 @@ function SavedPackages() {
     const fetchSavedPackages = async () => {
       if (!userEmail) return;
 
+      console.log("Fetching saved packages for user:", userEmail);
+
       try {
         const res = await api.get("/api/packages/saved", {
           params: { email: userEmail },
@@ -58,6 +60,7 @@ function SavedPackages() {
     if (!filterValue.trim()) {
       setFilteredPackages(savedPackages);
     } else {
+      console.log("Filtered Packages:", filtered);
       const filtered = savedPackages.filter((pkg) =>
         (pkg.packageTitle + " " + pkg.location)
           .toLowerCase()

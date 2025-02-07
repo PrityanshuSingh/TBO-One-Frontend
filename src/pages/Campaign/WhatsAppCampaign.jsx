@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import WhatsAppModal from '../../components/Modals/WhatsAppModal';
 import { AuthContext } from '../../context/AuthContext';
+import { CampaignContext } from '../../context/CampaignContext';
 import api from "../../utils/api";
 
 const WhatsAppCampaign = () => {

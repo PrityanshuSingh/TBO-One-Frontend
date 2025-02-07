@@ -23,7 +23,7 @@ const CampaignCard = ({
 
 
   const handleEdit = () => {
-    navigate(`/u/campaigns/edit/${campaign.pkgId}`);
+    navigate(`/u/campaigns/edit/${campaign.id}`);
   };
 
   return (

@@ -8,8 +8,9 @@ const STORAGE_KEY = "authSession";
 const FALLBACK_USERNAME = "hackathontest";
 const FALLBACK_PASSWORD = "Hac@98910186";
 
-function storeUserSession(username, password) {
-  sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ username, password }));
+// Now store the profile along with username and password
+function storeUserSession(username, password, profile) {
+  sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ username, password, profile }));
 }
 
 function loadUserSession() {
@@ -24,9 +25,10 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const stored = loadUserSession();
-    if (stored?.username && stored?.password) {
+    if (stored?.username && stored?.password && stored.profile) {
+      console.log("Stored session found. Loading profile from storage...");
       setIsAuthenticated(true);
-      // setUserData(fallbackData); // Load fallback data for offline or testing
+      setUserData(stored.profile);
     }
     setIsAuthLoading(false);
   }, []);
@@ -35,23 +37,20 @@ export function AuthProvider({ children }) {
     try {
       const response = await api.post("/api/auth/login", { userName, password });
       const { success, profile } = response.data;
-
       if (!success) {
         throw new Error("Invalid credentials");
       }
-
-      storeUserSession(userName, password);
+      storeUserSession(userName, password, profile);
       setIsAuthenticated(true);
-      setUserData(profile); // Store the profile received from the API
+      setUserData(profile);
     } catch (err) {
       console.error("API Login error:", err.message);
-
-      // Use fallback data for testing or offline mode
+      // Fallback login for testing/offline mode
       if (userName === FALLBACK_USERNAME && password === FALLBACK_PASSWORD) {
         console.log("Using fallback login");
-        storeUserSession(userName, password);
+        storeUserSession(userName, password, fallbackData);
         setIsAuthenticated(true);
-        setUserData(fallbackData); // Use fallback data
+        setUserData(fallbackData);
       } else {
         throw new Error("Login failed and fallback credentials are incorrect");
       }
@@ -60,20 +59,14 @@ export function AuthProvider({ children }) {
 
   const signUp = async (email, userName, password) => {
     try {
-      const response = await api.post("/api/auth/signup", {
-        email,
-        userName,
-        password,
-      });
+      const response = await api.post("/api/auth/signup", { email, userName, password });
       const { success, profile } = response.data;
-
       if (!success) {
         throw new Error("Sign up failed");
       }
-
-      storeUserSession(userName, password);
+      storeUserSession(userName, password, profile);
       setIsAuthenticated(true);
-      setUserData(profile); // Store the profile received from the API
+      setUserData(profile);
     } catch (err) {
       console.error("API Signup error:", err.message);
       throw new Error("Sign up failed. Please try again.");

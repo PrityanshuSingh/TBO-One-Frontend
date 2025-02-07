@@ -21,6 +21,8 @@ export default function Customers() {
   const { campaigns, isLoading, campaignError } = useContext(CampaignContext);
   const { userData } = useContext(AuthContext);
 
+  console.log("Campaigns:", campaigns);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [contactFilter, setContactFilter] = useState("ALL");
   const [rowStatusFilter, setRowStatusFilter] = useState("ALL");

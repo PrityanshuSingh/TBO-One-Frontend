@@ -1,11 +1,14 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaWhatsapp, FaRegBookmark, FaBookmark } from 'react-icons/fa';
-import { MdPlayCircle, MdPauseCircle, MdDrafts, MdDoNotDisturb } from 'react-icons/md';
-import api from "../../utils/api";
-import styles from './styles/PackageCard.module.scss';
+// src/components/Cards/PackageCard.jsx
 
-import { AuthContext } from '../../context/AuthContext';
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaWhatsapp, FaRegBookmark, FaBookmark } from "react-icons/fa";
+import { MdPlayCircle, MdPauseCircle, MdDrafts, MdDoNotDisturb } from "react-icons/md";
+import api from "../../utils/api";
+import styles from "./styles/PackageCard.module.scss";
+
+import { AuthContext } from "../../context/AuthContext";
+import { CampaignContext } from "../../context/CampaignContext";
 
 const PackageCard = ({
   id,
@@ -16,11 +19,12 @@ const PackageCard = ({
   price,
   currency,
   campaignStatus,
-  onDetailsClick
+  onDetailsClick,
 }) => {
-
   const navigate = useNavigate();
   const { userData, setUserData } = useContext(AuthContext);
+  const { campaigns } = useContext(CampaignContext);
+
   const userEmail = userData?.Profile?.email;
   const savedPackages = userData?.Profile?.saved || [];
 
@@ -33,20 +37,42 @@ const PackageCard = ({
   const handleBookmarkClick = async () => {
     if (!userEmail) return;
     try {
-      const res = await api.post('/api/packages/bookmark', { email: userEmail, packageId: id });
+      const res = await api.post("/api/packages/bookmark", { email: userEmail, packageId: id });
       const updatedSaved = res.data.saved || [];
-      setUserData(prev => ({ ...prev, Profile: { ...prev.Profile, saved: updatedSaved } }));
+      setUserData((prev) => ({
+        ...prev,
+        Profile: { ...prev.Profile, saved: updatedSaved },
+      }));
       setIsSaved(updatedSaved.includes(id));
     } catch (err) {
-      console.error('Error bookmarking package:', err);
+      console.error("Error bookmarking package:", err);
     }
   };
 
   const getCampaignIcon = () => {
-    if (campaignStatus === 'Running') return <MdPlayCircle className={`${styles.campaignIcon} ${styles.runningIcon}`} />;
-    if (campaignStatus === 'Hold') return <MdDrafts className={`${styles.campaignIcon} ${styles.draftIcon}`} />;
-    if (campaignStatus === 'Stopped') return <MdPauseCircle className={`${styles.campaignIcon} ${styles.stoppedIcon}`} />;
+    if (campaignStatus === "Running")
+      return <MdPlayCircle className={`${styles.campaignIcon} ${styles.runningIcon}`} />;
+    if (campaignStatus === "Hold")
+      return <MdDrafts className={`${styles.campaignIcon} ${styles.draftIcon}`} />;
+    if (campaignStatus === "Stopped")
+      return <MdPauseCircle className={`${styles.campaignIcon} ${styles.stoppedIcon}`} />;
     return <MdDoNotDisturb className={`${styles.campaignIcon} ${styles.noCampaignIcon}`} />;
+  };
+
+  // Updated WhatsApp button handler
+  const handleWhatsAppClick = () => {
+    // If the package has a running campaign, navigate to the edit page with campaign details.
+    if (campaignStatus === "Running") {
+      const runningCampaign = campaigns.find((c) => c.pkgId === id && c.status === "Running");
+      if (runningCampaign) {
+        navigate(`/u/campaigns`, { state: { campaign: runningCampaign } });
+        return;
+      }
+    }
+    // Otherwise, use the existing behavior.
+    navigate(`/u/packages/campaign/${id}`, {
+      state: { id, title: packageTitle, image, location, price, currency, duration },
+    });
   };
 
   return (
@@ -77,14 +103,10 @@ const PackageCard = ({
             {getCampaignIcon()}
           </div>
 
-          {/* WhatsApp Button (Navigates to campaign link) */}
+          {/* WhatsApp Button: Updated behavior */}
           <button
             className={styles.whatsappButton}
-            onClick={() =>
-              navigate(`/u/packages/campaign/${id}`, {
-                state: { id, title: packageTitle, image, location, price, currency, duration}
-              })
-            }
+            onClick={handleWhatsAppClick}
           >
             <FaWhatsapp size={18} />
           </button>

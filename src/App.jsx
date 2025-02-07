@@ -72,7 +72,7 @@ function App() {
                     <Route path="/u/packages/edit/:id" element={<PackageDetails />} />
 
                     <Route path="/u/campaigns" element={<Campaigns />} />
-                    <Route path="/u/campaigns/edit/:id" element={[<Campaigns />,<EditCampign />]} />
+                    <Route path="/u/campaigns/edit/:id" element={[<Campaigns />,<WhatsAppCampaign />]} />
 
                     <Route path="/u/customers" element={<Customers />} />
                     <Route path="/u/customers/:id" element={<Customers />} />

@@ -57,6 +57,7 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
     setScheduleTime(newTime);
   };
 
+  const baseUrl = window.location.origin;
 
   // Compute previewMessage using useMemo for performance optimization
   const previewMessage = useMemo(() => {
@@ -65,7 +66,7 @@ Location: ${packageData.location || ""}
 Price: ${packageData?.currency || ""} ${packageData?.price || ""}
 Duration: ${packageData.duration || ""}
 Description: ${description}
-Details: https://your-website.com/package/details/${packageId}
+Details: ${baseUrl}/packages/details?id=${packageId}&email=${travelerEmail}
 Travelers: ${travelerMobile}, ${travelerEmail}`;
   }, [title, packageData.location, packageData.price, packageData.currency, description, packageId, travelerMobile, travelerEmail]);
 

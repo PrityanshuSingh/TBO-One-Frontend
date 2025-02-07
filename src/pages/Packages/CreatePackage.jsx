@@ -124,17 +124,27 @@ const CreatePackage = () => {
         <div className={styles.topBar}>
           <div className={styles.headingArea}>
             {creationMode === "promptBased" ? (
-              <h1 className={styles.mainTitle}>
-                Generate Prompt Based AI Personalized Packages
-              </h1>
+              <>
+                {" "}
+                <h1 className={styles.mainTitle}>
+                  Generate Prompt Based AI Packages
+                </h1>
+                <p className={styles.subtitle}>
+                  Create full personalized travel packages using just a prompt
+                  and let the AI handle the rest.
+                </p>
+              </>
             ) : (
-              <h1 className={styles.mainTitle}>
-                Build with AI Suggestive Guidance
-              </h1>
+              <>
+                <h1 className={styles.mainTitle}>
+                  Build Packages with AI Suggestive Guidance
+                </h1>
+                <p className={styles.subtitle}>
+                  Use AI suggestive guidance in every step to create
+                  personalized travel packages.
+                </p>
+              </>
             )}
-            <p className={styles.subtitle}>
-              Curate and customize travel packages for your customers using AI suggestions.
-            </p>
           </div>
           <div className={styles.rightActions}>
             <div className={styles.modeToggle}>

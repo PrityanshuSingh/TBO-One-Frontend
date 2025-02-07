@@ -88,22 +88,11 @@ const WhatsAppEditor = ({
 
   // Construct the preview message dynamically
   const baseUrl = window.location.origin; // Dynamically get the base URL
-  const previewMessage = `Check out this package: ${title}
-  
-Location: ${location}
-Price:  ${currency} ${price}
-Duration: ${duration}
 
-${description}
-
-Details: ${baseUrl}/packages/details/${packageId}
-Travelers: ${travelerMobile}, ${travelerEmail}`;
-
-console.log('Preview Message:', previewMessage); // Debugging
 
   return (
     <div className={styles.editorContainer}>
-      <h2 className={styles.heading}>Run WhatsApp Campaign</h2>
+      <h2 className={styles.heading}>WhatsApp Campaign</h2>
       <div className={styles.contentWrapper}>
         {/* Image Section */}
         <div className={styles.imageContainer}>

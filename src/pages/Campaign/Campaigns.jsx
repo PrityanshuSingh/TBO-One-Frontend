@@ -25,6 +25,8 @@ const Campaigns = () => {
   } = useContext(CampaignContext);
   const { userData } = useContext(AuthContext);
 
+  console.log("Campaigns:", campaigns);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCampaigns, setSelectedCampaigns] = useState([]);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);

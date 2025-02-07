@@ -225,7 +225,7 @@ function AIForm({
                 )
               }
               className={styles.aiPromptInput}
-              placeholder="e.g. 'India'"
+              placeholder="e.g. India"
             />
             {showOriginCountrySuggestions && originCountry && (
               <ul className={styles.suggestionsList}>
@@ -264,7 +264,7 @@ function AIForm({
                 )
               }
               className={styles.aiPromptInput}
-              placeholder="e.g. 'New Delhi'"
+              placeholder="e.g. New Delhi"
             />
             {showOriginCitySuggestions && originCity && (
               <ul className={styles.suggestionsList}>
@@ -305,7 +305,7 @@ function AIForm({
                 )
               }
               className={styles.aiPromptInput}
-              placeholder="e.g. 'India'"
+              placeholder="e.g. India"
             />
             {showDestCountrySuggestions && destinationCountry && (
               <ul className={styles.suggestionsList}>
@@ -346,7 +346,7 @@ function AIForm({
                 )
               }
               className={styles.aiPromptInput}
-              placeholder="e.g. 'Mumbai'"
+              placeholder="e.g. Mumbai"
             />
             {showDestCitySuggestions && destinationCity && (
               <ul className={styles.suggestionsList}>
@@ -414,7 +414,7 @@ function AIForm({
               type="text"
               value={aiPrompt}
               onChange={(e) => setAiPrompt(e.target.value)}
-              placeholder="e.g. 'Beach vacation'"
+              placeholder="e.g. Beach vacation, Adventure trip, etc."
               className={styles.promptInput}
             />
           </div>
