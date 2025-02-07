@@ -1,5 +1,3 @@
-// src/pages/Packages/SavedPackages.jsx
-
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../utils/api";
@@ -9,63 +7,66 @@ import localPackages from "../../data/localPackages.json";
 import CategorySection from "../../components/Sections/PackageCategory/CategorySection";
 import { FaArrowLeft } from "react-icons/fa";
 import Load from "../../microInteraction/Load/Load";
-import styles from "./styles/SavedPackages.module.scss";
+import styles from "./styles/PersonalizedPackages.module.scss";
 
-function SavedPackages() {
+function PeronalizedPackages() {
   const { userData } = useContext(AuthContext);
   const { campaigns } = useContext(CampaignContext);
   const navigate = useNavigate();
   const userEmail = userData?.Profile?.email;
 
-  // State for saved packages
-  const [savedPackages, setSavedPackages] = useState([]);
+  // State for personalized packages
+  const [personalizedPackages, setPersonalizedPackages] = useState([]);
   const [filteredPackages, setFilteredPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterValue, setFilterValue] = useState(""); // Category search filter
 
-  // Fetch saved packages from API
+  // Fetch personalized packages from API
   useEffect(() => {
-    const fetchSavedPackages = async () => {
+    const fetchPersonlizedPackages = async () => {
       if (!userEmail) return;
 
       try {
-        const res = await api.get("/api/packages/saved", {
+        const res = await api.get("/api/packages/personlized", {
           params: { email: userEmail },
         });
 
         if (Array.isArray(res.data) && res.data.length > 0) {
-          setSavedPackages(res.data);
+          setPersonalizedPackages(res.data);
         }
       } catch (error) {
-        console.error("Failed to fetch saved packages. Using fallback data.", error);
-        const savedIds = userData?.Profile?.saved || [];
-        console.log("Saved IDs:", savedIds);
-        const fallbackData = localPackages.filter((pkg) =>
-          savedIds.includes(pkg.id)
+        console.error(
+          "Failed to fetch personalized packages. Using fallback data.",
+          error
         );
-        setSavedPackages(fallbackData);
+        const personalizedIds = userData?.Profile?.personalized || [];
+        console.log("Personalized IDs:", personalizedIds);
+        const fallbackData = localPackages.filter((pkg) =>
+          personalizedIds.includes(pkg.id)
+        );
+        setPersonalizedPackages(fallbackData);
         setFilteredPackages(fallbackData);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchSavedPackages();
+    fetchPersonlizedPackages();
   }, [userEmail, userData]);
 
-  // Filter saved packages when filterValue changes
+  // Filter packages when filterValue changes
   useEffect(() => {
     if (!filterValue.trim()) {
-      setFilteredPackages(savedPackages);
+      setFilteredPackages(personalizedPackages);
     } else {
-      const filtered = savedPackages.filter((pkg) =>
+      const filtered = personalizedPackages.filter((pkg) =>
         (pkg.packageTitle + " " + pkg.location)
           .toLowerCase()
           .includes(filterValue.toLowerCase())
       );
       setFilteredPackages(filtered);
     }
-  }, [filterValue, savedPackages]);
+  }, [filterValue, personalizedPackages]);
 
   const getCampaignStatus = (pkgId) => {
     if (!Array.isArray(campaigns) || campaigns.length === 0) return null;
@@ -73,23 +74,24 @@ function SavedPackages() {
     return foundCampaign ? foundCampaign.status : null;
   };
 
+  console.log("Personalized Packages:", personalizedPackages);
   return (
-    <div className={styles.savedContainer}>
+    <div className={styles.personalizedContainer}>
       <div className={styles.headerRow}>
         <button className={styles.backButton} onClick={() => navigate(-1)}>
           <FaArrowLeft size={18} />
         </button>
-        <h2 className={styles.title}>My Saved Package Vault</h2>
+        <h2 className={styles.title}>My Personalized Package Vault</h2>
       </div>
 
       {loading ? (
         <Load />
       ) : filteredPackages.length === 0 ? (
-        <p className={styles.noSavedMsg}>No matching saved packages found.</p>
+        <p className={styles.noSavedMsg}>No matching personalized packages found.</p>
       ) : (
         <div className={styles.categorySection}>
           <CategorySection
-            tag="Saved"
+            tag="Personalized"
             packages={filteredPackages}
             filterValue={filterValue}
             setFilterValue={setFilterValue}
@@ -102,4 +104,4 @@ function SavedPackages() {
   );
 }
 
-export default SavedPackages;
+export default PeronalizedPackages;

@@ -12,8 +12,10 @@ import CampaignFilter from "../../components/Filters/CampaignFilter";
 import AIForm from "../../components/Forms/AIForm";
 import CategorySection from "../../components/Sections/PackageCategory/CategorySection";
 import PackageCard from "../.././components/Cards/PackageCard";
+import Load from "../../microInteraction/Load/Load";
 
 import { FaRegBookmark } from "react-icons/fa";
+import { LuPackageOpen } from "react-icons/lu";
 
 import styles from "./styles/Packages.module.scss";
 
@@ -78,25 +80,7 @@ const Packages = () => {
 
   const [packagesData, setPackagesData] = useState([]);
   const [categories, setCategories] = useState({});
-
-  // States for AI form
-  const [aiPackages, setAiPackages] = useState([]);
-  const [isAiActive, setIsAiActive] = useState(false);
-  const [isAiLoading, setIsAiLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const [originCountry, setOriginCountry] = useState("");
-  const [originCountryCode, setOriginCountryCode] = useState("");
-  const [originCity, setOriginCity] = useState("");
-  const [originCityCode, setOriginCityCode] = useState("");
-  const [destinationCountry, setDestinationCountry] = useState("");
-  const [destinationCountryCode, setDestinationCountryCode] = useState("");
-  const [destinationCity, setDestinationCity] = useState("");
-  const [destinationCityCode, setDestinationCityCode] = useState("");
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
-  const [adultCount, setAdultCount] = useState("1");
-  const [aiPrompt, setAiPrompt] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // States for campaign filter
   const [campaignFilter, setCampaignFilter] = useState("ALL");
@@ -109,6 +93,7 @@ const Packages = () => {
   // Fetch initial packages
   useEffect(() => {
     async function fetchPackages() {
+      setIsLoading(true);
       try {
         const res = await api.get("/api/packages");
         // Validate the data before setting to state
@@ -121,6 +106,8 @@ const Packages = () => {
       } catch (error) {
         console.error("Failed to fetch from API. Using local fallback.", error);
         setPackagesData(localPackages);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchPackages();
@@ -163,66 +150,12 @@ const Packages = () => {
     navigate(`/u/packages/details/${pkgId}`);
   };
 
-  // Validate required fields for the AI form
-  const validateAiForm = () => {
-    if (!aiPrompt.trim()) {
-      return "Please provide a prompt.";
-    }
-    return "";
-  };
-
-  // AI prompt submission
-  const handleAiSearch = async (e) => {
-    e.preventDefault();
-    setErrorMsg("");
-    const err = validateAiForm();
-    if (err) {
-      setErrorMsg(err);
-      return;
-    }
-    setIsAiLoading(true);
-    setIsAiActive(false);
-
-    const finalData = {
-      originCountry,
-      originCountryCode,
-      originCity,
-      originCityCode,
-      destinationCountry,
-      destinationCountryCode,
-      destinationCity,
-      destinationCityCode,
-      fromDate,
-      toDate,
-      adultCount,
-      aiPrompt,
-    };
-    console.log("AI Search finalData =>", finalData);
-
-    try {
-      const res = await api.post("/api/ai/packages/generate", finalData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      if (Array.isArray(res.data)) {
-        setAiPackages(res.data);
-      } else {
-        console.warn("Invalid AI data, using empty array for suggestions");
-        setAiPackages([]);
-      }
-      setIsAiActive(true);
-    } catch (error) {
-      console.error("AI prompt failed. Using local fallback.", error);
-      setAiPackages([]);
-      setIsAiActive(true);
-    } finally {
-      setIsAiLoading(false);
-    }
-  };
-
   const handleSavedRoute = () => {
     navigate("/u/packages/saved");
+  };
+
+  const handlePersonalizedRoute = () => {
+    navigate("/u/packages/personalized");
   };
 
   return (
@@ -242,6 +175,13 @@ const Packages = () => {
             />
             <button
               className={styles.savedBtn}
+              onClick={handlePersonalizedRoute}
+              title="View Personalized Packages"
+            >
+              <LuPackageOpen size={22} />
+            </button>
+            <button
+              className={styles.savedBtn}
               onClick={handleSavedRoute}
               title="View Saved Packages"
             >
@@ -252,67 +192,7 @@ const Packages = () => {
       </div>
 
       <div className={styles.scrollContent}>
-        <AIForm
-          originCountry={originCountry}
-          setOriginCountry={setOriginCountry}
-          originCountryCode={originCountryCode}
-          setOriginCountryCode={setOriginCountryCode}
-          originCity={originCity}
-          setOriginCity={setOriginCity}
-          originCityCode={originCityCode}
-          setOriginCityCode={setOriginCityCode}
-          destinationCountry={destinationCountry}
-          setDestinationCountry={setDestinationCountry}
-          destinationCountryCode={destinationCountryCode}
-          setDestinationCountryCode={setDestinationCountryCode}
-          destinationCity={destinationCity}
-          setDestinationCity={setDestinationCity}
-          destinationCityCode={destinationCityCode}
-          setDestinationCityCode={setDestinationCityCode}
-          fromDate={fromDate}
-          setFromDate={setFromDate}
-          toDate={toDate}
-          setToDate={setToDate}
-          adultCount={adultCount}
-          setAdultCount={setAdultCount}
-          aiPrompt={aiPrompt}
-          setAiPrompt={setAiPrompt}
-          onSubmit={handleAiSearch}
-          isAiActive={isAiActive}
-          setIsAiActive={setIsAiActive}
-          isAiLoading={isAiLoading}
-          errorMsg={errorMsg}
-        />
-
-        {isAiActive ? (
-          <div className={styles.aiSuggestionSection}>
-            <h2 className={styles.categoryTitle}>AI Suggested Packages</h2>
-            <div className={styles.categoryContainer}>
-              {aiPackages.length === 0 ? (
-                <div className={styles.noPackagesMsg}>
-                  No suggested packages found.
-                </div>
-              ) : (
-                <div className={styles.cardsGrid}>
-                  {aiPackages.map((pkg) => (
-                    <PackageCard
-                      key={pkg.id}
-                      id={pkg.id}
-                      packageTitle={pkg.packageTitle}
-                      image={pkg.image}
-                      location={pkg.location}
-                      duration={pkg.duration}
-                      price={pkg.price.totalPrice}
-                      currency={pkg.price.currency}
-                      campaignStatus={getCampaignStatus(pkg.id)}
-                      onDetailsClick={() => handleDetailsClick(pkg.id)}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        ) : (
+        {!isLoading ? (
           PRIORITY_TAGS.map((tag) => {
             const catPackages = categories[tag] || [];
             if (catPackages.length === 0) return null;
@@ -333,7 +213,7 @@ const Packages = () => {
               />
             );
           })
-        )}
+        ):(<Load />)}
       </div>
     </div>
   );

@@ -8,7 +8,8 @@ import {
   FaBars,
   FaTimes,
   FaAd,
-  FaInstagram
+  FaInstagram,
+  FaRegPlusSquare
 } from 'react-icons/fa';
 import styles from './styles/SideBar.module.scss';
 
@@ -75,10 +76,12 @@ function Sidebar() {
 
   const navItems = [
     // { path: '/', text: 'Dashboard', icon: <FaTachometerAlt /> },
+    { path: '/u/create', text: 'Create', icon: <FaRegPlusSquare/> },
     { path: '/u/packages', text: 'Packages', icon: <FaBox /> },
     { path: '/u/campaigns', text: 'Campaigns', icon: <FaUsers /> },
     { path: '/u/customers', text: 'Customers', icon: <FaRegAddressCard /> },
     { path: '/u/socials', text: 'GenAI Socials', icon: <FaInstagram /> },
+
   ];
 
   return (

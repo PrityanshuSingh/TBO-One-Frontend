@@ -420,7 +420,7 @@ function AIForm({
           </div>
 
           <button type="submit" className={styles.aiPromptButton}>
-            {isAiActive ? "Regenerate AI" : "Search AI"}
+            {isAiActive ? "Regenerate AI Package" : "Search AI Package"}
           </button>
 
           {isAiActive && (

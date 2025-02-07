@@ -8,9 +8,12 @@ import styles from './App.module.scss';
 const Login = lazy(() => import('./pages/Auth/Login'));
 const Signup = lazy(() => import('./pages/Auth/SignUp'));
 
+const CreatePackage = lazy(() => import('./pages/Packages/CreatePackage'));
+
 const Packages = lazy(() => import('./pages/Packages/Packages'));
 const PackageDetails = lazy(() => import('./pages/Packages/PackageDetails'));
 const SavedPackages = lazy(() => import('./pages/Packages/SavedPackages'));
+const PeronalizedPackages = lazy(() => import('./pages/Packages/PersonalizedPackages'));
 
 const WhatsAppCampaign = lazy(() => import('./pages/Campaign/WhatsAppCampaign'));
 const EditCampign = lazy(() => import('./pages/Campaign/EditCampaign'));
@@ -57,10 +60,16 @@ function App() {
                 <div className={styles.mainContent}>
                   <Routes>
                     <Route path="/" element={<Packages />} />
+
+                    <Route path="/u/create" element={<CreatePackage />} />
+
                     <Route path="/u/packages" element={<Packages />} />
-                    <Route path="/u/packages/details/:id" element={<PackageDetails />} />
                     <Route path="/u/packages/saved" element={<SavedPackages />} />
+                    <Route path="/u/packages/personalized" element={<PeronalizedPackages />} />
+
+                    <Route path="/u/packages/details/:id" element={<PackageDetails />} />
                     <Route path="/u/packages/campaign/:id" element={[<Packages />, <WhatsAppCampaign />]} />
+                    <Route path="/u/packages/edit/:id" element={<PackageDetails />} />
 
                     <Route path="/u/campaigns" element={<Campaigns />} />
                     <Route path="/u/campaigns/edit/:id" element={[<Campaigns />,<EditCampign />]} />
