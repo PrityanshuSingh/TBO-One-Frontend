@@ -57,7 +57,7 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
     setScheduleTime(newTime);
   };
 
-  const baseUrl = window.location.origin;
+
 
   // Compute previewMessage using useMemo for performance optimization
   const previewMessage = useMemo(() => {
@@ -66,9 +66,10 @@ Location: ${packageData.location || ""}
 Price: ${packageData?.currency || ""} ${packageData?.price || ""}
 Duration: ${packageData.duration || ""}
 Description: ${description}
-Details: ${baseUrl}/packages/details?id=${packageId}&email=${travelerEmail}
+Details: "View Details link"
 Travelers: ${travelerMobile}, ${travelerEmail}`;
   }, [title, packageData.location, packageData.price, packageData.currency, description, packageId, travelerMobile, travelerEmail]);
+
 
   return (
     isOpen && (
@@ -116,6 +117,7 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
               description={description}
               scheduleDay={scheduleDay}
               scheduleTime={scheduleTime}
+              detailsUrl={`https://tbo-one.vercel.app/packages/details?id=${packageId}&email=${travelerEmail}`}
               onBack={handleBack}
               onClose={onClose}
             />

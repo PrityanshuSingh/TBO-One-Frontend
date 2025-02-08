@@ -19,6 +19,7 @@ const WhatsAppContactManager = ({
   description,
   scheduleDay,
   scheduleTime,
+  detailsUrl,
   onBack,
   onClose,
 }) => {
@@ -236,6 +237,8 @@ const WhatsAppContactManager = ({
     formData.append("message", message);
     formData.append("groupIds", JSON.stringify(selectedGroups)); // Convert array to JSON string
     formData.append("contactIds", JSON.stringify(selectedIndividualContacts)); // Convert array to JSON string
+    formData.append("email", userData.Profile.email);
+    formData.append("DetailsUrl", detailsUrl);
   
     // Image Handling: If a new file is selected, send the file. Otherwise, send the URL.
     if (image.file) {
