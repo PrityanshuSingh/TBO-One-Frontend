@@ -1,15 +1,24 @@
 // src/pages/SocialMedia/SocialMedia.jsx
 
 import React, { useState, useEffect } from "react";
-import { FaInstagram } from "react-icons/fa";
+import { FaCross, FaInstagram } from "react-icons/fa";
 import axios from "axios";
 import api from "../../utils/api";
 import Template from "../../components/Cards/TemplateCard";
 import PreviewModal from "../../components/Modals/PreviewModal";
 import templatesData from "../../data/localTemplates.json";
 import styles from "./styles/SocialMedia.module.scss";
+import { FaTimes } from "react-icons/fa";
 
-const typeFilterOptions = ["ALL", "Festive", "Destination", "Brand", "Scenic", "Quiz", "Trends"];
+const typeFilterOptions = [
+  "ALL",
+  "Festive",
+  "Destination",
+  "Brand",
+  "Scenic",
+  "Quiz",
+  "Trends",
+];
 const segmentFilterOptions = ["ALL", "post", "ad"];
 const socialFilterOptions = ["ALL", "instagram", "twitter"];
 
@@ -29,14 +38,19 @@ const SocialMedia = () => {
   // Template selection & user inputs
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [templates, setTemplates] = useState([]);
+
   const [imageQuery, setImageQuery] = useState("");
   const [captionQuery, setCaptionQuery] = useState("");
+  const [generatedImage, setGeneratedImage] = useState("");
+  const [isGeneratingImage, setIsGeneratingImage] = useState(false);
+  const [imagePreview, setImagePreview] = useState(false);
+  const [imageHostedUrl, setImageHostedUrl] = useState("");
 
   // Preview modal
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [generatedData, setGeneratedData] = useState(null);
 
-   useEffect(() => {
+  useEffect(() => {
     checkInstagramConnection();
   }, []);
 
@@ -84,7 +98,10 @@ const SocialMedia = () => {
         const response = await api.get("/api/ai/templates");
         setTemplates(response.data || []);
       } catch (error) {
-        console.warn("Failed to fetch templates from API, using fallback data.", error);
+        console.warn(
+          "Failed to fetch templates from API, using fallback data.",
+          error
+        );
         setTemplates(templatesData);
       }
     };
@@ -113,15 +130,73 @@ const SocialMedia = () => {
     setCaptionQuery("");
   };
 
-  // AI or manual generation for image & caption
-  const handleGenerateCaptionAi = async () => {
+  const handleGenerateImageAi = async () => {
     if (!imageQuery.trim()) {
-      alert("Please enter an image prompt (or URL) first to help AI captioning.");
+      alert("Please enter a prompt for AI image generation.");
       return;
     }
-    const payload = { prompt: imageQuery.trim() };
+    setIsGeneratingImage(true);
     try {
-      const res = await api.post("/api/ai/caption", payload);
+      const payload = { prompt: imageQuery.trim() };
+      const res = await api.post("/api/ai/image", payload);
+      // Store the generated image URL without modifying the prompt
+      setGeneratedImage(res.data.imageUrl);
+      setImagePreview(true);
+    } catch (err) {
+      console.error("Error generating AI image:", err);
+      alert("Failed AI image. Using fallback image instead.");
+      const fallbackUrl = `https://via.placeholder.com/400?text=AIFallback:${encodeURIComponent(imageQuery)}`;
+      setGeneratedImage(fallbackUrl);
+      setImagePreview(true);
+    } finally {
+      setIsGeneratingImage(false);
+    }
+  };
+
+  const handleImagePreview = () => {
+    setImagePreview((prev) => !prev);
+  };
+
+  const handleGetImageLink = async (base64Image) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", base64Image);
+  
+      const res = await api.post("/api/ai/hostImage", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      // Assuming your backend returns { hostedUrl: "https://..." }
+      setImageHostedUrl(res.data.hostedUrl);
+      alert(`Hosted Image URL: ${res.data.hostedUrl}`);
+      setImageQuery(res.data.hostedUrl);
+    } catch (err) {
+      console.error("Error hosting image:", err);
+      alert("Failed to get hosted image link.");
+    }
+  };
+  
+  
+  // AI or manual generation for image & caption
+  const handleGenerateCaptionAi = async () => {
+    if (!generatedImage) {
+      alert("Please generate an image first to help AI captioning.");
+      return;
+    }
+    
+    // Create a FormData instance
+    const formData = new FormData();
+    formData.append("imageUrl", generatedImage); // send the image as a field
+    formData.append("prompt", imageQuery.trim());
+  
+    try {
+      const res = await api.post("/api/ai/caption", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       setCaptionQuery(res.data.caption);
     } catch (err) {
       console.error("Error generating AI caption:", err);
@@ -130,36 +205,19 @@ const SocialMedia = () => {
     }
   };
 
-  const handleGenerateImageAi = async () => {
-    if (!imageQuery.trim()) {
-      alert("Please enter a prompt for AI image generation.");
-      return;
-    }
-    const payload = { prompt: imageQuery.trim() };
-    try {
-      const res = await api.post("/api/ai/image", payload);
-      setImageQuery(res.data.imageUrl); // Suppose the server returns { imageUrl: "..." }
-    } catch (err) {
-      console.error("Error generating AI image:", err);
-      alert("Failed AI image. Using fallback image instead.");
-      const fallbackUrl = `https://via.placeholder.com/400?text=AIFallback:${encodeURIComponent(imageQuery)}`;
-      setImageQuery(fallbackUrl);
-    }
-  };
-
   const handleGeneratePreview = () => {
     if (!imageQuery.trim() && !captionQuery.trim()) {
       alert("Please provide a caption or an image before generating preview.");
       return;
     }
-    let finalImageUrl = "";
-    if (imageQuery.startsWith("http")) {
-      finalImageUrl = imageQuery.trim();
-    } else {
-      finalImageUrl = `https://via.placeholder.com/400?text=AI+${encodeURIComponent(imageQuery)}`;
-    }
+    // let finalImageUrl = "";
+    // if (imageQuery.startsWith("http")) {
+    //   finalImageUrl = imageQuery.trim();
+    // } else {
+    //   finalImageUrl = `https://via.placeholder.com/400?text=AI+${encodeURIComponent(imageQuery)}`;
+    // }
     setGeneratedData({
-      image: finalImageUrl,
+      image: imageHostedUrl,
       caption: captionQuery,
     });
     setShowPreviewModal(true);
@@ -328,9 +386,33 @@ const SocialMedia = () => {
             onChange={(e) => setImageQuery(e.target.value)}
           />
           <div className={styles.aiActions}>
-            <button className={styles.generateButton} onClick={handleGenerateImageAi}>
-              AI Generate Image
+            <button
+              className={styles.generateButton}
+              onClick={handleGenerateImageAi}
+              disabled={isGeneratingImage}
+            >
+              {isGeneratingImage
+                ? "Generating AI Image..."
+                : generatedImage
+                  ? "Regenerate AI Image"
+                  : "AI Generate Image"}
             </button>
+            {generatedImage && (
+              <>
+              <button
+                className={styles.previewButton}
+                onClick={() => setImagePreview(true)}
+              >
+                Preview Image
+              </button>
+              <button
+        className={styles.previewButton}
+        onClick={() => handleGetImageLink(generatedImage)}
+      >
+        Get Image Link
+      </button>
+              </>
+            )}
           </div>
 
           {/* AI caption generation */}
@@ -342,17 +424,37 @@ const SocialMedia = () => {
             onChange={(e) => setCaptionQuery(e.target.value)}
           />
           <div className={styles.aiActions}>
-            <button className={styles.generateButton} onClick={handleGenerateCaptionAi}>
+            <button
+              className={styles.generateButton}
+              onClick={handleGenerateCaptionAi}
+            >
               AI Generate Caption & Tags
             </button>
           </div>
 
-          <button className={styles.previewButton} onClick={handleGeneratePreview}>
+          <button
+            className={styles.previewButton}
+            onClick={handleGeneratePreview}
+          >
             Generate Preview
           </button>
         </div>
       )}
 
+      {imagePreview && (
+        <div className={styles.previewModal}>
+          <div className={styles.modalContent}>
+            <button className={styles.closeModal} onClick={handleImagePreview}>
+              <FaTimes size={24} />
+            </button>
+            <img
+              src={generatedImage}
+              alt="Generated Preview"
+              className={styles.previewImage}
+            />
+          </div>
+        </div>
+      )}
       {/* Preview Modal */}
       {showPreviewModal && selectedTemplate && generatedData && (
         <PreviewModal
