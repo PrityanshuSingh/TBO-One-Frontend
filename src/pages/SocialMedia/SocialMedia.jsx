@@ -189,7 +189,7 @@ const SocialMedia = () => {
     // Create a FormData instance
     const formData = new FormData();
     formData.append("imageUrl", generatedImage); // send the image as a field
-    formData.append("prompt", imageQuery.trim());
+    formData.append("prompt", captionQuery.trim());
   
     try {
       const res = await api.post("/api/ai/caption", formData, {
