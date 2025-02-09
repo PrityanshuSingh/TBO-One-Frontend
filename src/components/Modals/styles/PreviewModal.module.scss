@@ -20,7 +20,7 @@
   width: 90%;
   max-width: 600px;
   position: relative;
-  padding:50px;
+  padding:30px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -40,7 +40,7 @@
 /* Two-column layout */
 .modalBody {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   overflow-y: auto;
   flex: 1;
 }
@@ -52,8 +52,25 @@
   justify-content: center;
 }
 
+
+.packageImage {
+  width: 50%;
+  height: 200px; // Adjust the height as needed
+  overflow: hidden;
+  border-radius: 8px; // Optional: for rounded corners
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Ensures the image covers the container without distortion
+  }
+}
+
 .previewRight {
-  width: 40%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -64,7 +81,7 @@
   }
 
   p {
-    margin: 8px 0 16px;
+    margin: 0px 0 16px;
     font-size: 14px;
     color: var(--dark-gray);
     word-wrap: break-word;
@@ -88,7 +105,10 @@
   .modalButtons {
     display: flex;
     gap: 8px;
-    margin-top: 16px;
+    margin-top: 8px;
+    margin-left: 40px;
+    align-items: center;
+    justify-content: center;
 
     .postNowBtn {
       padding: 10px 16px;

@@ -82,7 +82,7 @@
       background-color: var(--very-light-gray);
       padding: 6px 10px;
       border-radius: var(--border-radius-sm);
-      width: 280px;
+      width: 220px;
       position: relative;
 
       .searchIcon {
@@ -120,7 +120,7 @@
         }
 
         .contactFilterSelect {
-          padding: 6px 8px;
+          padding: 4px 2px;
           border: 1px solid var(--text-secondary);
           border-radius: var(--border-radius-sm);
           font-size: var(--font-size-small);
@@ -227,27 +227,34 @@
       text-align: center;
     }
 
+    .typeCol {
+      width: 90px;
+    }
+
     .campaignCol {
-      width: 180px;
+      width: 300px;
     }
 
     .contactCol {
-      width: 140px;
+      width: 120px;
     }
 
     .promptCol {
-      width: 220px;
+      width: 400px;
       position: relative;
     }
 
     .oldPreviewCol,
     .newPreviewCol {
-      width: 100px;
+      width: 20px;
     }
 
+    .editCol {
+      width: 80px;
+    }
     .sendCol {
-      width: 60px;
-      text-align: center;
+      width: 200px;
+      text-align: left;
     }
   }
 

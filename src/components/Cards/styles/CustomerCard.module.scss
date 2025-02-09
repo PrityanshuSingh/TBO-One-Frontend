@@ -12,7 +12,7 @@
   }
 
   td {
-    padding: 10px;
+    padding: 30px;
     text-align: left;
     vertical-align: middle;
     white-space: nowrap;
@@ -34,7 +34,7 @@
 
 /* Prompt column */
 .promptCol {
-  width: 220px;
+  width: 500px;
 
   .promptText {
     cursor: help;
@@ -44,11 +44,22 @@
   }
 }
 
+.campaignNameCol {
+  width: 180px;
+  padding: 5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Old Pkg link style */
 .oldPkgLink {
   display: inline-block;
-  width: 100px;
+  width: 60px;
   text-align: center;
+  margin-right: 40px;
+  font-weight: 600;
   padding: 4px 8px;
   border-radius: var(--border-radius-sm);
   color: var(--primary-blue);
@@ -64,16 +75,25 @@
   }
 }
 
+.unknownStatus {
+  color: var(--danger-red);
+  font-size: var(--font-size-smaller);
+  padding-left: 10px;
+}
 /* New Pkg & Edit container */
 .newPkgActions {
   display: flex;
+  gap: 10px;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+
 
   .newPkgBtn {
     display: inline-block;
-    width: 100px;
+    width: 50px;
     text-align: center;
+    font-weight: 600;
+   
     padding: 4px 8px;
     border-radius: var(--border-radius-sm);
     color: var(--success-green);
@@ -87,6 +107,11 @@
       color: var(--white);
       text-decoration: none;
     }
+  }
+
+  .actionCol{
+    display: flex;
+    align-items: center;
   }
 
   .editButton {

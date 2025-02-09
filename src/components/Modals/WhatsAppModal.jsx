@@ -4,7 +4,7 @@ import React, { useState, useContext, useMemo } from "react";
 import styles from "./styles/WhatsAppModal.module.scss";
 import WhatsAppEditor from "../Socials/WhatsApp/Editor/WhatsAppEditor";
 import WhatsAppContactManager from "../Socials/WhatsApp/ContactManager/WhatsAppContactManager";
-import { AuthContext } from '../../context/AuthContext'; // Assuming AuthContext is defined and provides traveler details
+import { AuthContext } from "../../context/AuthContext"; // Assuming AuthContext is defined and provides traveler details
 
 const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
   const { userData, updateUserData } = useContext(AuthContext); // Access traveler details from AuthContext
@@ -12,10 +12,11 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
   const travelerEmail = userData?.Profile?.email || "";
 
   const [step, setStep] = useState(1);
+  console.log("Package Data:", packageData);
 
   // State Variables for WhatsAppEditor
   const [title, setTitle] = useState(packageData.title || "");
-    const [campaignName, setCampaignName] = useState("");
+  const [campaignName, setCampaignName] = useState("");
   const [description, setDescription] = useState(
     packageData.detailedDescription || ""
   );
@@ -57,8 +58,6 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
     setScheduleTime(newTime);
   };
 
-
-
   // Compute previewMessage using useMemo for performance optimization
   const previewMessage = useMemo(() => {
     return `Check out this package: ${title}
@@ -68,8 +67,16 @@ Duration: ${packageData.duration || ""}
 Description: ${description}
 Details: "View Details link"
 Travelers: ${travelerMobile}, ${travelerEmail}`;
-  }, [title, packageData.location, packageData.price, packageData.currency, description, packageId, travelerMobile, travelerEmail]);
-
+  }, [
+    title,
+    packageData.location,
+    packageData.price,
+    packageData.currency,
+    description,
+    packageId,
+    travelerMobile,
+    travelerEmail,
+  ]);
 
   return (
     isOpen && (
@@ -101,11 +108,11 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
               scheduleTime={scheduleTime}
               onScheduleTimeChange={handleScheduleTimeChange}
               location={packageData.location || ""}
-              price={packageData?.price || ""} 
+              price={packageData?.price || ""}
               currency={packageData?.currency || ""}
-              duration={packageData.duration || ""} 
-              travelerMobile={travelerMobile}    
-              travelerEmail={travelerEmail}        
+              duration={packageData.duration || ""}
+              travelerMobile={travelerMobile}
+              travelerEmail={travelerEmail}
             />
           ) : (
             <WhatsAppContactManager

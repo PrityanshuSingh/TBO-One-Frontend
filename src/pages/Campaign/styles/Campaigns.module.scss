@@ -63,11 +63,18 @@
       }
     }
 
+    .filters{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+
+    }
+
     .filterBar {
       display: flex;
       align-items: center;
-      gap: var(--spacing-xs);
-
+      justify-content: right;
       label {
         font-size: 14px;
         color: var(--text-primary);

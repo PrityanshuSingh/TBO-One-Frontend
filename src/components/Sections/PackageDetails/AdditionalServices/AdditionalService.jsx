@@ -31,7 +31,7 @@ const AdditionalServices = ({
             <select
               id="travelInsurance"
               name="travelInsurance"
-              value={additionalServices.travelInsurance ? "true" : "false"}
+              value={additionalServices?.travelInsurance ? "true" : "false"}
               onChange={handleSelectChange}
               className={styles.input}
               aria-required="false"
@@ -46,7 +46,7 @@ const AdditionalServices = ({
             <select
               id="visaAssistance"
               name="visaAssistance"
-              value={additionalServices.visaAssistance ? "true" : "false"}
+              value={additionalServices?.visaAssistance ? "true" : "false"}
               onChange={handleSelectChange}
               className={styles.input}
               aria-required="false"
@@ -61,7 +61,7 @@ const AdditionalServices = ({
             <textarea
               id="specialRequests"
               name="specialRequests"
-              value={additionalServices.specialRequests || ""}
+              value={additionalServices?.specialRequests || ""}
               onChange={handleTextareaChange}
               className={styles.textarea}
               aria-required="false"
@@ -72,15 +72,15 @@ const AdditionalServices = ({
         <>
           <p>
             <strong>Travel Insurance:</strong>{" "}
-            {additionalServices.travelInsurance ? "Yes" : "No"}
+            {additionalServices?.travelInsurance ? "Yes" : "No"}
           </p>
           <p>
             <strong>Visa Assistance:</strong>{" "}
-            {additionalServices.visaAssistance ? "Yes" : "No"}
+            {additionalServices?.visaAssistance ? "Yes" : "No"}
           </p>
           <p>
             <strong>Special Requests:</strong>{" "}
-            {additionalServices.specialRequests || "N/A"}
+            {additionalServices?.specialRequests || "N/A"}
           </p>
         </>
       )}

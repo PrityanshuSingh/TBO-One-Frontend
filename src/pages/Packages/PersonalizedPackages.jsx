@@ -74,6 +74,13 @@ function PeronalizedPackages() {
     return foundCampaign ? foundCampaign.status : null;
   };
 
+  const getCampaignType = (pkgId) => {
+    if (!Array.isArray(campaigns) || campaigns.length === 0) return null;
+
+    const foundCampaign = campaigns.find((c) => c.pkgId === pkgId);
+    return foundCampaign ? foundCampaign.type : null;
+  };
+
   console.log("Personalized Packages:", personalizedPackages);
   return (
     <div className={styles.personalizedContainer}>
@@ -97,6 +104,7 @@ function PeronalizedPackages() {
             setFilterValue={setFilterValue}
             onDetailsClick={(pkgId) => navigate(`/u/packages/details/${pkgId}`)}
             getCampaignStatus={getCampaignStatus}
+            getCampaignType={getCampaignType}
           />
         </div>
       )}

@@ -217,7 +217,7 @@ const SocialMedia = () => {
     //   finalImageUrl = `https://via.placeholder.com/400?text=AI+${encodeURIComponent(imageQuery)}`;
     // }
     setGeneratedData({
-      image: imageHostedUrl,
+      image: imageQuery,
       caption: captionQuery,
     });
     setShowPreviewModal(true);

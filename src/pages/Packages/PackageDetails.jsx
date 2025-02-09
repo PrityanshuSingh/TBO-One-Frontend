@@ -51,7 +51,7 @@ const PackageDetails = () => {
   useEffect(() => {
     const fetchPackageDetails = async () => {
       try {
-        const response = await api.get(`/api/packages/${id}`);
+        const response = await api.get(`/api/packages?id=${id}`);
         setPackageData(response.data);
         setEditedData(response.data);
       } catch (err) {

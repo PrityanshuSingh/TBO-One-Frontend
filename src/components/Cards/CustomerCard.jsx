@@ -1,11 +1,10 @@
 // src/components/Cards/CustomerCard.jsx
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/CustomerCard.module.scss";
 import { AuthContext } from "../../context/AuthContext";
 import { FaEdit } from "react-icons/fa";
-import axios from "axios";
 import api from "../../utils/api";
 
 // Example fallback old package JSON
@@ -30,12 +29,16 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
   const { userData } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  console.log("CustomerCard row:", row);
+
   const email = userData?.Profile?.email;
   const baseUrl = window.location.origin;
+  const travelerMobile = userData?.Profile?.contactNumber || "";
+  const travelerEmail = userData?.Profile?.email || "";
 
-  // Local state for row status & newly generated package ID
+  // localStatus can be "generate", "send", or "sent"
   const [localStatus, setLocalStatus] = useState(row.status);
-  const [localNewPkgId, setLocalNewPkgId] = useState(row.newPkgId);
+  const [newPkg, setNewPkg] = useState(null);
   const [isSending, setIsSending] = useState(false);
 
   // Select row checkbox
@@ -43,20 +46,17 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
     onSelectRow(row.rowId);
   };
 
-  // 1. GENERATE – Get old package data by oldPkgId
-  const handleGenerate = async () => {
+  // Generate function: fetch old package data and generate new package using provided prompt and oldPkgId
+  const handleGenerate = async (prompt, oldPkgId) => {
     try {
-      // Step A: fetch entire old package JSON by oldPkgId
-      const oldPkgId = row.oldPkgId;
       let oldPkgData = null;
 
       if (!oldPkgId) {
-        // If no oldPkgId, use fallback
         console.warn("No oldPkgId found, using fallback data.");
         oldPkgData = fallbackOldPkg;
       } else {
         try {
-          const fetchRes = await axios.get(`/api/packages/${oldPkgId}`);
+          const fetchRes = await api.get(`/api/packages?id=${oldPkgId}`);
           oldPkgData = fetchRes.data;
         } catch (fetchErr) {
           console.error("Failed to fetch old package. Using fallback.", fetchErr);
@@ -64,68 +64,104 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
         }
       }
 
-      // Step B: Send old package data + prompt to /api/packageGenerate
       const generatePayload = {
         oldPkg: oldPkgData,
-        prompt: row.prompt,
+        prompt: prompt,
       };
-      const genRes = await axios.post("/api/ai/packages/customize", generatePayload);
-      // Suppose this returns { newPkgId: "someGeneratedId" }
-      const { newPkgId } = genRes.data;
-      if (!newPkgId) {
-        console.warn("Backend did not return newPkgId. Setting to 'NA'.");
-        setLocalNewPkgId("NA");
+
+      const genRes = await api.post("/api/ai/packages/customize", generatePayload);
+      const newPackage = genRes.data;
+      if (!newPackage) {
+        console.warn("Backend did not return new package data. Setting to 'NA'.");
+        setNewPkg("NA");
       } else {
-        setLocalNewPkgId(newPkgId);
+        setNewPkg(newPackage);
       }
 
-      // Step C: switch local status => "send"
+      // Once newPkg is received, update status to "send"
       setLocalStatus("send");
     } catch (err) {
       console.error("Generate package failed =>", err);
     }
   };
 
-  // 2. SEND – Build dynamic data from newly generated package & row info
+  // Auto-generate: if autoSending is true and the row is in "generate" stage and no newPkg is present, trigger generation automatically.
+  useEffect(() => {
+    if (autoSending && localStatus === "generate" && !newPkg) {
+      handleGenerate(row.prompt, row.oldPkgId);
+    }
+    // Dependencies include autoSending, localStatus, newPkg, row.prompt, row.oldPkgId.
+  }, [autoSending, localStatus, newPkg, row.prompt, row.oldPkgId]);
+
+  const previewMessage = useMemo(() => {
+    return `Check out this new package freshly crafted according to your needs: ${newPkg?.packageTitle}
+Location: ${newPkg?.location || ""}
+Price: ${newPkg?.currency || ""} ${newPkg?.price || ""}
+Duration: ${newPkg?.duration || ""}
+Description: ${newPkg?.detailedDescription}
+Details: "View Details link"
+Travelers: ${travelerMobile}, ${travelerEmail}`;
+  }, [
+    newPkg?.packageTitle,
+    newPkg?.location,
+    newPkg?.price,
+    newPkg?.currency,
+    newPkg?.detailedDescription,
+    newPkg?.id,
+    travelerMobile,
+    travelerEmail,
+  ]);
+
+  const DetailsUrl = useMemo(() => {
+    return `https://tbo-one.vercel.app/packages/details?id=${newPkg?.id}&email=${travelerEmail}`;
+  }, [newPkg?.id, travelerEmail]);
+
+  // Send function: only send if newPkg exists
   const handleSend = async () => {
+    if (!newPkg) {
+      console.warn("No new package found. Cannot send.");
+      return;
+    }
     setIsSending(true);
+    const formData = new FormData();
+    formData.append("campaignId", row.campaignId || "Unknown Campaign ID");
+    formData.append("packageId", newPkg?.id);
+    formData.append("campaignName", row.campaignName || "Unknown Campaign");
+    formData.append("campaignType", row.campaignType || "WhatsApp");
+    formData.append("email", travelerEmail);
+    formData.append("title", newPkg?.packageTitle);
+    formData.append("description", newPkg?.detailedDescription);
+    formData.append("scheduleDay", "");
+    formData.append("scheduleTime", "");
+    formData.append("message", previewMessage);
+    formData.append("DetailsUrl", DetailsUrl);
+    formData.append("Travelers", `${travelerMobile}, ${travelerEmail}`);
+    formData.append("groupIds", JSON.stringify([]));
+    formData.append("contactIds", JSON.stringify([row.contactId]));
+    formData.append("imageUrl", newPkg?.image || "");
+
     try {
-      const packageId = localNewPkgId || row.oldPkgId || fallbackOldPkg.id;
-      const pkgTitle = row.packageTitle || "User's Newly Generated Package";
-      const formData = new FormData();
-
-      formData.append("packageId", packageId);
-      formData.append("campaignName", row.campaignName || "Unknown Campaign");
-      formData.append("title", pkgTitle);
-      formData.append("description", "Short Desc for Sending");
-      formData.append("scheduleDay", "");
-      formData.append("scheduleTime", "");
-      formData.append("message", `Check out this package: ${pkgTitle}`);
-      formData.append("Location", row.location || "Unknown");
-      formData.append("Price", "INR 37000");
-      formData.append("Duration", row.duration || "N/A");
-      formData.append("Details", `${baseUrl}/packages/details?id=${packageId}&email=${email}`);
-      formData.append("Travelers", `${userData?.Profile?.contactNumber}, ${email}`);
-      formData.append("groupIds", JSON.stringify([]));
-      formData.append("contactIds", JSON.stringify([row.contactId]));
-      formData.append("imageUrl", "data:image/png;base64,sendExample");
-
-      await api.post("/api/whatsapp/send", formData);
-      setLocalStatus("sent");
-    } catch (err) {
-      console.error("Send package failed =>", err);
+      const response = await api.post("/api/whatsapp/send", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      console.log("WhatsApp API Response:", response.data);
+      alert("WhatsApp message sent successfully!");
+      // Optionally, close modal or perform further actions here.
+    } catch (error) {
+      console.error("Error sending WhatsApp message:", error);
+      alert("Failed to send WhatsApp message. Please try again.");
     } finally {
       setIsSending(false);
     }
   };
 
-  // 3. EDIT – Only if we have localNewPkgId
+  // Edit function: navigate to package details page for editing
   const handleEditNewPkg = () => {
-    if (!localNewPkgId) return;
-    navigate(`/customers/edit/${localNewPkgId}`);
+    if (!newPkg?.id) return;
+    navigate(`/u/packages/details/${newPkg.id}`);
   };
 
-  // Row stage checks
+  // Determine current stage for row actions
   const isGenerateStage = localStatus === "generate";
   const isSendStage = localStatus === "send";
   const isSentStage = localStatus === "sent";
@@ -145,13 +181,14 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
 
       {/* ROW NUMBER, CAMPAIGN NAME, CONTACT */}
       <td>{row.rowNumber}</td>
-      <td>{row.campaignName}</td>
+      <td className={styles.campaignNameCol}>{row.campaignName}</td>
+      <td>{row.campaignType}</td>
       <td>{row.contactName}</td>
 
       {/* PROMPT with native browser tooltip for full text */}
       <td className={styles.promptCol}>
         <span className={styles.promptText} title={row.prompt}>
-          {row.prompt.length > 20 ? row.prompt.substring(0, 20) + "..." : row.prompt}
+          {row.prompt.length > 30 ? row.prompt.substring(0, 40) + "..." : row.prompt}
         </span>
       </td>
 
@@ -176,7 +213,7 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
         {showNewPreview ? (
           <div className={styles.newPkgActions}>
             <a
-              href={`${baseUrl}/packages/details?id=${localNewPkgId}&email=${email}`}
+              href={`${baseUrl}/packages/details?id=${newPkg?.id}&email=${travelerEmail}`}
               target="_blank"
               rel="noreferrer"
               className={styles.newPkgBtn}
@@ -192,14 +229,17 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
             </button>
           </div>
         ) : (
-          "-"
+          <div className={styles.unknownStatus}>N/A</div>
         )}
       </td>
 
       {/* ACTION COLUMN: Generate or Send or Show Sent */}
-      <td>
+      <td className={styles.actionCol}>
         {isGenerateStage && (
-          <button className={styles.generateBtn} onClick={handleGenerate}>
+          <button
+            className={styles.generateBtn}
+            onClick={() => handleGenerate(row.prompt, row.oldPkgId)}
+          >
             {autoSending ? "Auto-Generate" : "Generate"}
           </button>
         )}

@@ -34,7 +34,7 @@ const WhatsAppCampaign = () => {
 
         if (!data) {
           // If still not found, fetch from backend
-          const response = await api.get(`/api/packages/${id}`);
+          const response = await api.get(`/api/packages?=${id}`);
           data = response.data;
           console.log('Package Data from backend:', data);
         }

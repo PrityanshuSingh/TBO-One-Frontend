@@ -57,7 +57,7 @@ export const CampaignProvider = ({ children }) => {
 
     try {
       const fetchPromises = ids.map((id) =>
-        api.get(`/api/packages/${id}`).then((res) => ({
+        api.get(`/api/packages?id=${id}`).then((res) => ({
           id,
           packageTitle: res.data.packageTitle, // Adjust according to API response
         }))

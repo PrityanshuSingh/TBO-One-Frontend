@@ -130,6 +130,13 @@ const Packages = () => {
     return foundCampaign ? foundCampaign.status : null;
   };
 
+  const getCampaignType = (pkgId) => {
+    if (!Array.isArray(campaigns) || campaigns.length === 0) return null;
+
+    const foundCampaign = campaigns.find((c) => c.pkgId === pkgId);
+    return foundCampaign ? foundCampaign.type : null;
+  };
+
   /**
    * Checks whether a package matches the category filter text
    * and the currently selected campaign filter (if any).
@@ -210,6 +217,7 @@ const Packages = () => {
                 }
                 onDetailsClick={handleDetailsClick}
                 getCampaignStatus={getCampaignStatus}
+                getCampaignType={getCampaignType}
               />
             );
           })

@@ -76,6 +76,13 @@ function SavedPackages() {
     return foundCampaign ? foundCampaign.status : null;
   };
 
+  const getCampaignType = (pkgId) => {
+    if (!Array.isArray(campaigns) || campaigns.length === 0) return null;
+
+    const foundCampaign = campaigns.find((c) => c.pkgId === pkgId);
+    return foundCampaign ? foundCampaign.type : null;
+  };
+
   return (
     <div className={styles.savedContainer}>
       <div className={styles.headerRow}>
@@ -98,6 +105,7 @@ function SavedPackages() {
             setFilterValue={setFilterValue}
             onDetailsClick={(pkgId) => navigate(`/u/packages/details/${pkgId}`)}
             getCampaignStatus={getCampaignStatus}
+            getCampaignType={getCampaignType}
           />
         </div>
       )}

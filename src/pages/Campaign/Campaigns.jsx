@@ -12,6 +12,7 @@ import styles from "./styles/Campaigns.module.scss";
 
 const STATUS_OPTIONS = ["ALL", "Running", "Hold", "Stopped"];
 const STATUS_CHANGE_OPTIONS = ["Run", "Stop", "Hold"];
+const CAMPAIGN_TYPE_OPTIONS = ["ALL", "whatsapp", "instagram", "email"];
 
 const Campaigns = () => {
   const navigate = useNavigate();
@@ -35,7 +36,8 @@ const Campaigns = () => {
   const [statusChangeError, setStatusChangeError] = useState("");
   const [newStatus, setNewStatus] = useState("");
   const [packagesMap, setPackagesMap] = useState({});
-
+  const [campaignFilter, setCampaignFilter] = useState("ALL");
+  const [typeFilter, setTypeFilter] = useState("ALL");
 
   useEffect(() => {
     const loadPackageTitles = async () => {
@@ -83,8 +85,6 @@ const Campaigns = () => {
     setSearchQuery(e.target.value);
   };
 
-  const [campaignFilter, setCampaignFilter] = useState("ALL");
-
   const filteredCampaigns = campaigns.filter((campaign) => {
     const campaignName = campaign.name || `Campaign ${campaign.id}`;
     const packageTitle = packagesMap[campaign.pkgId] || "";
@@ -92,12 +92,17 @@ const Campaigns = () => {
     const matchesSearch =
       campaignName.toLowerCase().includes(searchLower) ||
       packageTitle.toLowerCase().includes(searchLower) ||
-      (campaign.location && campaign.location.toLowerCase().includes(searchLower));
+      (campaign.location &&
+        campaign.location.toLowerCase().includes(searchLower));
 
     const matchesStatus =
       campaignFilter === "ALL" || campaign.status === campaignFilter;
 
-    return matchesSearch && matchesStatus;
+    const matchesType =
+      typeFilter === "ALL" ||
+      campaign.type.toLowerCase() === typeFilter.toLowerCase();
+
+    return matchesSearch && matchesStatus && matchesType;
   });
 
   const handleSavedRoute = () => {
@@ -108,7 +113,9 @@ const Campaigns = () => {
     setDeleteError("");
     try {
       // API call to delete campaigns
-      await api.post("/api/campaigns/delete", { campaignIds: selectedCampaigns });
+      await api.post("/api/campaigns/delete", {
+        campaignIds: selectedCampaigns,
+      });
       await deleteCampaigns(selectedCampaigns); // Update local state
       setSelectedCampaigns([]);
     } catch (error) {
@@ -130,7 +137,9 @@ const Campaigns = () => {
       setSelectedCampaigns([]);
       setNewStatus("");
     } catch (error) {
-      setStatusChangeError("Failed to update campaign status. Please try again.");
+      setStatusChangeError(
+        "Failed to update campaign status. Please try again."
+      );
     } finally {
       setIsStatusModalOpen(false);
     }
@@ -146,21 +155,39 @@ const Campaigns = () => {
               Manage your travel campaigns effectively
             </p>
           </div>
-          <div className={styles.filterBar}>
-            <label htmlFor="statusFilter">Filter by Status:</label>
-            <select
-              id="statusFilter"
-              value={campaignFilter}
-              onChange={(e) => setCampaignFilter(e.target.value)}
-              className={styles.statusFilter}
-              aria-label="Filter campaigns by status"
-            >
-              {STATUS_OPTIONS.map((status) => (
-                <option key={status} value={status}>
-                  {status}
-                </option>
-              ))}
-            </select>
+          <div className={styles.filters}>
+            <div className={styles.filterBar}>
+              <label htmlFor="statusFilter">Filter by Status:</label>
+              <select
+                id="statusFilter"
+                value={campaignFilter}
+                onChange={(e) => setCampaignFilter(e.target.value)}
+                className={styles.statusFilter}
+                aria-label="Filter campaigns by status"
+              >
+                {STATUS_OPTIONS.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.filterBar}>
+              <label htmlFor="typeFilter">Filter by Type:</label>
+              <select
+                id="typeFilter"
+                value={typeFilter}
+                onChange={(e) => setTypeFilter(e.target.value)}
+                className={styles.statusFilter}
+                aria-label="Filter campaigns by type"
+              >
+                {CAMPAIGN_TYPE_OPTIONS.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -223,11 +250,12 @@ const Campaigns = () => {
             </th>
             <th className={styles.number}>#</th>
             <th className={styles.campaignName}>Campaign</th>
+            <th className={styles.type}>Type</th>
             <th className={styles.status}>Status</th>
             <th className={styles.packageName}>Package</th>
             <th className={styles.groups}>Groups</th>
             <th className={styles.contacts}>Contacts</th>
-            <th className={styles.editButton}>Edit</th>
+            <th className={styles.editButton}>Update</th>
             <th className={styles.previewLink}>Preview</th>
           </tr>
         </thead>
@@ -272,7 +300,9 @@ const Campaigns = () => {
           <div className={styles.modalContent}>
             <h2>Confirm Deletion</h2>
             <p>Are you sure you want to delete the selected campaigns?</p>
-            {deleteError && <div className={styles.errorText}>{deleteError}</div>}
+            {deleteError && (
+              <div className={styles.errorText}>{deleteError}</div>
+            )}
             <div className={styles.modalActions}>
               <button
                 className={styles.confirmButton}
@@ -295,8 +325,13 @@ const Campaigns = () => {
         <div className={styles.modalOverlay}>
           <div className={styles.modalContent}>
             <h2>Confirm Status Change</h2>
-            <p>Are you sure you want to change the status of the selected campaigns to {newStatus}?</p>
-            {statusChangeError && <div className={styles.errorText}>{statusChangeError}</div>}
+            <p>
+              Are you sure you want to change the status of the selected
+              campaigns to {newStatus}?
+            </p>
+            {statusChangeError && (
+              <div className={styles.errorText}>{statusChangeError}</div>
+            )}
             <div className={styles.modalActions}>
               <button
                 className={styles.confirmButton}

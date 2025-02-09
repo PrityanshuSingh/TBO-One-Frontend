@@ -15,6 +15,7 @@ const CONTACT_FILTER_OPTIONS = {
 };
 
 const ROW_STATUSES = ["ALL", "send", "generate", "sent"];
+const CAMPAIGN_TYPE_OPTIONS = ["ALL", "whatsapp", "instagram", "email"];
 
 export default function Customers() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ export default function Customers() {
   const [searchQuery, setSearchQuery] = useState("");
   const [contactFilter, setContactFilter] = useState("ALL");
   const [rowStatusFilter, setRowStatusFilter] = useState("ALL");
+  const [typeFilter, setTypeFilter] = useState("ALL");
   const [loyaltyMode, setLoyaltyMode] = useState(false);
 
   const [selectedRows, setSelectedRows] = useState([]);
@@ -34,23 +36,30 @@ export default function Customers() {
 
   const existingCustomerIds =
     userData?.Profile?.customer?.map((c) => c.id) || [];
-  const loyaltyGroup = userData?.Profile?.groups?.find((g) => g.id === "100");
+  const loyaltyGroup = userData?.Profile?.groups?.find(
+    (g) => g.name === "Loyalty Group"
+  );
   const loyaltyCustomerIds = loyaltyGroup?.contactId || [];
 
   // Flatten campaigns => array of contact rows
   const campaignContacts = campaigns.flatMap((campaign) => {
-    const { interestContacts = [], name: campaignName, pkgId, id } = campaign;
+    const {
+      interestContacts = [],
+      name: campaignName,
+      pkgId,
+      id,
+      type,
+    } = campaign;
     if (!interestContacts.length) return [];
     return interestContacts.map((contactPerson) => ({
       campaignId: id,
       campaignName: campaignName || `Campaign ${id}`,
+      campaignType: type || "N/A",
       oldPkgId: pkgId || "",
       newPkgId: contactPerson.newPkgId || "",
       contactId: contactPerson.id,
       contactName: contactPerson.name,
       prompt: contactPerson.prompts || "",
-      location: "Rajasthan, India",
-      duration: "12 Days/11 Nights",
       status: contactPerson.status || "send",
     }));
   });
@@ -70,8 +79,6 @@ export default function Customers() {
         prompt: "",
         oldPkgId: "",
         newPkgId: "",
-        location: "N/A",
-        duration: "N/A",
         status: "sent",
       }));
     }
@@ -94,6 +101,11 @@ export default function Customers() {
     if (rowStatusFilter !== "ALL") {
       filteredRows = filteredRows.filter((r) => r.status === rowStatusFilter);
     }
+    if (typeFilter !== "ALL") {
+      filteredRows = filteredRows.filter(
+        (r) => r.campaignType.toLowerCase() === typeFilter.toLowerCase()
+      );
+    }
 
     return filteredRows.map((r, i) => ({
       ...r,
@@ -108,6 +120,7 @@ export default function Customers() {
   const handleSearch = (e) => setSearchQuery(e.target.value);
   const handleContactFilterChange = (e) => setContactFilter(e.target.value);
   const handleStatusFilterChange = (e) => setRowStatusFilter(e.target.value);
+  const handleTypeFilterChange = (e) => setTypeFilter(e.target.value);
 
   const toggleLoyaltyMode = () => {
     setLoyaltyMode((prev) => !prev);
@@ -218,6 +231,22 @@ export default function Customers() {
         {!loyaltyMode && (
           <div className={styles.filters}>
             <div className={styles.filterSection}>
+              <label htmlFor="typeFilter">Filter by Type:</label>
+              <select
+                id="typeFilter"
+                value={typeFilter}
+                onChange={handleTypeFilterChange}
+                className={styles.contactFilterSelect}
+                aria-label="Filter campaigns by type"
+              >
+                {CAMPAIGN_TYPE_OPTIONS.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.filterSection}>
               <label>Contact Filter:</label>
               <select
                 value={contactFilter}
@@ -232,7 +261,7 @@ export default function Customers() {
               </select>
             </div>
             <div className={styles.filterSection}>
-              <label>Row Status:</label>
+              <label>Package Status:</label>
               <select
                 value={rowStatusFilter}
                 onChange={handleStatusFilterChange}
@@ -291,6 +320,7 @@ export default function Customers() {
                 </th>
                 <th className={styles.numberCol}>#</th>
                 <th className={styles.campaignCol}>Campaign Name</th>
+                <th className={styles.typeCol}>Type</th>
                 <th className={styles.contactCol}>Contact</th>
                 <th className={styles.promptCol}>Prompt</th>
                 <th className={styles.oldPreviewCol}>Old Preview</th>

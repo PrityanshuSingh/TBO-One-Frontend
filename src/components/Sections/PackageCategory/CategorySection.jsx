@@ -10,7 +10,8 @@ const CategorySection = ({
   filterValue,
   setFilterValue,
   onDetailsClick,
-  getCampaignStatus
+  getCampaignStatus,
+  getCampaignType
 }) => {
   return (
     <div className={styles.categorySection}>
@@ -34,11 +35,13 @@ const CategorySection = ({
                 id={pkg.id}
                 packageTitle={pkg.packageTitle}
                 image={pkg.image}
+                shortDescription={pkg.shortDescription}
                 location={pkg.location}
                 duration={pkg.duration}
                 price={pkg.price.totalPrice}
                 currency={pkg.price.currency}
                 campaignStatus={getCampaignStatus(pkg.id)}
+                campaignType={getCampaignType(pkg.id)}
                 onDetailsClick={() => onDetailsClick(pkg.id)}
               />
             ))}
