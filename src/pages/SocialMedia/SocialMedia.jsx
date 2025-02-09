@@ -5,7 +5,7 @@ import { FaCross, FaInstagram } from "react-icons/fa";
 import axios from "axios";
 import api from "../../utils/api";
 import Template from "../../components/Cards/TemplateCard";
-import PreviewModal from "../../components/Modals/PreviewModal";
+import PreviewModal from "../../components/Modals/InstagramModal";
 import templatesData from "../../data/localTemplates.json";
 import styles from "./styles/SocialMedia.module.scss";
 import { FaTimes } from "react-icons/fa";
@@ -237,7 +237,7 @@ const SocialMedia = () => {
       action: "post-now",
     };
     try {
-      const res = await api.post("/api/social/post", payload);
+      const res = await api.post("/api/instagram/post", payload);
       alert("Post published immediately!");
       setShowPreviewModal(false);
     } catch (error) {
@@ -266,7 +266,7 @@ const SocialMedia = () => {
       action: "schedule",
     };
     try {
-      const res = await api.post("/api/social/schedulePost", payload);
+      const res = await api.post("/api/instagram/schedulePost", payload);
       alert(`Post scheduled for ${scheduleTime}!`);
       setShowPreviewModal(false);
     } catch (error) {

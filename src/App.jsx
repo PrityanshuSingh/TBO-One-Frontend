@@ -3,7 +3,7 @@ import { Routes, Route, useSearchParams, Navigate } from 'react-router-dom';
 import Sidebar from './layouts/SideBar/SideBar';
 import ProtectedRoute from './authentication/ProtectedRoute';
 import styles from './App.module.scss';
-import PreviewModal from './components/Modals/PreviewModal';
+import PreviewModal from './components/Modals/InstagramModal';
 
 // Pages
 const Login = lazy(() => import('./pages/Auth/Login'));
@@ -17,8 +17,8 @@ const SavedPackages = lazy(() => import('./pages/Packages/SavedPackages'));
 const PeronalizedPackages = lazy(() => import('./pages/Packages/PersonalizedPackages'));
 
 const WhatsAppCampaign = lazy(() => import('./pages/Campaign/WhatsAppCampaign'));
-const InstagramCampaign = lazy(() => import('./components/Modals/PreviewModal'));
-// const EmailCampaign = lazy(() => import('./components/Modals/EmailModal'));
+const InstagramCampaign = lazy(() => import('./components/Modals/InstagramModal'));
+const EmailCampaign = lazy(() => import('./components/Modals/EmailModal'));
 
 const EditCampign = lazy(() => import('./pages/Campaign/EditCampaign'));
 const Campaigns = lazy(() => import('./pages/Campaign/Campaigns'));
@@ -75,7 +75,7 @@ function App() {
 
                     <Route path="/u/packages/whatsAppCampaign/:id" element={[<Packages />, <WhatsAppCampaign />]} />
                     <Route path="/u/packages/instagramCampaign/:id" element={[<Packages />, <InstagramCampaign />]} />
-                    {/*<Route path="/u/packages/emailCampaign/:id" element={[<Packages />, <EmailCampaign />]} />*/}
+                    <Route path="/u/packages/emailCampaign/:id" element={[<Packages />, <EmailCampaign />]} />
 
                     <Route path="/u/packages/edit/:id" element={<PackageDetails />} />
 

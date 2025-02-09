@@ -17,8 +17,9 @@ const WhatsAppContactManager = ({
   image,
   packageId,
   description,
-  scheduleDay,
-  scheduleTime,
+  scheduleDateTime,
+  frequency,
+  campaignEnd,
   detailsUrl,
   onBack,
   onClose,
@@ -232,8 +233,9 @@ const WhatsAppContactManager = ({
     formData.append("campaignName", campaignName);
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("scheduleDay", scheduleDay);
-    formData.append("scheduleTime", scheduleTime);
+    formData.append("scheduleDateTime", scheduleDateTime);
+    formData.append("frequency", frequency);
+    formData.append("campaignEnd", campaignEnd);
     formData.append("message", message);
     formData.append("groupIds", JSON.stringify(selectedGroups)); // Convert array to JSON string
     formData.append("contactIds", JSON.stringify(selectedIndividualContacts)); // Convert array to JSON string

@@ -85,7 +85,8 @@
     border-radius: 12px;
     font-size: 14px;
     color: var(--black);
-    max-height: 300px; /* Set max-height for scrollability */
+    height:380px;
+    max-height: 500px; /* Set max-height for scrollability */
     overflow-y: auto; /* Make container scrollable */
 
     p {

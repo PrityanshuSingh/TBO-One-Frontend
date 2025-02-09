@@ -122,6 +122,7 @@ const PackageCard = ({
         return;
       }
     }
+    console.log("packageId in click", id);
     // Otherwise, use the existing behavior.
     navigate(`/u/packages/instagramCampaign/${id}`, {
       state: {
@@ -147,13 +148,9 @@ const PackageCard = ({
     // Otherwise, use the existing behavior.
     navigate(`/u/packages/emailCampaign/${id}`, {
       state: {
-        id,
-        title: packageTitle,
-        image,
-        location,
-        price,
-        currency,
-        duration,
+        packageId: id,
+        packageTitle: packageTitle,
+        packagecaption: shortDescription,
       },
     });
   };

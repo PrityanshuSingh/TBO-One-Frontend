@@ -1,15 +1,13 @@
-// src/components/WhatsAppModal/WhatsAppEditor.jsx
-
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import styles from './styles/WhatsAppEditor.module.scss';
-import { FiEdit, FiRefreshCw } from 'react-icons/fi'; // Importing React Icons
+import { FiEdit, FiRefreshCw } from 'react-icons/fi';
 import { AuthContext } from '../../../../context/AuthContext';
 import api from '../../../../utils/api';
 
 const WhatsAppEditor = ({
   onNext,
   packageImage,
-  onImageChange, // Handles both File and Preview URL
+  onImageChange,
   packageTitle,
   onTitleChange,
   onCampaignChange,
@@ -18,10 +16,12 @@ const WhatsAppEditor = ({
   description,
   onDescriptionChange,
   packageId,
-  scheduleDay,
-  onScheduleDayChange,
-  scheduleTime,
-  onScheduleTimeChange,
+  scheduleDateTime,
+  onScheduleDateTimeChange,
+  frequency,
+  onFrequencyChange,
+  campaignEnd,
+  onCampaignEndChange,
   location,
   price,    
   currency,
@@ -45,12 +45,11 @@ const WhatsAppEditor = ({
       const selectedFile = e.target.files[0];
       const previewURL = URL.createObjectURL(selectedFile);
   
-      console.log("Selected File:", selectedFile); // Debugging
+      console.log("Selected File:", selectedFile);
   
       onImageChange({ file: selectedFile, preview: previewURL });
     }
   };
-  
 
   // Handler for AI-generated description
   const handleGenerateDescription = async () => {
@@ -64,7 +63,6 @@ const WhatsAppEditor = ({
         throw new Error('Invalid response from AI generator.');
       }
   
-  
       const caption = response.data.caption;
       onDescriptionChange(caption);
   
@@ -75,7 +73,6 @@ const WhatsAppEditor = ({
       setIsGenerating(false);
     }
   };
-  
 
   // Clean up the object URL when component unmounts or image changes
   useEffect(() => {
@@ -86,9 +83,7 @@ const WhatsAppEditor = ({
     };
   }, [packageImage.preview]);
 
-  // Construct the preview message dynamically
-  const baseUrl = window.location.origin; // Dynamically get the base URL
-
+  const baseUrl = window.location.origin;
 
   return (
     <div className={styles.editorContainer}>
@@ -125,14 +120,18 @@ const WhatsAppEditor = ({
             <br/>
             <p className={styles.wpDescription}>{description}</p>
             <br/>
-            <p><strong>Details:</strong> <a href={`${baseUrl}/packages/details?id=${packageId}&email=${email}`} target="_blank" rel="noopener noreferrer">View Package</a></p>
+            <p>
+              <strong>Details:</strong>{" "}
+              <a href={`${baseUrl}/packages/details?id=${packageId}&email=${email}`} target="_blank" rel="noopener noreferrer">
+                View Package
+              </a>
+            </p>
             <p><strong>Travelers:</strong> {travelerMobile}, {travelerEmail}</p>
           </div>
         </div>
 
         {/* Details Section */}
         <div className={styles.detailsContainer}>
-
           {/* Campaign Name */}
           <div className={styles.detailItem}>
             <label htmlFor="campaignName">Campaign Name</label>
@@ -184,29 +183,47 @@ const WhatsAppEditor = ({
             {aiError && <div className={styles.errorText}>{aiError}</div>}
           </div>
 
-          {/* Schedule Day */}
+          {/* Schedule Date and Time */}
           <div className={styles.detailItem}>
-            <label htmlFor="scheduleDay">Schedule Day</label>
+            <label htmlFor="scheduleDateTime">Schedule Date & Time</label>
             <input
-              type="date"
-              id="scheduleDay"
-              value={scheduleDay}
-              onChange={(e) => onScheduleDayChange(e.target.value)}
+              type="datetime-local"
+              id="scheduleDateTime"
+              value={scheduleDateTime}
+              onChange={(e) => onScheduleDateTimeChange(e.target.value)}
               className={styles.inputField}
-              aria-label="Schedule Day"
+              aria-label="Schedule Date & Time"
             />
           </div>
 
-          {/* Schedule Time */}
+          {/* Frequency of Message */}
           <div className={styles.detailItem}>
-            <label htmlFor="scheduleTime">Schedule Time</label>
-            <input
-              type="time"
-              id="scheduleTime"
-              value={scheduleTime}
-              onChange={(e) => onScheduleTimeChange(e.target.value)}
+            <label htmlFor="frequency">Frequency of Message</label>
+            <select
+              id="frequency"
+              value={frequency}
+              onChange={(e) => onFrequencyChange(e.target.value)}
               className={styles.inputField}
-              aria-label="Schedule Time"
+              aria-label="Frequency of Message"
+              style={{width:"100%"}}
+            >
+              <option value="1 week">1 week</option>
+              <option value="2 weeks">2 weeks</option>
+              <option value="1 month">1 month</option>
+              <option value="3 months">3 months</option>
+            </select>
+          </div>
+
+          {/* Campaign End Date */}
+          <div className={styles.detailItem}>
+            <label htmlFor="campaignEnd">Campaign End Date</label>
+            <input
+              type="datetime-local"
+              id="campaignEnd"
+              value={campaignEnd}
+              onChange={(e) => onCampaignEndChange(e.target.value)}
+              className={styles.inputField}
+              aria-label="Campaign End Date"
             />
           </div>
         </div>
@@ -216,7 +233,7 @@ const WhatsAppEditor = ({
       <button
         className={styles.nextButton}
         onClick={onNext}
-        disabled={!description.trim() || !title.trim()} // Disable if title or description is empty
+        disabled={!description.trim() || !title.trim()}
         aria-label="Next"
       >
         Next
