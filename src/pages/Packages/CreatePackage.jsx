@@ -77,6 +77,7 @@ const CreatePackage = () => {
       });
       if (Array.isArray(res.data)) {
         setAiPackages(res.data);
+        console.log("AI Packages =>", res.data);
       } else {
         console.warn("Invalid AI data, using empty array for suggestions");
         setAiPackages([]);
@@ -230,19 +231,19 @@ const CreatePackage = () => {
                     <div className={styles.cardsGrid}>
                       {aiPackages.map((pkg) => (
                         <PackageCard
-                          key={pkg.id}
-                          id={pkg.id}
-                          packageTitle={pkg.packageTitle}
-                          image={pkg.image}
-                          location={pkg.location}
-                          duration={pkg.duration}
-                          price={pkg.price.totalPrice}
-                          currency={pkg.price.currency}
+                          key={pkg?.id}
+                          id={pkg?.id}
+                          packageTitle={pkg?.packageTitle}
+                          image={pkg?.image}
+                          location={pkg?.location}
+                          duration={pkg?.duration}
+                          price={pkg?.price?.totalPrice}
+                          currency={pkg?.price?.currency}
                           campaignStatus={
                             campaigns &&
-                            campaigns.find((c) => c.pkgId === pkg.id)?.status
+                            campaigns.find((c) => c.pkgId === pkg?.id)?.status
                           }
-                          onDetailsClick={() => handleDetailsClick(pkg.id)}
+                          onDetailsClick={() => handleDetailsClick(pkg?.id)}
                         />
                       ))}
                     </div>
