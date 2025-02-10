@@ -25,12 +25,17 @@ const CreatePackage = () => {
   // Toggle mode state: "promptBased" or "suggestive"
   const [creationMode, setCreationMode] = useState("promptBased");
 
-  // STATES FOR PROMPT BASED FLOW (existing)
+  // STATES FOR PROMPT BASED FLOW
   const [aiPackages, setAiPackages] = useState([]);
   const [isAiActive, setIsAiActive] = useState(false);
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
+  // New state for AI creation status
+  const [currentAiStep, setCurrentAiStep] = useState("");
+  const [aiSteps, setAiSteps] = useState([]);
+
+  // Form states (unchanged)
   const [originCountry, setOriginCountry] = useState("");
   const [originCountryCode, setOriginCountryCode] = useState("");
   const [originCity, setOriginCity] = useState("");
@@ -44,7 +49,7 @@ const CreatePackage = () => {
   const [adultCount, setAdultCount] = useState("1");
   const [aiPrompt, setAiPrompt] = useState("");
 
-  // Handler for Prompt Based AI search (remains unchanged)
+  // Handler for Prompt Based AI search
   const handleAiSearch = async (e) => {
     e.preventDefault();
     setErrorMsg("");
@@ -54,6 +59,9 @@ const CreatePackage = () => {
     }
     setIsAiLoading(true);
     setIsAiActive(false);
+
+    // Reset current AI status step
+    setCurrentAiStep("");
 
     const finalData = {
       originCountry,
@@ -75,12 +83,13 @@ const CreatePackage = () => {
       const res = await api.post("/api/ai/packages/generate", finalData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      if (Array.isArray(res.data)) {
-        setAiPackages(res.data);
+
+      if (!Array.isArray(res.data)) {
+        setAiPackages([res.data]);
         console.log("AI Packages =>", res.data);
       } else {
-        console.warn("Invalid AI data, using empty array for suggestions");
-        setAiPackages([]);
+        // console.warn("Invalid AI data, using empty array for suggestions");
+        setAiPackages(res.data);
       }
       setIsAiActive(true);
     } catch (error) {
@@ -92,6 +101,44 @@ const CreatePackage = () => {
     }
   };
 
+  useEffect(() => {
+    let timeoutId;
+    if (isAiLoading) {
+      // Define an array of steps with custom delays (in milliseconds)
+      const stepsWithDelay = [
+        { message: "Searching for relevant flights...", delay: 5000 },
+        { message: "Looking for hotels...", delay: 6000 },
+        { message: "Gathering sightseeing options...", delay: 5500 },
+        { message: "Analyzing trends based on your preferences...", delay: 5500 },
+        { message: "Comparing pricing across vendors...", delay: 3000 },
+        { message: "Optimizing travel itineraries...", delay: 4000 },
+        { message: "Checking availability for your dates...", delay: 4500 },
+        { message: "Finalizing itinerary details...", delay: 4500 },
+      ];
+      // Append a final step with no delay after it
+      const steps = [
+        ...stepsWithDelay,
+        { message: "Crafting multiple packages for you...", delay: 0 },
+      ];
+      
+      let stepIndex = 0;
+      const nextStep = () => {
+        if (stepIndex < steps.length) {
+          setCurrentAiStep(steps[stepIndex].message);
+          const delay = steps[stepIndex].delay;
+          stepIndex++;
+          if (delay > 0) {
+            timeoutId = setTimeout(nextStep, delay);
+          }
+        }
+      };
+      nextStep();
+    } else {
+      setCurrentAiStep("");
+    }
+    return () => clearTimeout(timeoutId);
+  }, [isAiLoading]);
+  
   // Handler for final submission of the suggestive package (data received from SuggestiveForm)
   const handleSuggestiveSubmit = async (suggestiveData) => {
     console.log("Final Suggestive Package Data =>", suggestiveData);
@@ -126,7 +173,6 @@ const CreatePackage = () => {
           <div className={styles.headingArea}>
             {creationMode === "promptBased" ? (
               <>
-                {" "}
                 <h1 className={styles.mainTitle}>
                   Generate Prompt Based AI Packages
                 </h1>
@@ -218,7 +264,11 @@ const CreatePackage = () => {
               isAiLoading={isAiLoading}
               errorMsg={errorMsg}
             />
-
+            {isAiLoading && (
+              <div className={styles.aiStatusContainer}>
+                <p>{currentAiStep}</p>
+              </div>
+            )}
             {isAiActive && (
               <div className={styles.aiSuggestionSection}>
                 <h2 className={styles.categoryTitle}>AI Suggested Packages</h2>
