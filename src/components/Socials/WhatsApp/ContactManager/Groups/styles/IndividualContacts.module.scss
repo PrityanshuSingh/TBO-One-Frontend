@@ -1,6 +1,6 @@
 /* src/components/WhatsAppModal/Groups/styles/IndividualContacts.module.scss */
 
-@import '../../../../../../assets/styles/variables.scss';
+@use "../../../../../../assets/styles/variables" as *;
 
 /* Define mixins if not already defined globally */
 @mixin flex-column {

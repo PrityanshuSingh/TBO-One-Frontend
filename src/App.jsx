@@ -3,7 +3,7 @@ import { Routes, Route, useSearchParams, Navigate } from 'react-router-dom';
 import Sidebar from './layouts/SideBar/SideBar';
 import ProtectedRoute from './authentication/ProtectedRoute';
 import styles from './App.module.scss';
-import PreviewModal from './components/Modals/InstagramModal';
+import Load from './microInteraction/Load/Load';
 
 // Pages
 const Login = lazy(() => import('./pages/Auth/Login'));
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div className={styles.appContainer}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Load />}>
         <Routes>
           {/* Unprotected Routes */}
           <Route path="/login" element={<Login />} />

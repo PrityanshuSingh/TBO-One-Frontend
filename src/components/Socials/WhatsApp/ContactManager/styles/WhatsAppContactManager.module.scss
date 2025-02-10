@@ -1,7 +1,6 @@
 /* src/components/WhatsAppModal/WhatsAppContactManager.module.scss */
 
-@import '../../../../../assets/styles/variables.scss';
-
+@use "../../../../../assets/styles/variables" as *;
 
 .managerContainer {
   display: flex;
