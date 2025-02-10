@@ -20,7 +20,7 @@ const WhatsAppCampaign = lazy(() => import('./pages/Campaign/WhatsAppCampaign'))
 const InstagramCampaign = lazy(() => import('./components/Modals/InstagramModal'));
 const EmailCampaign = lazy(() => import('./components/Modals/EmailModal'));
 
-const EditCampign = lazy(() => import('./pages/Campaign/EditCampaign'));
+// const EditCampign = lazy(() => import('./pages/Campaign/EditCampaign'));
 const Campaigns = lazy(() => import('./pages/Campaign/Campaigns'));
 
 const Customers = lazy(() => import('./pages/Customer/Customers'));

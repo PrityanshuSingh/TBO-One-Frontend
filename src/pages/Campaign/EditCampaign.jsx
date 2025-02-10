@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import EditCampaignModal from '../../components/Modals/EditCampaignModal';
+// import EditCampaignModal from '../../components/Modals/EditCampaignModal';
 import { CampaignContext } from '../../context/CampaignContext';
 import { AuthContext } from '../../context/AuthContext';
 import api from "../../utils/api";
