@@ -113,7 +113,7 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
   ]);
 
   const DetailsUrl = useMemo(() => {
-    return `https://tbo-one.vercel.app/packages/details?id=${newPkg?.id}&email=${travelerEmail}`;
+    return `https://tbo-one.vercel.app/packages/details?cid=${row.campaignId}`;
   }, [newPkg?.id, travelerEmail]);
 
   // Send function: only send if newPkg exists
@@ -197,7 +197,7 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
       <td>
         {row.oldPkgId ? (
           <a
-            href={`${baseUrl}/packages/details?id=${row.oldPkgId}&email=${email}`}
+            href={`${baseUrl}/packages/details?cid=${row.campaignId}`}
             target="_blank"
             rel="noreferrer"
             className={styles.oldPkgLink}
@@ -214,7 +214,7 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
         {showNewPreview ? (
           <div className={styles.newPkgActions}>
             <a
-              href={`${baseUrl}/packages/details?id=${newPkg?.id}&email=${travelerEmail}`}
+              href={`${baseUrl}/packages/details?pid=${newPkg?.id}`}
               target="_blank"
               rel="noreferrer"
               className={styles.newPkgBtn}

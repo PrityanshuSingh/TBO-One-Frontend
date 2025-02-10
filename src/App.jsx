@@ -32,6 +32,8 @@ const ErrorPage = lazy(() => import('./pages/Error/Error'));
 function App() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get('id');
+  const cid = searchParams.get('cid');
+  const pid = searchParams.get('pid');
   const email = searchParams.get('email');
 
   return (
@@ -47,8 +49,8 @@ function App() {
           <Route
             path="/packages/details"
             element={
-              id && email ? (
-                <Navigate to={`/packages/details/${id}?email=${email}`} replace />
+              (id || cid || pid) ? (
+                <Navigate to={`/packages/details/${id || cid || pid}`} replace />
               ) : (
                 <ErrorPage />
               )

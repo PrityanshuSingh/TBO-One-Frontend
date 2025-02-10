@@ -101,7 +101,7 @@ const InterestModal = ({ onClose, onSubmit }) => {
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="suggestions">Prompt Suggestions</label>
+            <label htmlFor="suggestions">Customize Package with suggestions</label>
             <textarea
               id="suggestions"
               name="suggestions"

@@ -122,7 +122,7 @@ const WhatsAppEditor = ({
             <br/>
             <p>
               <strong>Details:</strong>{" "}
-              <a href={`${baseUrl}/packages/details?id=${packageId}&email=${email}`} target="_blank" rel="noopener noreferrer">
+              <a href={`${baseUrl}/packages/details?pid=${packageId}`} target="_blank" rel="noopener noreferrer">
                 View Package
               </a>
             </p>

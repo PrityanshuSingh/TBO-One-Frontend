@@ -28,15 +28,15 @@ import InterestModal from "../../components/Modals/InterestModal";
 import { AuthContext } from "../../context/AuthContext"; // Adjust path as necessary
 
 const PackageDetails = () => {
-
   const location = useLocation();
+  const { id: paramId } = useParams(); // Extract package ID from URL (if present)
   const queryParams = new URLSearchParams(location.search);
-  const email = queryParams.get("email"); // Extract email if present
-  const { id: paramId } = useParams(); // Extract package ID from URL if authenticated
-  const queryId = queryParams.get("id"); // Extract package ID from URL if not authenticated
+  const cqueryId = queryParams.get("cid"); // Campaign ID from query string
+  const pqueryId = queryParams.get("pid"); // Package ID from query string
 
-  const id = paramId || queryId; // Determine the final ID
-  const { isAuthenticated } = useContext(AuthContext); // Get authentication status
+  // Determine the final ID: prefer URL parameter, then 'pid', then 'cid'
+  const finalId = paramId || pqueryId || cqueryId;
+  const { isAuthenticated } = useContext(AuthContext);
 
   const [packageData, setPackageData] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -47,15 +47,38 @@ const PackageDetails = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [isInterestModalOpen, setIsInterestModalOpen] = useState(false);
 
-  // Fetch package details on mount
+  console.log(
+    "paramId:",
+    paramId,
+    "cqueryId:",
+    cqueryId,
+    "pqueryId:",
+    pqueryId,
+    "finalId:",
+    finalId
+  );
+
   useEffect(() => {
-    const fetchPackageDetails = async () => {
+    if (!finalId) {
+      setError("Package ID not found.");
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchData = async () => {
       try {
-        const response = await api.get(`/api/packages?id=${id}`);
+        let response;
+        if (paramId || pqueryId) {
+          // If we have a package ID from the URL or ?pid=, fetch package details
+          response = await api.get(`/api/packages?id=${finalId}`);
+        } else if (cqueryId) {
+          // Otherwise, if we have a campaign ID from ?cid=, fetch campaign details
+          response = await api.get(`/api/campaigns?id=${finalId}`);
+        }
         setPackageData(response.data);
         setEditedData(response.data);
       } catch (err) {
-        const fallbackPackage = fallbackData.find((pkg) => pkg.id === id);
+        const fallbackPackage = fallbackData.find((pkg) => pkg.id === finalId);
         if (fallbackPackage) {
           setPackageData(fallbackPackage);
           setEditedData(fallbackPackage);
@@ -66,8 +89,9 @@ const PackageDetails = () => {
         setIsLoading(false);
       }
     };
-    fetchPackageDetails();
-  }, [id]);
+
+    fetchData();
+  }, [finalId, paramId, pqueryId, cqueryId]);
 
   // Handle input changes for BasicDetails
   const handleBasicDetailsChange = (e, arrayKey = null) => {
@@ -266,7 +290,7 @@ const PackageDetails = () => {
   const handleInterestSubmit = async (formData) => {
     try {
       await api.post(`/api/packages/interest`, {
-        packageId: id,
+        campaignId: id,
         name: formData.name,
         whatsappNumber: formData.whatsappNumber,
         suggestions: formData.suggestions,
@@ -335,14 +359,22 @@ const PackageDetails = () => {
           {/* Flights */}
           <Flights
             isEditMode={isEditMode}
-            flights={isEditMode ? editedData?.details?.flights : packageData?.details?.flights}
+            flights={
+              isEditMode
+                ? editedData?.details?.flights
+                : packageData?.details?.flights
+            }
             onFlightChange={handleFlightChange}
           />
 
           {/* Hotel */}
           <Hotel
             isEditMode={isEditMode}
-            hotelDetails={isEditMode ? editedData?.details?.hotel : packageData?.details?.hotel}
+            hotelDetails={
+              isEditMode
+                ? editedData?.details?.hotel
+                : packageData?.details?.hotel
+            }
             onChange={handlePriceDetailsChange}
             onAmenitiesChange={handleBasicDetailsChange}
           />
@@ -350,28 +382,44 @@ const PackageDetails = () => {
           {/* Sightseeing */}
           <Sightseeing
             isEditMode={isEditMode}
-            sightseeing={isEditMode ? editedData?.details?.sightseeing : packageData?.details?.sightseeing}
+            sightseeing={
+              isEditMode
+                ? editedData?.details?.sightseeing
+                : packageData?.details?.sightseeing
+            }
             onSightseeingChange={handleSightseeingChange}
           />
 
           {/* Transport */}
           <Transport
             isEditMode={isEditMode}
-            transportDetails={isEditMode ? editedData?.details?.transport : packageData?.details?.transport}
+            transportDetails={
+              isEditMode
+                ? editedData?.details?.transport
+                : packageData?.details?.transport
+            }
             onTransportChange={handleTransportChange}
           />
 
           {/* Itinerary */}
           <Itinerary
             isEditMode={isEditMode}
-            itinerary={isEditMode ? editedData?.details?.itinerary : packageData?.details?.itinerary}
+            itinerary={
+              isEditMode
+                ? editedData?.details?.itinerary
+                : packageData?.details?.itinerary
+            }
             onItineraryChange={handleItineraryChange}
           />
 
           {/* Additional Services */}
           <AdditionalServices
             isEditMode={isEditMode}
-            additionalServices={isEditMode ? editedData?.details?.additionalServices : packageData?.details?.additionalServices}
+            additionalServices={
+              isEditMode
+                ? editedData?.details?.additionalServices
+                : packageData?.details?.additionalServices
+            }
             onChange={handleAdditionalServicesChange}
           />
 

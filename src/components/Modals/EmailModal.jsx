@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
 import styles from "./styles/EmailModal.module.scss";
-
+import ObjectID from "bson-objectid";
 import api from "../../utils/api";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -35,6 +35,9 @@ const EmailModal = ({
   const finalPackageId = packageId || stateData.packageId;
   const finalPackageTitle = packageTitle || stateData.packageTitle;
   const finalPackageCaption = packagecaption || stateData.packagecaption;
+
+  const [campaignId, setCampaignId] = useState(ObjectID().toHexString());
+  const detailsUrl=`https://tbo-one.vercel.app/packages/details?cid=${campaignId}`;
 
   // State for scheduling
   const [scheduleTime, setScheduleTime] = useState("");
@@ -123,6 +126,10 @@ const EmailModal = ({
       recipients, // Array of objects with id and email
       emailBody,
       action: "schedule",
+      campaignId,
+      campaignName,
+      campaignType: "email",
+      detailsUrl
     };
     try {
       const res = await api.post("/api/email/scheduleSend", payload);
@@ -150,6 +157,10 @@ const EmailModal = ({
       recipients,
       emailBody,
       action: "send-now",
+      campaignId,
+      campaignName,
+      campaignType: "email",
+      detailsUrl
     };
     try {
       const res = await api.post("/api/email/send", payload);

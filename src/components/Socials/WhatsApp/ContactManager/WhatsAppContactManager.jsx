@@ -13,6 +13,7 @@ import { validatePhoneNumber } from "../../../../utils/ContactValidation.js";
 const WhatsAppContactManager = ({
   message,
   campaignName,
+  campaignId,
   title,
   image,
   packageId,
@@ -231,6 +232,7 @@ const WhatsAppContactManager = ({
     const formData = new FormData();
     formData.append("packageId", packageId);
     formData.append("campaignName", campaignName);
+    formData.append("campaignId", campaignId)
     formData.append("title", title);
     formData.append("description", description);
     formData.append("scheduleDateTime", scheduleDateTime);

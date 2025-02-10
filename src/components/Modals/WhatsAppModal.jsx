@@ -3,6 +3,7 @@ import styles from "./styles/WhatsAppModal.module.scss";
 import WhatsAppEditor from "../Socials/WhatsApp/Editor/WhatsAppEditor";
 import WhatsAppContactManager from "../Socials/WhatsApp/ContactManager/WhatsAppContactManager";
 import { AuthContext } from "../../context/AuthContext";
+import ObjectID from "bson-objectid";
 
 const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
   const { userData, updateUserData } = useContext(AuthContext);
@@ -22,6 +23,8 @@ const WhatsAppModal = ({ isOpen, onClose, packageData }) => {
   const [scheduleDateTime, setScheduleDateTime] = useState(packageData.scheduleDateTime || "");
   const [frequency, setFrequency] = useState("1 week");
   const [campaignEnd, setCampaignEnd] = useState("");
+
+  const [campaignId, setCampaignId] = useState(ObjectID().toHexString());
 
   // Handle image as an object { file: File | null, preview: string }
   const [packageImage, setPackageImage] = useState({
@@ -129,7 +132,8 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
               scheduleDateTime={scheduleDateTime}
               frequency={frequency}
               campaignEnd={campaignEnd}
-              detailsUrl={`https://tbo-one.vercel.app/packages/details?id=${packageId}&email=${travelerEmail}`}
+              campaignId={campaignId}
+              detailsUrl={`https://tbo-one.vercel.app/packages/details?cid=${campaignId}`}
               onBack={handleBack}
               onClose={onClose}
             />

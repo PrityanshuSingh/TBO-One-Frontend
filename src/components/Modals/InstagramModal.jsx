@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
 import styles from "./styles/InstagramModal.module.scss";
-
+import ObjectID from "bson-objectid";
 import api from "../../utils/api";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -37,6 +37,8 @@ const InstagramModal = ({
   const finalPackageTitle = packageTitle || stateData.packageTitle;
   const finalPackageCaption = packagecaption || stateData.packagecaption;
 
+  const [campaignId, setCampaignId] = useState(ObjectID().toHexString());
+
   // Existing state for scheduling
   const [scheduleTime, setScheduleTime] = useState("");
 
@@ -55,6 +57,8 @@ const InstagramModal = ({
   // NEW: State for generating caption via AI
   const [isGeneratingCaption, setIsGeneratingCaption] = useState(false);
   const [captionError, setCaptionError] = useState(null);
+
+  const detailsUrl=`https://tbo-one.vercel.app/packages/details?cid=${campaignId}`;
 
   const handleGenerateCaption = async () => {
     setIsGeneratingCaption(true);
@@ -92,6 +96,10 @@ const InstagramModal = ({
       frequency,
       endTime,
       action: "schedule",
+      campaignId,
+      campaignName,
+      campaignType: "instagram",
+      detailsUrl
     };
     try {
       const res = await api.post("/api/instagram/schedulePost", payload);
@@ -118,6 +126,10 @@ const InstagramModal = ({
       frequency,
       endTime,
       action: "post-now",
+      campaignId,
+      campaignName,
+      campaignType: "instagram",
+      detailsUrl
     };
     try {
       const res = await api.post("/api/instagram/post", payload);

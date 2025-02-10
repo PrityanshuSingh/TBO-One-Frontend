@@ -177,7 +177,7 @@ const PackageCard = ({
         <div className={styles.infoContainer}>
           <div className={styles.titleRow}>
             <div className={styles.packageTitle}>
-              {packageTitle.length > 20
+              {packageTitle?.length > 20
                 ? packageTitle.substring(0, 20) + "..."
                 : packageTitle}
             </div>

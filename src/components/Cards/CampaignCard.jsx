@@ -143,7 +143,7 @@ const CampaignCard = ({
       {/* Preview Link */}
       <td className={styles.previewLink}>
         <a
-          href={`${baseUrl}/packages/details?id=${pkgId}&email=${email}`}
+          href={`${baseUrl}/packages/details?cid=${campaign.id}`}
           target="_blank"
           rel="noopener noreferrer"
         >
