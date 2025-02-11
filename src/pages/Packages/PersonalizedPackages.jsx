@@ -23,22 +23,18 @@ function PeronalizedPackages() {
 
   // Fetch personalized packages from API
   useEffect(() => {
-    const fetchPersonlizedPackages = async () => {
+    const fetchPersonalizedPackages = async () => {
       if (!userEmail) return;
 
       try {
-        const res = await api.get("/api/packages/personlized", {
-          params: { email: userEmail },
+        const res = await api.get("/api/packages/personalized", {
+          params: { agentId: userData?.id },
         });
-
         if (Array.isArray(res.data) && res.data.length > 0) {
           setPersonalizedPackages(res.data);
         }
       } catch (error) {
-        console.error(
-          "Failed to fetch personalized packages. Using fallback data.",
-          error
-        );
+        console.error("Failed to fetch personalized packages. Using fallback data.", error);
         const personalizedIds = userData?.Profile?.personalized || [];
         console.log("Personalized IDs:", personalizedIds);
         const fallbackData = localPackages.filter((pkg) =>
@@ -51,7 +47,9 @@ function PeronalizedPackages() {
       }
     };
 
-    fetchPersonlizedPackages();
+    if (userData?.id) {
+      fetchPersonalizedPackages();
+    }
   }, [userEmail, userData]);
 
   // Filter packages when filterValue changes

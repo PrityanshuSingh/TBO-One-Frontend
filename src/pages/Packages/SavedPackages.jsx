@@ -32,7 +32,7 @@ function SavedPackages() {
 
       try {
         const res = await api.get("/api/packages/saved", {
-          params: { email: userEmail },
+          params: { agentId: userData?.id },
         });
 
         if (Array.isArray(res.data) && res.data.length > 0) {
@@ -55,17 +55,17 @@ function SavedPackages() {
     fetchSavedPackages();
   }, [userEmail, userData]);
 
-  // Filter saved packages when filterValue changes
+   // Filter saved packages when filterValue changes
   useEffect(() => {
     if (!filterValue.trim()) {
       setFilteredPackages(savedPackages);
     } else {
-      console.log("Filtered Packages:", filtered);
       const filtered = savedPackages.filter((pkg) =>
         (pkg.packageTitle + " " + pkg.location)
           .toLowerCase()
           .includes(filterValue.toLowerCase())
       );
+      console.log("Filtered Packages:", filtered);
       setFilteredPackages(filtered);
     }
   }, [filterValue, savedPackages]);

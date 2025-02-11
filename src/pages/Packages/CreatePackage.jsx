@@ -19,7 +19,7 @@ import styles from "./styles/CreatePackage.module.scss";
 
 const CreatePackage = () => {
   const navigate = useNavigate();
-  const { userData } = useContext(AuthContext);
+  const { userData, updateUserData } = useContext(AuthContext);
   const { campaigns } = useContext(CampaignContext);
 
   // Toggle mode state: "promptBased" or "suggestive"
@@ -76,6 +76,7 @@ const CreatePackage = () => {
       toDate,
       adultCount,
       aiPrompt,
+      agentId: userData?.id,
     };
     console.log("AI Search finalData =>", finalData);
 
@@ -84,13 +85,22 @@ const CreatePackage = () => {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      if (!Array.isArray(res.data)) {
-        setAiPackages([res.data]);
-        console.log("AI Packages =>", res.data);
+      console.log("AI Responsefor packages =>", res.data.package[0]);
+      if (!Array.isArray(res.data.package)) {
+        setAiPackages([res.data.package]);
       } else {
         // console.warn("Invalid AI data, using empty array for suggestions");
-        setAiPackages(res.data);
+        console.log("AI Packages =>", res.data.package);
+        setAiPackages(res.data.package);
       }
+
+      const updatedPersonalized = res.data.personalized || [];
+      console.log("Updated personalized packages:", updatedPersonalized);
+      updateUserData((prev) => ({
+        ...prev,
+        Profile: { ...prev.Profile, personalized: updatedPersonalized },
+      }));
+
       setIsAiActive(true);
     } catch (error) {
       console.error("AI prompt failed. Using local fallback.", error);
@@ -101,6 +111,7 @@ const CreatePackage = () => {
     }
   };
 
+  console.log("updatedUserData:", userData);
   useEffect(() => {
     let timeoutId;
     if (isAiLoading) {
