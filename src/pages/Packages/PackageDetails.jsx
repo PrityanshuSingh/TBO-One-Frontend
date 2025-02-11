@@ -21,6 +21,8 @@ import Itinerary from "../../components/Sections/PackageDetails/Itinerary/Itiner
 import AdditionalServices from "../../components/Sections/PackageDetails/AdditionalServices/AdditionalService";
 import FAQs from "../../components/Sections/PackageDetails/FAQs/FAQs";
 
+import Load from "../../microInteraction/Load/Load";
+
 // New imports
 import InterestModal from "../../components/Modals/InterestModal";
 
@@ -266,7 +268,7 @@ const PackageDetails = () => {
     setSaveError("");
     try {
       // Send the entire editedData JSON to the backend
-      await api.put(`/api/packages/${id}`, editedData);
+      await api.put(`/api/packages?id=${finalId}`, editedData);
       setPackageData(editedData);
       setIsEditMode(false);
     } catch (err) {
@@ -289,8 +291,8 @@ const PackageDetails = () => {
   // Handle Interest form submission
   const handleInterestSubmit = async (formData) => {
     try {
-      await api.post(`/api/packages/interest`, {
-        campaignId: id,
+      await api.post(`/api/campaigns/interest`, {
+        campaignId: finalId,
         name: formData.name,
         whatsappNumber: formData.whatsappNumber,
         suggestions: formData.suggestions,
@@ -304,7 +306,7 @@ const PackageDetails = () => {
 
   // Render loading, error, or no data states
   if (isLoading) {
-    return <div className={styles.loading}>Loading package details...</div>;
+    return <Load />;
   }
 
   if (error) {

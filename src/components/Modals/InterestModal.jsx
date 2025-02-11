@@ -45,6 +45,7 @@ const InterestModal = ({ onClose, onSubmit }) => {
       valid = false;
     } else if (!/^\+?[1-9]\d{1,14}$/.test(formData.whatsappNumber.trim())) {
       newErrors.whatsappNumber = "Invalid WhatsApp number format.";
+      alert("Invalid WhatsApp number format.");
       valid = false;
     }
 
