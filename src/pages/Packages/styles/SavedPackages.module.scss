@@ -66,6 +66,19 @@
   padding: 8px;
   margin-left: 20px;
   margin-right: 10px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+    border: 2px solid #f1f1f1;
+  }
 }
 
 .categoryContainer {

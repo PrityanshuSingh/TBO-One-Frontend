@@ -71,6 +71,7 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
 
       const genRes = await api.post("/api/ai/packages/customize", generatePayload);
       const newPackage = genRes.data;
+      console.log("Generated package:", newPackage);
       if (!newPackage) {
         console.warn("Backend did not return new package data. Setting to 'NA'.");
         setNewPkg("NA");
@@ -84,6 +85,8 @@ const CustomerCard = ({ row, isSelected, onSelectRow, autoSending }) => {
       console.error("Generate package failed =>", err);
     }
   };
+
+
 
   // Auto-generate: if autoSending is true and the row is in "generate" stage and no newPkg is present, trigger generation automatically.
   useEffect(() => {

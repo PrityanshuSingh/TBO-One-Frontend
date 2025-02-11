@@ -31,7 +31,7 @@ const PackageCard = ({
   onDetailsClick,
 }) => {
   const navigate = useNavigate();
-  const { userData, setUserData } = useContext(AuthContext);
+  const { userData, updateUserData } = useContext(AuthContext);
   const { campaigns } = useContext(CampaignContext);
 
   const userEmail = userData?.Profile?.email;
@@ -46,12 +46,23 @@ const PackageCard = ({
   const handleBookmarkClick = async () => {
     if (!userEmail) return;
     try {
-      const res = await api.post("/api/packages/bookmark", {
-        email: userEmail,
-        packageId: id,
-      });
-      const updatedSaved = res.data.saved || [];
-      setUserData((prev) => ({
+      let res;
+      if (isSaved) {
+        res = await api.post("/api/packages/unsave", {
+          email: userEmail,
+          agentId: userData?.id,
+          packageId: id,
+        });
+      } else {
+        res = await api.post("/api/packages/save", {
+          email: userEmail,
+          agentId: userData?.id,
+          packageId: id,
+        });
+      }
+      const updatedSaved = res.data || [];
+      console.log("Updated saved packages:", updatedSaved);
+      updateUserData((prev) => ({
         ...prev,
         Profile: { ...prev.Profile, saved: updatedSaved },
       }));
@@ -60,6 +71,7 @@ const PackageCard = ({
       console.error("Error bookmarking package:", err);
     }
   };
+  
 
   const getCampaignIcon = () => {
     if (campaignStatus === "Running")

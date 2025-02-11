@@ -89,7 +89,7 @@ function SavedPackages() {
         <button className={styles.backButton} onClick={() => navigate(-1)}>
           <FaArrowLeft size={18} />
         </button>
-        <h2 className={styles.title}>My Saved Package Vault</h2>
+        <h2 className={styles.title}>My Saved Packages</h2>
       </div>
 
       {loading ? (
