@@ -19,10 +19,38 @@ const CAMPAIGN_TYPE_OPTIONS = ["ALL", "whatsapp", "instagram", "email"];
 
 export default function Customers() {
   const navigate = useNavigate();
-  const { campaigns, isLoading, campaignError } = useContext(CampaignContext);
+  const { campaigns, updateCampaigns, isLoading, campaignError } = useContext(CampaignContext);
   const { userData } = useContext(AuthContext);
 
-  console.log("Campaigns:", campaigns);
+  const agentId = userData?.id;
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+  console.log("Agent ID:", agentId);
+  console.log("User Data:", userData);
+
+  useEffect(() => {
+    const fetchCampaigns = async () => {
+      try {
+        const response = await api.get(`/api/campaigns?agentId=${agentId}`);
+        if (response.data && response.data.campaigns) {
+          // Update the campaigns in context using setCampaigns
+          updateCampaigns(response.data.campaigns);
+        } else {
+          updateCampaigns([]);
+        }
+      } catch (err) {
+        setError(err.message || "Error fetching campaigns");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (agentId) {
+      fetchCampaigns();
+    }
+  }, []);
+
+  console.log("Interest Campaigns:", campaigns);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [contactFilter, setContactFilter] = useState("ALL");
@@ -59,7 +87,7 @@ export default function Customers() {
       newPkgId: contactPerson.newPkgId || "",
       contactId: contactPerson.id,
       contactName: contactPerson.name,
-      prompt: contactPerson.prompts || "",
+      prompt: contactPerson.suggestions || "",
       status: contactPerson.status || "send",
     }));
   });
@@ -159,12 +187,14 @@ export default function Customers() {
     const generateRows = displayRows.filter(
       (row) => row.status === "generate" && row.newPkgId === ""
     );
+    console.log("Auto generating");
     generateRows.forEach(async (row) => {
       try {
         const payload = {
           oldPkgId: row.oldPkgId,
           prompt: row.prompt,
         };
+        console.log("Auto gen payload =>", payload);
         const res = await api.post("/api/ai/packages/customize", payload);
         const { newPkgJson } = res.data;
         console.log("Auto gen for row =>", row.rowId, newPkgJson);

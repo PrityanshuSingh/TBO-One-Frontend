@@ -75,7 +75,7 @@ const PackageDetails = () => {
           response = await api.get(`/api/packages?id=${finalId}`);
         } else if (cqueryId) {
           // Otherwise, if we have a campaign ID from ?cid=, fetch campaign details
-          response = await api.get(`/api/campaigns?id=${finalId}`);
+          response = await api.get(`/api/campaigns/packages?id=${finalId}`);
         }
         setPackageData(response.data);
         setEditedData(response.data);

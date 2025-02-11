@@ -21,19 +21,27 @@ export const CampaignProvider = ({ children }) => {
     setIsLoading(false);
   }, [isAuthenticated, userData]);
 
-  const updateCampaigns = (newCampaign) => {
-    // Compute the new campaigns array
-    const updatedCampaigns = [...campaigns, newCampaign];
-    // Update local state
-    setCampaigns(updatedCampaigns);
-    // Update AuthContext's userData with the new campaigns list
-    updateUserData((prevData) => ({
-      ...prevData,
-      Profile: {
-        ...prevData.Profile,
-        campaigns: updatedCampaigns,
-      },
-    }));
+  const updateCampaigns = (newCampaigns) => {
+    const newCampaignArray = Array.isArray(newCampaigns) ? newCampaigns : [newCampaigns];
+    setCampaigns((prevCampaigns) => {
+      const updatedCampaigns = [...prevCampaigns];
+      newCampaignArray.forEach((newCamp) => {
+        const index = updatedCampaigns.findIndex((c) => c.id === newCamp.id);
+        if (index !== -1) {
+          updatedCampaigns[index] = newCamp;
+        } else {
+          updatedCampaigns.push(newCamp);
+        }
+      });
+      updateUserData((prevData) => ({
+        ...prevData,
+        Profile: {
+          ...prevData.Profile,
+          campaigns: updatedCampaigns,
+        },
+      }));
+      return updatedCampaigns;
+    });
   };
 
   // Function to delete campaigns

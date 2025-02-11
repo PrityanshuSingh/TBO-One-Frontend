@@ -1,6 +1,6 @@
 /* src/pages/PackageDetails/styles/PackageDetails.module.scss */
 
-@import '../../../assets/styles/variables.scss'; // Adjust path as necessary
+@use "../../../assets/styles/variables" as *;
 
 .packageDetailsContainer {
   width: 100%;

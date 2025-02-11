@@ -53,21 +53,21 @@ const Campaigns = () => {
 
   const getGroupNames = (grpIds) => {
     if (!userData?.Profile?.groups) return [];
-    return userData.Profile.groups
-      .filter((group) => grpIds.includes(group.id))
-      .map((group) => group.name);
+    return userData?.Profile?.groups
+      .filter((group) => grpIds?.includes(group?.id))
+      .map((group) => group?.name);
   };
 
   const getContactNames = (contactIds) => {
     if (!userData?.Profile?.customer) return [];
-    return userData.Profile.customer
-      .filter((contact) => contactIds.includes(contact.id))
+    return userData?.Profile?.customer
+      .filter((contact) => contactIds?.includes(contact.id))
       .map((contact) => contact.name);
   };
 
   const handleSelectCampaign = (campaignId) => {
     setSelectedCampaigns((prev) =>
-      prev.includes(campaignId)
+      prev?.includes(campaignId)
         ? prev.filter((id) => id !== campaignId)
         : [...prev, campaignId]
     );
