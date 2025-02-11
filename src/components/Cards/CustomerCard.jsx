@@ -135,7 +135,7 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
     formData.append("frequency", "");
     formData.append("campaignEnd", "");
     formData.append("message", previewMessage);
-    formData.append("DetailsUrl", DetailsUrl);
+    formData.append("detailsUrl", DetailsUrl);
     formData.append("Travelers", `${travelerMobile}, ${travelerEmail}`);
     formData.append("groupIds", JSON.stringify([]));
     formData.append("contactIds", JSON.stringify([row.contactId]));

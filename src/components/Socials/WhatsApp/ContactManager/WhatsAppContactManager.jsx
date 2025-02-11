@@ -2,6 +2,7 @@
 
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../../context/AuthContext";
+import { CampaignContext } from "../../../../context/CampaignContext";
 import api from "../../../../utils/api";
 import { FiArrowLeft } from "react-icons/fi"; // Importing the left arrow icon
 import styles from "./styles/WhatsAppContactManager.module.scss";
@@ -26,6 +27,7 @@ const WhatsAppContactManager = ({
   onClose,
 }) => {
   const { userData, updateUserData } = useContext(AuthContext);
+  const  {campaigns, updateCampaigns} = useContext(CampaignContext);
   const existingContacts = userData?.Profile?.customer || [];
   const existingGroups =
     userData?.Profile?.groups?.filter(
@@ -232,6 +234,7 @@ const WhatsAppContactManager = ({
     const formData = new FormData();
     formData.append("packageId", packageId);
     formData.append("campaignName", campaignName);
+    formData.append("campaignType", "whatsapp");
     formData.append("campaignId", campaignId)
     formData.append("title", title);
     formData.append("description", description);
@@ -242,7 +245,7 @@ const WhatsAppContactManager = ({
     formData.append("groupIds", JSON.stringify(selectedGroups)); // Convert array to JSON string
     formData.append("contactIds", JSON.stringify(selectedIndividualContacts)); // Convert array to JSON string
     formData.append("email", userData.Profile.email);
-    formData.append("DetailsUrl", detailsUrl);
+    formData.append("detailsUrl", detailsUrl);
   
     // Image Handling: If a new file is selected, send the file. Otherwise, send the URL.
     if (image.file) {
@@ -263,6 +266,19 @@ const WhatsAppContactManager = ({
   
       console.log("WhatsApp API Response:", response.data);
       alert("WhatsApp message sent successfully!");
+
+      const newCampaign = response.data.campaign;
+      // // Update the AuthContext's userData.Profile.campaigns array with the new campaign
+      // updateUserData((prevData) => ({
+      //   ...prevData,
+      //   Profile: {
+      //     ...prevData.Profile,
+      //     campaigns: [...(prevData.Profile.campaigns || []), newCampaign],
+      //   },
+      // }));
+
+      updateCampaigns(newCampaign);
+
       onClose(); // Close the modal on success
     } catch (error) {
       console.error("Error sending WhatsApp message:", error);

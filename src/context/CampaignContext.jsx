@@ -1,5 +1,3 @@
-// src/context/CampaignContext.jsx
-
 import React, { createContext, useState, useEffect, useContext } from "react";
 import api from "../utils/api";
 import { AuthContext } from "./AuthContext";
@@ -8,12 +6,12 @@ import fallbackPackages from "../data/localPackages.json";
 export const CampaignContext = createContext();
 
 export const CampaignProvider = ({ children }) => {
-  const { userData, isAuthenticated, updateUserProfile } = useContext(AuthContext);
+  const { userData, isAuthenticated, updateUserData } = useContext(AuthContext);
   const [campaigns, setCampaigns] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [campaignError, setCampaignError] = useState("");
 
-  // Fetch campaigns from AuthContext when userData changes (i.e., after login)
+  // Update local campaigns when userData changes
   useEffect(() => {
     if (isAuthenticated && userData?.Profile?.campaigns) {
       setCampaigns(userData.Profile.campaigns);
@@ -23,6 +21,21 @@ export const CampaignProvider = ({ children }) => {
     setIsLoading(false);
   }, [isAuthenticated, userData]);
 
+  const updateCampaigns = (newCampaign) => {
+    // Compute the new campaigns array
+    const updatedCampaigns = [...campaigns, newCampaign];
+    // Update local state
+    setCampaigns(updatedCampaigns);
+    // Update AuthContext's userData with the new campaigns list
+    updateUserData((prevData) => ({
+      ...prevData,
+      Profile: {
+        ...prevData.Profile,
+        campaigns: updatedCampaigns,
+      },
+    }));
+  };
+
   // Function to delete campaigns
   const deleteCampaigns = async (campaignIds) => {
     setCampaignError("");
@@ -31,23 +44,24 @@ export const CampaignProvider = ({ children }) => {
         campaignIds.map((id) => api.delete(`/api/campaigns/${id}`))
       );
 
-      // Update local campaigns state
+      // Remove the deleted campaigns from local state
       const updatedCampaigns = campaigns.filter(
         (campaign) => !campaignIds.includes(campaign.id)
       );
       setCampaigns(updatedCampaigns);
 
-      // Update AuthContext's userData via updateUserProfile
-      updateUserProfile({
-        ...userData.Profile,
-        campaigns: updatedCampaigns,
-      });
+      // Update AuthContext's userData with the updated campaigns
+      updateUserData((prevData) => ({
+        ...prevData,
+        Profile: {
+          ...prevData.Profile,
+          campaigns: updatedCampaigns,
+        },
+      }));
     } catch (error) {
       console.error("Failed to delete campaigns.", error);
-      setCampaignError(
-        "Failed to delete selected campaigns. Please try again."
-      );
-      throw error; // Re-throw to handle in the UI if needed
+      setCampaignError("Failed to delete selected campaigns. Please try again.");
+      throw error; // Re-throw for UI handling if needed
     }
   };
 
@@ -76,8 +90,7 @@ export const CampaignProvider = ({ children }) => {
     } catch (error) {
       console.error("Failed to fetch package details. Using fallback data.", error);
       const packagesMap = {};
-      const fetchedPackages = fallbackPackages;
-      fetchedPackages.forEach(({ id, packageTitle }) => {
+      fallbackPackages.forEach(({ id, packageTitle }) => {
         packagesMap[id] = packageTitle;
       });
       console.log("Fetched package details (fallback):", packagesMap);
@@ -90,6 +103,7 @@ export const CampaignProvider = ({ children }) => {
       value={{
         campaigns,
         setCampaigns,
+        updateCampaigns,
         deleteCampaigns,
         isLoading,
         campaignError,

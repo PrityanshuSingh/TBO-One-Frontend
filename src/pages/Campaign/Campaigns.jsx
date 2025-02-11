@@ -26,7 +26,8 @@ const Campaigns = () => {
   } = useContext(CampaignContext);
   const { userData } = useContext(AuthContext);
 
-  console.log("Campaigns:", campaigns);
+  // console.log("User Data:", userData);
+  // console.log("Campaigns:", campaigns);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCampaigns, setSelectedCampaigns] = useState([]);
@@ -283,7 +284,7 @@ const Campaigns = () => {
                   key={campaign.id}
                   campaign={campaign}
                   index={index}
-                  isSelected={selectedCampaigns.includes(campaign.id)}
+                  isSelected={selectedCampaigns.includes(campaign._id)}
                   onSelect={handleSelectCampaign}
                   groups={groups}
                   contacts={contacts}

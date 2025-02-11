@@ -11,8 +11,21 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: auto;
   overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 12px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+    border: 2px solid #f1f1f1;
+  }
 
   .header {
     .topBar {
@@ -184,6 +197,7 @@
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 15px;
+    
 
     th,
     td {

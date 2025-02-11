@@ -8,9 +8,12 @@ const STORAGE_KEY = "authSession";
 const FALLBACK_USERNAME = "hackathontest";
 const FALLBACK_PASSWORD = "Hac@98910186";
 
-// Now store the profile along with username and password
+// Stores the profile along with username and password
 function storeUserSession(username, password, profile) {
-  sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ username, password, profile }));
+  sessionStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify({ username, password, profile })
+  );
 }
 
 function loadUserSession() {
@@ -79,6 +82,20 @@ export function AuthProvider({ children }) {
     sessionStorage.removeItem(STORAGE_KEY);
   };
 
+  // Updated to support a callback updater function (like React's setState)
+  const updateUserData = (updater) => {
+    setUserData((prev) => {
+      // Allow updater to be a function or an object
+      const newData = typeof updater === "function" ? updater(prev) : updater;
+      const updatedProfile = { ...prev, ...newData };
+      const stored = loadUserSession();
+      if (stored) {
+        storeUserSession(stored.username, stored.password, updatedProfile);
+      }
+      return updatedProfile;
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -88,6 +105,7 @@ export function AuthProvider({ children }) {
         login,
         signUp,
         logout,
+        updateUserData,
       }}
     >
       {children}
