@@ -96,22 +96,26 @@ const Packages = () => {
       setIsLoading(true);
       try {
         const res = await api.get("/api/packages");
-        // Validate the data before setting to state
         if (Array.isArray(res.data) && res.data.length > 0) {
-          setPackagesData(res.data);
+          // Filter packages to include only those with type "global"
+          const globalPackages = res.data.filter((pkg) => pkg.type === "global");
+          setPackagesData(globalPackages);
         } else {
           console.warn("Invalid data from /api/packages, using fallback");
-          setPackagesData(localPackages);
+          const globalFallback = localPackages.filter((pkg) => pkg.type === "global");
+          setPackagesData(globalFallback);
         }
       } catch (error) {
         console.error("Failed to fetch from API. Using local fallback.", error);
-        setPackagesData(localPackages);
+        const globalFallback = localPackages.filter((pkg) => pkg.type === "global");
+        setPackagesData(globalFallback);
       } finally {
         setIsLoading(false);
       }
     }
     fetchPackages();
   }, []);
+  
 
   // Categorize packages whenever packagesData changes
   useEffect(() => {
