@@ -1,3 +1,5 @@
+// src/components/Sections/PackageDetails/InterestModal/InstagramModal.jsx
+
 import React, { useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
@@ -6,6 +8,7 @@ import styles from "./styles/InstagramModal.module.scss";
 import ObjectID from "bson-objectid";
 import api from "../../utils/api";
 import { AuthContext } from "../../context/AuthContext";
+import { CampaignContext } from "../../context/CampaignContext";
 
 const InstagramModal = ({
   template,
@@ -26,6 +29,7 @@ const InstagramModal = ({
   const navigate = useNavigate();
   const stateData = location.state || {};
   const { userData } = useContext(AuthContext);
+  const { updateCampaigns } = useContext(CampaignContext);
 
   const name = userData.Profile.firstName;
   const email = userData.Profile.email;
@@ -42,7 +46,7 @@ const InstagramModal = ({
   // Existing state for scheduling
   const [scheduleTime, setScheduleTime] = useState("");
 
-  // NEW: State for campaign end time and frequency
+  // State for campaign end time and frequency
   const [endTime, setEndTime] = useState("");
   const [frequency, setFrequency] = useState("1 week");
 
@@ -54,18 +58,24 @@ const InstagramModal = ({
   const [campaignName, setCampaignName] = useState(finalPackageTitle || "");
   const [isEditingCampaignName, setIsEditingCampaignName] = useState(false);
 
-  // NEW: State for generating caption via AI
+  // State for generating caption via AI
   const [isGeneratingCaption, setIsGeneratingCaption] = useState(false);
   const [captionError, setCaptionError] = useState(null);
 
-  const detailsUrl=`https://tbo-one.vercel.app/packages/details?cid=${campaignId}`;
+  // State for handling post action loading
+  const [isPosting, setIsPosting] = useState(false);
+
+  const detailsUrl = `https://tbo-one.vercel.app/packages/details?cid=${campaignId}`;
 
   const handleGenerateCaption = async () => {
     setIsGeneratingCaption(true);
     setCaptionError(null);
     try {
       const payload = { packageId: finalPackageId, email };
-      const response = await api.post("/api/ai/instagrampackageCaption", payload);
+      const response = await api.post(
+        "/api/ai/instagrampackageCaption",
+        payload
+      );
       if (!response.data.caption) {
         throw new Error("Invalid response from AI generator.");
       }
@@ -86,6 +96,7 @@ const InstagramModal = ({
     }
     console.log("packageId used in schedule:", finalPackageId);
     const payload = {
+      agentId: userData?.id,
       packageId: finalPackageId,
       name,
       email,
@@ -99,11 +110,15 @@ const InstagramModal = ({
       campaignId,
       campaignName,
       campaignType: "instagram",
-      detailsUrl
+      detailsUrl,
     };
     try {
-      const res = await api.post("/api/instagram/schedulePost", payload);
+      const res = await api.post("/api/instagram/campaignPost", payload);
       alert(`Post scheduled for ${scheduleTime}!`);
+
+      const newCampaign = res.data.campaign;
+      updateCampaigns(newCampaign);
+
       handlePackageClose();
     } catch (error) {
       console.error("Failed scheduling", error);
@@ -116,6 +131,7 @@ const InstagramModal = ({
     if (!captionText || !finalPackageImage) return;
     console.log("packageId used in post now:", finalPackageId);
     const payload = {
+      agentId: userData?.id,
       packageId: finalPackageId,
       name,
       email,
@@ -129,16 +145,23 @@ const InstagramModal = ({
       campaignId,
       campaignName,
       campaignType: "instagram",
-      detailsUrl
+      detailsUrl,
     };
     try {
-      const res = await api.post("/api/instagram/post", payload);
-      alert("Post published immediately!");
+      setIsPosting(true);
+      const res = await api.post("/api/instagram/campaignPost", payload);
+      alert("Instagram Campaign published immediately!");
+
+      const newCampaign = res.data.campaign;
+      updateCampaigns(newCampaign);
+
       handlePackageClose();
     } catch (error) {
       console.error("Failed immediate post", error);
       alert("Failed to post now. Possibly fallback used.");
       handlePackageClose();
+    } finally {
+      setIsPosting(false);
     }
   };
 
@@ -153,7 +176,10 @@ const InstagramModal = ({
       finalHtml.includes("background:")
     ) {
       const regexBackground = /(background:\s*url\(')(.*?)('\))/;
-      finalHtml = finalHtml.replace(regexBackground, `$1${generatedData.image}$3`);
+      finalHtml = finalHtml.replace(
+        regexBackground,
+        `$1${generatedData.image}$3`
+      );
     }
     console.log("Final HTML:", finalHtml);
     finalHtml = finalHtml.replace(/{{agentName}}/g, agentName || "");
@@ -163,9 +189,17 @@ const InstagramModal = ({
     finalHtml = finalHtml.replace(/{{caption}}/g, ""); // Caption is handled separately
   }
 
+  console.log("final updadted html:", finalHtml);
+
   const handlePackageClose = () => {
     navigate("/u/packages");
   };
+
+  const handlePostNowWithHtml = async () => {
+
+    onPostNow(finalHtml); 
+  };
+  
 
   return (
     <div className={styles.modalOverlay}>
@@ -266,20 +300,24 @@ const InstagramModal = ({
               <p>{generatedData.caption || "(No caption provided)"}</p>
             )}
 
-            {/* New button to generate caption via AI */}
-            <button
-              className={styles.aiGenerateButton}
-              onClick={handleGenerateCaption}
-              disabled={isGeneratingCaption}
-              aria-label="Generate Caption with AI"
-            >
-              <FiRefreshCw size={20} />
-              {isGeneratingCaption
-                ? "Generating Caption..."
-                : "Generate Caption with AI"}
-            </button>
-            {captionError && (
-              <div className={styles.errorText}>{captionError}</div>
+            {!template && (
+              <>
+                {/* New button to generate caption via AI */}
+                <button
+                  className={styles.aiGenerateButton}
+                  onClick={handleGenerateCaption}
+                  disabled={isGeneratingCaption}
+                  aria-label="Generate Caption with AI"
+                >
+                  <FiRefreshCw size={20} />
+                  {isGeneratingCaption
+                    ? "Generating Caption..."
+                    : "Generate Caption with AI"}
+                </button>
+                {captionError && (
+                  <div className={styles.errorText}>{captionError}</div>
+                )}
+              </>
             )}
 
             <h3>Schedule Later?</h3>
@@ -322,8 +360,12 @@ const InstagramModal = ({
                       Schedule Post
                     </button>
                   )}
-                  <button className={styles.postNowBtn} onClick={onPostNow}>
-                    Post
+                  <button
+                    className={styles.postNowBtn}
+                    onClick={handlePostNowWithHtml}
+                    disabled={isPosting}
+                  >
+                    {isPosting ? "Processing..." : "Post"}
                   </button>
                 </>
               ) : (
@@ -339,8 +381,9 @@ const InstagramModal = ({
                   <button
                     className={styles.postNowBtn}
                     onClick={handlePackagePostNow}
+                    disabled={isPosting}
                   >
-                    Post
+                    {isPosting ? "Processing..." : "Post"}
                   </button>
                 </>
               )}

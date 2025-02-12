@@ -34,8 +34,8 @@ const WhatsAppContactManager = ({
       (group) => group.type.toLowerCase() === "whatsapp"
     ) || [];
 
-  console.log("Existing Contacts:", existingContacts);
-  console.log("Existing Groups:", existingGroups);
+  // console.log("Existing Contacts:", existingContacts);
+  // console.log("Existing Groups:", existingGroups);
 
   // State Variables
   const [selectedGroups, setSelectedGroups] = useState([]); // Array of group IDs to send to

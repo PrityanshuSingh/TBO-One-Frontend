@@ -1,6 +1,8 @@
 // src/pages/SocialMedia/SocialMedia.jsx
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import html2canvas from "html2canvas";
 import { FaCross, FaInstagram } from "react-icons/fa";
 import axios from "axios";
 import api from "../../utils/api";
@@ -9,6 +11,8 @@ import PreviewModal from "../../components/Modals/InstagramModal";
 import templatesData from "../../data/localTemplates.json";
 import styles from "./styles/SocialMedia.module.scss";
 import { FaTimes } from "react-icons/fa";
+
+import { AuthContext } from "../../context/AuthContext";
 
 const typeFilterOptions = [
   "ALL",
@@ -24,7 +28,7 @@ const socialFilterOptions = ["ALL", "instagram", "twitter"];
 
 const SocialMedia = () => {
   const [isInstagramConnected, setIsInstagramConnected] = useState(false);
-
+  const { userData } = useContext(AuthContext);
   // Example agent data
   const agentName = "Rohit Sharma";
   const agentContact = "+91 (22) 9876-5432";
@@ -56,7 +60,9 @@ const SocialMedia = () => {
 
   async function checkInstagramConnection() {
     try {
-      const res = await api.get("/api/instagram/status");
+      const res = await api.get("/api/instagram/status", {
+        params: { agentId: userData?.id },
+      });
       if (res.data?.connected) {
         setIsInstagramConnected(true);
       } else {
@@ -67,23 +73,27 @@ const SocialMedia = () => {
       setIsInstagramConnected(false);
     }
   }
-
+  
   const handleInstagramAuth = () => {
     const popupWidth = 600;
     const popupHeight = 700;
     const left = (window.screen.width - popupWidth) / 2;
     const top = (window.screen.height - popupHeight) / 2;
+    
 
-    const authUrl = `${import.meta.env.VITE_API_BASE_URL}/api/instagram/connect`;
-
+    const agentId = userData?.id;
+  
+    // Append agentId as a query parameter to the connect endpoint
+    const authUrl = `${import.meta.env.VITE_API_BASE_URL}/api/instagram/connect?agentId=${agentId}`;
+  
     // Open a new popup for the OAuth flow
     const popup = window.open(
       authUrl,
       "instagramAuthWindow",
       `width=${popupWidth},height=${popupHeight},top=${top},left=${left},status=no,toolbar=no,menubar=no`
     );
-
-    // Poll to see if user is connected once the popup closes
+  
+    // Poll to see if the popup has closed, then check Instagram connection
     const timer = setInterval(() => {
       if (popup && popup.closed) {
         clearInterval(timer);
@@ -157,6 +167,25 @@ const SocialMedia = () => {
     setImagePreview((prev) => !prev);
   };
 
+  const handleGetPostImageLink = async (base64Image) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", base64Image);
+  
+      const res = await api.post("/api/ai/hostImage", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      return res.data.imageURL;
+    
+    } catch (err) {
+      console.error("Error hosting image:", err);
+      alert("Failed to get hosted image link.");
+    }
+  };
+
   const handleGetImageLink = async (base64Image) => {
     try {
       const formData = new FormData();
@@ -168,10 +197,12 @@ const SocialMedia = () => {
         },
       });
   
+
+      // console.log("Hosted Image URL:", res.data.imageURL);
       // Assuming your backend returns { hostedUrl: "https://..." }
-      setImageHostedUrl(res.data.hostedUrl);
-      alert(`Hosted Image URL: ${res.data.hostedUrl}`);
-      setImageQuery(res.data.hostedUrl);
+      setImageHostedUrl(res.data.imageURL);
+      alert(`Hosted Image URL: ${res.data.imageURL}`);
+      setImageQuery(res.data.imageURL);
     } catch (err) {
       console.error("Error hosting image:", err);
       alert("Failed to get hosted image link.");
@@ -224,28 +255,69 @@ const SocialMedia = () => {
   };
 
   // Called by PreviewModal => "Post Now"
-  const handlePostNow = async () => {
+  const handlePostNow = async (finalHtml) => {
     if (!selectedTemplate || !generatedData) return;
-    const payload = {
-      templateId: selectedTemplate.id,
-      templateName: selectedTemplate.name,
-      agentName,
-      agentContact,
-      agentEmail,
-      image: generatedData.image,
-      caption: generatedData.caption,
-      action: "post-now",
-    };
+  
+    // Create a temporary container for your HTML string
+    const container = document.createElement("div");
+    
+    container.style.position = "absolute";
+    container.style.top = "0px"; // you can also use top: 0
+    container.style.left = "0px";
+    container.style.zIndex = "-1000"; // send it behind other content
+    container.style.backgroundColor = "#fff"; // set a background if needed
+
+    container.innerHTML = finalHtml;
+    
+    // Append the container to the document body so that it becomes part of the DOM.
+    document.body.appendChild(container);
+  
+    // Optionally wait a short moment to ensure the browser has rendered the content.
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  
     try {
-      const res = await api.post("/api/instagram/post", payload);
-      alert("Post published immediately!");
+      const canvas = await html2canvas(container, {
+        useCORS: true, // if needed for images
+        backgroundColor: null, // to capture transparency if desired
+      });
+  
+      // Convert the canvas to a Base64-encoded image string.
+      const base64Image = canvas.toDataURL("image/png");
+      console.log("Base64 image generated:", base64Image);
+  
+      // Remove the temporary container from the DOM now that we have the snapshot.
+      document.body.removeChild(container);
+  
+      // Continue with your posting logic using the base64Image.
+      const resImage = await handleGetPostImageLink(base64Image);
+      console.log("Image hosted successfully. Proceeding to post the campaign...");
+  
+      const payload = {
+        agentId: userData?.id,
+        templateId: selectedTemplate.id,
+        templateName: selectedTemplate.name,
+        agentName,
+        agentContact,
+        agentEmail,
+        image: resImage,
+        caption: generatedData.caption,
+        action: "post-now",
+      };
+  
+      await api.post("/api/instagram/personalPost", payload);
+      alert("Post published immediately! Check your connected Instagram.");
       setShowPreviewModal(false);
     } catch (error) {
       console.error("Failed immediate post", error);
+      // Make sure to remove the container even on error
+      if (container.parentNode) {
+        document.body.removeChild(container);
+      }
       alert("Failed to post now. Possibly fallback used.");
-      setShowPreviewModal(false);
     }
   };
+  
+  
 
   // Called by PreviewModal => "Schedule"
   const handleSchedulePost = async (scheduleTime) => {
@@ -255,6 +327,7 @@ const SocialMedia = () => {
       return;
     }
     const payload = {
+      agentId: userData?.id,
       templateId: selectedTemplate.id,
       templateName: selectedTemplate.name,
       agentName,
@@ -266,7 +339,7 @@ const SocialMedia = () => {
       action: "schedule",
     };
     try {
-      const res = await api.post("/api/instagram/schedulePost", payload);
+      const res = await api.post("/api/instagram/personalPost", payload);
       alert(`Post scheduled for ${scheduleTime}!`);
       setShowPreviewModal(false);
     } catch (error) {

@@ -6,7 +6,8 @@ import styles from "./styles/InterestModal.module.scss";
 const InterestModal = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
     name: "",
-    whatsappNumber: "",
+    // Pre-populate with a default country code; user can edit if needed.
+    whatsappNumber: "+91",
     suggestions: "",
   });
 
@@ -18,12 +19,10 @@ const InterestModal = ({ onClose, onSubmit }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-
     // Clear errors on change
     setErrors((prev) => ({
       ...prev,
@@ -87,7 +86,9 @@ const InterestModal = ({ onClose, onSubmit }) => {
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="whatsappNumber">WhatsApp Number</label>
+            <label htmlFor="whatsappNumber">
+              WhatsApp Number (with country code)
+            </label>
             <input
               type="text"
               id="whatsappNumber"
