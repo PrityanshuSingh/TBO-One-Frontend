@@ -118,18 +118,18 @@ const CreatePackage = () => {
       // Define an array of steps with custom delays (in milliseconds)
       const stepsWithDelay = [
         { message: "Searching for relevant flights...", delay: 5000 },
-        { message: "Looking for hotels...", delay: 6000 },
-        { message: "Gathering sightseeing options...", delay: 5500 },
-        { message: "Analyzing trends based on your preferences...", delay: 5500 },
-        { message: "Comparing pricing across vendors...", delay: 3000 },
+        { message: "Looking for hotels...", delay: 5000 },
+        { message: "Gathering sightseeing options...", delay: 5000 },
+        { message: "Analyzing trends based on your preferences...", delay: 4000 },
+        { message: "Creating a personalized package for you...", delay: 7000 },
         { message: "Optimizing travel itineraries...", delay: 4000 },
-        { message: "Checking availability for your dates...", delay: 4500 },
-        { message: "Finalizing itinerary details...", delay: 4500 },
+        { message: "Generating an image for your package...", delay: 15000 },
+        { message: "It will be ready in a moment...Image Generation takes time", delay: 7000 },
       ];
       // Append a final step with no delay after it
       const steps = [
         ...stepsWithDelay,
-        { message: "Crafting multiple packages for you...", delay: 0 },
+        { message: "Publishing the package...", delay: 0 },
       ];
       
       let stepIndex = 0;
