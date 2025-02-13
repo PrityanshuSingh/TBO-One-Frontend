@@ -392,7 +392,7 @@ const PackageDetails = () => {
             onSightseeingChange={handleSightseeingChange}
           />
 
-          {/* Transport */}
+          {/* Transport 
           <Transport
             isEditMode={isEditMode}
             transportDetails={
@@ -401,7 +401,7 @@ const PackageDetails = () => {
                 : packageData?.details?.transport
             }
             onTransportChange={handleTransportChange}
-          />
+          />*/}
 
           {/* Itinerary */}
           <Itinerary
@@ -414,7 +414,7 @@ const PackageDetails = () => {
             onItineraryChange={handleItineraryChange}
           />
 
-          {/* Additional Services */}
+          {/* Additional Services 
           <AdditionalServices
             isEditMode={isEditMode}
             additionalServices={
@@ -423,7 +423,7 @@ const PackageDetails = () => {
                 : packageData?.details?.additionalServices
             }
             onChange={handleAdditionalServicesChange}
-          />
+          />*/}
 
           {/* FAQs */}
           <FAQs

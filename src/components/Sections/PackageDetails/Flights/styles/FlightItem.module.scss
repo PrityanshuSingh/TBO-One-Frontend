@@ -1,5 +1,4 @@
-/* src/components/Flights/styles/FlightItem.module.scss */
-
+// src/components/Flights/styles/FlightItem.module.scss
 
 .flight {
   background-color: #ffffff;
@@ -61,6 +60,44 @@
     font-size: 12px;
     margin-top: 5px;
   }
+
+  /* New styles for flight segments */
+  .segments {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--light-gray);
+
+    h5 {
+      font: 600 14px "Inter", sans-serif;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .segmentGroup {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .segment {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--border-radius-sm);
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+}
+
+/* Additional styling for the Flights group headers */
+.groupTitle {
+  font: 600 16px "Poppins", sans-serif;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  text-align: left;
 }
 
 /* Responsive Design */

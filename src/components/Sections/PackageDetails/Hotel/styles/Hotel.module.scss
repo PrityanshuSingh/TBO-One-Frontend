@@ -1,11 +1,12 @@
-/* src/components/Hotel/styles/Hotel.module.scss */
-
-
 .hotel {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  background: linear-gradient(135deg, rgba(240, 255, 245, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(240, 255, 245, 0.8) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
   padding: 2.5rem;
   border-radius: var(--border-radius-md);
   box-shadow: 0 8px 32px rgba(76, 175, 80, 0.1);
@@ -18,6 +19,7 @@
     margin-bottom: 1.5rem;
     text-align: left; // Left-aligned heading
   }
+
   .fieldGroup {
     display: flex;
     flex-direction: column;
@@ -78,28 +80,39 @@
     }
   }
 
-  /* Amenities Input Specific Styling */
-  .amenitiesField {
-    grid-template-columns: 200px 1fr; // Consistent with other fields
+  /* New Styles for Facilities UI */
+  .facilitiesField {
+    /* Ensure the facilities field uses the same grid layout */
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: start;
+    gap: 1.5rem;
+  }
 
-    input {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid var(--light-gray);
-      border-radius: var(--border-radius-sm);
-      padding: 0.9rem 1.2rem;
-      font-size: 1rem;
-      outline: none;
-      transition: border 0.3s ease, box-shadow 0.3s ease;
+  .facilitiesInputWrapper {
+    display: flex;
+    flex-direction: column;
+  }
 
-      &:focus {
-        border-color: var(--primary-blue);
-        box-shadow: 0 0 0 2px rgba(32, 174, 243, 0.2);
-      }
-    }
+  .facilitiesChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
 
-    input::placeholder {
-      color: var(--text-placeholder);
-    }
+  .chip {
+    background-color: var(--primary-blue);
+    color: #fff;
+    padding: 0.3rem 0.7rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+  }
+
+  .facilitiesDisplay {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Responsive Design */
@@ -142,10 +155,6 @@
           padding-right: 0;
         }
       }
-
-      .amenitiesField {
-        grid-template-columns: 1fr;
-      }
     }
   }
 
@@ -173,10 +182,6 @@
           font-size: 0.9rem;
           padding: 0.8rem 1rem;
         }
-      }
-
-      .amenitiesField {
-        grid-template-columns: 1fr;
       }
     }
   }

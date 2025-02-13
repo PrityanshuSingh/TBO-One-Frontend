@@ -220,7 +220,7 @@ const CreatePackage = () => {
                 }`}
                 onClick={() => setCreationMode("suggestive")}
               >
-                Suggestive
+                Guided
               </button>
             </div>
             <button

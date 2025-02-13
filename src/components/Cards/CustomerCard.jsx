@@ -165,6 +165,10 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
     navigate(`/u/packages/details/${newPkg.id}`);
   };
 
+  const handleEditOldPkg = () => {
+    navigate(`/u/packages/details/${row.oldPkgId}`);
+  };
+
   // Determine current stage for row actions
   const isGenerateStage = localStatus === "generate";
   const isSendStage = localStatus === "send";
@@ -199,6 +203,7 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
       {/* OLD PACKAGE PREVIEW */}
       <td>
         {row.oldPkgId ? (
+          <div className={styles.oldPkgActions}>
           <a
             href={`${baseUrl}/packages/details?cid=${row.campaignId}`}
             target="_blank"
@@ -207,8 +212,16 @@ Travelers: ${travelerMobile}, ${travelerEmail}`;
           >
             Old Pkg
           </a>
+          <button
+              onClick={handleEditOldPkg}
+              className={styles.editOldButton}
+              title="Edit old packages based on user prompts"
+            >
+              <FaEdit />
+          </button>
+          </div>
         ) : (
-          "-"
+          <div className={styles.unknownStatus}>N/A</div>
         )}
       </td>
 

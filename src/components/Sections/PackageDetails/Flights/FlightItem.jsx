@@ -1,8 +1,6 @@
 // src/components/Flights/FlightItem.jsx
-
 import React from "react";
 import PropTypes from "prop-types";
-
 import styles from "./styles/FlightItem.module.scss";
 
 const FlightItem = ({
@@ -17,7 +15,7 @@ const FlightItem = ({
     onFlightChange(groupIndex, flightIndex, name, value);
   };
 
-  // Extract the first segment
+  // Fallback: if Segments exists, take the first segment of the first group; otherwise, use flight directly.
   const segment = flight.Segments?.[0]?.[0] || flight;
 
   if (!segment) {
@@ -28,40 +26,20 @@ const FlightItem = ({
     );
   }
 
-  const {
-    Airline = {},
-    Origin = {},
-    Destination = {},
-    Duration,
-  } = segment;
-
-  const {
-    AirlineName = "N/A",
-    AirlineCode = "N/A",
-    FlightNumber = "N/A",
-  } = Airline;
-
-  const {
-    Airport: OriginAirport = {},
-    DepTime,
-  } = Origin;
-
-  const {
-    Airport: DestinationAirport = {},
-    ArrTime,
-  } = Destination;
-
+  const { Airline = {}, Origin = {}, Destination = {}, Duration } = segment;
+  const { AirlineName = "N/A", AirlineCode = "N/A", FlightNumber = "N/A" } =
+    Airline;
+  const { Airport: OriginAirport = {}, DepTime } = Origin;
+  const { Airport: DestinationAirport = {}, ArrTime } = Destination;
   const {
     CityName: OriginCity = "N/A",
     AirportCode: OriginCode = "N/A",
   } = OriginAirport;
-
   const {
     CityName: DestinationCity = "N/A",
     AirportCode: DestinationCode = "N/A",
   } = DestinationAirport;
 
-  // Format date and time
   const formatDateTime = (dateTimeStr) => {
     if (!dateTimeStr) return "N/A";
     const date = new Date(dateTimeStr);
@@ -76,7 +54,7 @@ const FlightItem = ({
 
   return (
     <div className={styles.flight}>
-      <h4 className={styles.flightTitle}>Flight {flightIndex + 1}</h4>
+      <h4 className={styles.flightTitle}>Flight from {OriginCity}</h4>
       <div className={styles.field}>
         <label htmlFor={`AirlineCode-${groupIndex}-${flightIndex}`}>
           Airline Details:
@@ -137,7 +115,7 @@ const FlightItem = ({
               placeholder="Enter Flight Number"
             />
           </div>
-          {/* Add more editable fields as necessary */}
+          {/* Add additional editable fields here if necessary */}
         </>
       ) : (
         <>
@@ -160,10 +138,38 @@ const FlightItem = ({
           </div>
           <div className={styles.field}>
             <p className={styles.text}>
-              <strong>Fare:</strong> {flight?.Fare?.Currency} {flight?.Fare?.BaseFare}
+              <strong>Fare:</strong> {flight?.Fare?.Currency}{" "}
+              {flight?.Fare?.BaseFare}
             </p>
           </div>
-          {/* Add more display fields as necessary */}
+          {/* Display flight segments if available */}
+          {flight.Segments && flight.Segments.length > 0 && (
+            <div className={styles.segments}>
+              <h5>Segments:</h5>
+              {flight.Segments.map((segmentGroup, sgIndex) => (
+                <div key={sgIndex} className={styles.segmentGroup}>
+                  {segmentGroup.map((seg, segIndex) => (
+                    <div key={segIndex} className={styles.segment}>
+                      <p>
+                        <strong>
+                          {segIndex === 0 ? "Departure" : "Arrival"}:
+                        </strong>{" "}
+                        {seg?.Origin?.Airport?.CityName || "N/A"} (
+                        {seg?.Origin?.Airport?.AirportCode || "N/A"}) to{" "}
+                        {seg?.Destination?.Airport?.CityName || "N/A"} (
+                        {seg?.Destination?.Airport?.AirportCode || "N/A"})
+                      </p>
+                      <p>
+                        <strong>Time:</strong>{" "}
+                        {formatDateTime(seg?.Origin?.DepTime)} -{" "}
+                        {formatDateTime(seg?.Destination?.ArrTime)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
         </>
       )}
     </div>
@@ -196,6 +202,10 @@ FlightItem.propTypes = {
     }),
     Duration: PropTypes.number,
     FlightStatus: PropTypes.string,
+    Fare: PropTypes.shape({
+      Currency: PropTypes.string,
+      BaseFare: PropTypes.number,
+    }),
   }).isRequired,
   isEditMode: PropTypes.bool,
   onFlightChange: PropTypes.func,

@@ -2,6 +2,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import parse from "html-react-parser";  // Import html-react-parser
 
 import SightseeingItem from "./SightseeingItem";
 
@@ -51,7 +52,9 @@ const Sightseeing = ({
               <strong>Types:</strong> {sight.SightseeingTypes?.join(", ") || "N/A"}
             </p>
             <p>
-              <strong>Description:</strong> {sight.TourDescription || "N/A"}
+              <strong>Description:</strong> 
+              {/* Render the HTML description */}
+              <span>{parse(sight.TourDescription || "N/A")}</span>
             </p>
             {/* Add more details as necessary */}
           </div>
